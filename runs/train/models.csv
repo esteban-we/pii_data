@@ -1,33 +1,33 @@
-arm,family,epoch,status,onnx,onnx_md5,onnx_size,n_onnx,checkpoints,source
-egoblurA,egoblur,17447,deprecated,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurA
-egoblurB,egoblur,46499,active,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurB
-egoblurB_n8,egoblur,34879,deprecated,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurB_n8_fluence
-egoblurC_n8,egoblur,47409,active,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurC_n8_fluence
-stock,egoblur,unknown,deprecated,,,,0,upstream release,/data/esteban/pii/weights
-armAA,scrfd,20,deprecated,scrfd/armAA/onnx/armAA_det10g.onnx,24470db84088e1741230753faf896533,16962796,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAA_ckpt
-armAA34,scrfd,20,deprecated,scrfd/armAA34/onnx/armAA34_det34g.onnx,50386d6845f4f69dd9ffb2147ea55284,39427800,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAA34_ckpt
-armAB,scrfd,20,deprecated,scrfd/armAB/onnx/armAB_det10g.onnx,f9cca6c9e3a36ddb02c77ead9fa02f52,16962796,1,shang,/data/esteban/pii/runs/train
-armAC,scrfd,20,active,scrfd/armAC/onnx/armAC_det10g.onnx,82d93b6fc2c0feb89679189e97cebd41,16962796,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAC_ckpt
-armAC34,scrfd,20,deprecated,scrfd/armAC34/onnx/armAC34_det34g.onnx,882d28b836f11859ff2c4bcaad4b88c4,39427800,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAC34_ckpt
-armAD,scrfd,20,deprecated,scrfd/armAD/onnx/armAD_det10g.onnx,6575ffc102832a7666d7044b0ebe08f0,16962796,1,shang,/data/esteban/pii/runs/train
-armAE,scrfd,20,deprecated,scrfd/armAE/onnx/armAE_det10g.onnx,7da56520e86c2036cf732c38512022d1,16962796,1,shang,/data/esteban/pii/runs/train
-armAE34,scrfd,20,active,scrfd/armAE34/onnx/armAE34_det34g.onnx,3fa016c5dc7241e448ec101f4234e738,39427800,1,shang,/data/esteban/pii/runs/train
-armAF,scrfd,80,active,scrfd/armAF/onnx/armAF_det10g.onnx,6bd144aa8188ed76a30ab536006d812c,16962746,4,shang,/data/esteban/pii/runs/train
-armAG34,scrfd,20,active,scrfd/armAG34/onnx/armAG34_det34g.onnx,fe1721d8cc93b17dd82e6aabb33a5266,39427800,1,local,/data/esteban/pii/runs/train/wd_armAG34
-armAH34,scrfd,20,active,scrfd/armAH34/onnx/armAH34_det34g.onnx,7e7b74973fae3c17d500f8557c303804,39427800,1,local,/data/esteban/pii/runs/train/wd_armAH34_fluence
-armAI34,scrfd,80,active,scrfd/armAI34/onnx/armAI34_det34g.onnx,5b3a38db50c0b0c6668b32cd51c37365,39426870,81,local,/data/esteban/pii/runs/train/wd_armAI34_fluence
-armAJ,scrfd,30,active,scrfd/armAJ/onnx/armAJ_det10g.onnx,f8f11b7418441663345bd70a2a655919,16962796,1,shang,/data/esteban/pii/runs/train
-armAJ34,scrfd,30,active,scrfd/armAJ34/onnx/armAJ34_det34g.onnx,ade29673b9068e0e310ed25f7eaff566,39427800,1,local (epoch 30 only) and shang,/data/esteban/pii/runs/train
-armAK,scrfd,30,active,scrfd/armAK/onnx/armAK_det10g.onnx,1d90721ba1cc38dbe2706cf458156c73,16962796,1,shang,/data/esteban/pii/runs/train
-armAK34,scrfd,30,active,scrfd/armAK34/onnx/armAK34_det34g.onnx,0d6a6e4123c02f088f950327fbb6a3c3,39427800,1,local (epoch 30 only) and shang,/data/esteban/pii/runs/train
-armW,scrfd,20,active,scrfd/armW/onnx/armW_det10g.onnx,f445b1606444c8b7c72a2fb4de35e123,16962796,1,local,/data/esteban/pii/weights
-armW_fe2,scrfd,20,deprecated,scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx,10df1f8bbe91a9d07a5b981ed798e0db,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_fe2
-armW_nowider,scrfd,20,deprecated,scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx,fbdafd176b60d54cd04844cb10325572,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_nowider
-armW_repro,scrfd,20,deprecated,scrfd/armW_repro/onnx/armW_repro_det10g.onnx,e9e77f4b81a9772499a963c26c27690b,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_repro
-armX,scrfd,20,deprecated,scrfd/armX/onnx/armX_det10g.onnx,e61b93d8bf4edddea34a563abe725b96,16962796,1,local,/data/esteban/pii/runs/train/wd_armX
-armY,scrfd,20,deprecated,scrfd/armY/onnx/armY_det34g.onnx,6aab1118d5fe9017fa4c4e7e86ddb0a0,39427800,1,local,/data/esteban/pii/runs/train/wd_armY_ckpt
-armZ,scrfd,20,deprecated,scrfd/armZ/onnx/armZ_det10g.onnx,ef3e4d91a98ca5ce8075668586b86e7a,16962796,1,local,/data/esteban/pii/runs/train/wd_armZ
-armZ34,scrfd,20,deprecated,scrfd/armZ34/onnx/armZ34_det34g.onnx,f1505bb8a1bcaa20973859aed9b2d03c,39427800,1,local,/data/esteban/pii/runs/train/wd_armZ34
-armZZ,scrfd,20,deprecated,scrfd/armZZ/onnx/armZZ_det10g.onnx,be930efc6a080f04e749d8691f03b601,16962796,1,local,/data/esteban/pii/runs/train/wd_armZZ
-armZZ34,scrfd,20,deprecated,scrfd/armZZ34/onnx/armZZ34_det34g.onnx,f002a45b1738d76d44a22d20984fd235,39427800,1,local,/data/esteban/pii/runs/train/wd_armZZ34
-stock,scrfd,unknown,deprecated,scrfd/stock/det_10g.onnx,4c10eef5c9e168357a16fdd580fa8371,16923827,2,upstream release,/data/esteban/pii/weights
+arm,family,epoch,status,onnx,onnx_md5,onnx_size,n_onnx,checkpoints,source,oss_key
+egoblurA,egoblur,17447,deprecated,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurA,pii/models/egoblur/egoblurA/epochs/model_final.pth
+egoblurB,egoblur,46499,active,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurB,pii/models/egoblur/egoblurB/epochs/model_final.pth
+egoblurB_n8,egoblur,34879,deprecated,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurB_n8_fluence,pii/models/egoblur/egoblurB_n8/epochs/model_final.pth
+egoblurC_n8,egoblur,47409,active,,,,0,local,/data/esteban/pii/runs/train/wd_egoblurC_n8_fluence,pii/models/egoblur/egoblurC_n8/epochs/model_final.pth
+stock,egoblur,unknown,deprecated,,,,0,upstream release,/data/esteban/pii/weights,
+armAA,scrfd,20,deprecated,scrfd/armAA/onnx/armAA_det10g.onnx,24470db84088e1741230753faf896533,16962796,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAA_ckpt,pii/models/scrfd/armAA/onnx/armAA_det10g.onnx
+armAA34,scrfd,20,deprecated,scrfd/armAA34/onnx/armAA34_det34g.onnx,50386d6845f4f69dd9ffb2147ea55284,39427800,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAA34_ckpt,pii/models/scrfd/armAA34/onnx/armAA34_det34g.onnx
+armAB,scrfd,20,deprecated,scrfd/armAB/onnx/armAB_det10g.onnx,f9cca6c9e3a36ddb02c77ead9fa02f52,16962796,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAB/onnx/armAB_det10g.onnx
+armAC,scrfd,20,active,scrfd/armAC/onnx/armAC_det10g.onnx,82d93b6fc2c0feb89679189e97cebd41,16962796,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAC_ckpt,pii/models/scrfd/armAC/onnx/armAC_det10g.onnx
+armAC34,scrfd,20,deprecated,scrfd/armAC34/onnx/armAC34_det34g.onnx,882d28b836f11859ff2c4bcaad4b88c4,39427800,1,local (epoch 20 only) and shang,/data/esteban/pii/runs/train/wd_armAC34_ckpt,pii/models/scrfd/armAC34/onnx/armAC34_det34g.onnx
+armAD,scrfd,20,deprecated,scrfd/armAD/onnx/armAD_det10g.onnx,6575ffc102832a7666d7044b0ebe08f0,16962796,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAD/onnx/armAD_det10g.onnx
+armAE,scrfd,20,deprecated,scrfd/armAE/onnx/armAE_det10g.onnx,7da56520e86c2036cf732c38512022d1,16962796,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAE/onnx/armAE_det10g.onnx
+armAE34,scrfd,20,active,scrfd/armAE34/onnx/armAE34_det34g.onnx,3fa016c5dc7241e448ec101f4234e738,39427800,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAE34/onnx/armAE34_det34g.onnx
+armAF,scrfd,80,active,scrfd/armAF/onnx/armAF_det10g.onnx,6bd144aa8188ed76a30ab536006d812c,16962746,4,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAF/onnx/armAF_det10g.onnx
+armAG34,scrfd,20,active,scrfd/armAG34/onnx/armAG34_det34g.onnx,fe1721d8cc93b17dd82e6aabb33a5266,39427800,1,local,/data/esteban/pii/runs/train/wd_armAG34,pii/models/scrfd/armAG34/onnx/armAG34_det34g.onnx
+armAH34,scrfd,20,active,scrfd/armAH34/onnx/armAH34_det34g.onnx,7e7b74973fae3c17d500f8557c303804,39427800,1,local,/data/esteban/pii/runs/train/wd_armAH34_fluence,pii/models/scrfd/armAH34/onnx/armAH34_det34g.onnx
+armAI34,scrfd,80,active,scrfd/armAI34/onnx/armAI34_det34g.onnx,5b3a38db50c0b0c6668b32cd51c37365,39426870,81,local,/data/esteban/pii/runs/train/wd_armAI34_fluence,pii/models/scrfd/armAI34/onnx/armAI34_det34g.onnx
+armAJ,scrfd,30,active,scrfd/armAJ/onnx/armAJ_det10g.onnx,f8f11b7418441663345bd70a2a655919,16962796,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAJ/onnx/armAJ_det10g.onnx
+armAJ34,scrfd,30,active,scrfd/armAJ34/onnx/armAJ34_det34g.onnx,ade29673b9068e0e310ed25f7eaff566,39427800,1,local (epoch 30 only) and shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAJ34/onnx/armAJ34_det34g.onnx
+armAK,scrfd,30,active,scrfd/armAK/onnx/armAK_det10g.onnx,1d90721ba1cc38dbe2706cf458156c73,16962796,1,shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAK/onnx/armAK_det10g.onnx
+armAK34,scrfd,30,active,scrfd/armAK34/onnx/armAK34_det34g.onnx,0d6a6e4123c02f088f950327fbb6a3c3,39427800,1,local (epoch 30 only) and shang,/data/esteban/pii/runs/train,pii/models/scrfd/armAK34/onnx/armAK34_det34g.onnx
+armW,scrfd,20,active,scrfd/armW/onnx/armW_det10g.onnx,f445b1606444c8b7c72a2fb4de35e123,16962796,1,local,/data/esteban/pii/weights,pii/models/scrfd/armW/onnx/armW_det10g.onnx
+armW_fe2,scrfd,20,deprecated,scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx,10df1f8bbe91a9d07a5b981ed798e0db,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_fe2,pii/models/scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx
+armW_nowider,scrfd,20,deprecated,scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx,fbdafd176b60d54cd04844cb10325572,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_nowider,pii/models/scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx
+armW_repro,scrfd,20,deprecated,scrfd/armW_repro/onnx/armW_repro_det10g.onnx,e9e77f4b81a9772499a963c26c27690b,16962796,1,local,/data/esteban/pii/runs/train/wd_armW_repro,pii/models/scrfd/armW_repro/onnx/armW_repro_det10g.onnx
+armX,scrfd,20,deprecated,scrfd/armX/onnx/armX_det10g.onnx,e61b93d8bf4edddea34a563abe725b96,16962796,1,local,/data/esteban/pii/runs/train/wd_armX,pii/models/scrfd/armX/onnx/armX_det10g.onnx
+armY,scrfd,20,deprecated,scrfd/armY/onnx/armY_det34g.onnx,6aab1118d5fe9017fa4c4e7e86ddb0a0,39427800,1,local,/data/esteban/pii/runs/train/wd_armY_ckpt,pii/models/scrfd/armY/onnx/armY_det34g.onnx
+armZ,scrfd,20,deprecated,scrfd/armZ/onnx/armZ_det10g.onnx,ef3e4d91a98ca5ce8075668586b86e7a,16962796,1,local,/data/esteban/pii/runs/train/wd_armZ,pii/models/scrfd/armZ/onnx/armZ_det10g.onnx
+armZ34,scrfd,20,deprecated,scrfd/armZ34/onnx/armZ34_det34g.onnx,f1505bb8a1bcaa20973859aed9b2d03c,39427800,1,local,/data/esteban/pii/runs/train/wd_armZ34,pii/models/scrfd/armZ34/onnx/armZ34_det34g.onnx
+armZZ,scrfd,20,deprecated,scrfd/armZZ/onnx/armZZ_det10g.onnx,be930efc6a080f04e749d8691f03b601,16962796,1,local,/data/esteban/pii/runs/train/wd_armZZ,pii/models/scrfd/armZZ/onnx/armZZ_det10g.onnx
+armZZ34,scrfd,20,deprecated,scrfd/armZZ34/onnx/armZZ34_det34g.onnx,f002a45b1738d76d44a22d20984fd235,39427800,1,local,/data/esteban/pii/runs/train/wd_armZZ34,pii/models/scrfd/armZZ34/onnx/armZZ34_det34g.onnx
+stock,scrfd,unknown,deprecated,scrfd/stock/det_10g.onnx,4c10eef5c9e168357a16fdd580fa8371,16923827,2,upstream release,/data/esteban/pii/weights,pii/models/scrfd/stock/det_10g.onnx
