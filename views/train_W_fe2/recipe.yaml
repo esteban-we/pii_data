@@ -1,0 +1,31 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii2/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii2/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: train_W_fe2
+role: train
+sources:
+  - dataset: pii_frames
+    boxes: v1
+    split: train
+    legacy_prefix: pii
+    legacy_path: chunked
+  - dataset: wider_fisheye_fill
+    boxes: v1
+    split: train
+    legacy_prefix: wider_fe2
+    legacy_path: basename
+  - dataset: face10k
+    boxes: v1
+    split: train
+    where: {unlabeled: '0'}
+    legacy_prefix: face10k
+    legacy_path: basename
+legacy:
+  manifest: /data/esteban/pii/datasets/views/mix_ds/train_W_fe2.txt
+  order: source blocks in this order; frames sorted by image name inside a block
+notes: |
+  train_W with the fill variant of the fisheye warp (wider_fisheye_fill). Every block is the
+  train split of its dataset on boxes v1, the box version the legacy manifest was built from
+  (mk_mix_*.py in the repo, PII-128 / PII-1009 history). face10k drops its 16 `unlabeled`
+  frames, which have no v1 label and no row in v1 boxes.csv; that is the `where` filter, and
+  it is why the block has 11,491 of the dataset's 11,507 frames.

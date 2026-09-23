@@ -1,0 +1,78 @@
+{
+ "images": 12879,
+ "errors": 0,
+ "images_zero_boxes_in": 4,
+ "images_zero_boxes_out": 67,
+ "images_size_mismatch": 0,
+ "boxes_in": 159390,
+ "boxes_out": 153203,
+ "boxes_dropped_off_canvas": 5792,
+ "boxes_dropped_small": 395,
+ "boxes_kept_frac": 0.9611832611832611,
+ "percentiles": [
+  5,
+  10,
+  25,
+  50,
+  75,
+  90,
+  95,
+  99
+ ],
+ "src_long_side_pct": [
+  7.0,
+  8.0,
+  12.0,
+  20.0,
+  38.0,
+  76.0,
+  126.0,
+  326.0
+ ],
+ "out_long_side_pct": [
+  15.9,
+  19.3,
+  28.1,
+  44.3,
+  68.3,
+  99.0,
+  124.9,
+  202.9
+ ],
+ "out_frac_lt_16": 0.05173527933526106,
+ "out_frac_gt_300": 0.0024281508847737968,
+ "target_p10_p50_p90": [
+  45.0,
+  72.0,
+  124.0
+ ],
+ "hfov_deg_pct": [
+  54.2,
+  69.9,
+  86.1
+ ],
+ "zoom_pct": [
+  0.25,
+  0.76,
+  2.8
+ ],
+ "zoom_at_cap_frac": 0.1280378911406165,
+ "zoom_cap_pct": [
+  1.81,
+  2.76,
+  4.0
+ ],
+ "zoom_at_min_frac": 0.1805264383880736,
+ "hfov_eff_deg_pct": [
+  20.5,
+  55.8,
+  129.0
+ ],
+ "axis_off_deg_pct": [
+  9.4,
+  30.1,
+  56.1
+ ],
+ "seconds": 125.0,
+ "workers": 48
+}

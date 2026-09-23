@@ -1,0 +1,72 @@
+{
+  "det_size": 1024,
+  "ds": "faceight_b",
+  "dump_score_thr": 0.1,
+  "iou_gate": 0.1,
+  "model": "armAE34",
+  "model_md5": "3fa016c5dc7241e448ec101f4234e738",
+  "pad": true,
+  "score_cut": 0.3,
+  "views": {
+    "left": {
+      "additions": 5517,
+      "additions_out_of_frame": 469,
+      "dets_at_cut": 23872,
+      "dump": "/data/esteban/pii/datasets/faceight_b_relabel_v1/dets_left.jsonl",
+      "dump_boxes": 133327,
+      "frames": 28503,
+      "frames_with_addition": 4549,
+      "frames_with_addition_only": 2689,
+      "frames_with_human": 11288,
+      "frames_with_no_box": 14526,
+      "human_boxes": 29739,
+      "human_source": "/data/esteban/pii/datasets/faceight_b/boxes.jsonl",
+      "images": "/data/esteban/pii/datasets/faceight_b/images_left",
+      "score_bands": {
+        "0.3-0.4": 3405,
+        "0.4-0.5": 1364,
+        "0.5-0.6": 531,
+        "0.6-0.8": 215,
+        "0.8-1.01": 2
+      },
+      "side_bands": {
+        "0-20": 17,
+        "100-1000000000.0": 1538,
+        "20-40": 1692,
+        "40-60": 873,
+        "60-100": 1397
+      },
+      "worst_addition_iou": 0.09992917673444099
+    },
+    "right": {
+      "additions": 6042,
+      "additions_out_of_frame": 460,
+      "dets_at_cut": 28842,
+      "dump": "/data/esteban/pii/datasets/faceight_b_relabel_v1/dets_right.jsonl",
+      "dump_boxes": 153787,
+      "frames": 31497,
+      "frames_with_addition": 4853,
+      "frames_with_addition_only": 2677,
+      "frames_with_human": 13226,
+      "frames_with_no_box": 15594,
+      "human_boxes": 35528,
+      "human_source": "/data/esteban/pii/datasets/faceight_b/boxes.jsonl",
+      "images": "/data/esteban/pii/datasets/faceight_b/images_right",
+      "score_bands": {
+        "0.3-0.4": 3754,
+        "0.4-0.5": 1496,
+        "0.5-0.6": 546,
+        "0.6-0.8": 243,
+        "0.8-1.01": 3
+      },
+      "side_bands": {
+        "0-20": 19,
+        "100-1000000000.0": 1476,
+        "20-40": 1941,
+        "40-60": 1011,
+        "60-100": 1595
+      },
+      "worst_addition_iou": 0.09957691276114354
+    }
+  }
+}

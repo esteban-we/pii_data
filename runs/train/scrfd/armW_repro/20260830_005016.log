@@ -1,0 +1,331 @@
+2026-08-30 00:50:16,520 - mmdet - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.12.13 (main, Jun 11 2026, 04:03:26) [Clang 22.1.3 ]
+CUDA available: True
+GPU 0,1: NVIDIA RTX 6000 Ada Generation
+CUDA_HOME: /usr/local/cuda
+NVCC: Build cuda_13.0.r13.0/compiler.36424714_0
+GCC: gcc (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+PyTorch: 2.13.0+cu130
+PyTorch compiling details: PyTorch built with:
+  - GCC 13.3
+  - C++ Version: 202002
+  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.12.0 (Git Hash 80afa71049cd69a3df32adcccb623b12cd7baa22)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX2
+  - CUDA Runtime 13.0
+  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+  - CuDNN 92.0  (built against CUDA 13.2)
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=cf30153c4c131c8164ee7798e5022d810682e2cb, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.13.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+
+TorchVision: 0.28.0+cu130
+OpenCV: 4.11.0
+MMCV: 1.4.0
+MMCV Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMCV CUDA Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMDetection: 2.7.0+7fadd42
+------------------------------------------------------------
+
+2026-08-30 00:50:16,810 - mmdet - INFO - Distributed training: True
+2026-08-30 00:50:16,925 - mmdet - INFO - Config:
+optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0005)
+optimizer_config = dict(grad_clip=None)
+lr_mult = 8
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=500,
+    warmup_ratio=0.001,
+    step=[14, 18])
+total_epochs = 20
+checkpoint_config = dict(interval=5)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = '/data/esteban/pii/weights/SCRFD_10G_KPS_official.pth'
+resume_from = None
+workflow = [('train', 1)]
+dataset_type = 'RetinaFaceDataset'
+data_root = 'data/retinaface/'
+train_root = 'data/retinaface/train/'
+val_root = 'data/retinaface/val/'
+img_norm_cfg = dict(
+    mean=[127.5, 127.5, 127.5], std=[128.0, 128.0, 128.0], to_rgb=True)
+train_pipeline = [
+    dict(type='LoadImageFromFile', to_float32=True),
+    dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+    dict(
+        type='RandomSquareCrop',
+        crop_choice=[0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+        bbox_clip_border=False),
+    dict(
+        type='Resize',
+        img_scale=(640, 640),
+        keep_ratio=False,
+        bbox_clip_border=False),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='PhotoMetricDistortion',
+        brightness_delta=32,
+        contrast_range=(0.5, 1.5),
+        saturation_range=(0.5, 1.5),
+        hue_delta=18),
+    dict(
+        type='Normalize',
+        mean=[127.5, 127.5, 127.5],
+        std=[128.0, 128.0, 128.0],
+        to_rgb=True),
+    dict(type='DefaultFormatBundle'),
+    dict(
+        type='Collect',
+        keys=[
+            'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+            'gt_keypointss'
+        ])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(640, 640),
+        flip=False,
+        transforms=[
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip', flip_ratio=0.0),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='Pad', size=(640, 640), pad_val=0),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+data = dict(
+    samples_per_gpu=32,
+    workers_per_gpu=4,
+    train=dict(
+        type='RetinaFaceDataset',
+        ann_file='data/mix_ds/train_W.txt',
+        img_prefix='data/mix_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile', to_float32=True),
+            dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+            dict(
+                type='RandomSquareCrop',
+                crop_choice=[
+                    0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0
+                ],
+                bbox_clip_border=False),
+            dict(
+                type='Resize',
+                img_scale=(640, 640),
+                keep_ratio=False,
+                bbox_clip_border=False),
+            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(
+                type='PhotoMetricDistortion',
+                brightness_delta=32,
+                contrast_range=(0.5, 1.5),
+                saturation_range=(0.5, 1.5),
+                hue_delta=18),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='DefaultFormatBundle'),
+            dict(
+                type='Collect',
+                keys=[
+                    'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+                    'gt_keypointss'
+                ])
+        ]),
+    val=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]),
+    test=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]))
+model = dict(
+    type='SCRFD',
+    backbone=dict(
+        type='ResNetV1e',
+        depth=0,
+        block_cfg=dict(
+            block='BasicBlock',
+            stage_blocks=(3, 4, 2, 3),
+            stage_planes=[56, 88, 88, 224]),
+        base_channels=56,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=False,
+        style='pytorch'),
+    neck=dict(
+        type='PAFPN',
+        in_channels=[56, 88, 88, 224],
+        out_channels=56,
+        start_level=1,
+        add_extra_convs='on_output',
+        num_outs=3),
+    bbox_head=dict(
+        type='SCRFDHead',
+        num_classes=1,
+        in_channels=56,
+        stacked_convs=3,
+        feat_channels=80,
+        norm_cfg=dict(type='BN', requires_grad=True),
+        cls_reg_share=True,
+        strides_share=False,
+        scale_mode=2,
+        anchor_generator=dict(
+            type='AnchorGenerator',
+            ratios=[1.0],
+            scales=[1, 2],
+            base_sizes=[16, 64, 256],
+            strides=[8, 16, 32]),
+        loss_cls=dict(
+            type='QualityFocalLoss',
+            use_sigmoid=True,
+            beta=2.0,
+            loss_weight=1.0),
+        loss_dfl=False,
+        reg_max=8,
+        loss_bbox=dict(type='DIoULoss', loss_weight=2.0),
+        use_kps=True,
+        loss_kps=dict(
+            type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
+        train_cfg=dict(
+            assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+            allowed_border=-1,
+            pos_weight=-1,
+            debug=False,
+            neg_weight_zero_prefix='/pii',
+            neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+            neg_weight_pii=0.5,
+            qscore='one'),
+        test_cfg=dict(
+            nms_pre=-1,
+            min_bbox_size=0,
+            score_thr=0.02,
+            nms=dict(type='nms', iou_threshold=0.45),
+            max_per_img=-1)))
+train_cfg = dict(
+    assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+    allowed_border=-1,
+    pos_weight=-1,
+    debug=False,
+    neg_weight_zero_prefix='/pii',
+    neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+    neg_weight_pii=0.5,
+    qscore='one')
+test_cfg = dict(
+    nms_pre=-1,
+    min_bbox_size=0,
+    score_thr=0.02,
+    nms=dict(type='nms', iou_threshold=0.45),
+    max_per_img=-1)
+epoch_multi = 1
+evaluation = dict(interval=10000, metric='mAP')
+_r = '/data/liangzhenghao/face_pii/raw_ds/'
+_m = 'data/mix_ds/'
+_assigner = dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5)
+work_dir = '/data/esteban/pii/train/wd_armW_repro'
+gpu_ids = range(0, 2)
+
+2026-08-30 00:50:22,372 - mmdet - INFO - load checkpoint from local path: /data/esteban/pii/weights/SCRFD_10G_KPS_official.pth
+2026-08-30 00:50:22,427 - mmdet - INFO - Start running, host: esteban@gpu-002.sjc.worldengine.ai, work_dir: /data/esteban/pii/train/wd_armW_repro
+2026-08-30 00:50:22,428 - mmdet - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) OptimizerHook                      
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2026-08-30 00:50:22,429 - mmdet - INFO - workflow: [('train', 1)], max: 20 epochs
+2026-08-30 00:50:22,429 - mmdet - INFO - Checkpoints will be saved to /data/esteban/pii/train/wd_armW_repro by HardDiskBackend.
+2026-08-30 00:54:24,751 - mmdet - INFO - Epoch [1][50/542]	lr: 9.890e-05, eta: 14:31:11, time: 4.844, data_time: 0.936, memory: 8057, loss_cls: 0.5570, loss_bbox: 0.3693, loss_kps: 0.0000, loss: 0.9263

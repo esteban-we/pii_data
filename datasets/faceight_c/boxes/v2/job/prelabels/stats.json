@@ -1,0 +1,72 @@
+{
+  "det_size": 1024,
+  "ds": "faceight_c",
+  "dump_score_thr": 0.1,
+  "iou_gate": 0.1,
+  "model": "armAE34",
+  "model_md5": "3fa016c5dc7241e448ec101f4234e738",
+  "pad": true,
+  "score_cut": 0.3,
+  "views": {
+    "left": {
+      "additions": 6688,
+      "additions_out_of_frame": 412,
+      "dets_at_cut": 18208,
+      "dump": "/data/esteban/pii/datasets/faceight_c_relabel_v1/dets_left.jsonl",
+      "dump_boxes": 101809,
+      "frames": 18994,
+      "frames_with_addition": 4661,
+      "frames_with_addition_only": 2379,
+      "frames_with_human": 7356,
+      "frames_with_no_box": 9259,
+      "human_boxes": 12712,
+      "human_source": "/data/esteban/pii/datasets/faceight_c/boxes.jsonl",
+      "images": "/data/esteban/pii/datasets/faceight_c/images_left",
+      "score_bands": {
+        "0.3-0.4": 4055,
+        "0.4-0.5": 1724,
+        "0.5-0.6": 664,
+        "0.6-0.8": 244,
+        "0.8-1.01": 1
+      },
+      "side_bands": {
+        "0-20": 24,
+        "100-1000000000.0": 1135,
+        "20-40": 2696,
+        "40-60": 1184,
+        "60-100": 1649
+      },
+      "worst_addition_iou": 0.09993379592734168
+    },
+    "right": {
+      "additions": 7664,
+      "additions_out_of_frame": 375,
+      "dets_at_cut": 21525,
+      "dump": "/data/esteban/pii/datasets/faceight_c_relabel_v1/dets_right.jsonl",
+      "dump_boxes": 116732,
+      "frames": 21006,
+      "frames_with_addition": 5264,
+      "frames_with_addition_only": 2596,
+      "frames_with_human": 8540,
+      "frames_with_no_box": 9870,
+      "human_boxes": 15330,
+      "human_source": "/data/esteban/pii/datasets/faceight_c/boxes.jsonl",
+      "images": "/data/esteban/pii/datasets/faceight_c/images_right",
+      "score_bands": {
+        "0.3-0.4": 4526,
+        "0.4-0.5": 2009,
+        "0.5-0.6": 798,
+        "0.6-0.8": 326,
+        "0.8-1.01": 5
+      },
+      "side_bands": {
+        "0-20": 28,
+        "100-1000000000.0": 1142,
+        "20-40": 3161,
+        "40-60": 1365,
+        "60-100": 1968
+      },
+      "worst_addition_iou": 0.09995226697849131
+    }
+  }
+}

@@ -1,0 +1,4819 @@
+{
+ "pixel_mean": [
+  103.52999877929688,
+  116.27999877929688,
+  123.67500305175781
+ ],
+ "pixel_std": [
+  57.375,
+  57.119998931884766,
+  58.39500045776367
+ ],
+ "input_format": "BGR",
+ "fpn": {
+  "size_divisibility": 32,
+  "square_pad": 0,
+  "top_block": "LastLevelMaxPool",
+  "top_in_feature": "p5",
+  "in_features": [
+   "res2",
+   "res3",
+   "res4",
+   "res5"
+  ]
+ },
+ "rpn": {
+  "batch_size_per_image": 256,
+  "positive_fraction": 0.5,
+  "nms_thresh": 0.7,
+  "min_box_size": 0.0,
+  "anchor_boundary_thresh": -1,
+  "smooth_l1_beta": 0.0,
+  "pre_nms_topk": {
+   "true": 2000,
+   "false": 1000
+  },
+  "post_nms_topk": {
+   "true": 1000,
+   "false": 1000
+  },
+  "in_features": [
+   "p2",
+   "p3",
+   "p4",
+   "p5",
+   "p6"
+  ],
+  "box2box_weights": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "scale_clamp": 4.135166556742356
+ },
+ "anchor": {
+  "strides": [
+   4,
+   8,
+   16,
+   32,
+   64
+  ],
+  "offset": 0.0,
+  "cell_anchors": [
+   [
+    [
+     -22.627416610717773,
+     -11.313708305358887,
+     22.627416610717773,
+     11.313708305358887
+    ],
+    [
+     -16.0,
+     -16.0,
+     16.0,
+     16.0
+    ],
+    [
+     -11.313708305358887,
+     -22.627416610717773,
+     11.313708305358887,
+     22.627416610717773
+    ]
+   ],
+   [
+    [
+     -45.25483322143555,
+     -22.627416610717773,
+     45.25483322143555,
+     22.627416610717773
+    ],
+    [
+     -32.0,
+     -32.0,
+     32.0,
+     32.0
+    ],
+    [
+     -22.627416610717773,
+     -45.25483322143555,
+     22.627416610717773,
+     45.25483322143555
+    ]
+   ],
+   [
+    [
+     -90.5096664428711,
+     -45.25483322143555,
+     90.5096664428711,
+     45.25483322143555
+    ],
+    [
+     -64.0,
+     -64.0,
+     64.0,
+     64.0
+    ],
+    [
+     -45.25483322143555,
+     -90.5096664428711,
+     45.25483322143555,
+     90.5096664428711
+    ]
+   ],
+   [
+    [
+     -181.0193328857422,
+     -90.5096664428711,
+     181.0193328857422,
+     90.5096664428711
+    ],
+    [
+     -128.0,
+     -128.0,
+     128.0,
+     128.0
+    ],
+    [
+     -90.5096664428711,
+     -181.0193328857422,
+     90.5096664428711,
+     181.0193328857422
+    ]
+   ],
+   [
+    [
+     -362.0386657714844,
+     -181.0193328857422,
+     362.0386657714844,
+     181.0193328857422
+    ],
+    [
+     -256.0,
+     -256.0,
+     256.0,
+     256.0
+    ],
+    [
+     -181.0193328857422,
+     -362.0386657714844,
+     181.0193328857422,
+     362.0386657714844
+    ]
+   ]
+  ]
+ },
+ "roi_heads": {
+  "batch_size_per_image": 512,
+  "positive_fraction": 0.25,
+  "num_classes": 2,
+  "proposal_append_gt": true,
+  "train_on_pred_boxes": false,
+  "in_features": [
+   "p2",
+   "p3",
+   "p4",
+   "p5"
+  ]
+ },
+ "pooler": {
+  "output_size": [
+   7,
+   7
+  ],
+  "min_level": 2,
+  "max_level": 5,
+  "canonical_level": 4,
+  "canonical_box_size": 224,
+  "level_poolers": [
+   {
+    "scale": 0.25,
+    "sampling_ratio": 0,
+    "aligned": true
+   },
+   {
+    "scale": 0.125,
+    "sampling_ratio": 0,
+    "aligned": true
+   },
+   {
+    "scale": 0.0625,
+    "sampling_ratio": 0,
+    "aligned": true
+   },
+   {
+    "scale": 0.03125,
+    "sampling_ratio": 0,
+    "aligned": true
+   }
+  ]
+ },
+ "box_predictor": {
+  "num_classes": 2,
+  "smooth_l1_beta": 0.0,
+  "test_score_thresh": 0.05,
+  "test_nms_thresh": 0.5,
+  "test_topk_per_image": 100,
+  "box_reg_loss_type": "smooth_l1",
+  "use_fed_loss": false,
+  "use_sigmoid_ce": false,
+  "box2box_weights": [
+   10.0,
+   10.0,
+   5.0,
+   5.0
+  ]
+ },
+ "module_classes": {
+  "": "GeneralizedRCNN",
+  "backbone": "FPN",
+  "backbone.top_block": "LastLevelMaxPool",
+  "backbone.bottom_up": "ResNet",
+  "backbone.bottom_up.stem": "BasicStem",
+  "backbone.bottom_up.stem.conv1": "Conv2d",
+  "backbone.bottom_up.stem.conv1.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages": "ModuleList",
+  "backbone.bottom_up.stages.0": "Sequential",
+  "backbone.bottom_up.stages.0.0": "BottleneckBlock",
+  "backbone.bottom_up.stages.0.0.shortcut": "Conv2d",
+  "backbone.bottom_up.stages.0.0.shortcut.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.0.conv1": "Conv2d",
+  "backbone.bottom_up.stages.0.0.conv1.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.0.conv2": "Conv2d",
+  "backbone.bottom_up.stages.0.0.conv2.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.0.conv3": "Conv2d",
+  "backbone.bottom_up.stages.0.0.conv3.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.1": "BottleneckBlock",
+  "backbone.bottom_up.stages.0.1.conv1": "Conv2d",
+  "backbone.bottom_up.stages.0.1.conv1.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.1.conv2": "Conv2d",
+  "backbone.bottom_up.stages.0.1.conv2.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.1.conv3": "Conv2d",
+  "backbone.bottom_up.stages.0.1.conv3.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.2": "BottleneckBlock",
+  "backbone.bottom_up.stages.0.2.conv1": "Conv2d",
+  "backbone.bottom_up.stages.0.2.conv1.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.2.conv2": "Conv2d",
+  "backbone.bottom_up.stages.0.2.conv2.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.0.2.conv3": "Conv2d",
+  "backbone.bottom_up.stages.0.2.conv3.norm": "FrozenBatchNorm2d",
+  "backbone.bottom_up.stages.1": "Sequential",
+  "backbone.bottom_up.stages.1.0": "BottleneckBlock",
+  "backbone.bottom_up.stages.1.0.shortcut": "Conv2d",
+  "backbone.bottom_up.stages.1.0.shortcut.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.0.conv1": "Conv2d",
+  "backbone.bottom_up.stages.1.0.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.0.conv2": "Conv2d",
+  "backbone.bottom_up.stages.1.0.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.0.conv3": "Conv2d",
+  "backbone.bottom_up.stages.1.0.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.1": "BottleneckBlock",
+  "backbone.bottom_up.stages.1.1.conv1": "Conv2d",
+  "backbone.bottom_up.stages.1.1.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.1.conv2": "Conv2d",
+  "backbone.bottom_up.stages.1.1.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.1.conv3": "Conv2d",
+  "backbone.bottom_up.stages.1.1.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.2": "BottleneckBlock",
+  "backbone.bottom_up.stages.1.2.conv1": "Conv2d",
+  "backbone.bottom_up.stages.1.2.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.2.conv2": "Conv2d",
+  "backbone.bottom_up.stages.1.2.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.2.conv3": "Conv2d",
+  "backbone.bottom_up.stages.1.2.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.3": "BottleneckBlock",
+  "backbone.bottom_up.stages.1.3.conv1": "Conv2d",
+  "backbone.bottom_up.stages.1.3.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.3.conv2": "Conv2d",
+  "backbone.bottom_up.stages.1.3.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.1.3.conv3": "Conv2d",
+  "backbone.bottom_up.stages.1.3.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2": "Sequential",
+  "backbone.bottom_up.stages.2.0": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.0.shortcut": "Conv2d",
+  "backbone.bottom_up.stages.2.0.shortcut.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.0.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.0.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.0.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.0.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.0.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.0.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.1": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.1.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.1.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.1.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.1.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.1.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.1.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.2": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.2.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.2.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.2.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.2.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.2.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.2.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.3": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.3.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.3.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.3.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.3.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.3.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.3.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.4": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.4.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.4.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.4.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.4.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.4.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.4.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.5": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.5.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.5.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.5.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.5.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.5.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.5.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.6": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.6.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.6.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.6.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.6.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.6.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.6.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.7": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.7.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.7.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.7.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.7.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.7.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.7.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.8": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.8.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.8.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.8.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.8.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.8.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.8.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.9": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.9.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.9.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.9.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.9.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.9.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.9.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.10": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.10.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.10.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.10.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.10.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.10.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.10.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.11": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.11.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.11.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.11.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.11.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.11.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.11.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.12": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.12.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.12.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.12.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.12.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.12.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.12.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.13": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.13.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.13.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.13.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.13.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.13.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.13.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.14": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.14.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.14.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.14.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.14.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.14.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.14.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.15": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.15.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.15.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.15.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.15.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.15.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.15.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.16": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.16.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.16.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.16.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.16.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.16.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.16.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.17": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.17.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.17.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.17.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.17.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.17.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.17.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.18": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.18.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.18.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.18.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.18.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.18.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.18.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.19": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.19.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.19.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.19.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.19.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.19.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.19.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.20": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.20.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.20.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.20.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.20.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.20.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.20.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.21": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.21.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.21.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.21.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.21.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.21.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.21.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.22": "BottleneckBlock",
+  "backbone.bottom_up.stages.2.22.conv1": "Conv2d",
+  "backbone.bottom_up.stages.2.22.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.22.conv2": "Conv2d",
+  "backbone.bottom_up.stages.2.22.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.2.22.conv3": "Conv2d",
+  "backbone.bottom_up.stages.2.22.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3": "Sequential",
+  "backbone.bottom_up.stages.3.0": "BottleneckBlock",
+  "backbone.bottom_up.stages.3.0.shortcut": "Conv2d",
+  "backbone.bottom_up.stages.3.0.shortcut.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.0.conv1": "Conv2d",
+  "backbone.bottom_up.stages.3.0.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.0.conv2": "Conv2d",
+  "backbone.bottom_up.stages.3.0.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.0.conv3": "Conv2d",
+  "backbone.bottom_up.stages.3.0.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.1": "BottleneckBlock",
+  "backbone.bottom_up.stages.3.1.conv1": "Conv2d",
+  "backbone.bottom_up.stages.3.1.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.1.conv2": "Conv2d",
+  "backbone.bottom_up.stages.3.1.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.1.conv3": "Conv2d",
+  "backbone.bottom_up.stages.3.1.conv3.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.2": "BottleneckBlock",
+  "backbone.bottom_up.stages.3.2.conv1": "Conv2d",
+  "backbone.bottom_up.stages.3.2.conv1.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.2.conv2": "Conv2d",
+  "backbone.bottom_up.stages.3.2.conv2.norm": "BatchNorm2d",
+  "backbone.bottom_up.stages.3.2.conv3": "Conv2d",
+  "backbone.bottom_up.stages.3.2.conv3.norm": "BatchNorm2d",
+  "backbone.lateral_convs": "ModuleList",
+  "backbone.lateral_convs.0": "Conv2d",
+  "backbone.lateral_convs.0.norm": "BatchNorm2d",
+  "backbone.lateral_convs.1": "Conv2d",
+  "backbone.lateral_convs.1.norm": "BatchNorm2d",
+  "backbone.lateral_convs.2": "Conv2d",
+  "backbone.lateral_convs.2.norm": "BatchNorm2d",
+  "backbone.lateral_convs.3": "Conv2d",
+  "backbone.lateral_convs.3.norm": "BatchNorm2d",
+  "backbone.output_convs": "ModuleList",
+  "backbone.output_convs.0": "Conv2d",
+  "backbone.output_convs.0.norm": "BatchNorm2d",
+  "backbone.output_convs.1": "Conv2d",
+  "backbone.output_convs.1.norm": "BatchNorm2d",
+  "backbone.output_convs.2": "Conv2d",
+  "backbone.output_convs.2.norm": "BatchNorm2d",
+  "backbone.output_convs.3": "Conv2d",
+  "backbone.output_convs.3.norm": "BatchNorm2d",
+  "proposal_generator": "RPN",
+  "proposal_generator.rpn_head": "StandardRPNHead",
+  "proposal_generator.rpn_head.conv": "Conv2d",
+  "proposal_generator.rpn_head.conv.activation": "ReLU",
+  "proposal_generator.rpn_head.objectness_logits": "Conv2d",
+  "proposal_generator.rpn_head.anchor_deltas": "Conv2d",
+  "proposal_generator.anchor_generator": "DefaultAnchorGenerator",
+  "proposal_generator.anchor_generator.cell_anchors": "BufferList",
+  "roi_heads": "StandardROIHeads",
+  "roi_heads.box_pooler": "ROIPooler",
+  "roi_heads.box_pooler.level_poolers": "ModuleList",
+  "roi_heads.box_pooler.level_poolers.0": "ROIAlign",
+  "roi_heads.box_pooler.level_poolers.1": "ROIAlign",
+  "roi_heads.box_pooler.level_poolers.2": "ROIAlign",
+  "roi_heads.box_pooler.level_poolers.3": "ROIAlign",
+  "roi_heads.box_head": "FastRCNNConvFCHead",
+  "roi_heads.box_head.flatten": "Flatten",
+  "roi_heads.box_head.fc1": "Linear",
+  "roi_heads.box_head.fc_relu1": "ReLU",
+  "roi_heads.box_head.fc2": "Linear",
+  "roi_heads.box_head.fc_relu2": "ReLU",
+  "roi_heads.box_predictor": "FastRCNNOutputLayers",
+  "roi_heads.box_predictor.cls_score": "Linear",
+  "roi_heads.box_predictor.bbox_pred": "Linear"
+ },
+ "state_dict": {
+  "pixel_mean": [
+   [
+    3,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "pixel_std": [
+   [
+    3,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.weight": [
+   [
+    64,
+    3,
+    7,
+    7
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.norm.weight": [
+   [
+    64
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.norm.bias": [
+   [
+    64
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.norm.running_mean": [
+   [
+    64
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.norm.running_var": [
+   [
+    64
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stem.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.weight": [
+   [
+    256,
+    64,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.shortcut.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.weight": [
+   [
+    256,
+    64,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.weight": [
+   [
+    256,
+    8,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.0.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.weight": [
+   [
+    256,
+    8,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.1.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.weight": [
+   [
+    256,
+    8,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.0.2.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.weight": [
+   [
+    512,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.shortcut.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.weight": [
+   [
+    512,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.weight": [
+   [
+    512,
+    16,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.0.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.weight": [
+   [
+    512,
+    16,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.1.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.weight": [
+   [
+    512,
+    16,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.2.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.weight": [
+   [
+    512,
+    16,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.weight": [
+   [
+    512,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.norm.weight": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.norm.bias": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.norm.running_mean": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.norm.running_var": [
+   [
+    512
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.1.3.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.weight": [
+   [
+    1024,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.shortcut.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.weight": [
+   [
+    1024,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.0.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.1.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.2.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.3.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.4.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.5.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.6.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.7.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.8.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.9.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.10.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.11.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.12.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.13.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.14.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.15.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.16.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.17.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.18.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.19.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.20.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.21.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.weight": [
+   [
+    1024,
+    32,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.weight": [
+   [
+    1024,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.norm.weight": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.norm.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.norm.running_mean": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.norm.running_var": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.2.22.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.weight": [
+   [
+    2048,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.shortcut.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.weight": [
+   [
+    2048,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.weight": [
+   [
+    2048,
+    64,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.weight": [
+   [
+    2048,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.0.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.weight": [
+   [
+    2048,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.weight": [
+   [
+    2048,
+    64,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.weight": [
+   [
+    2048,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.1.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.weight": [
+   [
+    2048,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.weight": [
+   [
+    2048,
+    64,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.weight": [
+   [
+    2048,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.norm.weight": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.norm.bias": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.norm.running_mean": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.norm.running_var": [
+   [
+    2048
+   ],
+   "torch.float32"
+  ],
+  "backbone.bottom_up.stages.3.2.conv3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.lateral_convs.0.weight": [
+   [
+    256,
+    2048,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.0.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.0.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.0.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.0.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.0.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.lateral_convs.1.weight": [
+   [
+    256,
+    1024,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.1.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.1.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.1.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.1.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.lateral_convs.2.weight": [
+   [
+    256,
+    512,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.2.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.2.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.2.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.2.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.lateral_convs.3.weight": [
+   [
+    256,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.3.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.3.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.3.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.3.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.lateral_convs.3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.output_convs.0.weight": [
+   [
+    256,
+    256,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.0.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.0.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.0.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.0.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.0.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.output_convs.1.weight": [
+   [
+    256,
+    256,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.1.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.1.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.1.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.1.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.1.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.output_convs.2.weight": [
+   [
+    256,
+    256,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.2.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.2.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.2.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.2.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.2.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "backbone.output_convs.3.weight": [
+   [
+    256,
+    256,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.3.norm.weight": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.3.norm.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.3.norm.running_mean": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.3.norm.running_var": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "backbone.output_convs.3.norm.num_batches_tracked": [
+   [],
+   "torch.int64"
+  ],
+  "proposal_generator.rpn_head.conv.weight": [
+   [
+    256,
+    256,
+    3,
+    3
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.rpn_head.conv.bias": [
+   [
+    256
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.rpn_head.objectness_logits.weight": [
+   [
+    3,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.rpn_head.objectness_logits.bias": [
+   [
+    3
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.rpn_head.anchor_deltas.weight": [
+   [
+    12,
+    256,
+    1,
+    1
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.rpn_head.anchor_deltas.bias": [
+   [
+    12
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.anchor_generator.cell_anchors.0": [
+   [
+    3,
+    4
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.anchor_generator.cell_anchors.1": [
+   [
+    3,
+    4
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.anchor_generator.cell_anchors.2": [
+   [
+    3,
+    4
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.anchor_generator.cell_anchors.3": [
+   [
+    3,
+    4
+   ],
+   "torch.float32"
+  ],
+  "proposal_generator.anchor_generator.cell_anchors.4": [
+   [
+    3,
+    4
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_head.fc1.weight": [
+   [
+    1024,
+    12544
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_head.fc1.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_head.fc2.weight": [
+   [
+    1024,
+    1024
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_head.fc2.bias": [
+   [
+    1024
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_predictor.cls_score.weight": [
+   [
+    3,
+    1024
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_predictor.cls_score.bias": [
+   [
+    3
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_predictor.bbox_pred.weight": [
+   [
+    8,
+    1024
+   ],
+   "torch.float32"
+  ],
+  "roi_heads.box_predictor.bbox_pred.bias": [
+   [
+    8
+   ],
+   "torch.float32"
+  ]
+ },
+ "n_params_tensors": 693,
+ "n_values": 104796812
+}

@@ -1,0 +1,1 @@
+SCRFD_10G_KPS_official.pth: pre-existing (staged 2026-08-28, source per Handover gpu1:/data/liangzhenghao/train/). Verified 2026-09-03 bit-identical (sha256 d4314365...) to https://huggingface.co/public-data/insightface/resolve/main/models/scrfd_10g_bnkps/model.pth. Consumed by load_from in arm configs (see wd_armW_fe2 log).

@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAD
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx: onnx/armAD_det10g.onnx
+checkpoints: shang
+local_epochs: 0
+epoch_evidence: >-
+  PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==
+  wd_armAD/epoch_20.pth
+notes: >-
+  No checkpoint on this box: all 20 epochs are on shang in runs/train/wd_armAD/. checkpoints:
+  shang.

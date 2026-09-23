@@ -1,0 +1,62 @@
+{
+ "images": 8339,
+ "images_in_folder": 8339,
+ "score_floor": 0.5,
+ "by_selection": {
+  "miss_multi": 7921,
+  "multi": 418
+ },
+ "with_confident_face_pct": 74.9,
+ "with_two_confident_faces_pct": 30.2,
+ "sessions": 333,
+ "chunks": 667,
+ "distinct_task_id": 93,
+ "distinct_scene_id": 71,
+ "distinct_environment_id": 52,
+ "distinct_city": 20,
+ "top_task_share_pct": 12.0,
+ "images_per_session_p50_max": [
+  13,
+  60
+ ],
+ "pre_box_total": 23906,
+ "pre_box_px_p10_p50_p90": [
+  45.0,
+  71.5,
+  123.5
+ ],
+ "by_city": {
+  "Zhumadian SHI": 2928,
+  "Zhaoqing SHI": 2874,
+  "Dongguan SHI": 754,
+  "Zhangjiakou SHI": 450,
+  "Shenzhen SHI": 293,
+  "Jinhua SHI": 257,
+  "Xiamen SHI": 181,
+  "Xinyang SHI": 104,
+  "Shantou SHI": 104,
+  "Nanning SHI": 86,
+  "Handan SHI": 62,
+  "Jiujiang SHI": 62,
+  "Taian SHI": 53,
+  "Wuxi SHI": 44,
+  "Chaozhou SHI": 37,
+  "Jining SHI": 26,
+  "Putian SHI": 12,
+  "Shijiazhuang SHI": 6,
+  "Zhoukou SHI": 3,
+  "Wuhu SHI": 3
+ },
+ "top10_tasks": {
+  "TSK_0208_PackProduct-LeatherGoods": 1000,
+  "TSK_0214_BrushGlue-SingleSide": 1000,
+  "TSK_0303_BambooWeave-Mat": 709,
+  "TSK_0217_StitchWithMachine-Fabric": 653,
+  "TSK_1226_AttachPowerBank-HeatSink": 546,
+  "TSK_0300_BambooWeave-ClampJoint": 543,
+  "TSK_0304_BambooWeave-BasePiece": 540,
+  "TSK_0305_BambooWeave-ScrapeBambooStrip": 389,
+  "TSK_0591_AssembleMeter-MicroValve": 212,
+  "TSK_0327_BambooWeave-HatWithLeafLining": 205
+ }
+}

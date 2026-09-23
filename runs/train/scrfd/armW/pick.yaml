@@ -1,0 +1,20 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armW
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armW_det10g.onnx
+checkpoints: local
+local_epochs: 1
+epoch_evidence: >-
+  highest (only) checkpoint present, weights/armW_epoch_20.pth; data/oss_models_upload.py
+  records armW epochs 20, attributed there to Handover.md
+notes: >-
+  armW predates this box: no export log ties det_10g_armW.onnx to armW_epoch_20.pth.
+  Handover.md records the ONNX as pulled from
+  oss://we-atlas/weights/face_pii/det_10g_armW.onnx. The epoch above is the checkpoint's, not
+  a read export record.

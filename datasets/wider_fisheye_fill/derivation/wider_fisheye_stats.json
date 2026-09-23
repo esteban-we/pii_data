@@ -1,0 +1,107 @@
+{
+ "images": 12879,
+ "errors": 0,
+ "images_zero_boxes_in": 4,
+ "images_zero_boxes_out": 69,
+ "images_size_mismatch": 0,
+ "boxes_in": 159390,
+ "boxes_out": 152235,
+ "boxes_dropped_off_canvas": 6812,
+ "boxes_dropped_small": 343,
+ "boxes_kept_frac": 0.9551101072840203,
+ "percentiles": [
+  5,
+  10,
+  25,
+  50,
+  75,
+  90,
+  95,
+  99
+ ],
+ "src_long_side_pct": [
+  7.0,
+  8.0,
+  12.0,
+  20.0,
+  38.0,
+  76.0,
+  126.0,
+  326.0
+ ],
+ "out_long_side_pct": [
+  16.1,
+  19.8,
+  29.7,
+  51.6,
+  102.3,
+  188.9,
+  262.5,
+  441.6
+ ],
+ "out_frac_lt_16": 0.04820179328012612,
+ "out_frac_gt_300": 0.03208854731172201,
+ "target_p10_p50_p90": [
+  45.0,
+  72.0,
+  124.0
+ ],
+ "hfov_deg_pct": [
+  54.2,
+  69.9,
+  86.1
+ ],
+ "zoom_pct": [
+  1.0,
+  2.33,
+  3.86
+ ],
+ "zoom_at_cap_frac": 0.5452286668219583,
+ "zoom_cap_pct": [
+  1.81,
+  2.76,
+  4.0
+ ],
+ "zoom_at_min_frac": 0.0,
+ "hfov_eff_deg_pct": [
+  70.0,
+  123.7,
+  130.0
+ ],
+ "axis_off_deg_pct": [
+  5.6,
+  14.0,
+  32.9
+ ],
+ "seconds": 114.8,
+ "workers": 48,
+ "version": 2,
+ "zoom_policy": "fill",
+ "out_image_median_long_side_pct": [
+  49.6,
+  183.0,
+  388.3
+ ],
+ "images_median_face_gt_300_frac": 0.19687743950039033,
+ "min_span_deg": 70.0,
+ "face_cap_px": 300.0,
+ "zoom_at_min_span_frac": 0.15684447550275643,
+ "zoom_at_face_cap_frac": 0.2985480239149002,
+ "min_span_conflicts": 2015,
+ "min_span_conflicts_est_median_face_pct": [
+  327.1,
+  453.6,
+  763.5
+ ],
+ "min_span_conflicts_out_median_face_pct": [
+  312.4,
+  448.9,
+  755.3
+ ],
+ "min_span_conflicts_out_median_face_max": 1283.7164941829155,
+ "est_median_face_px_pct": [
+  66.2,
+  265.6,
+  396.3
+ ]
+}

@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAI34
+family: scrfd
+rule: last_epoch
+epoch: 80
+epoch_unit: epoch
+status: active
+wandb_tags: [in-training]
+onnx: onnx/armAI34_det34g.onnx
+checkpoints: local
+local_epochs: 80
+epoch_evidence: >-
+  highest epoch_N.pth in the finished work dir; the per-epoch ONNX name their own epoch
+  (armAI34_e<N>_det34g.onnx)
+notes: >-
+  Trained on fluence, work dir staged back here. The run ended at epoch 80 (PII-1406) and the
+  unnumbered pick armAI34_det34g.onnx is byte equal to armAI34_e80_det34g.onnx (md5 5b3a38db).

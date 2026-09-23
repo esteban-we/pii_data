@@ -1,0 +1,4 @@
+2026-09-03 10:17:45 === babysitter start (pid 1423129) ===
+2026-09-03 10:17:45 attempt 1 launching (resume: none)
+2026-09-03 18:30:22 attempt 1 exited rc=0
+2026-09-03 18:30:22 epoch_20.pth exists; success

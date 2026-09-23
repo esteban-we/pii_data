@@ -1,0 +1,16 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armW_repro
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx: onnx/armW_repro_det10g.onnx
+checkpoints: local
+local_epochs: 4
+epoch_evidence: >-
+  pii_train/export_repro_onnx.py CKPT = wd_armW_repro/epoch_20.pth
+notes: >-
+  Work dir keeps epochs 5, 10, 15, 20 only (checkpoint interval 5).

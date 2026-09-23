@@ -1,0 +1,20 @@
+# PII-1379. Stock weights, not trained here.
+arm: stock
+family: scrfd
+rule: last_epoch
+epoch: unknown
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx:
+checkpoints: upstream release
+epoch_evidence: >-
+  Upstream released weights: no training run on any box here produced them, so no epoch can be
+  established. The .provenance.txt and .sha256 files next to each weight record where it came
+  from.
+notes: >-
+  det_10g.onnx is the InsightFace production 10G detector. SCRFD_10G_KPS_official.pth and
+  SCRFD_34G_official.pth are the official SCRFD checkpoints the arms fine-tune from.
+  stock34_det34g.onnx is the 34G export made here by wd_armY_ckpt/export_stock34_onnx.py
+  (copied to scrfd/armY/), so it is the only file in this dir produced on this box. Source:
+  /data/esteban/pii/weights/.

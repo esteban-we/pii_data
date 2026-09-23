@@ -1,0 +1,19 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAF
+family: scrfd
+rule: last_epoch
+epoch: 80
+epoch_unit: epoch
+status: active
+wandb_tags: [10g-ablations]
+onnx: onnx/armAF_det10g.onnx
+checkpoints: shang
+local_epochs: 0
+epoch_evidence: >-
+  PII-995: the shang export logs print ckpt meta exp_name=scrfd_armAF.py epoch=20/55/68/80
+  iter=69760/191840/237184/279040 for the four ONNX; armAF_det10g.onnx is the epoch 80 one,
+  the e20/e55/e68 files name theirs
+notes: >-
+  80 epoch run, from scratch. No checkpoint on this box: wd_armAF on shang holds one
+  checkpoint per epoch. checkpoints: shang.

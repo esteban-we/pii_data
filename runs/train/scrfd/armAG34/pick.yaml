@@ -1,0 +1,14 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAG34
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armAG34_det34g.onnx
+checkpoints: local
+local_epochs: 20
+epoch_evidence: >-
+  wd_armY_ckpt/export_armAG34_onnx.py CKPT = wd_armAG34/epoch_20.pth

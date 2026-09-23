@@ -1,0 +1,29 @@
+# pii_data: git holds the ledger, OSS holds the bytes.
+# Anything that can be downloaded again (images, checkpoints, exports) or
+# re-rendered from a tracked source (the view manifests) stays out of git.
+
+# Dataset pixels. frames.csv is the index of what belongs here.
+/datasets/*/images/
+
+# Views: recipe.yaml is the source, the rest is output of
+# `python3 data/build_view.py render` in the pii repo.
+/views/*/scrfd.txt
+/views/*/d2.json
+/views/*/summary.json
+
+# Training runs: checkpoints, ONNX exports and the training logs.
+# pick.yaml, the config files, models.csv and MANIFEST.tsv are tracked.
+/runs/train/*/*/epochs/
+/runs/train/*/*/onnx/
+/runs/train/*/*/logs/
+/runs/train/*/*/train.log
+
+# Model weights and archives anywhere in the tree, including runs/train/*/stock/.
+# The .md5, .sha256 and .provenance.txt sidecars next to them stay tracked.
+*.pth
+*.onnx
+*.jit
+*.zip
+
+# Population tables: 15 GB of parquet, OSS content.
+/tables/population/

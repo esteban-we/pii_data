@@ -1,0 +1,18 @@
+# PII-1028: egoblurA, first EgoBlur Gen2 face fine-tune. Draft (PII-1018) + the PII-1028 solver.
+# 6 GPUs x 8 images (AMP, 18.8 GiB per GPU at 1200x901 batch 8, PII-1019). 139,587 train_Z3 frames
+# local (PII-1013): 2,908 iters per epoch at batch 48; 6 epochs = 17,448 iters; steps at 70 / 90 %.
+# Eval: evaluation/egoblur_d2/train_egoblur.py hook on faceback_hq_v2_eval every CHECKPOINT_PERIOD
+# at the egoblur2_1200 geometry (PII-1006), our R/P metric (eval_onnx prf_counts, IoU 0.4, min_side 40).
+_BASE_: "./egoblur_face_gen2_ft_draft.yaml"
+DATALOADER:
+  NUM_WORKERS: 8               # per rank
+SOLVER:
+  IMS_PER_BATCH: 48            # 6 GPUs x 8
+  BASE_LR: 0.012               # 0.002 x 6 (linear scaling of the draft)
+  WARMUP_ITERS: 500
+  STEPS: (12214, 15703)        # 70 % and 90 % of 17,448
+  MAX_ITER: 17448              # 6 x 2,908 = 6 epochs of 139,587 frames at batch 48
+  CHECKPOINT_PERIOD: 2908      # one epoch; PeriodicCheckpointer keeps every checkpoint
+TEST:
+  EVAL_PERIOD: 0               # detectron2's COCO EvalHook stays off; train_egoblur.py evaluates every CHECKPOINT_PERIOD
+OUTPUT_DIR: "/data/esteban/pii/runs/train/wd_egoblurA"

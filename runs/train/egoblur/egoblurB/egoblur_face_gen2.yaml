@@ -1,0 +1,69 @@
+# EgoBlur Gen2 face: config recovered from ego_blur_face_gen2.jit (PII-1009, jit md5 e8c8a2e2).
+# Every value below was read from the scripted module's attributes (runs/egoblur_build/jit_dump.json)
+# or from tensor shapes; nothing is assumed from Meta's docs. Base: detectron2 Base-RCNN-FPN.
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  MASK_ON: False
+  WEIGHTS: ""
+  PIXEL_MEAN: [103.530, 116.280, 123.675]   # jit buffer pixel_mean (BGR)
+  PIXEL_STD: [57.375, 57.120, 58.395]       # jit buffer pixel_std
+  BACKBONE:
+    NAME: "build_resnet_fpn_backbone"
+    FREEZE_AT: 2                            # stem + res2 are FrozenBatchNorm2d in the jit (11 layers)
+  RESNETS:
+    DEPTH: 101                              # blocks 3/4/23/3
+    NUM_GROUPS: 32
+    WIDTH_PER_GROUP: 8                      # conv2 groups=32, widths 256/512/1024/2048
+    STRIDE_IN_1X1: False                    # stride 2 sits in conv2 (3x3), conv1 stride 1
+    NORM: "BN"                              # res3..res5 are BatchNorm2d (eps 1e-5) in the jit
+    OUT_FEATURES: ["res2", "res3", "res4", "res5"]
+  FPN:
+    IN_FEATURES: ["res2", "res3", "res4", "res5"]
+    NORM: "BN"                              # lateral/output convs carry BatchNorm2d in the jit
+    FUSE_TYPE: "sum"
+  ANCHOR_GENERATOR:
+    SIZES: [[32], [64], [128], [256], [512]]  # cell_anchors: 32*sqrt2 half-extents etc.
+    ASPECT_RATIOS: [[0.5, 1.0, 2.0]]
+    OFFSET: 0.0
+  PROPOSAL_GENERATOR:
+    MIN_SIZE: 0
+  RPN:
+    IN_FEATURES: ["p2", "p3", "p4", "p5", "p6"]
+    BATCH_SIZE_PER_IMAGE: 256
+    POSITIVE_FRACTION: 0.5
+    PRE_NMS_TOPK_TRAIN: 2000
+    PRE_NMS_TOPK_TEST: 1000
+    POST_NMS_TOPK_TRAIN: 1000
+    POST_NMS_TOPK_TEST: 1000
+    NMS_THRESH: 0.7
+    BBOX_REG_WEIGHTS: (1.0, 1.0, 1.0, 1.0)
+    SMOOTH_L1_BETA: 0.0
+    BOUNDARY_THRESH: -1
+  ROI_HEADS:
+    NAME: "StandardROIHeads"
+    IN_FEATURES: ["p2", "p3", "p4", "p5"]
+    NUM_CLASSES: 2                          # cls_score 1024->3, bbox_pred 1024->8
+    BATCH_SIZE_PER_IMAGE: 512
+    POSITIVE_FRACTION: 0.25
+    SCORE_THRESH_TEST: 0.05
+    NMS_THRESH_TEST: 0.5
+    PROPOSAL_APPEND_GT: True
+  ROI_BOX_HEAD:
+    NAME: "FastRCNNConvFCHead"
+    NUM_FC: 2
+    FC_DIM: 1024
+    NUM_CONV: 0
+    POOLER_RESOLUTION: 7
+    POOLER_SAMPLING_RATIO: 0
+    POOLER_TYPE: "ROIAlignV2"               # aligned=True in the jit
+    BBOX_REG_WEIGHTS: (10.0, 10.0, 5.0, 5.0)
+    SMOOTH_L1_BETA: 0.0
+    CLS_AGNOSTIC_BBOX_REG: False
+    TRAIN_ON_PRED_BOXES: False
+INPUT:
+  FORMAT: "BGR"
+  MIN_SIZE_TEST: 1200                       # not in the jit: EgoBlur CLI RESIZE_MIN_GEN2=1200 (PII-1000)
+  MAX_SIZE_TEST: 1200
+TEST:
+  DETECTIONS_PER_IMAGE: 100
+VERSION: 2

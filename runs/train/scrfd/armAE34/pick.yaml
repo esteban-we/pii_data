@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAE34
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armAE34_det34g.onnx
+checkpoints: shang
+local_epochs: 0
+epoch_evidence: >-
+  PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==
+  wd_armAE34/epoch_20.pth
+notes: >-
+  No checkpoint on this box: all 20 epochs are on shang in runs/train/wd_armAE34/. EMA arm:
+  443 ema_* keys expected at 34G. checkpoints: shang.

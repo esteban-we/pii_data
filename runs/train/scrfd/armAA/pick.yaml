@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAA
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx: onnx/armAA_det10g.onnx
+checkpoints: local (epoch 20 only) and shang
+local_epochs: 1
+epoch_evidence: >-
+  pii_train/export_armAA_onnx.py CKPT = wd_armAA/epoch_20.pth; PII-1311 export_epoch.py
+  asserts that same recorded CKPT
+notes: >-
+  Trained on shang. Only epoch_20.pth was scp'd here (wd_armAA_ckpt); epochs 1..19 are on
+  shang in runs/train/wd_armAA/.

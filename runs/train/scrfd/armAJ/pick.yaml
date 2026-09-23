@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAJ
+family: scrfd
+rule: last_epoch
+epoch: 30
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armAJ_det10g.onnx
+checkpoints: shang
+local_epochs: 0
+epoch_evidence: >-
+  PII-1349: epoch_30.pth pulled from shang (md5 2c7d810d...), checkpoint meta epoch 30 iter
+  104,640, exported here to armAJ_det10g.onnx
+notes: >-
+  30 epoch run. No checkpoint on this box: the pulled epoch_30.pth stayed in
+  /data/esteban/tmp/pii1348/, wd_armAJ is on shang. checkpoints: shang.

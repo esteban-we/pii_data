@@ -1,0 +1,18 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armY
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx: onnx/armY_det34g.onnx
+checkpoints: local
+local_epochs: 1
+epoch_evidence: >-
+  wd_armY_ckpt/export_armY_onnx.py CKPT = wd_armY_ckpt/epoch_20.pth
+notes: >-
+  wd_armY_ckpt was also used as the drop box for the 34G exporters, so this dir carries
+  export_arm{AA34,AG34,AH34,Y,Z34,ZZ34}_onnx.py and export_stock34_onnx.py, i.e. the recorded
+  exporters of other arms.

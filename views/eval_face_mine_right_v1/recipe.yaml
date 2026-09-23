@@ -1,0 +1,19 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii2/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii2/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: eval_face_mine_right_v1
+role: eval
+sources:
+  - dataset: face_mine_right
+    boxes: v1
+    split: eval
+    min_side: 40
+legacy:
+  dir: /data/esteban/pii/datasets/views/eval/eval_face_mine_right_v1
+  note: symlink directory, not a manifest; the check compares frame sets
+notes: |
+  Right eye mined frames of the frozen face_mine eval sessions (WOR-199). Frames are the eval
+  side of the dataset's split.csv, sorted by image name. d2.json carries the 40 px long side
+  floor the legacy egoblur eval exports used (PII-1406): a box under it is written iscrowd=1,
+  an ignore region, exactly as evaluation/egoblur_d2/d2_dataset.py did. scrfd.txt is
+  unaffected by the floor, since mmdet applies its own at train time.

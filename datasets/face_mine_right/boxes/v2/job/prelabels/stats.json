@@ -1,0 +1,106 @@
+{
+  "det_size": 1024,
+  "ds": "face_mine",
+  "dump_score_thr": 0.3,
+  "iou_gate": 0.1,
+  "issue": "PII-1273",
+  "model": "armAG34",
+  "model_md5": "fe1721d8cc93b17dd82e6aabb33a5266",
+  "pad": true,
+  "prefer": "model",
+  "score_cut": 0.3,
+  "views": {
+    "left": {
+      "additions": 72980,
+      "boxes_out": 149807,
+      "dets_at_cut": 153588,
+      "dump": "/data/esteban/pii/datasets/face_mine_relabel_v2/dets_left.jsonl",
+      "dump_boxes": 153588,
+      "frames": 62587,
+      "frames_changed": 48328,
+      "frames_with_addition": 29172,
+      "frames_with_addition_only": 7999,
+      "frames_with_human": 41079,
+      "frames_with_no_box": 13509,
+      "frames_with_no_box_before": 21508,
+      "frames_with_replacement": 40118,
+      "human_boxes": 76859,
+      "human_hit_by_multi": 5608,
+      "human_replaced": 74983,
+      "human_source": "/data/esteban/pii/face-mine_labeled.csv",
+      "images": "/data/esteban/pii/datasets/face_mine_v1/images",
+      "model_dropped_dedup": 5657,
+      "model_matched_multi": 32,
+      "model_out_of_frame": 3740,
+      "model_replacing": 74951,
+      "score_bands": {
+        "0.3-0.4": 32676,
+        "0.4-0.5": 19007,
+        "0.5-0.6": 10911,
+        "0.6-0.8": 10032,
+        "0.8-1.01": 354
+      },
+      "score_bands_replacing": {
+        "0.3-0.4": 1879,
+        "0.4-0.5": 4278,
+        "0.5-0.6": 8704,
+        "0.6-0.8": 44905,
+        "0.8-1.01": 15185
+      },
+      "side_bands": {
+        "0-20": 22,
+        "100-1000000000.0": 7637,
+        "20-40": 29317,
+        "40-60": 22114,
+        "60-100": 13890
+      },
+      "worst_addition_iou": 0.09984779725301182
+    },
+    "right": {
+      "additions": 49797,
+      "boxes_out": 140599,
+      "dets_at_cut": 143672,
+      "dump": "/data/esteban/pii/datasets/face_mine_relabel_v2/dets_right.jsonl",
+      "dump_boxes": 143672,
+      "frames": 62423,
+      "frames_changed": 42649,
+      "frames_with_addition": 24552,
+      "frames_with_addition_only": 7425,
+      "frames_with_human": 35760,
+      "frames_with_no_box": 19238,
+      "frames_with_no_box_before": 26663,
+      "frames_with_replacement": 35007,
+      "human_boxes": 90902,
+      "human_hit_by_multi": 7727,
+      "human_replaced": 86243,
+      "human_source": "/data/esteban/pii/datasets/face_mine_right/boxes.jsonl",
+      "images": "/data/esteban/pii/datasets/face_mine_right/images",
+      "model_dropped_dedup": 7732,
+      "model_matched_multi": 99,
+      "model_out_of_frame": 3319,
+      "model_replacing": 86143,
+      "score_bands": {
+        "0.3-0.4": 26965,
+        "0.4-0.5": 14122,
+        "0.5-0.6": 6272,
+        "0.6-0.8": 2387,
+        "0.8-1.01": 51
+      },
+      "score_bands_replacing": {
+        "0.3-0.4": 5055,
+        "0.4-0.5": 8447,
+        "0.5-0.6": 12355,
+        "0.6-0.8": 44777,
+        "0.8-1.01": 15509
+      },
+      "side_bands": {
+        "0-20": 13,
+        "100-1000000000.0": 5916,
+        "20-40": 18222,
+        "40-60": 15109,
+        "60-100": 10537
+      },
+      "worst_addition_iou": 0.09946756319510626
+    }
+  }
+}

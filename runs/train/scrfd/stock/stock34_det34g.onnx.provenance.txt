@@ -1,0 +1,10 @@
+stock34_det34g.onnx: ONNX export (PII-1036, 2026-09-17) of the UNTUNED official InsightFace SCRFD-34G checkpoint
+  source ckpt: /data/esteban/pii/weights/SCRFD_34G_official.pth (sha256 a6f69956639da31c96d8985c9a0ce1f5798f42cb64909159596e7a5f544ebe00; see its .provenance.txt: HF public-data mirror of the insightface scrfd_34g release, downloaded 2026-09-03)
+  ckpt meta: exp_name=gen34g_28.py epoch=640 iter=257920 mmdet 2.7.0 mmcv 1.2.7 (2021-03-15)
+  exporter: /data/esteban/pii/runs/train/wd_armY_ckpt/export_stock34_onnx.py (md5 9209eda0) = export_armAA34_onnx.py (d51e0573, the armAE34 / PII-823 exporter's parent) with CKPT/OUT changed
+  config: /data/esteban/pii/runs/train/wd_armY_ckpt/embedded_config.py (md5 88fa868d, the armY 34G config, use_kps=True)
+  venv: /data/esteban/pii/runs/train/venv (torch 2.13.0, onnx 1.22.0), opset 11, ir 6, 640x640 dummy, dynamic H/W and row dims, 9 outputs score/bbox/kps x 8/16/32
+  departure from the arm exports: the official checkpoint has NO kps head (its own config says use_kps=False); the strict key audit allowed exactly bbox_head.stride_kps.0.{weight,bias} missing (unexpected=[]) and those two tensors were zeroed, so kps_8/16/32 are exactly 0. Box and score outputs do not depend on that leaf conv; evaluation/eval_onnx.py never reads the kps outputs.
+  graph parity vs /data/esteban/pii/runs/train/armAE34_det34g.onnx (verify_onnx_parity_wor146.py): PARITY OK, 736 nodes, 307 initializers, same op multiset, size 39,427,800 both, md5 differs
+  md5: 5cdf510ec3303a1cd415c47ea7308a69
+  log: /data/esteban/tmp/pii1036/logs/export_stock34.log

@@ -1,0 +1,5 @@
+2026-09-18 23:56:24 === babysitter start (pid 1079321) name=egoblurC_n8_fluence gpu= nproc=8 port=29522 config=/mnt/cachefs/esteban/pii/repos/pii/evaluation/egoblur_d2/egoblurC_n8_fluence.yaml workdir=/mnt/cachefs/esteban/pii/runs/train/wd_egoblurC_n8_fluence extra='--eval-longest 2328' ===
+2026-09-18 23:56:24 attempt 1 launching (resume from none)
+2026-09-18 23:56:24 attempt 1 trainer pid 1079335 (stop the run: kill -TERM 1079321)
+2026-09-19 11:48:40 attempt 1 exited rc=0
+2026-09-19 11:48:40 model_final.pth exists; success

@@ -1,0 +1,48 @@
+# PII-1009 d5: DRAFT fine-tune config for EgoBlur Gen2 face on train_Z3. NOT launched.
+# Usage sketch (not run): register train_Z3 / faceback_hq_v2_eval via d2_dataset.register, then
+#   detectron2 DefaultTrainer with this cfg and MODEL.WEIGHTS = runs/egoblur_build/egoblur_face_gen2_d2.pth
+_BASE_: "./egoblur_face_gen2.yaml"
+MODEL:
+  WEIGHTS: "/data/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth"   # {"model": sd}
+  BACKBONE:
+    FREEZE_AT: 2               # as the jit: stem + res2 frozen; res3-res5, FPN, RPN, ROI heads train
+  RESNETS:
+    NORM: "FrozenBN"           # per-GPU batch 8 is far below Meta's; keep BN statistics fixed.
+  FPN:                         # Loads the same weights (frozenbn_check.py: 0.0 output diff).
+    NORM: "FrozenBN"           # Alternative if going to 4+ GPUs: "SyncBN" for both.
+  ROI_HEADS:
+    NUM_CLASSES: 2             # keep the jit head shape; our labels are all class 0 (face)
+DATASETS:
+  TRAIN: ("train_Z3",)         # /data/esteban/pii/datasets/d2/train_Z3.json (139,587 local frames)
+  TEST: ("faceback_hq_v2_eval",)
+DATALOADER:
+  NUM_WORKERS: 8
+  FILTER_EMPTY_ANNOTATIONS: False   # 59,185 face-free frames are the negatives; default drops them
+INPUT:
+  FORMAT: "BGR"
+  MIN_SIZE_TRAIN: (768, 832, 901, 960)   # multi-scale around 901 = short side of 2328x1748 at long side 1200
+  MAX_SIZE_TRAIN: 1280
+  MIN_SIZE_TEST: 901           # 2328x1748 -> 1200x901, identical to the egoblur2_1200 eval (PII-1006)
+  MAX_SIZE_TEST: 1200
+  RANDOM_FLIP: "horizontal"
+SOLVER:
+  IMS_PER_BATCH: 8             # 1 GPU: 36.2 GiB fp32 / see AMP figure in the d5 issue; 2 GPUs -> 16
+  BASE_LR: 0.002               # 0.02 * 8/16 (linear scaling) / 5 for fine-tuning
+  MOMENTUM: 0.9
+  WEIGHT_DECAY: 0.0001
+  WARMUP_ITERS: 500
+  WARMUP_FACTOR: 0.001
+  LR_SCHEDULER_NAME: "WarmupMultiStepLR"
+  STEPS: (30000, 40000)
+  MAX_ITER: 45000              # 45,000 x 8 = 360k samples = 2.6 epochs of the 139,587 local frames
+  CHECKPOINT_PERIOD: 5000
+  AMP:
+    ENABLED: True
+  CLIP_GRADIENTS:
+    ENABLED: True
+    CLIP_TYPE: "norm"
+    CLIP_VALUE: 10.0
+TEST:
+  EVAL_PERIOD: 0               # use evaluation/egoblur_d2 + eval_egoblur pipeline instead of COCOEvaluator
+  DETECTIONS_PER_IMAGE: 100
+OUTPUT_DIR: "/data/esteban/pii/runs/egoblur_ft/wd_draft"

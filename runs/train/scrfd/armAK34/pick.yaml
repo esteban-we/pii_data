@@ -1,0 +1,20 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAK34
+family: scrfd
+rule: last_epoch
+epoch: 30
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armAK34_det34g.onnx
+checkpoints: local (epoch 30 only) and shang
+local_epochs: 1
+epoch_evidence: >-
+  PII-1397 / PII-1395: wd_armAK34/epoch_30.pth pulled from shang (md5 9e5fbf36..., 79,387,400
+  B), checkpoint meta exp_name scrfd_armAK34.py epoch 30 iter 209,280 and zero ema_* keys,
+  exported here with the recorded no-EMA 34G exporter to armAK34_det34g.onnx (md5 0d6a6e41...)
+notes: >-
+  30 epoch run, no EMA: armAC34's recipe carried to 30 epochs (PII-1358). Trained on shang;
+  wd_armAK34 and epochs 1..29 stay there. Only epoch_30.pth is here, copied from the PII-1397
+  pull dir /data/esteban/tmp/pii1395/, which is scratch and may be cleared.

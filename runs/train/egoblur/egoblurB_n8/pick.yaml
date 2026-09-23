@@ -1,0 +1,19 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: egoblurB_n8
+family: egoblur
+rule: last_epoch
+epoch: 34879
+epoch_unit: iter
+status: deprecated
+wandb_tags: [deprecated]
+onnx:
+checkpoints: local
+local_checkpoints: 11
+epoch_evidence: >-
+  detectron2 counts iterations, not epochs. The work dir's last_checkpoint file names
+  model_final.pth and the highest numbered checkpoint is model_0034879.pth, so epoch above is
+  that iteration. The pick is epochs/model_final.pth.
+notes: >-
+  There is no ONNX for this family: the EgoBlur arms are scored from the detectron2
+  checkpoint. Source work dir wd_egoblurB_n8_fluence; its wandb/ dir was left behind.

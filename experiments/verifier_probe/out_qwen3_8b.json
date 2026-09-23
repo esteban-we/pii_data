@@ -1,0 +1,848 @@
+{
+ "model": "Qwen/Qwen3-VL-8B-Instruct",
+ "load_s": 105.4,
+ "infer_s": 4.69,
+ "crops_per_s": 25.57,
+ "results": [
+  {
+   "crop": "000_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999943971594
+  },
+  {
+   "crop": "001_high_s0.87.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999943971101
+  },
+  {
+   "crop": "002_high_s0.87.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999997617621471
+  },
+  {
+   "crop": "003_high_s0.86.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0019263622586395824
+  },
+  {
+   "crop": "004_high_s0.92.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999804442259
+  },
+  {
+   "crop": "005_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999998874640416
+  },
+  {
+   "crop": "006_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9992903195349768
+  },
+  {
+   "crop": "007_high_s0.84.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999869928213011
+  },
+  {
+   "crop": "008_high_s0.86.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9998766038925357
+  },
+  {
+   "crop": "009_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999317436747
+  },
+  {
+   "crop": "010_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9968272534983063
+  },
+  {
+   "crop": "011_high_s0.81.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999943971534
+  },
+  {
+   "crop": "012_high_s0.80.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.017980783982301737
+  },
+  {
+   "crop": "013_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999748899031
+  },
+  {
+   "crop": "014_high_s0.91.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999999999641809
+  },
+  {
+   "crop": "015_high_s0.83.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0011681611766546464
+  },
+  {
+   "crop": "016_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999999946841926
+  },
+  {
+   "crop": "017_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999898699751862
+  },
+  {
+   "crop": "018_high_s0.92.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999907624776
+  },
+  {
+   "crop": "019_high_s0.86.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.060076732449954685
+  },
+  {
+   "crop": "020_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999999942106
+  },
+  {
+   "crop": "021_high_s0.87.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999991684699477
+  },
+  {
+   "crop": "022_high_s0.87.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9984987879955253
+  },
+  {
+   "crop": "023_high_s0.93.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999998308002
+  },
+  {
+   "crop": "024_high_s0.90.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999804442259
+  },
+  {
+   "crop": "025_high_s0.88.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999998144603163
+  },
+  {
+   "crop": "026_high_s0.86.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999998555011961
+  },
+  {
+   "crop": "027_high_s0.91.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999317436747
+  },
+  {
+   "crop": "028_high_s0.83.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999123570404
+  },
+  {
+   "crop": "029_high_s0.88.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999992417277
+  },
+  {
+   "crop": "030_high_s0.88.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999952148877446
+  },
+  {
+   "crop": "031_high_s0.87.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999999994397121
+  },
+  {
+   "crop": "032_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999952148877753
+  },
+  {
+   "crop": "033_high_s0.88.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999317436747
+  },
+  {
+   "crop": "034_high_s0.83.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.06006928530565951
+  },
+  {
+   "crop": "035_high_s0.81.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999796571147431
+  },
+  {
+   "crop": "036_high_s0.81.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9241338808669196
+  },
+  {
+   "crop": "037_high_s0.92.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999999450722
+  },
+  {
+   "crop": "038_high_s0.82.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999998307976
+  },
+  {
+   "crop": "039_high_s0.86.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999999377527
+  },
+  {
+   "crop": "040_high_s0.81.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999832985149419
+  },
+  {
+   "crop": "041_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999993524019265
+  },
+  {
+   "crop": "042_high_s0.89.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999991684655316
+  },
+  {
+   "crop": "043_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.99995460195853
+  },
+  {
+   "crop": "044_high_s0.85.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999997739657118
+  },
+  {
+   "crop": "045_high_s0.90.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999987498263
+  },
+  {
+   "crop": "046_high_s0.86.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.999999999241723
+  },
+  {
+   "crop": "047_high_s0.88.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999991684693457
+  },
+  {
+   "crop": "048_high_s0.90.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999999966016933
+  },
+  {
+   "crop": "049_high_s0.94.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999038963521262
+  },
+  {
+   "crop": "050_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0005525847601664382
+  },
+  {
+   "crop": "051_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.1068409184227185e-07
+  },
+  {
+   "crop": "052_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.6502365369101537e-08
+  },
+  {
+   "crop": "053_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 7.888887616749964e-06
+  },
+  {
+   "crop": "054_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0001233373808952337
+  },
+  {
+   "crop": "055_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 3.7246606254314272e-06
+  },
+  {
+   "crop": "056_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.008575967431667863
+  },
+  {
+   "crop": "057_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 5.399891675491187e-08
+  },
+  {
+   "crop": "058_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.2103164007676868e-06
+  },
+  {
+   "crop": "059_low_s0.26.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0011692948307575313
+  },
+  {
+   "crop": "060_low_s0.25.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 4.5394170783636723e-05
+  },
+  {
+   "crop": "061_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 5.422504849299192e-06
+  },
+  {
+   "crop": "062_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.2999335818095757e-05
+  },
+  {
+   "crop": "063_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.000910945128383861
+  },
+  {
+   "crop": "064_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.1477923366074138e-05
+  },
+  {
+   "crop": "065_low_s0.26.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.010984940114811274
+  },
+  {
+   "crop": "066_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.6527161271271212e-07
+  },
+  {
+   "crop": "067_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 4.786305080700908e-06
+  },
+  {
+   "crop": "068_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.002472010931398748
+  },
+  {
+   "crop": "069_low_s0.26.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.060078652094795834
+  },
+  {
+   "crop": "070_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 3.289063373991224e-06
+  },
+  {
+   "crop": "071_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3007005898175324e-05
+  },
+  {
+   "crop": "072_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0002611262306616268
+  },
+  {
+   "crop": "073_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0015008530728097072
+  },
+  {
+   "crop": "074_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 9.606276620778356e-05
+  },
+  {
+   "crop": "075_low_s0.26.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0024719118226244137
+  },
+  {
+   "crop": "076_low_s0.26.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.00020338207027314974
+  },
+  {
+   "crop": "077_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3717151446318792e-06
+  },
+  {
+   "crop": "078_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3002608671692748e-05
+  },
+  {
+   "crop": "079_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.7527160308932262e-05
+  },
+  {
+   "crop": "080_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.400922237973984e-07
+  },
+  {
+   "crop": "081_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.648707171448212e-07
+  },
+  {
+   "crop": "082_low_s0.26.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0003352610034033211
+  },
+  {
+   "crop": "083_low_s0.26.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 3.534921533938632e-05
+  },
+  {
+   "crop": "084_low_s0.25.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.03732219664903235
+  },
+  {
+   "crop": "085_low_s0.26.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.00033530113773517345
+  },
+  {
+   "crop": "086_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.4739654474328692e-05
+  },
+  {
+   "crop": "087_low_s0.25.jpg",
+   "label": "face",
+   "pred": "face",
+   "raw": "FACE",
+   "p_face": 0.9999785548934604
+  },
+  {
+   "crop": "088_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.02297064839647442
+  },
+  {
+   "crop": "089_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 6.488709325235653e-07
+  },
+  {
+   "crop": "090_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.6693543089187988e-05
+  },
+  {
+   "crop": "091_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 8.965392170289255e-08
+  },
+  {
+   "crop": "092_low_s0.25.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3008558144597963e-05
+  },
+  {
+   "crop": "093_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0015007355240708735
+  },
+  {
+   "crop": "094_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.013043967407388e-05
+  },
+  {
+   "crop": "095_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 6.144388794600486e-06
+  },
+  {
+   "crop": "096_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.0682749806499075e-06
+  },
+  {
+   "crop": "097_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 4.7832117496497644e-06
+  },
+  {
+   "crop": "098_low_s0.25.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 7.48328283732383e-05
+  },
+  {
+   "crop": "099_low_s0.26.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3005925020846742e-05
+  },
+  {
+   "crop": "100_mid_s0.51.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.4999194284389048
+  },
+  {
+   "crop": "101_mid_s0.52.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.3714404356756068e-06
+  },
+  {
+   "crop": "102_mid_s0.53.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0009104607602384414
+  },
+  {
+   "crop": "103_mid_s0.46.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 8.318385572795405e-07
+  },
+  {
+   "crop": "104_mid_s0.49.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.7066700407076956e-07
+  },
+  {
+   "crop": "105_mid_s0.53.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0003350593748453489
+  },
+  {
+   "crop": "106_mid_s0.50.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.0001233717219452687
+  },
+  {
+   "crop": "107_mid_s0.52.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.6700468323403017e-05
+  },
+  {
+   "crop": "108_mid_s0.51.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 2.7529435793633656e-05
+  },
+  {
+   "crop": "109_mid_s0.52.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.010982535061261603
+  },
+  {
+   "crop": "110_mid_s0.48.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 1.6700806661028504e-05
+  },
+  {
+   "crop": "111_mid_s0.55.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.010985000721911659
+  },
+  {
+   "crop": "112_mid_s0.47.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 7.3447977021153e-07
+  },
+  {
+   "crop": "113_mid_s0.48.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 6.962282223976473e-06
+  },
+  {
+   "crop": "114_mid_s0.49.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.00043038189282267416
+  },
+  {
+   "crop": "115_mid_s0.53.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 4.224248118922628e-06
+  },
+  {
+   "crop": "116_mid_s0.45.jpg",
+   "label": "uncertain",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 6.144477474106528e-06
+  },
+  {
+   "crop": "117_mid_s0.51.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.000123365888854093
+  },
+  {
+   "crop": "118_mid_s0.48.jpg",
+   "label": "face",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 0.014060499582224254
+  },
+  {
+   "crop": "119_mid_s0.53.jpg",
+   "label": "noface",
+   "pred": "noface",
+   "raw": "NOFACE",
+   "p_face": 3.944673130601529e-07
+  }
+ ]
+}

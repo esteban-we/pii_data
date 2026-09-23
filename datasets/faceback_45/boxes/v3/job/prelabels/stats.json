@@ -1,0 +1,46 @@
+{
+  "additions": 6713,
+  "additions_out_of_frame": 436,
+  "boxes_version": "v1",
+  "coord_space": [
+    2328,
+    1748
+  ],
+  "dataset": "faceback_hq",
+  "det_size": 1024,
+  "dets_at_cut": 28788,
+  "dump": "/home/esteban/repos/pii/.knuth/pages/media/face-mine-eval/faceback_hq/armAE34.json",
+  "dump_dets": 2213293,
+  "dump_frames": 16940,
+  "dump_min_side": 40.0,
+  "frames": 4023,
+  "frames_with_no_gt": 1515,
+  "gt_boxes": 8348,
+  "gt_eval": 6359,
+  "gt_eval_all": 19047,
+  "gt_ignored": 1989,
+  "gt_ignored_all": 3969,
+  "iou_gate": 0.1,
+  "model": "armAE34",
+  "model_path": "/data/esteban/pii/runs/train/armAE34_det34g.onnx",
+  "score_bands": {
+    "0.3-0.4": 3926,
+    "0.4-0.5": 1818,
+    "0.5-0.6": 734,
+    "0.6-0.8": 232,
+    "0.8-1.01": 3
+  },
+  "score_cut": 0.3,
+  "sessions": 63,
+  "side_bands": {
+    "0-20": 17,
+    "100-1000000000.0": 715,
+    "20-40": 3573,
+    "40-60": 1207,
+    "60-100": 1201
+  },
+  "views": {
+    "lview": 2110,
+    "rview": 1913
+  }
+}

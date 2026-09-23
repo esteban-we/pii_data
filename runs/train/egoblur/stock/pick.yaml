@@ -1,0 +1,22 @@
+# PII-1379. Stock weights, not trained here.
+arm: stock
+family: egoblur
+rule: last_epoch
+epoch: unknown
+epoch_unit: epoch
+status: deprecated
+wandb_tags: [deprecated]
+onnx:
+checkpoints: upstream release
+epoch_evidence: >-
+  Upstream released weights: no training run on any box here produced them, so no epoch can be
+  established. The .provenance.txt and .sha256 files next to each weight record where it came
+  from.
+notes: >-
+  ego_blur_face_gen1 and gen2 are Meta EgoBlur releases (.jit plus the .zip they came in).
+  egoblur_build/ holds what the gen2 to detectron2 conversion produced:
+  egoblur_face_gen2_jit_sd.pth (state dict lifted out of the TorchScript archive),
+  egoblur_face_gen2_d2.pth (the detectron2 checkpoint the egoblur arms start from),
+  jit_dump.json plus jit_dump.py, and parity/. gen2 has no .sha256 or .provenance.txt next to
+  it in the source; gen1 does. Sources: /data/esteban/pii/weights/ and
+  /data/esteban/pii/runs/egoblur_build/.
