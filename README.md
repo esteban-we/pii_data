@@ -17,7 +17,8 @@ the bytes are, where they came from and how they were labeled is committed.
 datasets/<name>/            one dataset per directory
   README.md                 what it is, where it was staged from, how it was built
   frames.csv                one row per image: image, session, chunk, eye,
-                            frame_idx, size, md5, plus provenance (src_path, t_ms)
+                            frame_idx, size, md5, oss_key, plus provenance
+                            (src_path, t_ms)
   split.csv                 session, role (train | eval); the split is per session
   images/                   the JPGs                                    (ignored, OSS)
   boxes/vN/                 one labeling pass; a relabel of a subset is a new vN
@@ -33,8 +34,10 @@ views/<name>/               one declared training mix or eval set
   scrfd.txt, d2.json, summary.json                                  (ignored, rendered)
 
 runs/train/
-  models.csv                arm, family, epoch, status, pick ONNX with md5 and size
-  MANIFEST.tsv              every copied file with size and md5
+  models.csv                arm, family, epoch, status, pick ONNX with md5 and size,
+                            oss_key of the pick
+  MANIFEST.tsv              every copied file with size, md5 and oss_key (empty when
+                            the file is git content)
   <family>/<arm>/
     pick.yaml               which epoch this arm is, the rule that chose it, evidence
     config, launch and export scripts, eval/*.json, small logs
@@ -43,7 +46,8 @@ runs/train/
                             tracked, the weights themselves ignored
 
 tables/corpus/              session, episode and chunk tables for the whole corpus
-tables/population/          15 GB of parquet over the full frame population   (ignored, OSS)
+tables/population/          15 GB of parquet over the full frame population
+                            (ignored, and not on OSS either: PII-1419)
 calib/                      fisheye and annotation calibration JSON
 inbox/                      vendor deliveries not yet folded into a dataset
 experiments/                one-off probes: scripts and their result JSON
@@ -104,18 +108,48 @@ rows in `runs/train/models.csv`. Every `pick.yaml` is `rule: last_epoch` for now
 
 ## Getting the bytes
 
-A fresh clone is metadata only: `datasets/*/images/` is empty and the view
-manifests are not there.
+A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints and
+ONNX exports are not there and the view manifests are not rendered.
 
-- Images are on `oss://algorithm-datasets/pii/data/<dataset>/<image>` (8 of the
-  13 sets today; PII-1413 finishes the mirror and adds `oss_key` to every
-  `frames.csv`). Checkpoints and exports go to `pii/models/<family>/<arm>/`.
-- Once PII-1414 lands: `python3 data/oss_sync.py pull [--dataset D | --view V |
-  --arm A]` reads the checked-out index and fetches what is missing or
-  mismatched, and a tracked `post-merge` hook runs it after `git pull`. Hooks do
-  not fire on clone, so the first pull is explicit.
-- Views are rendered, not downloaded: `python3 data/build_view.py render --all`,
-  verified with `check --all`.
+Every index row that stands for a file on OSS carries its key:
+`datasets/<name>/frames.csv` has an `oss_key` column
+(`pii/data/<set>/<image>`; the two `face10k` batches keep the prefixes
+`face10k_v3` and `face10k_repair` they were uploaded under), and
+`runs/train/MANIFEST.tsv` has one that is filled in
+(`pii/models/<family>/<arm>/<rel>`) exactly for the files git ignores and empty for
+the files git tracks. `runs/train/models.csv` carries the key of each arm's pick.
+
+```
+bash data/setup.sh                       # git config core.hooksPath .githooks, then pull
+python3 data/oss_sync.py pull            # everything the index names
+python3 data/oss_sync.py pull --view train_Z5      # only what one view needs
+python3 data/oss_sync.py pull --dataset gt_bench_full --arm armAC
+python3 data/oss_sync.py status [--remote]
+python3 data/oss_sync.py push --arm armNEW         # after a new training run
+python3 data/build_view.py render --all            # views are rendered, not downloaded
+```
+
+`pull` skips any file already on disk with the indexed size and md5, verifies every
+download against the index md5 before renaming it into place, and prints exactly
+`up to date` when nothing was missing. The md5 of a local file is cached in
+`.git/oss_sync_md5.json` against its size and mtime, so a rerun does not read the
+whole tree again.
+
+`push` uploads single part with `Content-MD5` and asserts the returned ETag equals
+the md5. It never overwrites: an object already on OSS whose ETag differs from the
+local md5 is reported as a conflict and the run fails. It never deletes. A file
+under `runs/train/<family>/<arm>/{epochs,onnx,logs}/` with no MANIFEST row is
+uploaded and its row appended (commit it); a new dataset image has to come from the
+dataset build script in the `pii` repo, which is what writes `frames.csv`.
+
+The credential is the `default` AK profile of `~/.aliyun/config.json` (RAM user
+esteban, region cn-shanghai). A box that has no such file can instead export
+`OSS_ACCESS_KEY_ID` and `OSS_ACCESS_KEY_SECRET`, which take precedence, so no secret
+has to be written to that box's disk.
+
+The tracked `.githooks/post-merge` hook runs `pull` after every `git pull`. Git does
+not run hooks on clone, so the first pull after cloning is the explicit
+`bash data/setup.sh` above. Opt out on a box with `git config pii.autopull false`.
 
 ## Build scripts
 
@@ -123,7 +157,9 @@ They live in the `pii` repo (`/home/esteban/repos/pii`), not here:
 `data/build_faceback45_pii2.py`, `build_face10k_pii2.py`, `build_faceight_pii2.py`,
 `build_facemine_pii2.py`, `build_gt_bench_pii2.py`, `build_pii_frames_pii2.py`,
 `build_wider_pii2.py` per dataset; `data/build_view.py` for views;
-`data/build_runs_pii2.py` for `runs/train`; `data/oss_pii_upload.py` for OSS.
+`data/build_runs_pii2.py` for `runs/train`; `data/oss_pii2_mirror.py` for the OSS
+mirror. `data/oss_sync.py` and `data/setup.sh` in this repo are the only things a
+consumer needs.
 Each has a `verify` or `check` subcommand that re-checks the tree against sizes
 and md5s.
 

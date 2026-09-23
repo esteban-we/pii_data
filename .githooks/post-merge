@@ -1,0 +1,13 @@
+#!/bin/sh
+# Tracked hook: after every `git pull` (and any other merge), bring the bytes this
+# checkout is missing down from OSS. Enable it once per box with data/setup.sh
+# (git config core.hooksPath .githooks); opt out with `git config pii.autopull false`.
+# Git does not run hooks on clone, so the first pull after a clone must be explicit:
+#     bash data/setup.sh && python3 data/oss_sync.py pull
+set -e
+if [ "$(git config --get pii.autopull || echo true)" = "false" ]; then
+    echo "pii.autopull=false, skipping oss_sync pull"
+    exit 0
+fi
+root=$(git rev-parse --show-toplevel)
+exec python3 "$root/data/oss_sync.py" pull
