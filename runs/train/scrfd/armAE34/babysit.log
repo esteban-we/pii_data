@@ -1,0 +1,6 @@
+2026-09-14 10:26:44 === babysitter start (pid 1192225) arm=AE34 gpu=4,5 nproc=2 port=29612 config=configs/scrfd/scrfd_armAE34.py workdir=/data/esteban/pii/runs/train/wd_armAE34 extra_cfg='' ===
+2026-09-14 10:26:45 gpu window open on 4,5 (>= 21000MiB each)
+2026-09-14 10:26:45 attempt 1 launching (resume: none)
+2026-09-14 10:26:45 attempt 1 trainer pid 1192244 (stop the run: kill -TERM 1192225)
+2026-09-15 01:28:28 attempt 1 exited rc=0
+2026-09-15 01:28:28 epoch_20.pth exists; success

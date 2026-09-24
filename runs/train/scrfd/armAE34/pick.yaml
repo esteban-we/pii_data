@@ -8,11 +8,13 @@ epoch_unit: epoch
 status: active
 wandb_tags: []
 onnx: onnx/armAE34_det34g.onnx
-checkpoints: shang
-local_epochs: 0
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAE34
+local_epochs: 20
 epoch_evidence: >-
   PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==
   wd_armAE34/epoch_20.pth
 notes: >-
-  No checkpoint on this box: all 20 epochs are on shang in runs/train/wd_armAE34/. EMA arm:
-  443 ema_* keys expected at 34G. checkpoints: shang.
+  All 20 epochs, latest.pth, the config and the logs were pulled from
+  shang:runs/train/wd_armAE34/ by PII-1447; shang keeps its copy. EMA arm: 443 ema_* keys
+  expected at 34G.

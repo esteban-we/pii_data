@@ -8,11 +8,13 @@ epoch_unit: epoch
 status: active
 wandb_tags: []
 onnx: onnx/armAJ_det10g.onnx
-checkpoints: shang
-local_epochs: 0
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAJ
+local_epochs: 30
 epoch_evidence: >-
   PII-1349: epoch_30.pth pulled from shang (md5 2c7d810d...), checkpoint meta epoch 30 iter
   104,640, exported here to armAJ_det10g.onnx
 notes: >-
-  30 epoch run. No checkpoint on this box: the pulled epoch_30.pth stayed in
-  /data/esteban/tmp/pii1348/, wd_armAJ is on shang. checkpoints: shang.
+  30 epoch run. All 30 epochs, latest.pth, the config and the logs were pulled from
+  shang:runs/train/wd_armAJ/ by PII-1447; shang keeps its copy. The PII-1349 pull left its
+  epoch_30.pth in /data/esteban/tmp/pii1348/, which is scratch.

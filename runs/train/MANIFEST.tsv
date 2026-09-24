@@ -170,22 +170,319 @@ runs/train/egoblur/stock/egoblur_build/jit_dump.json	/data/esteban/pii/runs/egob
 runs/train/egoblur/stock/egoblur_build/jit_dump.py	/data/esteban/pii/runs/egoblur_build/jit_dump.py	4316	31e9a83beba32b476696fd021484d2b0	
 runs/train/egoblur/stock/egoblur_build/parity/parity_n50_1200.json	/data/esteban/pii/runs/egoblur_build/parity/parity_n50_1200.json	17124	cdef0536550612a8c918b9ac76c320cc	
 runs/train/egoblur/stock/egoblur_build/parity/parity_n50_native.json	/data/esteban/pii/runs/egoblur_build/parity/parity_n50_native.json	17992	aeda278f9f9aab3f947291f912209589	
+runs/train/scrfd/armAA/20260910_034815.log	shang:/data/esteban/pii/runs/train/wd_armAA/20260910_034815.log	191197	d2015cc00f7b40bbe00901e24f014a0e	
+runs/train/scrfd/armAA/20260910_034815.log.json	shang:/data/esteban/pii/runs/train/wd_armAA/20260910_034815.log.json	174442	e868ea8bbc70873125e0b9eafe71c8aa	
+runs/train/scrfd/armAA/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAA/babysit.log	481	a27261bae2cc0a2dba0415df60091951	
+runs/train/scrfd/armAA/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_1.pth	34019931	f10ebca4ec34d5dd4bbfe28588b878b8	pii/models/scrfd/armAA/epochs/epoch_1.pth
+runs/train/scrfd/armAA/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_10.pth	34020059	703101a9a5fccf9fa8b2ca2177a8aafc	pii/models/scrfd/armAA/epochs/epoch_10.pth
+runs/train/scrfd/armAA/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_11.pth	34020059	7f0c5b1c600f1222022a2057fcdedf1b	pii/models/scrfd/armAA/epochs/epoch_11.pth
+runs/train/scrfd/armAA/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_12.pth	34020059	58f785d8d15802246b19a4d0a2cccd90	pii/models/scrfd/armAA/epochs/epoch_12.pth
+runs/train/scrfd/armAA/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_13.pth	34020059	9f5cf21e472f5976525b90c2f9ed3d66	pii/models/scrfd/armAA/epochs/epoch_13.pth
+runs/train/scrfd/armAA/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_14.pth	34020059	60818189acfc4005b475b7ecbc8e4edf	pii/models/scrfd/armAA/epochs/epoch_14.pth
+runs/train/scrfd/armAA/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_15.pth	34020059	2205478169760c196529ae7f6a3b08fa	pii/models/scrfd/armAA/epochs/epoch_15.pth
+runs/train/scrfd/armAA/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_16.pth	34020059	f1f6bcf210ecbcbdd965d68af45777ee	pii/models/scrfd/armAA/epochs/epoch_16.pth
+runs/train/scrfd/armAA/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_17.pth	34020059	e16339ccbca451ba15942d5aa68d24f6	pii/models/scrfd/armAA/epochs/epoch_17.pth
+runs/train/scrfd/armAA/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_18.pth	34020059	ab49eea05a9b162c9e84c8e8ad6c6971	pii/models/scrfd/armAA/epochs/epoch_18.pth
+runs/train/scrfd/armAA/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_19.pth	34020059	fa28b4010b3309e03e997ee4b36e9cd9	pii/models/scrfd/armAA/epochs/epoch_19.pth
+runs/train/scrfd/armAA/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_2.pth	34020059	7f76e0b9bf1235b0752d8b205925634c	pii/models/scrfd/armAA/epochs/epoch_2.pth
 runs/train/scrfd/armAA/epochs/epoch_20.pth	/data/esteban/pii/runs/train/wd_armAA_ckpt/epoch_20.pth	34020059	cbf1085bf45dd78458aca08ffeb87f62	pii/models/scrfd/armAA/epochs/epoch_20.pth
+runs/train/scrfd/armAA/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_3.pth	34020059	4f32009ddf8c6ca452ac7119e73588fe	pii/models/scrfd/armAA/epochs/epoch_3.pth
+runs/train/scrfd/armAA/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_4.pth	34020059	46c6017120349f9632411bbf278578b6	pii/models/scrfd/armAA/epochs/epoch_4.pth
+runs/train/scrfd/armAA/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_5.pth	34020059	8102dda6d254aad82613720a40ba7329	pii/models/scrfd/armAA/epochs/epoch_5.pth
+runs/train/scrfd/armAA/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_6.pth	34020059	0d700182851175684f982e2ba352a619	pii/models/scrfd/armAA/epochs/epoch_6.pth
+runs/train/scrfd/armAA/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_7.pth	34020059	bb499a796c0ff3bbd932b60635b7fb9b	pii/models/scrfd/armAA/epochs/epoch_7.pth
+runs/train/scrfd/armAA/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_8.pth	34020059	0137aed9f7ea9bcb742b01e4bb24fc77	pii/models/scrfd/armAA/epochs/epoch_8.pth
+runs/train/scrfd/armAA/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAA/epoch_9.pth	34020059	21d7530cfaccd9a88289e0ab5640c035	pii/models/scrfd/armAA/epochs/epoch_9.pth
+runs/train/scrfd/armAA/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAA/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAA/onnx/armAA_det10g.onnx	/data/esteban/pii/runs/train/armAA_det10g.onnx	16962796	24470db84088e1741230753faf896533	pii/models/scrfd/armAA/onnx/armAA_det10g.onnx
+runs/train/scrfd/armAA/scrfd_armAA.py	shang:/data/esteban/pii/runs/train/wd_armAA/scrfd_armAA.py	8310	8464b494511fd636c53483427a78a4ef	
+runs/train/scrfd/armAA/train.log	shang:/data/esteban/pii/runs/train/wd_armAA/train.log	193729	4839d869f27db70de78fc91c9935cd04	pii/models/scrfd/armAA/train.log
+runs/train/scrfd/armAA34/20260910_034815.log	shang:/data/esteban/pii/runs/train/wd_armAA34/20260910_034815.log	736601	baa0704aeb43e770057120dde0d271ca	
+runs/train/scrfd/armAA34/20260910_034815.log.json	shang:/data/esteban/pii/runs/train/wd_armAA34/20260910_034815.log.json	673516	edd2e7b8ecb007173570671ee4d2cb51	
+runs/train/scrfd/armAA34/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAA34/babysit.log	487	e65495f2e4e1e76bbc4028e647b3a7b5	
+runs/train/scrfd/armAA34/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_1.pth	79387272	823f3b75c14ae3e5673610aaec08d3ec	pii/models/scrfd/armAA34/epochs/epoch_1.pth
+runs/train/scrfd/armAA34/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_10.pth	79387400	eb4ab7897a2a7308748adf04e68820af	pii/models/scrfd/armAA34/epochs/epoch_10.pth
+runs/train/scrfd/armAA34/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_11.pth	79387400	7e3bb98e73b2f9ecdd271ecfe36be4cc	pii/models/scrfd/armAA34/epochs/epoch_11.pth
+runs/train/scrfd/armAA34/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_12.pth	79387400	15ef1d5696b13393fa862fb1cff04032	pii/models/scrfd/armAA34/epochs/epoch_12.pth
+runs/train/scrfd/armAA34/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_13.pth	79387400	ad481ba8b2cd32bf47bca5bdefc3cdf8	pii/models/scrfd/armAA34/epochs/epoch_13.pth
+runs/train/scrfd/armAA34/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_14.pth	79387400	76b85ae856ebb831b1155f9911bec741	pii/models/scrfd/armAA34/epochs/epoch_14.pth
+runs/train/scrfd/armAA34/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_15.pth	79387400	50bdb6dcc88d98b521c51dbf3fa19b6a	pii/models/scrfd/armAA34/epochs/epoch_15.pth
+runs/train/scrfd/armAA34/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_16.pth	79387400	f3bf031454137ec5adfdb459689c5ec4	pii/models/scrfd/armAA34/epochs/epoch_16.pth
+runs/train/scrfd/armAA34/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_17.pth	79387400	ab8c90a620b57c8d0490fedd1a56ec1e	pii/models/scrfd/armAA34/epochs/epoch_17.pth
+runs/train/scrfd/armAA34/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_18.pth	79387400	69f33f327ae0fb76e8423f65f7871658	pii/models/scrfd/armAA34/epochs/epoch_18.pth
+runs/train/scrfd/armAA34/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_19.pth	79387400	b558357209bb85717916e87d22860115	pii/models/scrfd/armAA34/epochs/epoch_19.pth
+runs/train/scrfd/armAA34/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_2.pth	79387400	9d6fba7e5b40a4051024af2bef40a044	pii/models/scrfd/armAA34/epochs/epoch_2.pth
 runs/train/scrfd/armAA34/epochs/epoch_20.pth	/data/esteban/pii/runs/train/wd_armAA34_ckpt/epoch_20.pth	79387400	84f694475e822413aca4782416f6bb91	pii/models/scrfd/armAA34/epochs/epoch_20.pth
+runs/train/scrfd/armAA34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_3.pth	79387400	fbd401b0a199d9d07dbb06f22ecab6c5	pii/models/scrfd/armAA34/epochs/epoch_3.pth
+runs/train/scrfd/armAA34/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_4.pth	79387400	ce521d02aea05035749877c0761b5a59	pii/models/scrfd/armAA34/epochs/epoch_4.pth
+runs/train/scrfd/armAA34/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_5.pth	79387400	c9bdeaad28737ee5ed061438e393196a	pii/models/scrfd/armAA34/epochs/epoch_5.pth
+runs/train/scrfd/armAA34/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_6.pth	79387400	c81f083ed381511e4bb23c57b62e3061	pii/models/scrfd/armAA34/epochs/epoch_6.pth
+runs/train/scrfd/armAA34/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_7.pth	79387400	d39a312027036595c3253433a9e0a1b2	pii/models/scrfd/armAA34/epochs/epoch_7.pth
+runs/train/scrfd/armAA34/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_8.pth	79387400	87b82990dedf3e1039ac7b7129d4ddfb	pii/models/scrfd/armAA34/epochs/epoch_8.pth
+runs/train/scrfd/armAA34/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/epoch_9.pth	79387400	b33714497ab9a19aeb38463535ef5435	pii/models/scrfd/armAA34/epochs/epoch_9.pth
+runs/train/scrfd/armAA34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAA34/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAA34/onnx/armAA34_det34g.onnx	/data/esteban/pii/runs/train/armAA34_det34g.onnx	39427800	50386d6845f4f69dd9ffb2147ea55284	pii/models/scrfd/armAA34/onnx/armAA34_det34g.onnx
+runs/train/scrfd/armAA34/scrfd_armAA34.py	shang:/data/esteban/pii/runs/train/wd_armAA34/scrfd_armAA34.py	8246	fec2408e155bd337b0bf5adb78439786	
+runs/train/scrfd/armAA34/train.log	shang:/data/esteban/pii/runs/train/wd_armAA34/train.log	739133	5bebd848068c1aa000d3e571a8d383ec	pii/models/scrfd/armAA34/train.log
+runs/train/scrfd/armAB/20260912_100417.log	shang:/data/esteban/pii/runs/train/wd_armAB/20260912_100417.log	191509	f7a6ae542866af25acaaf6dc08035a58	
+runs/train/scrfd/armAB/20260912_100417.log.json	shang:/data/esteban/pii/runs/train/wd_armAB/20260912_100417.log.json	174516	96d68a41f2ad60ffa8d8d43e6fb65dab	
+runs/train/scrfd/armAB/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAB/babysit.log	478	73bde04b2fc7920fcabd82cf9921cc84	
+runs/train/scrfd/armAB/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_1.pth	50987231	3da03d9987c5ea36e4bb804177a00cee	pii/models/scrfd/armAB/epochs/epoch_1.pth
+runs/train/scrfd/armAB/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_10.pth	50987359	7241d556ce1b66ae465f6dd5dcc29d6d	pii/models/scrfd/armAB/epochs/epoch_10.pth
+runs/train/scrfd/armAB/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_11.pth	50987359	58cd08775505ef1485a3471579ec345b	pii/models/scrfd/armAB/epochs/epoch_11.pth
+runs/train/scrfd/armAB/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_12.pth	50987359	3e451575e39f648a52bef8fdc0f2a1bb	pii/models/scrfd/armAB/epochs/epoch_12.pth
+runs/train/scrfd/armAB/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_13.pth	50987359	3e9da9a87122715569c4b2dde26aad74	pii/models/scrfd/armAB/epochs/epoch_13.pth
+runs/train/scrfd/armAB/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_14.pth	50987359	c1c95bf797555a3ae82ed7d8d0ac7f39	pii/models/scrfd/armAB/epochs/epoch_14.pth
+runs/train/scrfd/armAB/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_15.pth	50987359	83876ef2979d6d57b4cabe9bb6aa1e6f	pii/models/scrfd/armAB/epochs/epoch_15.pth
+runs/train/scrfd/armAB/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_16.pth	50987359	5a1062251fee5a393390e8fca8686dac	pii/models/scrfd/armAB/epochs/epoch_16.pth
+runs/train/scrfd/armAB/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_17.pth	50987359	dff7aaa3c1a3fb949619298ae08e4b36	pii/models/scrfd/armAB/epochs/epoch_17.pth
+runs/train/scrfd/armAB/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_18.pth	50987359	5f9c83334ab4c9d59efc74bf28dcc1ab	pii/models/scrfd/armAB/epochs/epoch_18.pth
+runs/train/scrfd/armAB/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_19.pth	50987359	91486c3726e59c36d21b753eb52821c8	pii/models/scrfd/armAB/epochs/epoch_19.pth
+runs/train/scrfd/armAB/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_2.pth	50987359	a6be10c9a330f034dec1ca3e51518726	pii/models/scrfd/armAB/epochs/epoch_2.pth
+runs/train/scrfd/armAB/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_20.pth	50987359	d43af59880e00a461d4ff1058d7767e7	pii/models/scrfd/armAB/epochs/epoch_20.pth
+runs/train/scrfd/armAB/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_3.pth	50987359	255d6ea6cda5432373c3a7eae495757b	pii/models/scrfd/armAB/epochs/epoch_3.pth
+runs/train/scrfd/armAB/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_4.pth	50987359	a7171aa0540eeeebf463fcf5396c630b	pii/models/scrfd/armAB/epochs/epoch_4.pth
+runs/train/scrfd/armAB/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_5.pth	50987359	d974cf4f7a50b2c25e6e8109b4ca29b4	pii/models/scrfd/armAB/epochs/epoch_5.pth
+runs/train/scrfd/armAB/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_6.pth	50987359	33bce4cb669d604ef0a27350b2522582	pii/models/scrfd/armAB/epochs/epoch_6.pth
+runs/train/scrfd/armAB/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_7.pth	50987359	5c5d9ae69482c4693f96806a249a3aec	pii/models/scrfd/armAB/epochs/epoch_7.pth
+runs/train/scrfd/armAB/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_8.pth	50987359	6fd14efd5d1004f8b30a02e90491c0f8	pii/models/scrfd/armAB/epochs/epoch_8.pth
+runs/train/scrfd/armAB/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAB/epoch_9.pth	50987359	19d58b247076e107ba15240fc39015ae	pii/models/scrfd/armAB/epochs/epoch_9.pth
+runs/train/scrfd/armAB/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAB/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAB/onnx/armAB_det10g.onnx	/data/esteban/pii/runs/train/armAB_det10g.onnx	16962796	f9cca6c9e3a36ddb02c77ead9fa02f52	pii/models/scrfd/armAB/onnx/armAB_det10g.onnx
+runs/train/scrfd/armAB/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAB/run_arm.sh	3526	bee21e4668418e50d2ce4cf8773c574b	
+runs/train/scrfd/armAB/scrfd_armAB.py	shang:/data/esteban/pii/runs/train/wd_armAB/scrfd_armAB.py	8418	ea9e7e6cacdf5f3740d187d97cc331e9	
+runs/train/scrfd/armAB/train.log	shang:/data/esteban/pii/runs/train/wd_armAB/train.log	194909	e586fd6594205f0d92710124e984facc	pii/models/scrfd/armAB/train.log
+runs/train/scrfd/armAC/20260913_021234.log	shang:/data/esteban/pii/runs/train/wd_armAC/20260913_021234.log	297629	e57b00abe33562e1ed4eb3a6a131c0f8	
+runs/train/scrfd/armAC/20260913_021234.log.json	shang:/data/esteban/pii/runs/train/wd_armAC/20260913_021234.log.json	272799	7b6db6866deeffc936f22bb0d4e8c7a5	
+runs/train/scrfd/armAC/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAC/babysit.log	481	7a6f0ae007574882adbe7850df1d9290	
+runs/train/scrfd/armAC/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_1.pth	34019931	5205e81c1b49913e7a15a747d4ce6c95	pii/models/scrfd/armAC/epochs/epoch_1.pth
+runs/train/scrfd/armAC/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_10.pth	34020059	a7caccb533cdf5ac2cc614e9fce150e7	pii/models/scrfd/armAC/epochs/epoch_10.pth
+runs/train/scrfd/armAC/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_11.pth	34020059	896621953dbb10624c289c0dae00d750	pii/models/scrfd/armAC/epochs/epoch_11.pth
+runs/train/scrfd/armAC/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_12.pth	34020059	e844d106681e61e26f5f8ce43a1235be	pii/models/scrfd/armAC/epochs/epoch_12.pth
+runs/train/scrfd/armAC/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_13.pth	34020059	59605bfcdacef17cb16b91d02e42fa83	pii/models/scrfd/armAC/epochs/epoch_13.pth
+runs/train/scrfd/armAC/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_14.pth	34020059	14ccedc3f985074ea958e50b97685e1b	pii/models/scrfd/armAC/epochs/epoch_14.pth
+runs/train/scrfd/armAC/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_15.pth	34020059	952d9acc20d9f0783f60a266f63fabd1	pii/models/scrfd/armAC/epochs/epoch_15.pth
+runs/train/scrfd/armAC/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_16.pth	34020059	d0bc3ec952cb5e4ee8809aeff07122eb	pii/models/scrfd/armAC/epochs/epoch_16.pth
+runs/train/scrfd/armAC/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_17.pth	34020059	94072ab73fb1abbf59591755cf04d2dd	pii/models/scrfd/armAC/epochs/epoch_17.pth
+runs/train/scrfd/armAC/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_18.pth	34020059	29bfca1aa6b75c393684166d4e1fb14f	pii/models/scrfd/armAC/epochs/epoch_18.pth
+runs/train/scrfd/armAC/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_19.pth	34020059	ea674e9b72987b1c6f73f04d253058f0	pii/models/scrfd/armAC/epochs/epoch_19.pth
+runs/train/scrfd/armAC/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_2.pth	34020059	f8f0e1406accb971c39b0399caef729f	pii/models/scrfd/armAC/epochs/epoch_2.pth
 runs/train/scrfd/armAC/epochs/epoch_20.pth	/data/esteban/pii/runs/train/wd_armAC_ckpt/epoch_20.pth	34020059	9d9ba01dc2742c1f01e8a531830cea54	pii/models/scrfd/armAC/epochs/epoch_20.pth
+runs/train/scrfd/armAC/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_3.pth	34020059	99420e9d94992a8c0c72c4ac22bf71b6	pii/models/scrfd/armAC/epochs/epoch_3.pth
+runs/train/scrfd/armAC/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_4.pth	34020059	29a6c8bf2793b8d21877d9ab495c0c5a	pii/models/scrfd/armAC/epochs/epoch_4.pth
+runs/train/scrfd/armAC/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_5.pth	34020059	604f82a12cf946e89e85cce03565afad	pii/models/scrfd/armAC/epochs/epoch_5.pth
+runs/train/scrfd/armAC/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_6.pth	34020059	ca588eec903837d30f5117d76a6ddc92	pii/models/scrfd/armAC/epochs/epoch_6.pth
+runs/train/scrfd/armAC/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_7.pth	34020059	e14fb398de0f54fe25f66cdb39e82459	pii/models/scrfd/armAC/epochs/epoch_7.pth
+runs/train/scrfd/armAC/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_8.pth	34020059	56f432493dd271a0201935cd98e1df87	pii/models/scrfd/armAC/epochs/epoch_8.pth
+runs/train/scrfd/armAC/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAC/epoch_9.pth	34020059	b94c6b8a1935548bba772215eb0b44b2	pii/models/scrfd/armAC/epochs/epoch_9.pth
+runs/train/scrfd/armAC/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAC/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAC/onnx/armAC_det10g.onnx	/data/esteban/pii/runs/train/armAC_det10g.onnx	16962796	82d93b6fc2c0feb89679189e97cebd41	pii/models/scrfd/armAC/onnx/armAC_det10g.onnx
+runs/train/scrfd/armAC/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAC/run_arm.sh	3273	876915eb56ee812ef7d37a6b56b0d882	
+runs/train/scrfd/armAC/scrfd_armAC.py	shang:/data/esteban/pii/runs/train/wd_armAC/scrfd_armAC.py	8310	a93f4e27e0cae4f0059217df5c8f48a6	
+runs/train/scrfd/armAC/train.log	shang:/data/esteban/pii/runs/train/wd_armAC/train.log	300161	6c94bc281d79d97d77a74bfb23eb321f	pii/models/scrfd/armAC/train.log
+runs/train/scrfd/armAC34/20260915_015837.log	shang:/data/esteban/pii/runs/train/wd_armAC34/20260915_015837.log	1171755	366ca26ace66613dc764592621bdfdd9	
+runs/train/scrfd/armAC34/20260915_015837.log.json	shang:/data/esteban/pii/runs/train/wd_armAC34/20260915_015837.log.json	1074629	880a9bd36c98e7808d140f56ded37cbb	
+runs/train/scrfd/armAC34/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAC34/babysit.log	487	bb5272d8083ffef96842b925127f1185	
+runs/train/scrfd/armAC34/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_1.pth	79387272	1ecd296549917758e535d2107df1b284	pii/models/scrfd/armAC34/epochs/epoch_1.pth
+runs/train/scrfd/armAC34/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_10.pth	79387400	7639bfe9458253bbf16326c9fd8e292c	pii/models/scrfd/armAC34/epochs/epoch_10.pth
+runs/train/scrfd/armAC34/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_11.pth	79387400	230dffcd6d1831122cd6871ed7ad000f	pii/models/scrfd/armAC34/epochs/epoch_11.pth
+runs/train/scrfd/armAC34/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_12.pth	79387400	43ce3654326366be458c7487b453bf95	pii/models/scrfd/armAC34/epochs/epoch_12.pth
+runs/train/scrfd/armAC34/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_13.pth	79387400	f97ffd97947938873d5da71097277634	pii/models/scrfd/armAC34/epochs/epoch_13.pth
+runs/train/scrfd/armAC34/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_14.pth	79387400	1a854828ce4394fc7028f75edd017398	pii/models/scrfd/armAC34/epochs/epoch_14.pth
+runs/train/scrfd/armAC34/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_15.pth	79387400	ba11a36eaf40763fd77f1dffc47cc06f	pii/models/scrfd/armAC34/epochs/epoch_15.pth
+runs/train/scrfd/armAC34/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_16.pth	79387400	2b958f4dbab1b5df4d703869e654c0ca	pii/models/scrfd/armAC34/epochs/epoch_16.pth
+runs/train/scrfd/armAC34/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_17.pth	79387400	75e91eb955b9de41a27dea1f8451000c	pii/models/scrfd/armAC34/epochs/epoch_17.pth
+runs/train/scrfd/armAC34/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_18.pth	79387400	f3dc5fceb2c3c7d1b1c3c2b3e8fc4c02	pii/models/scrfd/armAC34/epochs/epoch_18.pth
+runs/train/scrfd/armAC34/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_19.pth	79387400	80e61265fe771bcab51585859038b306	pii/models/scrfd/armAC34/epochs/epoch_19.pth
+runs/train/scrfd/armAC34/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_2.pth	79387400	4f0f4f5952c769954e763a2cc637bc8c	pii/models/scrfd/armAC34/epochs/epoch_2.pth
 runs/train/scrfd/armAC34/epochs/epoch_20.pth	/data/esteban/pii/runs/train/wd_armAC34_ckpt/epoch_20.pth	79387400	7de4e0ef55c915af4da310556dc90d57	pii/models/scrfd/armAC34/epochs/epoch_20.pth
+runs/train/scrfd/armAC34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_3.pth	79387400	68fb0757af45e5d92db0506a9a6bb55a	pii/models/scrfd/armAC34/epochs/epoch_3.pth
+runs/train/scrfd/armAC34/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_4.pth	79387400	662b9f2cc7a1b4826677431ac316a29c	pii/models/scrfd/armAC34/epochs/epoch_4.pth
+runs/train/scrfd/armAC34/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_5.pth	79387400	3804023b5cdfecf3218e9d2032c96a9d	pii/models/scrfd/armAC34/epochs/epoch_5.pth
+runs/train/scrfd/armAC34/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_6.pth	79387400	6fa901ac98b0982ac8ee7e9187308ddf	pii/models/scrfd/armAC34/epochs/epoch_6.pth
+runs/train/scrfd/armAC34/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_7.pth	79387400	7fe62b1fd8a484b209eb5860de267647	pii/models/scrfd/armAC34/epochs/epoch_7.pth
+runs/train/scrfd/armAC34/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_8.pth	79387400	1765f528b019bdc18b6229fc1e79d5bb	pii/models/scrfd/armAC34/epochs/epoch_8.pth
+runs/train/scrfd/armAC34/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/epoch_9.pth	79387400	967b13d5004ca69a56a04b1bb357b189	pii/models/scrfd/armAC34/epochs/epoch_9.pth
+runs/train/scrfd/armAC34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAC34/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAC34/onnx/armAC34_det34g.onnx	/data/esteban/pii/runs/train/armAC34_det34g.onnx	39427800	882d28b836f11859ff2c4bcaad4b88c4	pii/models/scrfd/armAC34/onnx/armAC34_det34g.onnx
+runs/train/scrfd/armAC34/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAC34/run_arm.sh	3273	876915eb56ee812ef7d37a6b56b0d882	
+runs/train/scrfd/armAC34/scrfd_armAC34.py	shang:/data/esteban/pii/runs/train/wd_armAC34/scrfd_armAC34.py	8246	1b3cc6ef28da7f34c1766d47a79b8f8e	
+runs/train/scrfd/armAC34/train.log	shang:/data/esteban/pii/runs/train/wd_armAC34/train.log	1174287	3beb4a1144efdec5f24fd72039e320c2	pii/models/scrfd/armAC34/train.log
+runs/train/scrfd/armAD/20260913_020621.log	shang:/data/esteban/pii/runs/train/wd_armAD/20260913_020621.log	191119	93b2e20a7b96f658b5568af2573d4d1c	
+runs/train/scrfd/armAD/20260913_020621.log.json	shang:/data/esteban/pii/runs/train/wd_armAD/20260913_020621.log.json	174337	1ec94dd22af8971eaa59d8c1a786d178	
+runs/train/scrfd/armAD/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAD/babysit.log	481	d33b3543064dd508f5e13ee3cf3fff2a	
+runs/train/scrfd/armAD/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_1.pth	34019867	9c73b08b0cdaee37ec854c3999e341a2	pii/models/scrfd/armAD/epochs/epoch_1.pth
+runs/train/scrfd/armAD/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_10.pth	34019931	614ae50fbcbeb7fad7e3c1958d2e74c6	pii/models/scrfd/armAD/epochs/epoch_10.pth
+runs/train/scrfd/armAD/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_11.pth	34019931	9cc5e0a38d26acfc6fbbe92f5bbf0eb8	pii/models/scrfd/armAD/epochs/epoch_11.pth
+runs/train/scrfd/armAD/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_12.pth	34019931	c5f21f6c7053c899311ba892ead33943	pii/models/scrfd/armAD/epochs/epoch_12.pth
+runs/train/scrfd/armAD/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_13.pth	34019931	d18078d3d6052613f3ac2626a5d315bb	pii/models/scrfd/armAD/epochs/epoch_13.pth
+runs/train/scrfd/armAD/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_14.pth	34019931	98f9317b31ca089a6098c2997535ec8f	pii/models/scrfd/armAD/epochs/epoch_14.pth
+runs/train/scrfd/armAD/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_15.pth	34019931	f3f40ef46bd333476de5b4a02ee6cce1	pii/models/scrfd/armAD/epochs/epoch_15.pth
+runs/train/scrfd/armAD/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_16.pth	34019931	b2483e65ef3d7a37209ca296ee2c4213	pii/models/scrfd/armAD/epochs/epoch_16.pth
+runs/train/scrfd/armAD/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_17.pth	34019931	6d846901aec703683f9a8f8e46bb4f45	pii/models/scrfd/armAD/epochs/epoch_17.pth
+runs/train/scrfd/armAD/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_18.pth	34019931	1a91aecc288ec3f28f431782405b0b2b	pii/models/scrfd/armAD/epochs/epoch_18.pth
+runs/train/scrfd/armAD/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_19.pth	34019931	9331542b09df17b18c085e30c2c813ab	pii/models/scrfd/armAD/epochs/epoch_19.pth
+runs/train/scrfd/armAD/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_2.pth	34019931	e77a0a946aa78b385aaf16045ac655c8	pii/models/scrfd/armAD/epochs/epoch_2.pth
+runs/train/scrfd/armAD/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_20.pth	34019931	df9dd28e029cf2e48226ac05977aca9f	pii/models/scrfd/armAD/epochs/epoch_20.pth
+runs/train/scrfd/armAD/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_3.pth	34019931	3850f0a27ad15f4c68bb9b35b8972a45	pii/models/scrfd/armAD/epochs/epoch_3.pth
+runs/train/scrfd/armAD/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_4.pth	34019931	618055fe634de3ed71401f643bb0c25d	pii/models/scrfd/armAD/epochs/epoch_4.pth
+runs/train/scrfd/armAD/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_5.pth	34019931	d5480a82612c50f70d6d4a2770c91866	pii/models/scrfd/armAD/epochs/epoch_5.pth
+runs/train/scrfd/armAD/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_6.pth	34019931	46ba53d5ba770e40210c2b5977f390a7	pii/models/scrfd/armAD/epochs/epoch_6.pth
+runs/train/scrfd/armAD/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_7.pth	34019931	a2922d0a399bea1fec197964c4298350	pii/models/scrfd/armAD/epochs/epoch_7.pth
+runs/train/scrfd/armAD/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_8.pth	34019931	ad6a7d3403c05db41c050b3287068aab	pii/models/scrfd/armAD/epochs/epoch_8.pth
+runs/train/scrfd/armAD/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAD/epoch_9.pth	34019931	1e7f1a85dc065d8770e9f0eab8ae3ffd	pii/models/scrfd/armAD/epochs/epoch_9.pth
+runs/train/scrfd/armAD/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAD/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAD/onnx/armAD_det10g.onnx	/data/esteban/pii/runs/train/armAD_det10g.onnx	16962796	6575ffc102832a7666d7044b0ebe08f0	pii/models/scrfd/armAD/onnx/armAD_det10g.onnx
+runs/train/scrfd/armAD/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAD/run_arm.sh	3273	876915eb56ee812ef7d37a6b56b0d882	
+runs/train/scrfd/armAD/scrfd_armAD.py	shang:/data/esteban/pii/runs/train/wd_armAD/scrfd_armAD.py	8232	b0954c3d4ca3349dc846e98c8d6eca11	
+runs/train/scrfd/armAD/train.log	shang:/data/esteban/pii/runs/train/wd_armAD/train.log	193651	192835aed6f744d6012297f67ce0eaee	pii/models/scrfd/armAD/train.log
+runs/train/scrfd/armAE/20260914_102554.log	shang:/data/esteban/pii/runs/train/wd_armAE/20260914_102554.log	297941	04bc7ce8259949c080cd27cf5a48c987	
+runs/train/scrfd/armAE/20260914_102554.log.json	shang:/data/esteban/pii/runs/train/wd_armAE/20260914_102554.log.json	272892	fa0e0d66d555bb9acd8be8d656172bb4	
+runs/train/scrfd/armAE/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAE/babysit.log	481	ac0bec284044173c83a9790a78352722	
+runs/train/scrfd/armAE/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_1.pth	50987231	bb085b0967c410d173400b30a115f7c1	pii/models/scrfd/armAE/epochs/epoch_1.pth
+runs/train/scrfd/armAE/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_10.pth	50987359	a49e3759ebac2c72155b6bbd4de754c3	pii/models/scrfd/armAE/epochs/epoch_10.pth
+runs/train/scrfd/armAE/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_11.pth	50987359	eff61eeb0f290c690726a68058da433c	pii/models/scrfd/armAE/epochs/epoch_11.pth
+runs/train/scrfd/armAE/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_12.pth	50987359	5f8464a6bb1d8497e1d0f04ad5b9b4a1	pii/models/scrfd/armAE/epochs/epoch_12.pth
+runs/train/scrfd/armAE/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_13.pth	50987359	f0ba01e56bbbcdc071f738858af52a05	pii/models/scrfd/armAE/epochs/epoch_13.pth
+runs/train/scrfd/armAE/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_14.pth	50987359	0c70941730df8888d6e6f470c2aefc2a	pii/models/scrfd/armAE/epochs/epoch_14.pth
+runs/train/scrfd/armAE/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_15.pth	50987359	5763a5b27105efe2039c5fee73d4fe84	pii/models/scrfd/armAE/epochs/epoch_15.pth
+runs/train/scrfd/armAE/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_16.pth	50987359	68567957655fe92669013b69c0e7fc47	pii/models/scrfd/armAE/epochs/epoch_16.pth
+runs/train/scrfd/armAE/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_17.pth	50987359	ad0a2830c66cd987af66420909c4d60c	pii/models/scrfd/armAE/epochs/epoch_17.pth
+runs/train/scrfd/armAE/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_18.pth	50987359	47271086ff434e4321fba52da716ee65	pii/models/scrfd/armAE/epochs/epoch_18.pth
+runs/train/scrfd/armAE/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_19.pth	50987359	cc1019bb0811831f97c40f37786e9eed	pii/models/scrfd/armAE/epochs/epoch_19.pth
+runs/train/scrfd/armAE/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_2.pth	50987359	7654dfe57778b5649d1ae34883ee992b	pii/models/scrfd/armAE/epochs/epoch_2.pth
+runs/train/scrfd/armAE/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_20.pth	50987359	b0ece57144af004cb3e1b443227ae982	pii/models/scrfd/armAE/epochs/epoch_20.pth
+runs/train/scrfd/armAE/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_3.pth	50987359	801689658f2f538d335a6aedabdc46e6	pii/models/scrfd/armAE/epochs/epoch_3.pth
+runs/train/scrfd/armAE/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_4.pth	50987359	3a33b9af0ec542c70a10eff8f12b372d	pii/models/scrfd/armAE/epochs/epoch_4.pth
+runs/train/scrfd/armAE/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_5.pth	50987359	f4fa493ba4de05b72f4153a6b68dc71f	pii/models/scrfd/armAE/epochs/epoch_5.pth
+runs/train/scrfd/armAE/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_6.pth	50987359	834402d88e1b6b214112ea0b6c342df5	pii/models/scrfd/armAE/epochs/epoch_6.pth
+runs/train/scrfd/armAE/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_7.pth	50987359	53ee58f7bfede4e96b4f8b82b5932c40	pii/models/scrfd/armAE/epochs/epoch_7.pth
+runs/train/scrfd/armAE/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_8.pth	50987359	dc682fcdaaf66e87358b3925946a21da	pii/models/scrfd/armAE/epochs/epoch_8.pth
+runs/train/scrfd/armAE/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAE/epoch_9.pth	50987359	a944936e60a7a1087d8a65d18ad9598c	pii/models/scrfd/armAE/epochs/epoch_9.pth
+runs/train/scrfd/armAE/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAE/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAE/onnx/armAE_det10g.onnx	/data/esteban/pii/runs/train/armAE_det10g.onnx	16962796	7da56520e86c2036cf732c38512022d1	pii/models/scrfd/armAE/onnx/armAE_det10g.onnx
+runs/train/scrfd/armAE/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAE/run_arm.sh	3526	bee21e4668418e50d2ce4cf8773c574b	
+runs/train/scrfd/armAE/scrfd_armAE.py	shang:/data/esteban/pii/runs/train/wd_armAE/scrfd_armAE.py	8418	8f29425e1b23902cbb2faef94cfa5750	
+runs/train/scrfd/armAE/train.log	shang:/data/esteban/pii/runs/train/wd_armAE/train.log	301341	b958599c35a58d38a7f54f61c406f8c5	pii/models/scrfd/armAE/train.log
+runs/train/scrfd/armAE34/20260914_102655.log	shang:/data/esteban/pii/runs/train/wd_armAE34/20260914_102655.log	1172650	f8100b1daefe7a86913899002d135708	
+runs/train/scrfd/armAE34/20260914_102655.log.json	shang:/data/esteban/pii/runs/train/wd_armAE34/20260914_102655.log.json	1074672	1a9a97360617220a01f621026a82e2ca	
+runs/train/scrfd/armAE34/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAE34/babysit.log	487	25cee20e6715dae677f3221bdda03a11	
+runs/train/scrfd/armAE34/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_1.pth	118915789	221beecfe3195aef49873026bc0be51c	pii/models/scrfd/armAE34/epochs/epoch_1.pth
+runs/train/scrfd/armAE34/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_10.pth	118915853	4df7d4a3420595a6275875b49a2fcb54	pii/models/scrfd/armAE34/epochs/epoch_10.pth
+runs/train/scrfd/armAE34/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_11.pth	118915853	02657a52e62054a18b57dc1229eca669	pii/models/scrfd/armAE34/epochs/epoch_11.pth
+runs/train/scrfd/armAE34/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_12.pth	118915853	7aa2ac8c773054441d63088352a427f6	pii/models/scrfd/armAE34/epochs/epoch_12.pth
+runs/train/scrfd/armAE34/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_13.pth	118915853	ddcc62e8f6a4cb491c878d784b799c66	pii/models/scrfd/armAE34/epochs/epoch_13.pth
+runs/train/scrfd/armAE34/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_14.pth	118915853	5996d56ce51209d39c862776a42c4ed2	pii/models/scrfd/armAE34/epochs/epoch_14.pth
+runs/train/scrfd/armAE34/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_15.pth	118915853	d0b82f8c2193947612b27e5c8746eab2	pii/models/scrfd/armAE34/epochs/epoch_15.pth
+runs/train/scrfd/armAE34/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_16.pth	118915853	44c04e98c17c3d7a7b4769e8c60e8b7c	pii/models/scrfd/armAE34/epochs/epoch_16.pth
+runs/train/scrfd/armAE34/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_17.pth	118915853	8a0c26e3b567bf7a7ec45b417676076f	pii/models/scrfd/armAE34/epochs/epoch_17.pth
+runs/train/scrfd/armAE34/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_18.pth	118915853	d13645fb464d6391dab763513c1c32bb	pii/models/scrfd/armAE34/epochs/epoch_18.pth
+runs/train/scrfd/armAE34/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_19.pth	118915853	d2a52bc2f42d9f117f8b195780cbbc4a	pii/models/scrfd/armAE34/epochs/epoch_19.pth
+runs/train/scrfd/armAE34/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_2.pth	118915853	789f7dad7f987d4ba5c685c450aea2d2	pii/models/scrfd/armAE34/epochs/epoch_2.pth
+runs/train/scrfd/armAE34/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_20.pth	118915853	1d9e5316dddec04eb74ee77fb518f440	pii/models/scrfd/armAE34/epochs/epoch_20.pth
+runs/train/scrfd/armAE34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_3.pth	118915853	46d871ab3398eb062baa29a116d3c924	pii/models/scrfd/armAE34/epochs/epoch_3.pth
+runs/train/scrfd/armAE34/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_4.pth	118915853	0be461147e2ce8b4f11311cbcad3eea1	pii/models/scrfd/armAE34/epochs/epoch_4.pth
+runs/train/scrfd/armAE34/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_5.pth	118915853	f24d8749a3bf12831d36e18451b95b18	pii/models/scrfd/armAE34/epochs/epoch_5.pth
+runs/train/scrfd/armAE34/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_6.pth	118915853	d5032731243e9b65231ac8d7ee83bbe4	pii/models/scrfd/armAE34/epochs/epoch_6.pth
+runs/train/scrfd/armAE34/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_7.pth	118915853	49e92358a7ac75e8b66c1ed70fdd1138	pii/models/scrfd/armAE34/epochs/epoch_7.pth
+runs/train/scrfd/armAE34/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_8.pth	118915853	2ea7d23791049cf8c58b813e374c5ef3	pii/models/scrfd/armAE34/epochs/epoch_8.pth
+runs/train/scrfd/armAE34/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/epoch_9.pth	118915853	e9eebf2c8be8c63667f77023e86a0460	pii/models/scrfd/armAE34/epochs/epoch_9.pth
+runs/train/scrfd/armAE34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAE34/latest.pth	-1	symlink:epoch_20.pth	
 runs/train/scrfd/armAE34/onnx/armAE34_det34g.onnx	/data/esteban/pii/runs/train/armAE34_det34g.onnx	39427800	3fa016c5dc7241e448ec101f4234e738	pii/models/scrfd/armAE34/onnx/armAE34_det34g.onnx
+runs/train/scrfd/armAE34/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAE34/run_arm.sh	3526	bee21e4668418e50d2ce4cf8773c574b	
+runs/train/scrfd/armAE34/scrfd_armAE34.py	shang:/data/esteban/pii/runs/train/wd_armAE34/scrfd_armAE34.py	8344	bf1465e730cd6198a0655316bc8f0404	
+runs/train/scrfd/armAE34/train.log	shang:/data/esteban/pii/runs/train/wd_armAE34/train.log	1176050	b86abbef5d4ce020f7451a62c3581159	pii/models/scrfd/armAE34/train.log
+runs/train/scrfd/armAF/20260916_085250.log	shang:/data/esteban/pii/runs/train/wd_armAF/20260916_085250.log	1152595	7e987c243ebbf230ad4cbb9842adf623	
+runs/train/scrfd/armAF/20260916_085250.log.json	shang:/data/esteban/pii/runs/train/wd_armAF/20260916_085250.log.json	1052662	ddda4a5d634c25510d8cb99d59a72fcf	
+runs/train/scrfd/armAF/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAF/babysit.log	481	355395d1695b1a6ff2dd4eddb70ecb8f	
+runs/train/scrfd/armAF/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_1.pth	34019867	fb118e6ed09596f9cacdffb9aec99c85	pii/models/scrfd/armAF/epochs/epoch_1.pth
+runs/train/scrfd/armAF/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_10.pth	34019995	1a309e89546fbf25292110ff22460316	pii/models/scrfd/armAF/epochs/epoch_10.pth
+runs/train/scrfd/armAF/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_11.pth	34019995	2525a8314831a7cccba7e9354455aab3	pii/models/scrfd/armAF/epochs/epoch_11.pth
+runs/train/scrfd/armAF/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_12.pth	34019995	3f27f0a807f2d5fbe7efe9bbcad66ffa	pii/models/scrfd/armAF/epochs/epoch_12.pth
+runs/train/scrfd/armAF/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_13.pth	34019995	2ff4e2d25f9ed968e9b197e8f4d6c90c	pii/models/scrfd/armAF/epochs/epoch_13.pth
+runs/train/scrfd/armAF/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_14.pth	34019995	3c44e94b1bd512cca9d0e3e787c4e69a	pii/models/scrfd/armAF/epochs/epoch_14.pth
+runs/train/scrfd/armAF/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_15.pth	34019995	c5cda29d5d29caa708b77dff60819de4	pii/models/scrfd/armAF/epochs/epoch_15.pth
+runs/train/scrfd/armAF/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_16.pth	34019995	e27f9c082074a8003ce36398189c5967	pii/models/scrfd/armAF/epochs/epoch_16.pth
+runs/train/scrfd/armAF/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_17.pth	34019995	6fada69d520ee1480dbdba6ab08578a2	pii/models/scrfd/armAF/epochs/epoch_17.pth
+runs/train/scrfd/armAF/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_18.pth	34019995	4bcce23c1f538e62ae6a1c8c00873a3f	pii/models/scrfd/armAF/epochs/epoch_18.pth
+runs/train/scrfd/armAF/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_19.pth	34019995	20312e2e414452a5159d80e0884f63cc	pii/models/scrfd/armAF/epochs/epoch_19.pth
+runs/train/scrfd/armAF/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_2.pth	34019995	d5e8f60ec3d3bfc66b32afe79cd2368e	pii/models/scrfd/armAF/epochs/epoch_2.pth
+runs/train/scrfd/armAF/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_20.pth	34019995	88b2b902f89ed5190d780b7e7250a5cf	pii/models/scrfd/armAF/epochs/epoch_20.pth
+runs/train/scrfd/armAF/epochs/epoch_21.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_21.pth	34019995	377a3706e6eb2b03d7b69c2102ef85ae	pii/models/scrfd/armAF/epochs/epoch_21.pth
+runs/train/scrfd/armAF/epochs/epoch_22.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_22.pth	34019995	02fc67be5ab6105d6484da547db567b5	pii/models/scrfd/armAF/epochs/epoch_22.pth
+runs/train/scrfd/armAF/epochs/epoch_23.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_23.pth	34019995	3224f8a09c1eacc3cad286e34a921868	pii/models/scrfd/armAF/epochs/epoch_23.pth
+runs/train/scrfd/armAF/epochs/epoch_24.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_24.pth	34019995	55bca2de68047a843b2544a2ad358783	pii/models/scrfd/armAF/epochs/epoch_24.pth
+runs/train/scrfd/armAF/epochs/epoch_25.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_25.pth	34019995	5790628eef0d38c88a81184aad152a87	pii/models/scrfd/armAF/epochs/epoch_25.pth
+runs/train/scrfd/armAF/epochs/epoch_26.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_26.pth	34019995	3c2131fff41562d5b3b198d0505c0156	pii/models/scrfd/armAF/epochs/epoch_26.pth
+runs/train/scrfd/armAF/epochs/epoch_27.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_27.pth	34019995	58bc7c458cd87c7e308a33c4580fae31	pii/models/scrfd/armAF/epochs/epoch_27.pth
+runs/train/scrfd/armAF/epochs/epoch_28.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_28.pth	34019995	75ac6dd458945bee5d3ebf0015899eca	pii/models/scrfd/armAF/epochs/epoch_28.pth
+runs/train/scrfd/armAF/epochs/epoch_29.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_29.pth	34019995	5c15b56a943ca26ed8ddbf090f7cf335	pii/models/scrfd/armAF/epochs/epoch_29.pth
+runs/train/scrfd/armAF/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_3.pth	34019995	6137fe321eac8fb4971ef8a7162f699a	pii/models/scrfd/armAF/epochs/epoch_3.pth
+runs/train/scrfd/armAF/epochs/epoch_30.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_30.pth	34019995	4a6b0dcf4f60958331e8ff1929e800ed	pii/models/scrfd/armAF/epochs/epoch_30.pth
+runs/train/scrfd/armAF/epochs/epoch_31.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_31.pth	34019995	ac301ecac48173d93e6a96e6f3f42d79	pii/models/scrfd/armAF/epochs/epoch_31.pth
+runs/train/scrfd/armAF/epochs/epoch_32.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_32.pth	34019995	5fc6fad5c22641ff9b6f58d6241bf502	pii/models/scrfd/armAF/epochs/epoch_32.pth
+runs/train/scrfd/armAF/epochs/epoch_33.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_33.pth	34019995	4c68dfeb399290cd9989f03a58ec823e	pii/models/scrfd/armAF/epochs/epoch_33.pth
+runs/train/scrfd/armAF/epochs/epoch_34.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_34.pth	34019995	953fa6a9e48ec33f0d8baa436c7061a6	pii/models/scrfd/armAF/epochs/epoch_34.pth
+runs/train/scrfd/armAF/epochs/epoch_35.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_35.pth	34019995	c017c084dadbe78a8dfb3e3500d7c0bd	pii/models/scrfd/armAF/epochs/epoch_35.pth
+runs/train/scrfd/armAF/epochs/epoch_36.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_36.pth	34019995	815efb5ad4dd97984265732a2eac1e0d	pii/models/scrfd/armAF/epochs/epoch_36.pth
+runs/train/scrfd/armAF/epochs/epoch_37.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_37.pth	34019995	80d063a1a81e9e215587a9b5dd76a80e	pii/models/scrfd/armAF/epochs/epoch_37.pth
+runs/train/scrfd/armAF/epochs/epoch_38.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_38.pth	34019995	5fcf5e1ea10d246574efe08d23fc69d3	pii/models/scrfd/armAF/epochs/epoch_38.pth
+runs/train/scrfd/armAF/epochs/epoch_39.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_39.pth	34019995	6626363123ac1089b2f9952baff99861	pii/models/scrfd/armAF/epochs/epoch_39.pth
+runs/train/scrfd/armAF/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_4.pth	34019995	387fc74fa3f4000557ee24d788242d3c	pii/models/scrfd/armAF/epochs/epoch_4.pth
+runs/train/scrfd/armAF/epochs/epoch_40.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_40.pth	34019995	04786c7a0d8b62f9de453ab20c1d0085	pii/models/scrfd/armAF/epochs/epoch_40.pth
+runs/train/scrfd/armAF/epochs/epoch_41.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_41.pth	34019995	623b557a137c9bea6e55a0abbbced948	pii/models/scrfd/armAF/epochs/epoch_41.pth
+runs/train/scrfd/armAF/epochs/epoch_42.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_42.pth	34019995	c253a08694f6cea877560450699f8950	pii/models/scrfd/armAF/epochs/epoch_42.pth
+runs/train/scrfd/armAF/epochs/epoch_43.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_43.pth	34019995	a90bea142525490d98dddfe53bf653b2	pii/models/scrfd/armAF/epochs/epoch_43.pth
+runs/train/scrfd/armAF/epochs/epoch_44.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_44.pth	34019995	3bd0c86cf9c34fbd7b5fd0cfdf6aa66c	pii/models/scrfd/armAF/epochs/epoch_44.pth
+runs/train/scrfd/armAF/epochs/epoch_45.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_45.pth	34019995	647cab9a237071c33c879431b13e7805	pii/models/scrfd/armAF/epochs/epoch_45.pth
+runs/train/scrfd/armAF/epochs/epoch_46.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_46.pth	34019995	e198cb8152196047982220f1f9c708a2	pii/models/scrfd/armAF/epochs/epoch_46.pth
+runs/train/scrfd/armAF/epochs/epoch_47.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_47.pth	34019995	d443ca72bf4aca302f5db1e079ada2bc	pii/models/scrfd/armAF/epochs/epoch_47.pth
+runs/train/scrfd/armAF/epochs/epoch_48.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_48.pth	34019995	369d52fa29791a27741ee97d8f098f93	pii/models/scrfd/armAF/epochs/epoch_48.pth
+runs/train/scrfd/armAF/epochs/epoch_49.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_49.pth	34019995	1ed9efa94b32fadd4a8303a392c086b2	pii/models/scrfd/armAF/epochs/epoch_49.pth
+runs/train/scrfd/armAF/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_5.pth	34019995	be27015ca98b3f751f0fc1bfc14b4bd4	pii/models/scrfd/armAF/epochs/epoch_5.pth
+runs/train/scrfd/armAF/epochs/epoch_50.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_50.pth	34019995	8f02ee29dc4b406c0615b89fa1c642d3	pii/models/scrfd/armAF/epochs/epoch_50.pth
+runs/train/scrfd/armAF/epochs/epoch_51.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_51.pth	34019995	a758761c6c691f3c11ac3e07990cb73a	pii/models/scrfd/armAF/epochs/epoch_51.pth
+runs/train/scrfd/armAF/epochs/epoch_52.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_52.pth	34019995	6d3cb13684aec13470679be418d38375	pii/models/scrfd/armAF/epochs/epoch_52.pth
+runs/train/scrfd/armAF/epochs/epoch_53.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_53.pth	34019995	5e801aee975371717f06f06d8d85d4ba	pii/models/scrfd/armAF/epochs/epoch_53.pth
+runs/train/scrfd/armAF/epochs/epoch_54.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_54.pth	34019995	f5c24628701e8050d92a7d4c78985ae9	pii/models/scrfd/armAF/epochs/epoch_54.pth
+runs/train/scrfd/armAF/epochs/epoch_55.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_55.pth	34019995	61107dc177a91b11118ffd53b4f0317a	pii/models/scrfd/armAF/epochs/epoch_55.pth
+runs/train/scrfd/armAF/epochs/epoch_56.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_56.pth	34019995	693c3d30edc18a41e15250240a5cee33	pii/models/scrfd/armAF/epochs/epoch_56.pth
+runs/train/scrfd/armAF/epochs/epoch_57.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_57.pth	34019995	b1052fb0e40ba8fabd40a7c8864e77f3	pii/models/scrfd/armAF/epochs/epoch_57.pth
+runs/train/scrfd/armAF/epochs/epoch_58.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_58.pth	34019995	da2ae0c09a23773cd518e34500a75efc	pii/models/scrfd/armAF/epochs/epoch_58.pth
+runs/train/scrfd/armAF/epochs/epoch_59.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_59.pth	34019995	6ba09f27ac92d39d40e9a5d17970158c	pii/models/scrfd/armAF/epochs/epoch_59.pth
+runs/train/scrfd/armAF/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_6.pth	34019995	702e744cb94b582b875150b5084d5a99	pii/models/scrfd/armAF/epochs/epoch_6.pth
+runs/train/scrfd/armAF/epochs/epoch_60.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_60.pth	34019995	62e16049a2720d6bc604227d038c5d7c	pii/models/scrfd/armAF/epochs/epoch_60.pth
+runs/train/scrfd/armAF/epochs/epoch_61.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_61.pth	34019995	5e447a857ee6209c822f62bcc7d7beb5	pii/models/scrfd/armAF/epochs/epoch_61.pth
+runs/train/scrfd/armAF/epochs/epoch_62.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_62.pth	34019995	2e0334835615d0869933235470473760	pii/models/scrfd/armAF/epochs/epoch_62.pth
+runs/train/scrfd/armAF/epochs/epoch_63.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_63.pth	34019995	0eaf9205c067da32f2d277b5417854b6	pii/models/scrfd/armAF/epochs/epoch_63.pth
+runs/train/scrfd/armAF/epochs/epoch_64.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_64.pth	34019995	3bbe7546b8665dde5802129c465d6e14	pii/models/scrfd/armAF/epochs/epoch_64.pth
+runs/train/scrfd/armAF/epochs/epoch_65.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_65.pth	34019995	1404fe4c07209f58644e10b78d1c9b8e	pii/models/scrfd/armAF/epochs/epoch_65.pth
+runs/train/scrfd/armAF/epochs/epoch_66.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_66.pth	34019995	e233d7f0e78c5a3e174e6548a49dd61e	pii/models/scrfd/armAF/epochs/epoch_66.pth
+runs/train/scrfd/armAF/epochs/epoch_67.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_67.pth	34019995	06a630b02044d49732e51ae3a48624f7	pii/models/scrfd/armAF/epochs/epoch_67.pth
+runs/train/scrfd/armAF/epochs/epoch_68.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_68.pth	34019995	2a667fa5bde9779b54696fc39d9d702c	pii/models/scrfd/armAF/epochs/epoch_68.pth
+runs/train/scrfd/armAF/epochs/epoch_69.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_69.pth	34019995	66a3ec8c2db38fe895ce5dc5f41a732b	pii/models/scrfd/armAF/epochs/epoch_69.pth
+runs/train/scrfd/armAF/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_7.pth	34019995	2392f870b2d8084fdd86cfb1ef836c7e	pii/models/scrfd/armAF/epochs/epoch_7.pth
+runs/train/scrfd/armAF/epochs/epoch_70.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_70.pth	34019995	794e653f99afaa33030aa9ab385b1115	pii/models/scrfd/armAF/epochs/epoch_70.pth
+runs/train/scrfd/armAF/epochs/epoch_71.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_71.pth	34019995	c2714c3ad99a3b37de2882ba644d559f	pii/models/scrfd/armAF/epochs/epoch_71.pth
+runs/train/scrfd/armAF/epochs/epoch_72.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_72.pth	34019995	2e42a99e92ac68dec28f03ea17a18041	pii/models/scrfd/armAF/epochs/epoch_72.pth
+runs/train/scrfd/armAF/epochs/epoch_73.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_73.pth	34019995	ef2cb35c74ab2531f568bf37c2aae1f1	pii/models/scrfd/armAF/epochs/epoch_73.pth
+runs/train/scrfd/armAF/epochs/epoch_74.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_74.pth	34019995	997884f8b90796deca5133230fbe2fd5	pii/models/scrfd/armAF/epochs/epoch_74.pth
+runs/train/scrfd/armAF/epochs/epoch_75.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_75.pth	34019995	f6221a6118562f9c32810304fa4db45f	pii/models/scrfd/armAF/epochs/epoch_75.pth
+runs/train/scrfd/armAF/epochs/epoch_76.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_76.pth	34019995	c14502d5333c9c89ee7079dfbe5147a6	pii/models/scrfd/armAF/epochs/epoch_76.pth
+runs/train/scrfd/armAF/epochs/epoch_77.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_77.pth	34019995	805ff3fd09fe926e2a685986a16d00d0	pii/models/scrfd/armAF/epochs/epoch_77.pth
+runs/train/scrfd/armAF/epochs/epoch_78.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_78.pth	34019995	16830d02d717027dacc9695fd0504bd1	pii/models/scrfd/armAF/epochs/epoch_78.pth
+runs/train/scrfd/armAF/epochs/epoch_79.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_79.pth	34019995	4e3e25bfffacab0d69595a6f0b554f6b	pii/models/scrfd/armAF/epochs/epoch_79.pth
+runs/train/scrfd/armAF/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_8.pth	34019995	4568f52915842da7c2053ddbc39a8b1b	pii/models/scrfd/armAF/epochs/epoch_8.pth
+runs/train/scrfd/armAF/epochs/epoch_80.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_80.pth	34019995	cb25fe8a85cc846d3f6a75696c5a060f	pii/models/scrfd/armAF/epochs/epoch_80.pth
+runs/train/scrfd/armAF/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAF/epoch_9.pth	34019995	15551f4cdb808f97642657535f272fcf	pii/models/scrfd/armAF/epochs/epoch_9.pth
+runs/train/scrfd/armAF/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAF/latest.pth	-1	symlink:epoch_80.pth	
 runs/train/scrfd/armAF/onnx/armAF_det10g.onnx	/data/esteban/pii/runs/train/armAF_det10g.onnx	16962746	6bd144aa8188ed76a30ab536006d812c	pii/models/scrfd/armAF/onnx/armAF_det10g.onnx
 runs/train/scrfd/armAF/onnx/armAF_e20_det10g.onnx	/data/esteban/pii/runs/train/armAF_e20_det10g.onnx	16962746	4637dbee54f7a4aef9769080201557b9	pii/models/scrfd/armAF/onnx/armAF_e20_det10g.onnx
 runs/train/scrfd/armAF/onnx/armAF_e55_det10g.onnx	/data/esteban/pii/runs/train/armAF_e55_det10g.onnx	16962746	87cef2da5b0d926a172c2923b9b94081	pii/models/scrfd/armAF/onnx/armAF_e55_det10g.onnx
 runs/train/scrfd/armAF/onnx/armAF_e68_det10g.onnx	/data/esteban/pii/runs/train/armAF_e68_det10g.onnx	16962746	1fd812d8e0fca44ec6779aa9a62d46ef	pii/models/scrfd/armAF/onnx/armAF_e68_det10g.onnx
+runs/train/scrfd/armAF/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAF/run_arm.sh	3336	df4ca91968a71223d8b6391d26a7e3fe	
+runs/train/scrfd/armAF/scrfd_armAF.py	shang:/data/esteban/pii/runs/train/wd_armAF/scrfd_armAF.py	8269	437a54aac71bbf140828a556052530dd	
+runs/train/scrfd/armAF/train.log	shang:/data/esteban/pii/runs/train/wd_armAF/train.log	1155127	560f90de03a93645c7d1808e21d1a613	pii/models/scrfd/armAF/train.log
 runs/train/scrfd/armAG34/20260918_111436.log	/data/esteban/pii/runs/train/wd_armAG34/20260918_111436.log	225576	3317b955202d837cc40a6d1dd4171e0e	
 runs/train/scrfd/armAG34/20260918_111436.log.json	/data/esteban/pii/runs/train/wd_armAG34/20260918_111436.log.json	206709	7a2733a334ae8a5712d155950e4e3bc8	
 runs/train/scrfd/armAG34/babysit.log	/data/esteban/pii/runs/train/wd_armAG34/babysit.log	503	45f54c26ae60df07a6c5da593dee48ce	
@@ -245,6 +542,9 @@ runs/train/scrfd/armAH34/scrfd_armAH34_fluence.py	/data/esteban/pii/runs/train/w
 runs/train/scrfd/armAH34/slurm-8574.err	/data/esteban/pii/runs/train/wd_armAH34_fluence/slurm-8574.err	0	d41d8cd98f00b204e9800998ecf8427e	
 runs/train/scrfd/armAH34/slurm-8574.out	/data/esteban/pii/runs/train/wd_armAH34_fluence/slurm-8574.out	401	f74a92ce6968963b9879b27a5d539786	
 runs/train/scrfd/armAH34/train.log	/data/esteban/pii/runs/train/wd_armAH34_fluence/train.log	448883	38f76c17a96ac90da93f914248545cdb	pii/models/scrfd/armAH34/train.log
+runs/train/scrfd/armAI34/20260921_190436.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/20260921_190436.log	1583565	ccdb494ee12bdcf15d581c6f649e354e	
+runs/train/scrfd/armAI34/20260921_190436.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/20260921_190436.log.json	1437808	73ed79d79d06a9b4670c50cabb596db7	
+runs/train/scrfd/armAI34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/babysit.log	453	c96f2c2510f418662c9fe205c122e410	
 runs/train/scrfd/armAI34/epochs/epoch_1.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_1.pth	118915789	e538c748580beaa9e0a102add3461254	pii/models/scrfd/armAI34/epochs/epoch_1.pth
 runs/train/scrfd/armAI34/epochs/epoch_10.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_10.pth	118915853	07008c32fa8db7847e9a2c13a4185734	pii/models/scrfd/armAI34/epochs/epoch_10.pth
 runs/train/scrfd/armAI34/epochs/epoch_11.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_11.pth	118915853	95ac82026ccbec773b0fd6781bfe1a74	pii/models/scrfd/armAI34/epochs/epoch_11.pth
@@ -325,6 +625,7 @@ runs/train/scrfd/armAI34/epochs/epoch_79.pth	/data/esteban/pii/runs/train/wd_arm
 runs/train/scrfd/armAI34/epochs/epoch_8.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_8.pth	118915853	bd542da770aafaac12f6e40981f64a09	pii/models/scrfd/armAI34/epochs/epoch_8.pth
 runs/train/scrfd/armAI34/epochs/epoch_80.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_80.pth	118915853	3931162ad224ff1c671ee09d121a1ba0	pii/models/scrfd/armAI34/epochs/epoch_80.pth
 runs/train/scrfd/armAI34/epochs/epoch_9.pth	/data/esteban/pii/runs/train/wd_armAI34_fluence/epoch_9.pth	118915853	b9a25edf83a94c018a7727ce40a27780	pii/models/scrfd/armAI34/epochs/epoch_9.pth
+runs/train/scrfd/armAI34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/latest.pth	-1	symlink:epoch_80.pth	
 runs/train/scrfd/armAI34/onnx/armAI34_det34g.onnx	/data/esteban/pii/runs/train/armAI34_det34g.onnx	39426870	5b3a38db50c0b0c6668b32cd51c37365	pii/models/scrfd/armAI34/onnx/armAI34_det34g.onnx
 runs/train/scrfd/armAI34/onnx/armAI34_e10_det34g.onnx	/data/esteban/pii/runs/train/armAI34_e10_det34g.onnx	39426870	3a03e245b19c9a3cb4cc400248f4eb47	pii/models/scrfd/armAI34/onnx/armAI34_e10_det34g.onnx
 runs/train/scrfd/armAI34/onnx/armAI34_e11_det34g.onnx	/data/esteban/pii/runs/train/armAI34_e11_det34g.onnx	39426870	3f2363669eb9cb9c63db132259648c95	pii/models/scrfd/armAI34/onnx/armAI34_e11_det34g.onnx
@@ -406,12 +707,162 @@ runs/train/scrfd/armAI34/onnx/armAI34_e7_det34g.onnx	/data/esteban/pii/runs/trai
 runs/train/scrfd/armAI34/onnx/armAI34_e80_det34g.onnx	/data/esteban/pii/runs/train/armAI34_e80_det34g.onnx	39426870	5b3a38db50c0b0c6668b32cd51c37365	pii/models/scrfd/armAI34/onnx/armAI34_e80_det34g.onnx
 runs/train/scrfd/armAI34/onnx/armAI34_e8_det34g.onnx	/data/esteban/pii/runs/train/armAI34_e8_det34g.onnx	39426870	11dfb3a0b1b3a1b195810a4bc04d91f3	pii/models/scrfd/armAI34/onnx/armAI34_e8_det34g.onnx
 runs/train/scrfd/armAI34/onnx/armAI34_e9_det34g.onnx	/data/esteban/pii/runs/train/armAI34_e9_det34g.onnx	39426870	74643c9e971c4a492df3f27aa1322d7b	pii/models/scrfd/armAI34/onnx/armAI34_e9_det34g.onnx
+runs/train/scrfd/armAI34/scrfd_armAI34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/scrfd_armAI34_fluence.py	8323	563b848eab103f9ee7577b0a9a0f5e5b	
+runs/train/scrfd/armAI34/slurm-11697.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/slurm-11697.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAI34/slurm-11697.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/slurm-11697.out	401	ddf80b6b895f19bf2feb117401f68bba	
+runs/train/scrfd/armAI34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence/train.log	1595112	6d3c008caa4b92edf73ba91956bc169c	pii/models/scrfd/armAI34/train.log
+runs/train/scrfd/armAJ/20260922_074626.log	shang:/data/esteban/pii/runs/train/wd_armAJ/20260922_074626.log	440376	fd2c5017226046d6aa6c790cf1dc0277	
+runs/train/scrfd/armAJ/20260922_074626.log.json	shang:/data/esteban/pii/runs/train/wd_armAJ/20260922_074626.log.json	403574	e78c623f9a71bb87fa60a8a3a21ed010	
+runs/train/scrfd/armAJ/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAJ/babysit.log	481	99a349d80ccc6f6384f0685bccbefc7d	
+runs/train/scrfd/armAJ/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_1.pth	50987231	3fe97415ccdaa696027ea588ef1d0a0c	pii/models/scrfd/armAJ/epochs/epoch_1.pth
+runs/train/scrfd/armAJ/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_10.pth	50987359	90babc84f1534b549eda034c808ae2f7	pii/models/scrfd/armAJ/epochs/epoch_10.pth
+runs/train/scrfd/armAJ/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_11.pth	50987359	34c02ed7904da740c63459dca3253e67	pii/models/scrfd/armAJ/epochs/epoch_11.pth
+runs/train/scrfd/armAJ/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_12.pth	50987359	712b3747e82d88032e919a3bb1e8d40d	pii/models/scrfd/armAJ/epochs/epoch_12.pth
+runs/train/scrfd/armAJ/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_13.pth	50987359	8cc8dab8d1edde27e4d032ac4ee4f71a	pii/models/scrfd/armAJ/epochs/epoch_13.pth
+runs/train/scrfd/armAJ/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_14.pth	50987359	1e2139b4d70bceb837de30130b77c18f	pii/models/scrfd/armAJ/epochs/epoch_14.pth
+runs/train/scrfd/armAJ/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_15.pth	50987359	f760e7a3c884a65b93b1ccf03d37a986	pii/models/scrfd/armAJ/epochs/epoch_15.pth
+runs/train/scrfd/armAJ/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_16.pth	50987359	bb0ec5d40c67b61795345089adb64ab0	pii/models/scrfd/armAJ/epochs/epoch_16.pth
+runs/train/scrfd/armAJ/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_17.pth	50987359	d9eb7b10d08b3fcae4e5a9a70bcca5e0	pii/models/scrfd/armAJ/epochs/epoch_17.pth
+runs/train/scrfd/armAJ/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_18.pth	50987359	ed2416f3cb7a001c50a75abafed1de2b	pii/models/scrfd/armAJ/epochs/epoch_18.pth
+runs/train/scrfd/armAJ/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_19.pth	50987359	d37b68e890541d6074683b4077988da4	pii/models/scrfd/armAJ/epochs/epoch_19.pth
+runs/train/scrfd/armAJ/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_2.pth	50987359	b758d1962232f49b141367a0a403de0a	pii/models/scrfd/armAJ/epochs/epoch_2.pth
+runs/train/scrfd/armAJ/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_20.pth	50987359	703c67ef7891487c00bfce166c8336be	pii/models/scrfd/armAJ/epochs/epoch_20.pth
+runs/train/scrfd/armAJ/epochs/epoch_21.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_21.pth	50987359	b49f00d912032011bf6a3cd5efde8694	pii/models/scrfd/armAJ/epochs/epoch_21.pth
+runs/train/scrfd/armAJ/epochs/epoch_22.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_22.pth	50987359	b4b31700ecf3075d8e8886e6ba393656	pii/models/scrfd/armAJ/epochs/epoch_22.pth
+runs/train/scrfd/armAJ/epochs/epoch_23.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_23.pth	50987359	e9515eba07ebc6d54b526ce4e7db61ca	pii/models/scrfd/armAJ/epochs/epoch_23.pth
+runs/train/scrfd/armAJ/epochs/epoch_24.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_24.pth	50987359	8616f8b8872fdd1c8dd6489f7d4f6079	pii/models/scrfd/armAJ/epochs/epoch_24.pth
+runs/train/scrfd/armAJ/epochs/epoch_25.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_25.pth	50987359	ea33692df9ada2d4de65489bd9cfce34	pii/models/scrfd/armAJ/epochs/epoch_25.pth
+runs/train/scrfd/armAJ/epochs/epoch_26.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_26.pth	50987359	7eca933ab0451027ad67756b2962462d	pii/models/scrfd/armAJ/epochs/epoch_26.pth
+runs/train/scrfd/armAJ/epochs/epoch_27.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_27.pth	50987359	a57dbf274aad618add2694d0d5787681	pii/models/scrfd/armAJ/epochs/epoch_27.pth
+runs/train/scrfd/armAJ/epochs/epoch_28.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_28.pth	50987359	cb6e361ec15c7793533210ffb89f45a1	pii/models/scrfd/armAJ/epochs/epoch_28.pth
+runs/train/scrfd/armAJ/epochs/epoch_29.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_29.pth	50987359	fc03831288e5e7180b6c4690803396ba	pii/models/scrfd/armAJ/epochs/epoch_29.pth
+runs/train/scrfd/armAJ/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_3.pth	50987359	551632a83c4d3fe460c587bba92616c8	pii/models/scrfd/armAJ/epochs/epoch_3.pth
+runs/train/scrfd/armAJ/epochs/epoch_30.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_30.pth	50987359	2c7d810d71d3600d50e9220f443c7437	pii/models/scrfd/armAJ/epochs/epoch_30.pth
+runs/train/scrfd/armAJ/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_4.pth	50987359	aaa721a35f002e999c48b31b0fc0ae80	pii/models/scrfd/armAJ/epochs/epoch_4.pth
+runs/train/scrfd/armAJ/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_5.pth	50987359	6e271ed2e50a7dfb9c7fa3b2f60eccd5	pii/models/scrfd/armAJ/epochs/epoch_5.pth
+runs/train/scrfd/armAJ/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_6.pth	50987359	3133ab2087301b3a923efce9ff4be99c	pii/models/scrfd/armAJ/epochs/epoch_6.pth
+runs/train/scrfd/armAJ/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_7.pth	50987359	e09df30c517fa807090acf0a42e10935	pii/models/scrfd/armAJ/epochs/epoch_7.pth
+runs/train/scrfd/armAJ/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_8.pth	50987359	4d74eac801b56f1646a01a57adfe3998	pii/models/scrfd/armAJ/epochs/epoch_8.pth
+runs/train/scrfd/armAJ/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/epoch_9.pth	50987359	0718af353b2ac24cf736f88e5c5803bf	pii/models/scrfd/armAJ/epochs/epoch_9.pth
+runs/train/scrfd/armAJ/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAJ/latest.pth	-1	symlink:epoch_30.pth	
 runs/train/scrfd/armAJ/onnx/armAJ_det10g.onnx	/data/esteban/pii/runs/train/armAJ_det10g.onnx	16962796	f8f11b7418441663345bd70a2a655919	pii/models/scrfd/armAJ/onnx/armAJ_det10g.onnx
-runs/train/scrfd/armAJ34/epochs/epoch_30.pth	/data/esteban/tmp/pii1359/armAJ34_epoch_30.pth	118915853	3cc7a70ffa13937e172dd8887faa9535	pii/models/scrfd/armAJ34/epochs/epoch_30.pth
+runs/train/scrfd/armAJ/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAJ/run_arm.sh	3589	a3a452e5524b5e3dcb47037d6917ddc3	
+runs/train/scrfd/armAJ/scrfd_armAJ.py	shang:/data/esteban/pii/runs/train/wd_armAJ/scrfd_armAJ.py	8418	b65536ded7ade19f9f577899725b8ee6	
+runs/train/scrfd/armAJ/train.log	shang:/data/esteban/pii/runs/train/wd_armAJ/train.log	443776	19875d7f6bc7fd382d0d41012d4a85fe	pii/models/scrfd/armAJ/train.log
+runs/train/scrfd/armAJ34/20260923_025026.log	shang:/data/esteban/pii/runs/train/wd_armAJ34/20260923_025026.log	875588	3c4cd365b72faf317f09c6a1043777b5	
+runs/train/scrfd/armAJ34/20260923_025026.log.json	shang:/data/esteban/pii/runs/train/wd_armAJ34/20260923_025026.log.json	805318	016d2be94c9b9487d508513dd4b42891	
+runs/train/scrfd/armAJ34/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAJ34/babysit.log	492	402e4fa3350aa9608ef840c8e5ec295a	
+runs/train/scrfd/armAJ34/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_1.pth	118915789	5312893872e742e74ee0fae027ec1ccc	pii/models/scrfd/armAJ34/epochs/epoch_1.pth
+runs/train/scrfd/armAJ34/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_10.pth	118915853	9de7f45f096244132c50d842d6865c20	pii/models/scrfd/armAJ34/epochs/epoch_10.pth
+runs/train/scrfd/armAJ34/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_11.pth	118915853	7b070a47af8af02281d89c899d24ff3c	pii/models/scrfd/armAJ34/epochs/epoch_11.pth
+runs/train/scrfd/armAJ34/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_12.pth	118915853	6d52b04e0dadf17cf76f0bbca3153317	pii/models/scrfd/armAJ34/epochs/epoch_12.pth
+runs/train/scrfd/armAJ34/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_13.pth	118915853	f42d2e6a6e959ef702c016edc614bde6	pii/models/scrfd/armAJ34/epochs/epoch_13.pth
+runs/train/scrfd/armAJ34/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_14.pth	118915853	f044ed2f17f67361641038e4da13a628	pii/models/scrfd/armAJ34/epochs/epoch_14.pth
+runs/train/scrfd/armAJ34/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_15.pth	118915853	a248774a8c800d8f1c1b0be1807f37c4	pii/models/scrfd/armAJ34/epochs/epoch_15.pth
+runs/train/scrfd/armAJ34/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_16.pth	118915853	1cef1015513cb85bfcc73b8854f924e6	pii/models/scrfd/armAJ34/epochs/epoch_16.pth
+runs/train/scrfd/armAJ34/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_17.pth	118915853	67da4282441d6cab23aaf69f78958c53	pii/models/scrfd/armAJ34/epochs/epoch_17.pth
+runs/train/scrfd/armAJ34/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_18.pth	118915853	2c59dc9ec0d3f28c284c24c9ed2cd545	pii/models/scrfd/armAJ34/epochs/epoch_18.pth
+runs/train/scrfd/armAJ34/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_19.pth	118915853	debf45623d0888d0991354b0f437fcc8	pii/models/scrfd/armAJ34/epochs/epoch_19.pth
+runs/train/scrfd/armAJ34/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_2.pth	118915853	e062ed9bc29210a183fc4a3691614d3a	pii/models/scrfd/armAJ34/epochs/epoch_2.pth
+runs/train/scrfd/armAJ34/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_20.pth	118915853	540a6628a3b5c93d89d702e85341d6f6	pii/models/scrfd/armAJ34/epochs/epoch_20.pth
+runs/train/scrfd/armAJ34/epochs/epoch_21.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_21.pth	118915853	42a52dc4cbc98f2288e787e4da6f9a8d	pii/models/scrfd/armAJ34/epochs/epoch_21.pth
+runs/train/scrfd/armAJ34/epochs/epoch_22.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_22.pth	118915853	649a38816727cc9b7393f92caae21b01	pii/models/scrfd/armAJ34/epochs/epoch_22.pth
+runs/train/scrfd/armAJ34/epochs/epoch_23.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_23.pth	118915853	10acf3df475839f143c505cadd655dce	pii/models/scrfd/armAJ34/epochs/epoch_23.pth
+runs/train/scrfd/armAJ34/epochs/epoch_24.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_24.pth	118915853	81de8d33d78567c1d8878b6688c3e953	pii/models/scrfd/armAJ34/epochs/epoch_24.pth
+runs/train/scrfd/armAJ34/epochs/epoch_25.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_25.pth	118915853	a15ac7aafc80b7aa6d60f4b878f40dd3	pii/models/scrfd/armAJ34/epochs/epoch_25.pth
+runs/train/scrfd/armAJ34/epochs/epoch_26.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_26.pth	118915853	154a8437ccc7b38fa1fa09deea5c3c40	pii/models/scrfd/armAJ34/epochs/epoch_26.pth
+runs/train/scrfd/armAJ34/epochs/epoch_27.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_27.pth	118915853	a7344ac9a8d1f1647606ad1680e71ad1	pii/models/scrfd/armAJ34/epochs/epoch_27.pth
+runs/train/scrfd/armAJ34/epochs/epoch_28.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_28.pth	118915853	5e81c0a3d174f1394d071f9181d73458	pii/models/scrfd/armAJ34/epochs/epoch_28.pth
+runs/train/scrfd/armAJ34/epochs/epoch_29.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_29.pth	118915853	4e3a6d3aefeb960fa088bd6876aafc74	pii/models/scrfd/armAJ34/epochs/epoch_29.pth
+runs/train/scrfd/armAJ34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_3.pth	118915853	a1390d8d5e5cc69e998ff3628a26d13e	pii/models/scrfd/armAJ34/epochs/epoch_3.pth
+runs/train/scrfd/armAJ34/epochs/epoch_30.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_30.pth	118915853	3cc7a70ffa13937e172dd8887faa9535	pii/models/scrfd/armAJ34/epochs/epoch_30.pth
+runs/train/scrfd/armAJ34/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_4.pth	118915853	c5288d8223f9cde14ce4f4d42362712e	pii/models/scrfd/armAJ34/epochs/epoch_4.pth
+runs/train/scrfd/armAJ34/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_5.pth	118915853	852ddd7241165c746275d107c495bd93	pii/models/scrfd/armAJ34/epochs/epoch_5.pth
+runs/train/scrfd/armAJ34/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_6.pth	118915853	7ffcef3d06315b40bffb349d7351b2bf	pii/models/scrfd/armAJ34/epochs/epoch_6.pth
+runs/train/scrfd/armAJ34/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_7.pth	118915853	d4a741f1283800010800834b09d0fa43	pii/models/scrfd/armAJ34/epochs/epoch_7.pth
+runs/train/scrfd/armAJ34/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_8.pth	118915853	e506874c40442249f9a35a2905c5311c	pii/models/scrfd/armAJ34/epochs/epoch_8.pth
+runs/train/scrfd/armAJ34/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/epoch_9.pth	118915853	8f23415f1470d195b0b545381e59e3cb	pii/models/scrfd/armAJ34/epochs/epoch_9.pth
+runs/train/scrfd/armAJ34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAJ34/latest.pth	-1	symlink:epoch_30.pth	
 runs/train/scrfd/armAJ34/onnx/armAJ34_det34g.onnx	/data/esteban/pii/runs/train/armAJ34_det34g.onnx	39427800	ade29673b9068e0e310ed25f7eaff566	pii/models/scrfd/armAJ34/onnx/armAJ34_det34g.onnx
+runs/train/scrfd/armAJ34/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAJ34/run_arm.sh	3589	a3a452e5524b5e3dcb47037d6917ddc3	
+runs/train/scrfd/armAJ34/scrfd_armAJ34.py	shang:/data/esteban/pii/runs/train/wd_armAJ34/scrfd_armAJ34.py	8354	e8a802e9030edbf9758f189439d407dd	
+runs/train/scrfd/armAJ34/train.log	shang:/data/esteban/pii/runs/train/wd_armAJ34/train.log	881730	b8f70b6834f73945d8d942d9003bd641	pii/models/scrfd/armAJ34/train.log
+runs/train/scrfd/armAK/20260922_074942.log	shang:/data/esteban/pii/runs/train/wd_armAK/20260922_074942.log	439801	841bfc58ab4eb577f82111733ccd5a9a	
+runs/train/scrfd/armAK/20260922_074942.log.json	shang:/data/esteban/pii/runs/train/wd_armAK/20260922_074942.log.json	403398	4d1c726c0a005b055b0fa59ff0c388a4	
+runs/train/scrfd/armAK/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAK/babysit.log	481	20e507d7372452aa8a2c75da0c436146	
+runs/train/scrfd/armAK/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_1.pth	34019931	18629d98a55af658f40efec2d81f2f96	pii/models/scrfd/armAK/epochs/epoch_1.pth
+runs/train/scrfd/armAK/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_10.pth	34020059	cca9525c51e3d75f24d5c8dd392ede9e	pii/models/scrfd/armAK/epochs/epoch_10.pth
+runs/train/scrfd/armAK/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_11.pth	34020059	450724873e0aa85acf794598fde5743f	pii/models/scrfd/armAK/epochs/epoch_11.pth
+runs/train/scrfd/armAK/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_12.pth	34020059	f3de7d431e5a8dbdfd12077cde24fcbe	pii/models/scrfd/armAK/epochs/epoch_12.pth
+runs/train/scrfd/armAK/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_13.pth	34020059	01543d3d16b923e970ac7717526273ed	pii/models/scrfd/armAK/epochs/epoch_13.pth
+runs/train/scrfd/armAK/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_14.pth	34020059	5f07fc7a84aebf03e5e1ab076c84cce5	pii/models/scrfd/armAK/epochs/epoch_14.pth
+runs/train/scrfd/armAK/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_15.pth	34020059	28d150a2ee8b4b2c30569ddf2216d5c6	pii/models/scrfd/armAK/epochs/epoch_15.pth
+runs/train/scrfd/armAK/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_16.pth	34020059	91cb57a46f857e75f331b5acb4baa68d	pii/models/scrfd/armAK/epochs/epoch_16.pth
+runs/train/scrfd/armAK/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_17.pth	34020059	45922b88711a113e6bcc0970de17dd4f	pii/models/scrfd/armAK/epochs/epoch_17.pth
+runs/train/scrfd/armAK/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_18.pth	34020059	d947cbe5f2f83489cc10e42f1f06b3ae	pii/models/scrfd/armAK/epochs/epoch_18.pth
+runs/train/scrfd/armAK/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_19.pth	34020059	0bfad082686ce74f9f3f37bc8ab40792	pii/models/scrfd/armAK/epochs/epoch_19.pth
+runs/train/scrfd/armAK/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_2.pth	34020059	5d4ffcf80870544cd6b90da3718357d7	pii/models/scrfd/armAK/epochs/epoch_2.pth
+runs/train/scrfd/armAK/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_20.pth	34020059	f0d895509e2ac554d1ef5b2873bbaf05	pii/models/scrfd/armAK/epochs/epoch_20.pth
+runs/train/scrfd/armAK/epochs/epoch_21.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_21.pth	34020059	0f06f16491d855a7dc7f36a70bdc61a5	pii/models/scrfd/armAK/epochs/epoch_21.pth
+runs/train/scrfd/armAK/epochs/epoch_22.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_22.pth	34020059	5e17ef8b25250e75e304bf3cb14778cd	pii/models/scrfd/armAK/epochs/epoch_22.pth
+runs/train/scrfd/armAK/epochs/epoch_23.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_23.pth	34020059	f5c7425f525061d776b0b84a3ee9960b	pii/models/scrfd/armAK/epochs/epoch_23.pth
+runs/train/scrfd/armAK/epochs/epoch_24.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_24.pth	34020059	c8455876789d08584681ee2707fe101b	pii/models/scrfd/armAK/epochs/epoch_24.pth
+runs/train/scrfd/armAK/epochs/epoch_25.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_25.pth	34020059	fe5272d6f351a029b7eacd25bade8333	pii/models/scrfd/armAK/epochs/epoch_25.pth
+runs/train/scrfd/armAK/epochs/epoch_26.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_26.pth	34020059	4db4cdf29b4d4c9ae772beeed23feaa7	pii/models/scrfd/armAK/epochs/epoch_26.pth
+runs/train/scrfd/armAK/epochs/epoch_27.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_27.pth	34020059	185ff6fd0cf88fd8d27212d205262a0d	pii/models/scrfd/armAK/epochs/epoch_27.pth
+runs/train/scrfd/armAK/epochs/epoch_28.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_28.pth	34020059	866f34d7185fe7478dfaf51b51fdb649	pii/models/scrfd/armAK/epochs/epoch_28.pth
+runs/train/scrfd/armAK/epochs/epoch_29.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_29.pth	34020059	a618d15fa6f697c79f9100bed20838db	pii/models/scrfd/armAK/epochs/epoch_29.pth
+runs/train/scrfd/armAK/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_3.pth	34020059	33bb9d8c5f064967129ed4d79a12aacf	pii/models/scrfd/armAK/epochs/epoch_3.pth
+runs/train/scrfd/armAK/epochs/epoch_30.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_30.pth	34020059	ab128646c440b1fd431394ae6d8d79da	pii/models/scrfd/armAK/epochs/epoch_30.pth
+runs/train/scrfd/armAK/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_4.pth	34020059	251638a4e828f3f8164d7c0c3751605b	pii/models/scrfd/armAK/epochs/epoch_4.pth
+runs/train/scrfd/armAK/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_5.pth	34020059	c0dbc1e38860b633c98d14280c8141f2	pii/models/scrfd/armAK/epochs/epoch_5.pth
+runs/train/scrfd/armAK/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_6.pth	34020059	7a403f5834957973c86f9387057776e8	pii/models/scrfd/armAK/epochs/epoch_6.pth
+runs/train/scrfd/armAK/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_7.pth	34020059	4b754a74fef82cd1f5c4ef6e28fc2c8b	pii/models/scrfd/armAK/epochs/epoch_7.pth
+runs/train/scrfd/armAK/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_8.pth	34020059	408ed07f25e2dba690d9facf5e9c4a1a	pii/models/scrfd/armAK/epochs/epoch_8.pth
+runs/train/scrfd/armAK/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAK/epoch_9.pth	34020059	8d2496d675dddd2543796151a38b9d1e	pii/models/scrfd/armAK/epochs/epoch_9.pth
+runs/train/scrfd/armAK/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAK/latest.pth	-1	symlink:epoch_30.pth	
 runs/train/scrfd/armAK/onnx/armAK_det10g.onnx	/data/esteban/pii/runs/train/armAK_det10g.onnx	16962796	1d90721ba1cc38dbe2706cf458156c73	pii/models/scrfd/armAK/onnx/armAK_det10g.onnx
-runs/train/scrfd/armAK34/epochs/epoch_30.pth	/data/esteban/tmp/pii1395/armAK34_epoch_30.pth	79387400	9e5fbf36d81d34f803b77c28eab660ad	pii/models/scrfd/armAK34/epochs/epoch_30.pth
+runs/train/scrfd/armAK/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAK/run_arm.sh	3336	df4ca91968a71223d8b6391d26a7e3fe	
+runs/train/scrfd/armAK/scrfd_armAK.py	shang:/data/esteban/pii/runs/train/wd_armAK/scrfd_armAK.py	8310	2d4dda2236da556698908506d0a4442d	
+runs/train/scrfd/armAK/train.log	shang:/data/esteban/pii/runs/train/wd_armAK/train.log	442333	b7959ee7e3095c4be5221c55f35b6d55	pii/models/scrfd/armAK/train.log
+runs/train/scrfd/armAK34/20260923_145837.log	shang:/data/esteban/pii/runs/train/wd_armAK34/20260923_145837.log	874737	2e83d10d24f26a0bf69550ac9b552388	
+runs/train/scrfd/armAK34/20260923_145837.log.json	shang:/data/esteban/pii/runs/train/wd_armAK34/20260923_145837.log.json	805251	30055febd4098be7a880cb8a563d4797	
+runs/train/scrfd/armAK34/babysit.log	shang:/data/esteban/pii/runs/train/wd_armAK34/babysit.log	495	8ea62555fc69b7c55f2a1cf2bb4353a4	
+runs/train/scrfd/armAK34/epochs/epoch_1.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_1.pth	79387272	946124d651839921bbcafa06a47f3bf1	pii/models/scrfd/armAK34/epochs/epoch_1.pth
+runs/train/scrfd/armAK34/epochs/epoch_10.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_10.pth	79387400	01570ad23d8791422046fb782ff8dbd2	pii/models/scrfd/armAK34/epochs/epoch_10.pth
+runs/train/scrfd/armAK34/epochs/epoch_11.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_11.pth	79387400	89ba55a5e839423fb177b2c146ca0a3f	pii/models/scrfd/armAK34/epochs/epoch_11.pth
+runs/train/scrfd/armAK34/epochs/epoch_12.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_12.pth	79387400	2e80de76272d8d73221f5e7ca48db1b3	pii/models/scrfd/armAK34/epochs/epoch_12.pth
+runs/train/scrfd/armAK34/epochs/epoch_13.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_13.pth	79387400	0b1050cfaa089c549598f55e3fbd5032	pii/models/scrfd/armAK34/epochs/epoch_13.pth
+runs/train/scrfd/armAK34/epochs/epoch_14.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_14.pth	79387400	130f874cdaa52555527904d1add742b2	pii/models/scrfd/armAK34/epochs/epoch_14.pth
+runs/train/scrfd/armAK34/epochs/epoch_15.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_15.pth	79387400	f7192740d3db188c3f0adc508289ae01	pii/models/scrfd/armAK34/epochs/epoch_15.pth
+runs/train/scrfd/armAK34/epochs/epoch_16.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_16.pth	79387400	641d5fbcd980144bcc3bdbf96d06b615	pii/models/scrfd/armAK34/epochs/epoch_16.pth
+runs/train/scrfd/armAK34/epochs/epoch_17.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_17.pth	79387400	973863f7629f21a0283d143c9afc4a01	pii/models/scrfd/armAK34/epochs/epoch_17.pth
+runs/train/scrfd/armAK34/epochs/epoch_18.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_18.pth	79387400	ba51cccdfa9724e0e741db1785bbe3c9	pii/models/scrfd/armAK34/epochs/epoch_18.pth
+runs/train/scrfd/armAK34/epochs/epoch_19.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_19.pth	79387400	957667be2b69494d12c6196e3bb90d4f	pii/models/scrfd/armAK34/epochs/epoch_19.pth
+runs/train/scrfd/armAK34/epochs/epoch_2.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_2.pth	79387400	7de906b526c60d9bd84989b129026172	pii/models/scrfd/armAK34/epochs/epoch_2.pth
+runs/train/scrfd/armAK34/epochs/epoch_20.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_20.pth	79387400	19fc234da65fbbaacde0cb6eed66b749	pii/models/scrfd/armAK34/epochs/epoch_20.pth
+runs/train/scrfd/armAK34/epochs/epoch_21.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_21.pth	79387400	b210a6710e3aa1dcc2aac07ea402ebdc	pii/models/scrfd/armAK34/epochs/epoch_21.pth
+runs/train/scrfd/armAK34/epochs/epoch_22.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_22.pth	79387400	8591bfa5a5fef99e39b25c6c0af60524	pii/models/scrfd/armAK34/epochs/epoch_22.pth
+runs/train/scrfd/armAK34/epochs/epoch_23.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_23.pth	79387400	7f4d1e52997188f5cd63dccb8ccb4a75	pii/models/scrfd/armAK34/epochs/epoch_23.pth
+runs/train/scrfd/armAK34/epochs/epoch_24.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_24.pth	79387400	9146fe70fa5e1c460e77fd1dbd712f4d	pii/models/scrfd/armAK34/epochs/epoch_24.pth
+runs/train/scrfd/armAK34/epochs/epoch_25.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_25.pth	79387400	0cc36fb13ec87b8370385f2979aa8c0e	pii/models/scrfd/armAK34/epochs/epoch_25.pth
+runs/train/scrfd/armAK34/epochs/epoch_26.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_26.pth	79387400	6b4597a1824c848570467d3a237967b5	pii/models/scrfd/armAK34/epochs/epoch_26.pth
+runs/train/scrfd/armAK34/epochs/epoch_27.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_27.pth	79387400	4ebac36c6f90a9f308c01656487bd1b0	pii/models/scrfd/armAK34/epochs/epoch_27.pth
+runs/train/scrfd/armAK34/epochs/epoch_28.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_28.pth	79387400	a27613bdee268b7909a9d0a8127ae9dd	pii/models/scrfd/armAK34/epochs/epoch_28.pth
+runs/train/scrfd/armAK34/epochs/epoch_29.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_29.pth	79387400	8073bea7c770d7969b546cbb086cccbe	pii/models/scrfd/armAK34/epochs/epoch_29.pth
+runs/train/scrfd/armAK34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_3.pth	79387400	1038476a8680fc895ebb0a738655f20c	pii/models/scrfd/armAK34/epochs/epoch_3.pth
+runs/train/scrfd/armAK34/epochs/epoch_30.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_30.pth	79387400	9e5fbf36d81d34f803b77c28eab660ad	pii/models/scrfd/armAK34/epochs/epoch_30.pth
+runs/train/scrfd/armAK34/epochs/epoch_4.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_4.pth	79387400	f0201be3d2629acbb6e2c7b91667af78	pii/models/scrfd/armAK34/epochs/epoch_4.pth
+runs/train/scrfd/armAK34/epochs/epoch_5.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_5.pth	79387400	92f2b165b22880eb7136247b62b5f2e3	pii/models/scrfd/armAK34/epochs/epoch_5.pth
+runs/train/scrfd/armAK34/epochs/epoch_6.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_6.pth	79387400	5add4e4454245276cc85eb9444012708	pii/models/scrfd/armAK34/epochs/epoch_6.pth
+runs/train/scrfd/armAK34/epochs/epoch_7.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_7.pth	79387400	70e9dacb5b964ea29ffd1344e9f17500	pii/models/scrfd/armAK34/epochs/epoch_7.pth
+runs/train/scrfd/armAK34/epochs/epoch_8.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_8.pth	79387400	fc753df60fbfa644db3f9569c83b22f3	pii/models/scrfd/armAK34/epochs/epoch_8.pth
+runs/train/scrfd/armAK34/epochs/epoch_9.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/epoch_9.pth	79387400	e5f78657aebf484c8e9b1759da7a980b	pii/models/scrfd/armAK34/epochs/epoch_9.pth
+runs/train/scrfd/armAK34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/wd_armAK34/latest.pth	-1	symlink:epoch_30.pth	
 runs/train/scrfd/armAK34/onnx/armAK34_det34g.onnx	/data/esteban/pii/runs/train/armAK34_det34g.onnx	39427800	0d6a6e4123c02f088f950327fbb6a3c3	pii/models/scrfd/armAK34/onnx/armAK34_det34g.onnx
+runs/train/scrfd/armAK34/run_arm.sh	shang:/data/esteban/pii/runs/train/wd_armAK34/run_arm.sh	3336	df4ca91968a71223d8b6391d26a7e3fe	
+runs/train/scrfd/armAK34/scrfd_armAK34.py	shang:/data/esteban/pii/runs/train/wd_armAK34/scrfd_armAK34.py	8246	2a0807abc1fddf7d673acd5838bc96ad	
+runs/train/scrfd/armAK34/train.log	shang:/data/esteban/pii/runs/train/wd_armAK34/train.log	879143	48fff81bedca20a797f962eef4f5ebff	pii/models/scrfd/armAK34/train.log
 runs/train/scrfd/armW/armW_effective_cfg.py	/data/esteban/pii/runs/train/armW_effective_cfg.py	8244	e77436fa517ff39e75dc8d89acdc649e	
 runs/train/scrfd/armW/epochs/epoch_20.pth	/data/esteban/pii/weights/armW_epoch_20.pth	34020123	23665cb9b24cbf29538f34718902296a	pii/models/scrfd/armW/epochs/epoch_20.pth
 runs/train/scrfd/armW/onnx/armW_det10g.onnx	/data/esteban/pii/weights/det_10g_armW.onnx	16962796	f445b1606444c8b7c72a2fb4de35e123	pii/models/scrfd/armW/onnx/armW_det10g.onnx
@@ -490,6 +941,7 @@ runs/train/scrfd/armY/epochs/epoch_20.pth	/data/esteban/pii/runs/train/wd_armY_c
 runs/train/scrfd/armY/export_armAA34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armAA34_onnx.py	6240	d51e0573b374f68f5792d909fc4d22e5	
 runs/train/scrfd/armY/export_armAG34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armAG34_onnx.py	7654	7cda2e063757e7da77938a2b2ce2bb73	
 runs/train/scrfd/armY/export_armAH34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armAH34_onnx.py	7809	168f22e1c252a97a91f154e5bd2ebf6f	
+runs/train/scrfd/armY/export_armAM34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armAM34_onnx.py	7810	6c494f8ffe89c7e75251c091d7c2d466	
 runs/train/scrfd/armY/export_armY_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armY_onnx.py	5924	800b6393d88d7c8b040e033e11032958	
 runs/train/scrfd/armY/export_armZ34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armZ34_onnx.py	6237	ac130e729acd7e953ba5408b3682143d	
 runs/train/scrfd/armY/export_armZZ34_onnx.py	/data/esteban/pii/runs/train/wd_armY_ckpt/export_armZZ34_onnx.py	6240	56c48f550c26f9c2e94ac5ce946767c0	

@@ -8,11 +8,12 @@ epoch_unit: epoch
 status: deprecated
 wandb_tags: [deprecated]
 onnx: onnx/armAB_det10g.onnx
-checkpoints: shang
-local_epochs: 0
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAB
+local_epochs: 20
 epoch_evidence: >-
   PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==
   wd_armAB/epoch_20.pth before rebinding it
 notes: >-
-  No checkpoint on this box: all 20 epochs are on shang in runs/train/wd_armAB/. checkpoints:
-  shang.
+  All 20 epochs, latest.pth, the config and the logs were pulled from
+  shang:runs/train/wd_armAB/ by PII-1447; shang keeps its copy.

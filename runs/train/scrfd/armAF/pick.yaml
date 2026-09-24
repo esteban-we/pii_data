@@ -8,12 +8,13 @@ epoch_unit: epoch
 status: active
 wandb_tags: [10g-ablations]
 onnx: onnx/armAF_det10g.onnx
-checkpoints: shang
-local_epochs: 0
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAF
+local_epochs: 80
 epoch_evidence: >-
   PII-995: the shang export logs print ckpt meta exp_name=scrfd_armAF.py epoch=20/55/68/80
   iter=69760/191840/237184/279040 for the four ONNX; armAF_det10g.onnx is the epoch 80 one,
   the e20/e55/e68 files name theirs
 notes: >-
-  80 epoch run, from scratch. No checkpoint on this box: wd_armAF on shang holds one
-  checkpoint per epoch. checkpoints: shang.
+  80 epoch run, from scratch, one checkpoint per epoch. All 80 epochs, latest.pth, the config
+  and the logs were pulled from shang:runs/train/wd_armAF/ by PII-1447; shang keeps its copy.

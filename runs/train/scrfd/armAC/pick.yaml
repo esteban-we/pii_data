@@ -8,12 +8,15 @@ epoch_unit: epoch
 status: active
 wandb_tags: [10g-ablations]
 onnx: onnx/armAC_det10g.onnx
-checkpoints: local (epoch 20 only) and shang
-local_epochs: 1
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAC
+local_epochs: 20
 epoch_evidence: >-
   PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==
   wd_armAC/epoch_20.pth; PII-1349 re-exported the same checkpoint here and reproduced the
   recorded armAC row
 notes: >-
-  Trained on shang. Only epoch_20.pth was scp'd here (wd_armAC_ckpt); epochs 1..19 are on
-  shang in runs/train/wd_armAC/.
+  Trained on shang. epoch_20.pth was scp'd here early into wd_armAC_ckpt; epochs 1..19,
+  latest.pth, the config and the logs were pulled from shang:runs/train/wd_armAC/ by PII-1447
+  (shang keeps its copy); the epoch_20.pth already here was asserted byte identical to
+  shang's, not overwritten.

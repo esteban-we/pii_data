@@ -9,10 +9,13 @@ status: active
 wandb_tags: [in-training]
 onnx: onnx/armAI34_det34g.onnx
 checkpoints: local
+remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence
 local_epochs: 80
 epoch_evidence: >-
   highest epoch_N.pth in the finished work dir; the per-epoch ONNX name their own epoch
   (armAI34_e<N>_det34g.onnx)
 notes: >-
-  Trained on fluence, work dir staged back here. The run ended at epoch 80 (PII-1406) and the
+  Trained on fluence, only the 80 epoch_*.pth were staged back here. PII-1447 asserted all 80
+  byte identical to fluence1's and pulled latest.pth, the config and the logs from
+  fluence1:runs/train/wd_armAI34_fluence/. The run ended at epoch 80 (PII-1406) and the
   unnumbered pick armAI34_det34g.onnx is byte equal to armAI34_e80_det34g.onnx (md5 5b3a38db).

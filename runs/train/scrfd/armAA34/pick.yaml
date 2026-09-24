@@ -8,11 +8,14 @@ epoch_unit: epoch
 status: deprecated
 wandb_tags: [deprecated]
 onnx: onnx/armAA34_det34g.onnx
-checkpoints: local (epoch 20 only) and shang
-local_epochs: 1
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAA34
+local_epochs: 20
 epoch_evidence: >-
   wd_armY_ckpt/export_armAA34_onnx.py CKPT = wd_armAA34/epoch_20.pth; pii-data/models.csv row
   armAA34 epochs 20
 notes: >-
-  Trained on shang. Only epoch_20.pth was scp'd here (wd_armAA34_ckpt); epochs 1..19 are on
-  shang in runs/train/wd_armAA34/.
+  Trained on shang. epoch_20.pth was scp'd here early into wd_armAA34_ckpt; epochs 1..19,
+  latest.pth, the config and the logs were pulled from shang:runs/train/wd_armAA34/ by
+  PII-1447 (shang keeps its copy); the epoch_20.pth already here was asserted byte identical
+  to shang's, not overwritten.

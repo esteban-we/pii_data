@@ -8,13 +8,16 @@ epoch_unit: epoch
 status: active
 wandb_tags: []
 onnx: onnx/armAK34_det34g.onnx
-checkpoints: local (epoch 30 only) and shang
-local_epochs: 1
+checkpoints: local
+remote_wd: shang:/data/esteban/pii/runs/train/wd_armAK34
+local_epochs: 30
 epoch_evidence: >-
   PII-1397 / PII-1395: wd_armAK34/epoch_30.pth pulled from shang (md5 9e5fbf36..., 79,387,400
   B), checkpoint meta exp_name scrfd_armAK34.py epoch 30 iter 209,280 and zero ema_* keys,
   exported here with the recorded no-EMA 34G exporter to armAK34_det34g.onnx (md5 0d6a6e41...)
 notes: >-
-  30 epoch run, no EMA: armAC34's recipe carried to 30 epochs (PII-1358). Trained on shang;
-  wd_armAK34 and epochs 1..29 stay there. Only epoch_30.pth is here, copied from the PII-1397
-  pull dir /data/esteban/tmp/pii1395/, which is scratch and may be cleared.
+  30 epoch run, no EMA: armAC34's recipe carried to 30 epochs (PII-1358). Trained on shang.
+  epoch_30.pth came here first from the PII-1397 pull dir /data/esteban/tmp/pii1395/
+  (scratch); epochs 1..29, latest.pth, the config and the logs were pulled from
+  shang:runs/train/wd_armAK34/ by PII-1447 (shang keeps its copy); the epoch_30.pth already
+  here was asserted byte identical to shang's, not overwritten.
