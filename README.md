@@ -109,7 +109,10 @@ rows in `runs/train/models.csv`. Every `pick.yaml` is `rule: last_epoch` for now
 ## Getting the bytes
 
 A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints and
-ONNX exports are not there and the view manifests are not rendered.
+ONNX exports are not there and the view manifests are not rendered. Everything else is
+on OSS: as of 2026-09-24 the mirror holds 423,703 objects and 297,059,234,866 B, which
+is every image of the 13 datasets and every file under `runs/train/` that git ignores.
+Each object is single part, so its ETag equals its md5.
 
 Every index row that stands for a file on OSS carries its key:
 `datasets/<name>/frames.csv` has an `oss_key` column
