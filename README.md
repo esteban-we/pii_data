@@ -39,7 +39,8 @@ runs/train/
   MANIFEST.tsv              every copied file with size, md5 and oss_key (empty when
                             the file is git content)
   <family>/<arm>/
-    pick.yaml               which epoch this arm is, the rule that chose it, evidence
+    pick.yaml               which epoch this arm is, the rule that chose it, evidence,
+                            `checkpoints:` and the `pick_checkpoint:` this disk keeps
     config, launch and export scripts, eval/*.json, small logs
     epochs/, onnx/, train.log                                        (ignored, OSS)
   <family>/stock/           upstream baselines: .sha256, .provenance.txt and .md5
@@ -106,6 +107,47 @@ rows in `runs/train/models.csv`. Every `pick.yaml` is `rule: last_epoch` for now
 (PII-1372 replaces it with a per-epoch sweep); `status` is the W&B tag from
 `alex-qiu-worldengineai/pii-face-eval`.
 
+### Checkpoint retention (PII-1601)
+
+**OSS keeps every epoch. This disk keeps only the epoch `pick.yaml` names.**
+DINOv2 checkpoints are multi-GB each, so holding a whole training run on a box
+is not feasible, and the rule is uniform over every arm, scrfd and egoblur
+included.
+
+An arm under the rule says `checkpoints: pick` in its `pick.yaml` and in the
+`checkpoints` column of `models.csv`, and names the one file it keeps in
+`pick_checkpoint:` (`epochs/epoch_20.pth` for a scrfd arm,
+`epochs/model_final.pth` for an egoblur arm). The older value `local` means
+every epoch is also on disk; `upstream release` is the two `stock` dirs, which
+have no epochs. `epochs/latest.pth` is a symlink, not bytes: it has no OSS
+object and is never pruned.
+
+`MANIFEST.tsv` keeps a row for every epoch either way, with size, md5 and
+`oss_key`, so the index still proves the OSS copy complete and any epoch can be
+fetched back on demand:
+
+```
+python3 data/oss_sync.py pull --all-epochs --arm armAF     # bring the run back
+python3 data/oss_sync.py status                            # oss_only column
+python3 /home/esteban/repos/pii/data/build_runs_pii2.py prune [--arm A] [--apply]
+```
+
+`build_runs_pii2.py prune` (in the `pii` repo) is what deletes them: for each
+epoch that is not the pick it HEADs the OSS object and requires the ETag to
+equal the manifest md5 and the size to match, and only then removes the local
+file. It is a dry run unless `--apply`, takes `--arm A` (repeatable), and never
+deletes a file that failed the check; it prints those instead. A pruned epoch is
+expected absent, not missing: `build_runs_pii2.py verify` reports it as INFO and
+`oss_sync.py status` counts it under `oss_only`.
+
+A training run that lands from another box (`remote_wd`, PII-1447) pushes every
+epoch to OSS first and only then takes the pick epoch down here.
+
+Applied 2026-09-28: 604 epochs over 28 arms, 69,300,968,439 B, every one of them
+HEADed on OSS with ETag equal to the manifest md5 before it was deleted. armW and
+armY held only their pick epoch already, so nothing was taken from them. `verify`
+after the prune: OK, 1068 files, 81,046,302,640 B.
+
 ## Getting the bytes
 
 A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints and
@@ -127,6 +169,7 @@ bash data/setup.sh                       # git config core.hooksPath .githooks, 
 python3 data/oss_sync.py pull            # everything the index names
 python3 data/oss_sync.py pull --view train_Z5      # only what one view needs
 python3 data/oss_sync.py pull --dataset gt_bench_full --arm armAC
+python3 data/oss_sync.py pull --all-epochs --arm armAF             # also the pruned epochs
 python3 data/oss_sync.py status [--remote]
 python3 data/oss_sync.py push --arm armNEW         # after a new training run
 python3 data/build_view.py render --all            # views are rendered, not downloaded
@@ -134,7 +177,8 @@ python3 data/build_view.py render --all            # views are rendered, not dow
 
 `pull` skips any file already on disk with the indexed size and md5, verifies every
 download against the index md5 before renaming it into place, and prints exactly
-`up to date` when nothing was missing. The md5 of a local file is cached in
+`up to date` when nothing was missing. It also leaves the epochs the retention rule
+above keeps on OSS alone unless it is given `--all-epochs`. The md5 of a local file is cached in
 `.git/oss_sync_md5.json` against its size and mtime, so a rerun does not read the
 whole tree again.
 

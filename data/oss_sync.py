@@ -9,13 +9,21 @@ carries in its `oss_key` column, and this script is the only thing that moves th
     runs/train/MANIFEST.tsv       dst_rel, size, md5, oss_key -> <dst_rel> (oss_key empty
                                   when the file is git content)
 
+Checkpoint retention (PII-1601). OSS holds every epoch of every arm; this disk holds
+only the epoch that the arm's `runs/train/<family>/<arm>/pick.yaml` names, in
+`pick_checkpoint:`, when that pick.yaml says `checkpoints: pick`. MANIFEST.tsv keeps a
+row for every epoch either way, so the rest are indexed, on OSS, and deliberately not
+here: `status` counts them under `oss_only`, never under `missing`, and `pull` leaves
+them alone unless asked for them with `--all-epochs`.
+
 Subcommands
-    pull [--dataset D ...] [--view V ...] [--arm A ...]
+    pull [--dataset D ...] [--view V ...] [--arm A ...] [--all-epochs]
         Download every indexed object that is missing locally or whose bytes differ from
         the index. A local file that already matches is never rewritten, so a rerun
         resumes. Every download is verified against the index md5 before it is renamed
         into place. Prints one line per prefix, and exactly `up to date` when nothing
-        was missing.
+        was missing. An epoch the retention rule keeps on OSS only is fetched only with
+        --all-epochs, which is how a pruned epoch comes back on demand.
     push [--dataset D ...] [--arm A ...]
         Upload local files that are in the index but not on OSS, and files under
         runs/train/ that are on disk in a known layout with no index row yet (the row is
@@ -23,8 +31,9 @@ Subcommands
         md5. An object already on OSS whose ETag differs is an error, never an
         overwrite. Nothing is ever deleted.
     status [--remote]
-        Three sets per prefix: missing locally, local but not pushed, and (with
-        --remote, which lists OSS) objects under pii/ that no index row claims.
+        Four sets per prefix: missing locally, on OSS only by the retention rule,
+        local but not pushed, and (with --remote, which lists OSS) objects under
+        pii/ that no index row claims.
 
 Hook: .githooks/post-merge runs `pull` after every `git pull` once
 `git config core.hooksPath .githooks` is set (data/setup.sh does that). Opt out on a
@@ -79,10 +88,12 @@ def md5_file(path):
 # --------------------------------------------------------------------------- index
 
 class Item:
-    __slots__ = ("path", "key", "size", "md5", "group")
+    __slots__ = ("path", "key", "size", "md5", "group", "local_expected")
 
-    def __init__(self, path, key, size, md5, group):
+    def __init__(self, path, key, size, md5, group, local_expected=True):
         self.path, self.key, self.size, self.md5, self.group = path, key, size, md5, group
+        # PII-1601: False for an epoch the retention rule keeps on OSS only.
+        self.local_expected = local_expected
 
     @property
     def prefix(self):
@@ -124,15 +135,67 @@ def manifest_rows():
     return rows
 
 
+def parse_pick(path):
+    """The top-level `key: value` scalars of a pick.yaml; indented block bodies
+    and comments are skipped."""
+    out = {}
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.rstrip("\n")
+            if not line or line[0] in " #\t" or ":" not in line:
+                continue
+            k, _, v = line.partition(":")
+            out[k.strip()] = v.strip()
+    return out
+
+
+def retained_names():
+    """{(family, arm): the one epoch file name this disk keeps} (PII-1601).
+
+    Only arms whose pick.yaml says `checkpoints: pick` are in it; an arm that
+    still says `local` keeps every epoch and is absent here.
+    """
+    keep = {}
+    base = os.path.join(ROOT, "runs/train")
+    for family in sorted(os.listdir(base)):
+        fdir = os.path.join(base, family)
+        if not os.path.isdir(fdir):
+            continue
+        for arm in sorted(os.listdir(fdir)):
+            p = os.path.join(fdir, arm, "pick.yaml")
+            if not os.path.isfile(p):
+                continue
+            spec = parse_pick(p)
+            if spec.get("checkpoints") == "pick" and spec.get("pick_checkpoint"):
+                keep[(family, arm)] = os.path.basename(spec["pick_checkpoint"])
+    return keep
+
+
+def oss_only(dst_rel, size, keep):
+    """True when the retention rule says this epoch lives on OSS and not here.
+
+    A symlink row (size -1, epochs/latest.pth) is an alias, not bytes, and has
+    no OSS object, so it is never OSS-only.
+    """
+    parts = dst_rel.split("/")
+    if size < 0 or len(parts) != 6 or parts[:2] != ["runs", "train"] or parts[4] != "epochs":
+        return False
+    kept = keep.get((parts[2], parts[3]))
+    return bool(kept) and parts[5] != kept
+
+
 def run_items(arms=None):
     out = []
+    keep = retained_names()
     for r in manifest_rows():
         if not r["oss_key"]:
             continue
         arm = r["oss_key"].split("/")[3]
         if arms and arm not in arms:
             continue
-        out.append(Item(os.path.join(ROOT, r["dst_rel"]), r["oss_key"], int(r["size"]), r["md5"], arm))
+        size = int(r["size"])
+        out.append(Item(os.path.join(ROOT, r["dst_rel"]), r["oss_key"], size, r["md5"], arm,
+                        local_expected=not oss_only(r["dst_rel"], size, keep)))
     return out
 
 
@@ -446,6 +509,12 @@ def restore_symlinks(arms=None):
 
 def cmd_pull(args):
     items = select(args)
+    if not getattr(args, "all_epochs", False):
+        skipped = [it for it in items if not it.local_expected]
+        items = [it for it in items if it.local_expected]
+        if skipped:
+            print(f"{len(skipped)} epochs stay on OSS (checkpoints: pick, PII-1601); "
+                  f"--all-epochs fetches them")
     todo = [it for it in items if not local_ok(it)]
     links = restore_symlinks(getattr(args, "arm", None)) if not getattr(args, "dataset", None) \
         and not getattr(args, "view", None) else []
@@ -584,9 +653,15 @@ def cmd_push(args):
 
 def cmd_status(args):
     items = select(args)
-    missing, present = [], []
+    missing, present, only_oss = [], [], []
     for it in items:
-        (present if local_ok(it) else missing).append(it)
+        if local_ok(it):
+            present.append(it)
+        elif it.local_expected:
+            missing.append(it)
+        else:
+            # PII-1601: indexed, on OSS, and deliberately not on this disk.
+            only_oss.append(it)
     remote = {}
     if args.remote:
         ak, sk = load_creds()
@@ -606,14 +681,20 @@ def cmd_status(args):
         unpushed = [it for it in present if it.key not in remote]
     unindexed = sorted(set(remote) - indexed)
     prefixes = sorted({it.prefix for it in items} | {k.rsplit("/", 1)[0] + "/" for k in unindexed})
-    print(f"{'prefix':44} {'indexed':>8} {'missing':>8} {'unpushed':>9} {'unindexed':>10}")
+    print(f"{'prefix':44} {'indexed':>8} {'missing':>8} {'oss_only':>9} "
+          f"{'unpushed':>9} {'unindexed':>10}")
     for p in prefixes:
         n = sum(1 for it in items if it.prefix == p)
         m = sum(1 for it in missing if it.prefix == p)
+        o = sum(1 for it in only_oss if it.prefix == p)
         u = sum(1 for it in unpushed if it.prefix == p)
         x = sum(1 for k in unindexed if k.startswith(p))
-        print(f"{p:44} {n:>8} {m:>8} {u:>9} {x:>10}")
-    print(f"{'TOTAL':44} {len(items):>8} {len(missing):>8} {len(unpushed):>9} {len(unindexed):>10}")
+        print(f"{p:44} {n:>8} {m:>8} {o:>9} {u:>9} {x:>10}")
+    print(f"{'TOTAL':44} {len(items):>8} {len(missing):>8} {len(only_oss):>9} "
+          f"{len(unpushed):>9} {len(unindexed):>10}")
+    if only_oss:
+        print(f"oss_only: {sum(it.size for it in only_oss):,} B of epochs the retention "
+              f"rule (PII-1601) keeps on OSS; pull --all-epochs --arm A fetches them")
     for it in missing[:10]:
         print("missing locally:", it.path)
     for it in unpushed[:10]:
@@ -632,6 +713,8 @@ def main():
     p.add_argument("--view", nargs="*")
     p.add_argument("--arm", nargs="*")
     p.add_argument("--jobs", type=int, default=JOBS)
+    p.add_argument("--all-epochs", action="store_true",
+                   help="also fetch the epochs the retention rule keeps on OSS only")
     p.set_defaults(fn=cmd_pull)
     q = sub.add_parser("push")
     q.add_argument("--dataset", nargs="*")

@@ -8,9 +8,10 @@ epoch_unit: epoch
 status: deprecated
 wandb_tags: [deprecated]
 onnx: onnx/armAA_det10g.onnx
-checkpoints: local
+checkpoints: pick
+pick_checkpoint: epochs/epoch_20.pth
 remote_wd: shang:/data/esteban/pii/runs/train/wd_armAA
-local_epochs: 20
+local_epochs: 1
 epoch_evidence: >-
   pii_train/export_armAA_onnx.py CKPT = wd_armAA/epoch_20.pth; PII-1311 export_epoch.py
   asserts that same recorded CKPT

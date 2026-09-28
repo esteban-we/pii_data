@@ -8,9 +8,10 @@ epoch_unit: epoch
 status: active
 wandb_tags: [in-training]
 onnx: onnx/armAI34_det34g.onnx
-checkpoints: local
+checkpoints: pick
+pick_checkpoint: epochs/epoch_80.pth
 remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAI34_fluence
-local_epochs: 80
+local_epochs: 1
 epoch_evidence: >-
   highest epoch_N.pth in the finished work dir; the per-epoch ONNX name their own epoch
   (armAI34_e<N>_det34g.onnx)

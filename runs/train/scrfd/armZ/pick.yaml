@@ -8,7 +8,8 @@ epoch_unit: epoch
 status: deprecated
 wandb_tags: [deprecated]
 onnx: onnx/armZ_det10g.onnx
-checkpoints: local
-local_epochs: 20
+checkpoints: pick
+pick_checkpoint: epochs/epoch_20.pth
+local_epochs: 1
 epoch_evidence: >-
   pii_train/export_armZ_onnx.py CKPT = wd_armZ/epoch_20.pth

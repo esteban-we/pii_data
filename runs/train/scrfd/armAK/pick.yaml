@@ -8,9 +8,10 @@ epoch_unit: epoch
 status: active
 wandb_tags: []
 onnx: onnx/armAK_det10g.onnx
-checkpoints: local
+checkpoints: pick
+pick_checkpoint: epochs/epoch_30.pth
 remote_wd: shang:/data/esteban/pii/runs/train/wd_armAK
-local_epochs: 30
+local_epochs: 1
 epoch_evidence: >-
   PII-1349: epoch_30.pth pulled from shang (md5 ab128646...), checkpoint meta epoch 30 iter
   104,640, exported here to armAK_det10g.onnx

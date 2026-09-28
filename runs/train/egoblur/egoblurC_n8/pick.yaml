@@ -8,8 +8,9 @@ epoch_unit: iter
 status: active
 wandb_tags: []
 onnx:
-checkpoints: local
-local_checkpoints: 11
+checkpoints: pick
+pick_checkpoint: epochs/model_final.pth
+local_checkpoints: 1
 epoch_evidence: >-
   detectron2 counts iterations, not epochs. The work dir's last_checkpoint file names
   model_final.pth and the highest numbered checkpoint is model_0047409.pth, so epoch above is

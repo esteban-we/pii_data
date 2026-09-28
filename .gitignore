@@ -13,6 +13,11 @@
 
 # Training runs: checkpoints, ONNX exports and the training logs.
 # pick.yaml, the config files, models.csv and MANIFEST.tsv are tracked.
+# Retention (PII-1601): OSS keeps every epoch of every arm, this disk keeps only
+# the one epoch pick.yaml names in `pick_checkpoint:`. MANIFEST.tsv still has a
+# row for each of the others, so `build_runs_pii2.py verify` and
+# `oss_sync.py status` count them as on OSS, not missing, and
+# `oss_sync.py pull --all-epochs --arm A` fetches one back.
 /runs/train/*/*/epochs/
 /runs/train/*/*/onnx/
 /runs/train/*/*/logs/
