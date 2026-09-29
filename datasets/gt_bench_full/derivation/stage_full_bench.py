@@ -1,11 +1,21 @@
 #!/usr/bin/env python3
 """Map gt_bundle chunk-uuids to (session, chunk) via the sparse slice, download the
-GT videos, and extract every bundle frame to images_full/. Writes uuid_map.json."""
+GT videos, and extract every bundle frame to images_full/. Writes uuid_map.json.
+
+PII-1449: this is the one-time script that BUILT the full bench. Its inputs
+(labels/gt_bundle.json, labels/gt_eval_sparse.json) exist only in the pre-PII-1315 tree, so
+GTB points there; the staged result is the live store's datasets/gt_bench_full, whose images/
+is FLAT (one directory, <session>_<chunk>_f<frame>.jpg) and whose GT is boxes/v1/boxes.csv.
+Re-running this writes into the old tree, never into the live store.
+"""
 import json, os, re, subprocess, sys, tempfile
 from pathlib import Path
 from collections import defaultdict
 
-GTB = Path("/data/esteban/pii/datasets/gt_bench_v1")
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "data"))
+from pii_root import legacy
+
+GTB = legacy("datasets", "gt_bench_v1")
 OUT = GTB / "images_full"
 BUNDLE = json.load(open(GTB / "labels/gt_bundle.json"))
 SPARSE = json.load(open(GTB / "labels/gt_eval_sparse.json"))
@@ -56,7 +66,7 @@ for uid, (sess, ck, _n) in sorted(uuid_map.items()):
         continue
     key = f"{sess}/chunk_{ck:03d}/vst_left/vst_left_video.mp4"
     print(f"{sess} c{ck}: fetching video, extracting {len(frames)} frames", flush=True)
-    with tempfile.TemporaryDirectory(dir="/data/esteban/pii") as tmp:
+    with tempfile.TemporaryDirectory(dir="/data/esteban/tmp") as tmp:
         mp4 = Path(tmp) / "v.mp4"
         subprocess.run(["ossutil", "cp", "-u", f"oss://we-fpv-sh-ns/{key}", str(mp4), *OSSARGS],
                        env=ENV, check=True, capture_output=True)
