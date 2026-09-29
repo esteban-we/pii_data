@@ -343,6 +343,17 @@ class OSS:
             raise RuntimeError(f"HEAD {key}: HTTP {st}")
         return int(h["Content-Length"]), h["ETag"].strip('"').lower()
 
+    def head_md5(self, key):
+        """The md5 OSS holds for an object: its ETag when the object is single
+        part, else the x-oss-meta-md5 the multipart uploader stored (PII-1633)."""
+        st, h, _ = self.request("HEAD", key)
+        if st == 404:
+            return None
+        if st != 200:
+            raise RuntimeError(f"HEAD {key}: HTTP {st}")
+        etag = h["ETag"].strip('"').lower()
+        return h.get("x-oss-meta-md5", "").lower() if MULTIPART_ETAG.match(etag) else etag
+
     def put(self, key, data, md5_hex, ctype):
         h = {"Content-MD5": base64.b64encode(bytes.fromhex(md5_hex)).decode(),
              "Content-Type": ctype, "Content-Length": str(len(data))}
@@ -424,6 +435,27 @@ def md5_cached(path, size):
         c[path] = [st.st_size, st.st_mtime_ns, digest]
         _cache_dirty = True
     return digest
+
+
+# PII-1633: an object larger than the 5 GB simple-upload limit has to go up in
+# parts, and a multipart object's ETag is the WOR-163 assembly hash of its part
+# ETags, never the file md5, so "ETag == md5" no longer holds for the whole of
+# pii/models/. The 40 such objects (armAR's twenty 18.2 GB epochs and armAS's
+# twenty 6.36 GB ones) carry their file md5 in x-oss-meta-md5 instead. Only
+# `push` compared an ETag to an md5; `status` and `pull` never did, `pull`
+# verifies downloaded bytes against the index md5 either way.
+MULTIPART_ETAG = re.compile(r"^[0-9a-f]{32}-\d+$")
+
+
+def remote_is(c, it, r):
+    """True when the object a listing reported is exactly this indexed file."""
+    if r is None or r[0] != it.size:
+        return False
+    if r[1] == it.md5:
+        return True
+    if not MULTIPART_ETAG.match(r[1]):
+        return False
+    return c.head_md5(it.key) == it.md5
 
 
 def local_ok(it):
@@ -613,7 +645,7 @@ def cmd_push(args):
         r = remote.get(it.key)
         if r is None:
             todo.append(it)
-        elif r == (it.size, it.md5):
+        elif remote_is(c, it, r):
             ok += 1
         else:
             conflicts.append((it, r))
