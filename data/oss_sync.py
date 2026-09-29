@@ -24,21 +24,25 @@ Subcommands
         into place. Prints one line per prefix, and exactly `up to date` when nothing
         was missing. An epoch the retention rule keeps on OSS only is fetched only with
         --all-epochs, which is how a pruned epoch comes back on demand.
-    push [--dataset D ...] [--arm A ...]
+    push [--dataset D ...] [--arm A ...] [--indexed]
         Upload local files that are in the index but not on OSS, and files under
         runs/train/ that are on disk in a known layout with no index row yet (the row is
         appended to MANIFEST.tsv; commit it afterwards). ETag is asserted equal to the
         md5. An object already on OSS whose ETag differs is an error, never an
         overwrite. Nothing is ever deleted.
+        --indexed is the mode .githooks/pre-push uses: only what the three indexes name
+        (frames.csv, MANIFEST.tsv, models.csv), so no MANIFEST row is invented, and an
+        indexed object that is on neither this disk nor OSS is printed and fails the run.
     status [--remote]
         Four sets per prefix: missing locally, on OSS only by the retention rule,
         local but not pushed, and (with --remote, which lists OSS) objects under
         pii/ that no index row claims.
 
-Hook: .githooks/post-merge runs `pull` after every `git pull` once
-`git config core.hooksPath .githooks` is set (data/setup.sh does that). Opt out on a
-box with `git config pii.autopull false`. Git does not run hooks on clone, so the
-first pull after a clone has to be explicit: `bash data/setup.sh && python3 data/oss_sync.py pull`.
+Hooks, both enabled by `git config core.hooksPath .githooks`, which data/setup.sh sets:
+.githooks/post-merge runs `pull` after every `git pull` (opt out with
+`git config pii.autopull false`), and .githooks/pre-push runs `push --indexed` before
+every `git push` (opt out with `git config pii.autopush false`). Git does not run hooks
+on clone, so the first pull after a clone is `bash data/setup.sh`.
 
 Stdlib only. Credential: the `default` AK profile of ~/.aliyun/config.json.
 """
@@ -458,6 +462,34 @@ def remote_is(c, it, r):
     return c.head_md5(it.key) == it.md5
 
 
+def list_prefixes(ak, sk, prefixes, jobs):
+    """LIST every prefix, in parallel. A scope-wide push covers 14 dataset prefixes of
+    up to 85 pages each and 87 small ones under pii/models/, and the round trip to
+    cn-shanghai is the whole cost, so page fetches overlap."""
+    out, local = {}, threading.local()
+
+    def one(p):
+        if not hasattr(local, "c"):
+            local.c = OSS(ak, sk)
+        return local.c.list(p)
+
+    if not prefixes:
+        return out
+    with ThreadPoolExecutor(max_workers=min(jobs, len(prefixes))) as ex:
+        for d in ex.map(one, prefixes):
+            out.update(d)
+    return out
+
+
+def models_keys():
+    """Every oss_key runs/train/models.csv names: each arm's pick checkpoint, and its
+    pick ONNX when it has one. Each is also a MANIFEST.tsv row, which is why pushing
+    the MANIFEST covers models.csv; `push --indexed` cross-checks that rather than
+    assuming it."""
+    with open(os.path.join(ROOT, "runs/train/models.csv"), newline="") as f:
+        return {r["oss_key"] for r in csv.DictReader(f) if r.get("oss_key")}
+
+
 def local_ok(it):
     """True when the file on disk already is the indexed object."""
     try:
@@ -623,8 +655,9 @@ def append_manifest(new_rows):
 
 def cmd_push(args):
     items = select(args)
+    indexed_only = getattr(args, "indexed", False)
     new_rows = []
-    if not args.dataset:
+    if not args.dataset and not indexed_only:
         for rel, key in unindexed_runs():
             path = os.path.join(ROOT, rel)
             size, md5 = os.path.getsize(path), md5_file(path)
@@ -637,9 +670,13 @@ def cmd_push(args):
     items = [it for it in items if os.path.isfile(it.path)]
     ak, sk = load_creds()
     c = OSS(ak, sk)
-    remote = {}
-    for p in sorted({it.prefix for it in items}):
-        remote.update(c.list(p))
+    # --indexed has to tell an object that is missing everywhere from one that is simply
+    # on OSS and not here, so the prefixes of the files that are not on disk are listed
+    # too; a plain push only ever looks at what it might upload.
+    prefixes = {it.prefix for it in items}
+    if indexed_only:
+        prefixes |= {it.prefix for it in missing_local}
+    remote = list_prefixes(ak, sk, sorted(prefixes), args.jobs)
     todo, ok, conflicts = [], 0, []
     for it in items:
         r = remote.get(it.key)
@@ -649,11 +686,25 @@ def cmd_push(args):
             ok += 1
         else:
             conflicts.append((it, r))
+    # Indexed, not on this disk and not on OSS: the row names bytes that exist nowhere,
+    # so the index is a lie and the push has to fail. An epoch the retention rule keeps
+    # on OSS only (PII-1601) is not on disk either and is fine: it is in `remote`.
+    lost = [it for it in missing_local if not remote_is(c, it, remote.get(it.key))] \
+        if indexed_only else []
+    orphan = sorted(models_keys() - {r["oss_key"] for r in manifest_rows() if r["oss_key"]}) \
+        if indexed_only else []
     print(f"local={len(items)} on_oss_and_equal={ok} to_push={len(todo)} conflicts={len(conflicts)} "
-          f"not_on_disk={len(missing_local)}")
+          f"not_on_disk={len(missing_local)}" + (f" no_bytes_anywhere={len(lost)}" if indexed_only else ""))
     for it, r in conflicts:
         print(f"CONFLICT {it.key}: OSS has {r}, local is ({it.size}, {it.md5}); refusing to overwrite")
-    if conflicts:
+    for it in lost:
+        print(f"NO BYTES {it.key}: not on this disk ({os.path.relpath(it.path, ROOT)}) and not on OSS")
+    for k in orphan:
+        print(f"NO BYTES {k}: runs/train/models.csv names it and runs/train/MANIFEST.tsv does not")
+    if lost or orphan:
+        print(f"{len(lost) + len(orphan)} indexed objects have no bytes anywhere: restore the "
+              f"files and rerun, or fix the index row")
+    if conflicts or lost or orphan:
         return 1
     if not todo:
         print("up to date")
@@ -753,6 +804,9 @@ def main():
     q.add_argument("--arm", nargs="*")
     q.add_argument("--jobs", type=int, default=JOBS)
     q.add_argument("--dry-run", action="store_true")
+    q.add_argument("--indexed", action="store_true",
+                   help="only what the indexes name: invent no MANIFEST row, and fail if an "
+                        "indexed object is on neither this disk nor OSS (.githooks/pre-push)")
     q.set_defaults(fn=cmd_push)
     s = sub.add_parser("status")
     s.add_argument("--dataset", nargs="*")

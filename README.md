@@ -1,15 +1,30 @@
 # pii_data
 
-The dataset store for the face blur (PII) work, checked out at
-`/data/esteban/pii2` on gpu-002 (it becomes `/data/esteban/pii` when PII-1315
-finishes). Every dataset, every labeling pass, every training mix and every
-training arm is described here. The pixels and the checkpoints are not: they
-live on OSS.
+The dataset store for the face blur (PII) work, checked out at `/data/esteban/pii` on
+gpu-002. Every dataset, every labeling pass, every training mix and every training arm is
+described here. The pixels and the checkpoints are not: they live on OSS.
 
-The rule: **git is the ledger, OSS is the byte store.** If a file can be
-downloaded again (images, checkpoints, ONNX exports) or re-rendered from a
-tracked source (the view manifests), it is ignored. Everything that says what
-the bytes are, where they came from and how they were labeled is committed.
+The rule: **git is the ledger, OSS is the byte store.** Three commands are the whole
+workflow.
+
+```
+git clone git@github.com:esteban-we/pii_data.git
+bash data/setup.sh
+git pull        # and git push
+```
+
+1. **Clone** gives the ledger only: no images, no checkpoints, no rendered view manifests.
+2. **`bash data/setup.sh`** fast-forwards the checkout, sets `core.hooksPath .githooks` and
+   then pulls every byte the index names (236 GB of images plus each arm's pick
+   checkpoint). It is idempotent, and anything you pass it goes to the pull, so
+   `bash data/setup.sh --view train_Z5` or `--arm armAF` takes one slice instead.
+3. **`git pull` and `git push`** from then on: the hooks setup.sh enabled bring down the
+   bytes a pull's new rows name, and send up the bytes this box made before a push leaves.
+   A push is refused if an index row names bytes that are on neither this disk nor OSS.
+
+Everything below is detail.
+
+# Details
 
 ## Layout
 
@@ -152,9 +167,10 @@ after the prune: OK, 1068 files, 81,046,302,640 B.
 
 A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints and
 ONNX exports are not there and the view manifests are not rendered. Everything else is
-on OSS: as of 2026-09-24 the mirror holds 423,703 objects and 297,059,234,866 B, which
+on OSS: as of 2026-09-24 the mirror held 423,703 objects and 297,059,234,866 B, which
 is every image of the 13 datasets and every file under `runs/train/` that git ignores.
-Each object is single part, so its ETag equals its md5.
+An object's ETag is its md5, except for the ones over OSS's 5 GB simple-upload cap, which
+go up multipart and carry their file md5 in `x-oss-meta-md5` instead (PII-1633).
 
 Every index row that stands for a file on OSS carries its key:
 `datasets/<name>/frames.csv` has an `oss_key` column
@@ -165,13 +181,14 @@ Every index row that stands for a file on OSS carries its key:
 the files git tracks. `runs/train/models.csv` carries the key of each arm's pick.
 
 ```
-bash data/setup.sh                       # git config core.hooksPath .githooks, then pull
+bash data/setup.sh                       # git pull --ff-only, then the hooks, then pull
 python3 data/oss_sync.py pull            # everything the index names
 python3 data/oss_sync.py pull --view train_Z5      # only what one view needs
 python3 data/oss_sync.py pull --dataset gt_bench_full --arm armAC
 python3 data/oss_sync.py pull --all-epochs --arm armAF             # also the pruned epochs
 python3 data/oss_sync.py status [--remote]
 python3 data/oss_sync.py push --arm armNEW         # after a new training run
+python3 data/oss_sync.py push --indexed            # what .githooks/pre-push runs
 python3 data/build_view.py render --all            # views are rendered, not downloaded
 ```
 
@@ -183,20 +200,29 @@ above keeps on OSS alone unless it is given `--all-epochs`. The md5 of a local f
 whole tree again.
 
 `push` uploads single part with `Content-MD5` and asserts the returned ETag equals
-the md5. It never overwrites: an object already on OSS whose ETag differs from the
-local md5 is reported as a conflict and the run fails. It never deletes. A file
-under `runs/train/<family>/<arm>/{epochs,onnx,logs}/` with no MANIFEST row is
-uploaded and its row appended (commit it); a new dataset image has to come from the
-dataset build script in the `pii` repo, which is what writes `frames.csv`.
+the md5. It never overwrites: an object already on OSS whose md5 differs from the local
+one is reported as a conflict and the run fails. It never deletes. A file under
+`runs/train/<family>/<arm>/{epochs,onnx,logs}/` with no MANIFEST row is uploaded and its
+row appended (commit it); a new dataset image has to come from the dataset build script
+in the `pii` repo, which is what writes `frames.csv`.
+
+`push --indexed` is the pre-push mode. It covers exactly what the three indexes name
+(every `frames.csv` `oss_key`, every filled `oss_key` of `MANIFEST.tsv`, and
+`models.csv`, whose keys it checks are MANIFEST rows), invents no MANIFEST row, and
+fails with `NO BYTES <key>` for any indexed object that is on neither this disk nor OSS.
+An epoch the retention rule keeps on OSS only is not such a case.
 
 The credential is the `default` AK profile of `~/.aliyun/config.json` (RAM user
 esteban, region cn-shanghai). A box that has no such file can instead export
 `OSS_ACCESS_KEY_ID` and `OSS_ACCESS_KEY_SECRET`, which take precedence, so no secret
 has to be written to that box's disk.
 
-The tracked `.githooks/post-merge` hook runs `pull` after every `git pull`. Git does
-not run hooks on clone, so the first pull after cloning is the explicit
-`bash data/setup.sh` above. Opt out on a box with `git config pii.autopull false`.
+Two tracked hooks, both live once `core.hooksPath` is `.githooks`, which setup.sh sets:
+`.githooks/post-merge` runs `pull` after every `git pull` (opt out with
+`git config pii.autopull false`) and `.githooks/pre-push` runs `push --indexed` before
+every `git push` (opt out with `git config pii.autopush false`). Git does not run hooks on
+clone, so the first pull after cloning is `bash data/setup.sh`, and that run suppresses the
+post-merge hook (`PII_SETUP`) so the OSS pull happens once, not twice.
 
 ## Build scripts
 

@@ -3,8 +3,13 @@
 # checkout is missing down from OSS. Enable it once per box with data/setup.sh
 # (git config core.hooksPath .githooks); opt out with `git config pii.autopull false`.
 # Git does not run hooks on clone, so the first pull after a clone must be explicit:
-#     bash data/setup.sh && python3 data/oss_sync.py pull
+#     bash data/setup.sh
 set -e
+if [ -n "$PII_SETUP" ]; then
+    # data/setup.sh pulled the metadata and runs the OSS pull itself, once, after it.
+    echo "post-merge: data/setup.sh does the oss_sync pull, skipping the hook's"
+    exit 0
+fi
 if [ "$(git config --get pii.autopull || echo true)" = "false" ]; then
     echo "pii.autopull=false, skipping oss_sync pull"
     exit 0

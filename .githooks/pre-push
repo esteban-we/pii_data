@@ -1,0 +1,20 @@
+#!/bin/sh
+# Tracked hook: before every `git push`, make OSS hold the bytes the commits being pushed
+# claim. It runs `oss_sync.py push --indexed` over the whole scope (every oss_key of every
+# datasets/*/frames.csv, of runs/train/MANIFEST.tsv and of runs/train/models.csv), which
+# uploads what is on this disk and not yet on OSS, md5 verified, never overwriting and
+# never deleting. An indexed object that is on neither this disk nor OSS makes it print
+# the key and exit non-zero, and git then refuses the push: a pushed index row must not
+# name bytes that exist nowhere.
+#
+# Enable it once per box with data/setup.sh (git config core.hooksPath .githooks); opt out
+# with `git config pii.autopush false`.
+set -e
+if [ "$(git config --get pii.autopush || echo true)" = "false" ]; then
+    echo "pii.autopush=false, skipping oss_sync push"
+    exit 0
+fi
+cat >/dev/null   # git feeds the refs being pushed on stdin; the check is scope-wide
+root=$(git rev-parse --show-toplevel)
+echo "pre-push: oss_sync push --indexed (git config pii.autopush false opts out)"
+exec python3 "$root/data/oss_sync.py" push --indexed
