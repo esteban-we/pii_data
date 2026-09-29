@@ -32,3 +32,7 @@
 
 # Population tables: 15 GB of parquet, OSS content.
 /tables/population/
+
+# Python bytecode: data/oss_sync.py is run from this checkout on every box.
+__pycache__/
+*.pyc
