@@ -30,6 +30,12 @@
 *.jit
 *.zip
 
+# The faceight frame index is 102 MB of text, over GitHub's 100 MB blob limit
+# (PII-1639). git tracks data/faceight/frames.csv.gz; readers open either through
+# pii_root.open_index. Refresh the .gz after faceight_round.py rewrites the CSV:
+#   gzip -9 -n -c data/faceight/frames.csv > data/faceight/frames.csv.gz
+/data/faceight/frames.csv
+
 # Population tables: 15 GB of parquet, OSS content.
 /tables/population/
 
