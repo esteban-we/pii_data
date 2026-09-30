@@ -20,6 +20,7 @@ fi
 # This script's own pull, below, is the only OSS pull this run does. On a rerun
 # core.hooksPath is already set, so the `git pull` here fires post-merge, which would
 # pull again; PII_SETUP tells that hook to stand down.
+head_before=$(git rev-parse HEAD)
 export PII_SETUP=1
 if ! git pull --ff-only; then
     echo "setup.sh: git pull --ff-only failed, so nothing was fetched from OSS." >&2
@@ -28,6 +29,15 @@ if ! git pull --ff-only; then
     exit 1
 fi
 unset PII_SETUP
+
+# The pull can replace THIS FILE while the shell is still reading it, and a shell reads a
+# script by byte offset, so the rest of the run would be whatever happens to sit at that
+# offset in the new text. When the pull moved setup.sh, hand over to the new one.
+if [ "$(git rev-parse HEAD)" != "$head_before" ] \
+   && ! git diff --quiet "$head_before" HEAD -- data/setup.sh; then
+    echo "setup.sh: the pull updated this script; running the new one."
+    exec sh data/setup.sh "$@"
+fi
 
 git config core.hooksPath .githooks
 echo "core.hooksPath = $(git config --get core.hooksPath)"
