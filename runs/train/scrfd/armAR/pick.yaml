@@ -11,7 +11,7 @@ onnx:
 checkpoints: pick
 pick_checkpoint: epochs/epoch_20.pth
 remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAR_fluence
-local_epochs: 0
+local_epochs: 3
 epoch_evidence: >-
   20 epoch_*.pth in fluence1:runs/train/wd_armAR_fluence/, latest.pth -> epoch_20.pth; slurm
   job 13561
@@ -19,4 +19,4 @@ notes: >-
   All 20 epochs were uploaded from fluence1:runs/train/wd_armAR_fluence/ straight to OSS by
   PII-1633 and this disk keeps the pick epoch (PII-1601); the config and the logs came by
   rsync. fluence1 keeps its copy, unmodified. DINOv2 ViT-g/14 (1.1 B params), so each epoch is
-  18.2 GB and the arm alone is 364.3 GB of the 854.5 GB PII-1633 moved. checkpoints: pick.
+  18.2 GB and the arm alone is 364.3 GB of the 854.5 GB PII-1633 moved.

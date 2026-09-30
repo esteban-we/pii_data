@@ -236,6 +236,8 @@ REMOTE_EPOCH_TSV = (
     Path(CODE_ROOT + "/.knuth/tmp/pii1447/shang_epochs.tsv"),
     Path(CODE_ROOT + "/.knuth/tmp/pii1633/fluence1_epochs.tsv"),
     Path(CODE_ROOT + "/.knuth/tmp/pii1633/shang_egoblurB_n_epochs.tsv"),
+    # PII-1674: armAT's 30 epochs, md5'd on fluence1 the same way.
+    Path(CODE_ROOT + "/.knuth/tmp/pii1674/fluence1_armAT_epochs.tsv"),
 )
 
 
@@ -307,9 +309,10 @@ WANDB_TAGS = {
     # tagged deprecated; egoblur1_* and egoblur2_* likewise.
     "scrfd_stock": ["deprecated"], "egoblur_stock": ["deprecated"],
     # PII-1633: the nine arms it registered (armAL, armAM34, armAN, armAO, armAP,
-    # armAQ, armAR, armAS, egoblurB_n) are NOT in this map. The map is a read of
-    # W&B taken on 2026-09-22, before those runs existed, and PII-1633 did not
-    # read W&B, so guessing a tag here would be inventing one. WANDB_TAGS.get
+    # armAQ, armAR, armAS, egoblurB_n), and armAT after them (PII-1674), are NOT
+    # in this map. The map is a read of W&B taken on 2026-09-22, before those runs
+    # existed, and neither PII-1633 nor PII-1674 read W&B, so guessing a tag here
+    # would be inventing one. WANDB_TAGS.get
     # defaults to [], which reads as `status: active`; that is a default, not a
     # finding, and it is what their pick.yaml says today. Whoever next reads the
     # project's run tags should fill these in: armAN's W&B run was deleted
@@ -334,6 +337,10 @@ PULLED_FLUENCE = ("All {last} epochs were uploaded from "
                   "fluence1:runs/train/{wd}/ straight to OSS by PII-1633 and this disk "
                   "keeps the pick epoch (PII-1601); the config and the logs came by "
                   "rsync. fluence1 keeps its copy, unmodified.")
+
+# PII-1674: armAT finished after PII-1633 had closed its list, so its epochs went
+# up on that issue's route but under this one's number.
+PULLED_FLUENCE_1674 = PULLED_FLUENCE.replace("PII-1633", "PII-1674")
 
 # Per arm: work dir under runs/train (None if the checkpoints are not on this
 # box), pick epoch, where the epoch comes from, where checkpoints live.
@@ -544,6 +551,19 @@ SCRFD_ARMS = {
                          "runs/train/scrfd/wd_armAS_fluence/, the shape PII-1610 flagged as "
                          "neither the work dir's nor the store's; PII-1633 moved that dir to "
                          "scrfd/armAS/ (epoch_20.pth into epochs/) and deleted nothing.")),
+    # PII-1674: the tenth fluence1 work dir, and the first registered after
+    # PII-1633 closed. It finished on 2026-09-30 at 15:58 UTC; armAU, the other
+    # PII-1652 arm, is still training and is NOT registered here.
+    "armAT": dict(wd=None, remote_wd=("fluence1", "wd_armAT_fluence"),
+                  epoch=30, checkpoints="local",
+                  evidence=("30 epoch_*.pth in fluence1:runs/train/wd_armAT_fluence/, "
+                            "latest.pth -> epoch_30.pth; babysit.log records the trainer "
+                            "exiting rc=0 and `epoch_30.pth exists; success`; slurm job "
+                            "24121 on fluence2"),
+                  notes=(PULLED_FLUENCE_1674.format(last=30, wd="wd_armAT_fluence") +
+                         " The PII-1652 experiment: the armAL recipe (DINOv2 ViT-L/14 with "
+                         "registers on a SimpleFPN14 neck, crop 672) stretched from 20 to 30 "
+                         "epochs with step [21, 27], nothing else changed.")),
 }
 
 EGOBLUR_ARMS = {

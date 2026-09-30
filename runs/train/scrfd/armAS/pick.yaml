@@ -11,7 +11,7 @@ onnx:
 checkpoints: pick
 pick_checkpoint: epochs/epoch_20.pth
 remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAS_fluence
-local_epochs: 1
+local_epochs: 19
 epoch_evidence: >-
   20 epoch_*.pth in fluence1:runs/train/wd_armAS_fluence/, latest.pth -> epoch_20.pth; slurm
   job 21956

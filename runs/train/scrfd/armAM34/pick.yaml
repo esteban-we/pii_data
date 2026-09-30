@@ -11,11 +11,10 @@ onnx: onnx/armAM34_det34g.onnx
 checkpoints: pick
 pick_checkpoint: epochs/epoch_20.pth
 remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAM34_fluence
-local_epochs: 0
+local_epochs: 1
 epoch_evidence: >-
   20 epoch_*.pth in fluence1:runs/train/wd_armAM34_fluence/, latest.pth -> epoch_20.pth
 notes: >-
   All 20 epochs were uploaded from fluence1:runs/train/wd_armAM34_fluence/ straight to OSS by
   PII-1633 and this disk keeps the pick epoch (PII-1601); the config and the logs came by
   rsync. fluence1 keeps its copy, unmodified. SCRFD-34G control run for the armAL cell.
-  checkpoints: pick.

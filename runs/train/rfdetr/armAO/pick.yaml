@@ -11,7 +11,7 @@ onnx:
 checkpoints: pick
 pick_checkpoint: epochs/last_ema.pth
 remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAO_fluence
-local_checkpoints: 0
+local_checkpoints: 1
 epoch_evidence: >-
   checkpoint_0..19.ckpt (one per epoch, checkpoint_interval=1 in
   training/rfdetr/train_armAO.py) in fluence1:runs/train/wd_armAO_fluence/, so the run

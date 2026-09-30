@@ -11,7 +11,7 @@ onnx:
 checkpoints: pick
 pick_checkpoint: epochs/model_0055803.pth
 remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_egoblurB_n
-local_checkpoints: 0
+local_checkpoints: 1
 epoch_evidence: >-
   detectron2 counts iterations, not epochs. The work dir's last_checkpoint file names
   model_final.pth and the highest numbered checkpoint is model_0055803.pth, so epoch above is

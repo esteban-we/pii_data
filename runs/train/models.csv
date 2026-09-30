@@ -29,6 +29,7 @@ armAP,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_
 armAQ,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAQ_fluence,pii/models/scrfd/armAQ/epochs/epoch_20.pth
 armAR,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAR_fluence,pii/models/scrfd/armAR/epochs/epoch_20.pth
 armAS,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAS_fluence,pii/models/scrfd/armAS/epochs/epoch_20.pth
+armAT,scrfd,30,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAT_fluence,pii/models/scrfd/armAT/epochs/epoch_30.pth
 armW,scrfd,20,active,scrfd/armW/onnx/armW_det10g.onnx,f445b1606444c8b7c72a2fb4de35e123,16962796,1,pick,/data/esteban/pii_backup/weights,pii/models/scrfd/armW/onnx/armW_det10g.onnx
 armW_fe2,scrfd,20,deprecated,scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx,10df1f8bbe91a9d07a5b981ed798e0db,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_fe2,pii/models/scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx
 armW_nowider,scrfd,20,deprecated,scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx,fbdafd176b60d54cd04844cb10325572,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_nowider,pii/models/scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx
