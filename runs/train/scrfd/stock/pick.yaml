@@ -18,4 +18,4 @@ notes: >-
   SCRFD_34G_official.pth are the official SCRFD checkpoints the arms fine-tune from.
   stock34_det34g.onnx is the 34G export made here by wd_armY_ckpt/export_stock34_onnx.py
   (copied to scrfd/armY/), so it is the only file in this dir produced on this box. Source:
-  /data/esteban/pii/weights/.
+  the old tree's weights/.

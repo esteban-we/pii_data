@@ -1,0 +1,4 @@
+2026-09-18 02:10:11 === babysitter start (pid 1933538) name=egoblurB_n gpu=4,5 nproc=2 port=29518 config=/root/repos/pii/evaluation/egoblur_d2/egoblurB_n.yaml workdir=/data/esteban/pii/runs/train/wd_egoblurB_n extra='--eval-longest 2328' ===
+2026-09-18 02:10:11 attempt 1 launching (resume from none)
+2026-09-18 02:10:11 attempt 1 trainer pid 1933551 (stop the run: kill -TERM 1933538)
+2026-09-18 09:45:21 signal received; killing trainer 1933551 and its process group

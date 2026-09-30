@@ -1,0 +1,5 @@
+2026-09-27 13:44:08 === babysitter start (pid 2123082) arm=AQ_fluence gpu= nproc=8 port=29630 config=configs/scrfd/scrfd_armAQ_fluence.py workdir=/mnt/cachefs/esteban/pii/runs/train/wd_armAQ_fluence extra_cfg='' ===
+2026-09-27 13:44:08 attempt 1 launching (resume: none)
+2026-09-27 13:44:08 attempt 1 trainer pid 2123097 (stop the run: kill -TERM 2123082)
+2026-09-28 06:51:31 attempt 1 exited rc=0
+2026-09-28 06:51:31 epoch_20.pth exists; success

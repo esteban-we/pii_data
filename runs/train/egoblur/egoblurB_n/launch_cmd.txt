@@ -1,0 +1,2 @@
+launch 2026-09-18 02:10:11 CST
+GPU=4,5 PORT=29518 NAME=egoblurB_n SCRIPT=/root/repos/pii/evaluation/egoblur_d2/train_egoblur.py CONFIG=/root/repos/pii/evaluation/egoblur_d2/egoblurB_n.yaml EXTRA="--eval-longest 2328" setsid nohup bash /data/esteban/pii/runs/train/wd_egoblurB_n/run_egoblurB_n.sh > /dev/null 2>&1 < /dev/null &

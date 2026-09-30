@@ -1,0 +1,25 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: egoblurB_n
+family: egoblur
+rule: last_epoch
+epoch: 55803
+epoch_unit: iter
+status: active
+wandb_tags: []
+onnx:
+checkpoints: pick
+pick_checkpoint: epochs/model_0055803.pth
+remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_egoblurB_n
+local_checkpoints: 0
+epoch_evidence: >-
+  detectron2 counts iterations, not epochs. The work dir's last_checkpoint file names
+  model_final.pth and the highest numbered checkpoint is model_0055803.pth, so epoch above is
+  that iteration. The pick is epochs/model_0055803.pth.
+notes: >-
+  There is no ONNX for this family: the EgoBlur arms are scored from the detectron2
+  checkpoint. Cancelled by the user after epoch 1 at iteration 85,139 (PII-1175), so there is
+  no model_final.pth and the pick is the one checkpoint kept, model_0055803.pth. Detectron2 on
+  shang GPUs 4 and 5, W&B run poxlh4en. The checkpoint and train.log were uploaded from shang
+  to OSS by PII-1633; the config, log.txt, metrics.json and eval/ came by rsync. Its wandb/
+  dir was left behind. shang keeps its copy.

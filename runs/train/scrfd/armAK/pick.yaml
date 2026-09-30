@@ -10,7 +10,7 @@ wandb_tags: []
 onnx: onnx/armAK_det10g.onnx
 checkpoints: pick
 pick_checkpoint: epochs/epoch_30.pth
-remote_wd: shang:/data/esteban/pii/runs/train/wd_armAK
+remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_armAK
 local_epochs: 1
 epoch_evidence: >-
   PII-1349: epoch_30.pth pulled from shang (md5 ab128646...), checkpoint meta epoch 30 iter

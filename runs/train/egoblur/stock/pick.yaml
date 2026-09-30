@@ -19,5 +19,4 @@ notes: >-
   egoblur_face_gen2_jit_sd.pth (state dict lifted out of the TorchScript archive),
   egoblur_face_gen2_d2.pth (the detectron2 checkpoint the egoblur arms start from),
   jit_dump.json plus jit_dump.py, and parity/. gen2 has no .sha256 or .provenance.txt next to
-  it in the source; gen1 does. Sources: /data/esteban/pii/weights/ and
-  /data/esteban/pii/runs/egoblur_build/.
+  it in the source; gen1 does. Sources: the old tree's weights/ and runs/egoblur_build/.

@@ -1,0 +1,27 @@
+# PII-1071: egoblurB_n, EgoBlur Gen2 face fine-tune at NATIVE 2328x1748 on shang (RTX 5090 32 GB), full train_Z3.
+# egoblurA recipe (PII-1028) with: no resize (MIN_SIZE_TRAIN 1748 / MAX 2328), TEST geometry native so the
+# hook eval (train_egoblur.py --eval-longest 2328) matches egoblur2_native (PII-1006), dataset train_Z3_full
+# (223,214 frames, PII-1065), 2 GPUs x 2 images AMP (smoke PII-1083: 12.8 GiB, 0.31 s/iter; GPU 0 was in use
+# by another user at launch, so 4 and 5 only), 6 epochs.
+# At batch 4: 55,804 iters per epoch (223,214 / 4, rounded up); 6 epochs = 334,824 iters; steps at 70 / 90 %.
+_BASE_: "./egoblur_face_gen2_ft_draft.yaml"
+DATASETS:
+  TRAIN: ("train_Z3_full",)     # /data/esteban/pii/datasets/d2/train_Z3_full.json (223,214 frames, md5 41466390)
+  TEST: ("faceback_hq_v2_eval",)
+DATALOADER:
+  NUM_WORKERS: 8               # per rank
+INPUT:
+  MIN_SIZE_TRAIN: (1748,)      # native: 2328x1748 frames pass through ResizeShortestEdge unchanged
+  MAX_SIZE_TRAIN: 2328
+  MIN_SIZE_TEST: 1748          # native TEST geometry (egoblur2_native); the hook feeds raw frames anyway
+  MAX_SIZE_TEST: 2328
+SOLVER:
+  IMS_PER_BATCH: 4             # 2 GPUs x 2 (batch 2 per 32 GB card at native, the spec's AMP batch)
+  BASE_LR: 0.001               # 0.012 x 4 / 48 (linear scaling of egoblurA)
+  WARMUP_ITERS: 500
+  STEPS: (234377, 301342)      # 70 % and 90 % of 334,824
+  MAX_ITER: 334824             # 6 x 55,804 = 6 epochs of 223,214 frames at batch 4
+  CHECKPOINT_PERIOD: 55804     # one epoch; PeriodicCheckpointer keeps every checkpoint; eval hook runs here
+TEST:
+  EVAL_PERIOD: 0               # detectron2's COCO EvalHook stays off; train_egoblur.py evaluates every CHECKPOINT_PERIOD
+OUTPUT_DIR: "/data/esteban/pii/runs/train/wd_egoblurB_n"

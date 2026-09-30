@@ -10,7 +10,7 @@ wandb_tags: [deprecated]
 onnx: onnx/armAD_det10g.onnx
 checkpoints: pick
 pick_checkpoint: epochs/epoch_20.pth
-remote_wd: shang:/data/esteban/pii/runs/train/wd_armAD
+remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_armAD
 local_epochs: 1
 epoch_evidence: >-
   PII-1311 / PII-1336 export_epoch.py asserts the recorded exporter's CKPT ==

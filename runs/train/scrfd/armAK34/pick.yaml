@@ -10,7 +10,7 @@ wandb_tags: []
 onnx: onnx/armAK34_det34g.onnx
 checkpoints: pick
 pick_checkpoint: epochs/epoch_30.pth
-remote_wd: shang:/data/esteban/pii/runs/train/wd_armAK34
+remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_armAK34
 local_epochs: 1
 epoch_evidence: >-
   PII-1397 / PII-1395: wd_armAK34/epoch_30.pth pulled from shang (md5 9e5fbf36..., 79,387,400

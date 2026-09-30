@@ -10,7 +10,7 @@ wandb_tags: [deprecated]
 onnx: onnx/armAA34_det34g.onnx
 checkpoints: pick
 pick_checkpoint: epochs/epoch_20.pth
-remote_wd: shang:/data/esteban/pii/runs/train/wd_armAA34
+remote_wd: shang:/data/esteban/pii_backup/runs/train/wd_armAA34
 local_epochs: 1
 epoch_evidence: >-
   wd_armY_ckpt/export_armAA34_onnx.py CKPT = wd_armAA34/epoch_20.pth; pii-data/models.csv row

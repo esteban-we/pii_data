@@ -1,0 +1,7 @@
+392d34b0b6567e005a15fe9c64e40e90  /data/esteban/pii/runs/train/wd_egoblurB_n/egoblurB_n.yaml
+4ab42b4ce612136073e03fa9f7e14549  /data/esteban/pii/runs/train/wd_egoblurB_n/egoblur_face_gen2_ft_draft.yaml
+fae1dd029bd4a0225ede072c9600638e  /data/esteban/pii/runs/train/wd_egoblurB_n/egoblur_face_gen2.yaml
+f0b4cdbbed2859d9eb3c015df0efbf9d  /data/esteban/pii/runs/train/wd_egoblurB_n/train_egoblur.py
+afaa481900fd39d98da431cfb0140356  /data/esteban/pii/runs/train/wd_egoblurB_n/run_egoblurB_n.sh
+a3acde60656f27a7110bb7e8afdf6149  /data/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth
+414663907ef0eaa09b79120c4f150a7e  /data/esteban/pii/datasets/d2/train_Z3_full.json

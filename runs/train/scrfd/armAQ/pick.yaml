@@ -1,0 +1,22 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAQ
+family: scrfd
+rule: last_epoch
+epoch: 20
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx:
+checkpoints: pick
+pick_checkpoint: epochs/epoch_20.pth
+remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAQ_fluence
+local_epochs: 0
+epoch_evidence: >-
+  20 epoch_*.pth in fluence1:runs/train/wd_armAQ_fluence/, latest.pth -> epoch_20.pth; slurm
+  job 13589
+notes: >-
+  All 20 epochs were uploaded from fluence1:runs/train/wd_armAQ_fluence/ straight to OSS by
+  PII-1633 and this disk keeps the pick epoch (PII-1601); the config and the logs came by
+  rsync. fluence1 keeps its copy, unmodified. Third of the PII-1520 weekend chain.
+  checkpoints: pick.
