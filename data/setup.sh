@@ -31,4 +31,19 @@ unset PII_SETUP
 
 git config core.hooksPath .githooks
 echo "core.hooksPath = $(git config --get core.hooksPath)"
+# `set -e` would abort here, but the pull's exit code is the script's result and the
+# render below has to run either way, so the failure is carried rather than raised.
+set +e
 python3 data/oss_sync.py pull "$@"
+pull_rc=$?
+set -e
+
+# The view manifests (views/<name>/{scrfd.txt,d2.json,summary.json}) are rendered, not
+# tracked and not on OSS, and the trainer configs name them by path, so a fresh clone
+# cannot start a run without this. It reads only the indexes, so it is correct after a
+# subset pull too, and it is cheap (about a minute for all of them).
+python3 data/build_view.py render --all
+
+# The pull's own result is what this script reports: a view row whose bytes are not on
+# OSS yet is a real failure and must not be hidden by the render succeeding.
+exit $pull_rc
