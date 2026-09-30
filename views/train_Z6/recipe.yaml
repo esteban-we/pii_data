@@ -1,0 +1,64 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii2/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii2/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: train_Z6
+role: train
+sources:
+  - dataset: pii_frames
+    boxes: v1
+    split: train
+    legacy_prefix: pii
+    legacy_path: chunked
+  - dataset: face10k
+    boxes: v1
+    split: train
+    where: {unlabeled: '0'}
+    legacy_prefix: face10k
+    legacy_path: basename
+  - dataset: face_mine_v1
+    boxes: v1
+    split: train
+    legacy_prefix: face_mine
+    legacy_path: flat
+  - dataset: faceback_45
+    boxes: v1
+    split: train
+    legacy_prefix: faceback
+    legacy_path: flat
+  - dataset: face_mine_right
+    boxes: v1
+    split: train
+    legacy_prefix: face_mine_right
+    legacy_path: flat
+  - dataset: faceight_a
+    boxes: v1
+    split: train
+    legacy_prefix: faceight_a
+    legacy_path: flat
+    legacy_name_col: local_name
+  - dataset: faceight_b
+    boxes: v3
+    split: train
+    legacy_prefix: faceight_b
+    legacy_path: flat
+    legacy_name_col: local_name
+  - dataset: faceight_c
+    boxes: v3
+    split: train
+    legacy_prefix: faceight_c
+    legacy_path: flat
+    legacy_name_col: local_name
+legacy:
+  manifest: /home/esteban/repos/pii/training/manifests/train_Z6.txt
+  order: source blocks in this order; frames sorted by image name inside a block
+notes: |
+  train_Z5 with ONE change: the faceight_b and faceight_c blocks read boxes v3, the second
+  review pass of those two rounds (WOR-1425 drop of 2026-09-22, datasets/faceight_{b,c}/boxes/v3).
+  Every other block is train_Z5's, byte for byte, and the frame set is identical: v3 replaces
+  boxes on frames, never frames. The legacy manifest train_Z6.txt was built by
+  training/mk_mix_Z6.py, which merged the same drop into train_Z5.txt; this view reproduces it
+  (PII-1681). The DINOv2 arms armAL..armAU trained on it.
+  Block counts: faceight_b 48,073 frames / 49,726 boxes (train_Z5: 51,894 boxes),
+  faceight_c 32,120 / 27,046 (train_Z5: 22,582). Total 303,407 frames / 394,229 boxes.
+  face10k drops its 16 `unlabeled` frames, which have no v1 label and no row in v1 boxes.csv;
+  that is the `where` filter, and it is why the block has 11,491 of the dataset's 11,507 frames.

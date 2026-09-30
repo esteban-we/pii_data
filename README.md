@@ -109,8 +109,10 @@ mandatory and are what a download is verified against.
 
 ## Views
 
-19 views, 11 train mixes and 8 eval sets, each reproducing a legacy manifest
-(PII-1373). Frame counts, largest first: train_Z5 303,407; train_Z3 223,214;
+20 views, 12 train mixes and 8 eval sets, each reproducing a legacy manifest
+(PII-1373). Frame counts, largest first: train_Z5 and train_Z6 303,407 each
+(train_Z6 is train_Z5 with the faceight_b and faceight_c blocks on boxes v3, the
+mix the DINOv2 arms armAL..armAU trained on, PII-1681); train_Z3 223,214;
 train_Z5noFM 203,873; train_Z2 139,587; train_Z4 123,680; train_X 84,452;
 train_Z 71,573; train_W, train_W_fe, train_W_fe2 34,619; train_W_nowider 21,740;
 eval_faceback_v1, eval_faceback_hq_v1, eval_faceback_hq_v2 16,940;
