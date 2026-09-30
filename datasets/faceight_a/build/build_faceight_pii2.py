@@ -50,6 +50,15 @@ Versions.
   c v1  the round-3 human pass (2026-09-16): output faceight_c/labels/face_boxes_faceight_c.jsonl,
         prelabels shang verdict_c/ (a local copy of import.jsonl is asserted equal).
   c v2  as b v2 with face_boxes_faceight_c_v2.jsonl (9,925 frames) and faceight_c_relabel_v1.
+  b v3  the SECOND review pass over the SAME 9,402-frame package (WOR-1425, drop 2026-09-22):
+        /data/esteban/tmp/pii_faceightr_v3/face_boxes_faceight_b_v3.jsonl merged over v1 on those
+        frames, exactly as training/merge_faceight_v3.py merged it into the v3 labelv2 manifest.
+        The vendor re-reviewed the v2 Verdict dataset itself (drop ds faceight_b_v2, review_round 2,
+        machine_src faceight_b_relabel_v1@1), so the prelabel package is v2's byte for byte:
+        `prelabel_version` reads it out of boxes/v2/job/prelabels/ and boxes/v3/job/ holds the
+        return only. The reviewed frame set is the same as v2's, so v1 and v2 agree off it and
+        merging over v1 changes nothing outside the 9,402.
+  c v3  as b v3 with face_boxes_faceight_c_v3.jsonl (9,925 frames).
 """
 import argparse
 import csv
@@ -67,7 +76,10 @@ from multiprocessing import Pool
 
 # PII-1449: the live store; data/pii_root.py resolves it (env PII_ROOT or PII2_ROOT,
 # default /data/esteban/pii). A clone elsewhere (shang, fluence) sets the env var.
-STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# datasets/<name>/build/<this file> is three levels under the store root, so four
+# dirname() calls (PII-1681: the PII-1649 move left three, which resolved to
+# <store>/datasets and made every builder fail on `import pii_root`).
+STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(STORE, "data"))
 from pii_root import CODE_ROOT, LEGACY_ROOT, PII_ROOT, open_index  # noqa: E402
 
@@ -76,6 +88,7 @@ TMP = "/data/esteban/tmp"
 PII2_ROOT = PII_ROOT          # kept: the name every caller and doc already uses
 WRITE_ROOT = PII2_ROOT + "/"
 SHANG_STAGE = f"{TMP}/pii2_faceight_shang"          # local copies of shang-only files (stage-shang)
+V3_DIR = f"{TMP}/pii_faceightr_v3"                  # the WOR-1425 v3 re-review drops
 SHANG_DIRS = {"verdict": "/data/esteban/faceight/verdict", "verdict_b": "/data/esteban/faceight/verdict_b",
               "verdict_c": "/data/esteban/faceight/verdict_c",
               "faceight_b_relabel_v1": f"{PII}/datasets/faceight_b_relabel_v1",
@@ -175,6 +188,13 @@ SETS = {
                                          ("import_left.jsonl", "import_right.jsonl", "dets_left.jsonl", "dets_right.jsonl", "README.md", "stats.json")],
                            "output": [f"{TMP}/pii/faceight_v2/face_boxes_faceight_b_v2.jsonl"]},
                    "pinned_md5": "f84a50f1aa1ef723cb5b4ccdaa09eee5"},
+            "v3": {"kind": "subset", "n_reviewed": 9402, "expect_boxes": 62507, "base": "v1",
+                   "output": f"{V3_DIR}/face_boxes_faceight_b_v3.jsonl",
+                   "output_md5": "1b95adbf21a71061eaf58c4ee711d77d",
+                   "prelabel_import": ["faceight_b_relabel_v1/import_left.jsonl", "faceight_b_relabel_v1/import_right.jsonl"],
+                   "prelabel_version": "v2",   # the same package, already copied under boxes/v2
+                   "job": {"output": [f"{V3_DIR}/face_boxes_faceight_b_v3.jsonl"]},
+                   "pinned_md5": "317ee5e166c7ecb457893806772cde22"},
         },
     },
     "c": {
@@ -201,6 +221,13 @@ SETS = {
                                          ("import_left.jsonl", "import_right.jsonl", "dets_left.jsonl", "dets_right.jsonl", "README.md", "stats.json")],
                            "output": [f"{TMP}/pii/faceight_v2/face_boxes_faceight_c_v2.jsonl"]},
                    "pinned_md5": "a97295954ca9651413ac888a613a942e"},
+            "v3": {"kind": "subset", "n_reviewed": 9925, "expect_boxes": 33763, "base": "v1",
+                   "output": f"{V3_DIR}/face_boxes_faceight_c_v3.jsonl",
+                   "output_md5": "6e937bd530553b9cad5aa2175c416c67",
+                   "prelabel_import": ["faceight_c_relabel_v1/import_left.jsonl", "faceight_c_relabel_v1/import_right.jsonl"],
+                   "prelabel_version": "v2",
+                   "job": {"output": [f"{V3_DIR}/face_boxes_faceight_c_v3.jsonl"]},
+                   "pinned_md5": "e3268102de95c60449d24389029159e9"},
         },
     },
 }
@@ -475,12 +502,14 @@ def derive_versions(frames: list[Frame], job_root) -> dict[str, tuple[list, set]
     owners = owner_index(frames)
     image_set = {fr.image for fr in frames}
     out: dict[str, tuple[list, set]] = {}
+    by_of: dict[str, dict[str, list[tuple]]] = {}   # version -> {image: boxes}, face-free dropped
     prev_by: dict[str, list[tuple]] = {}
     for version, spec in CFG["versions"].items():
         drop, machine = load_drop(job_root(version, "output", os.path.basename(spec["output"])), owners, spec["output_md5"])
         pre: dict[str, list[dict]] = {}
+        pre_v = spec.get("prelabel_version", version)   # v3 re-reviewed v2's package (PII-1681)
         for rel in spec["prelabel_import"]:
-            part = load_import(job_root(version, "prelabels", os.path.basename(rel)), owners)
+            part = load_import(job_root(pre_v, "prelabels", os.path.basename(rel)), owners)
             check(not (set(part) & set(pre)), f"{version}: prelabel files overlap")
             pre.update(part)
         if spec["kind"] == "full":
@@ -496,7 +525,8 @@ def derive_versions(frames: list[Frame], job_root) -> dict[str, tuple[list, set]
             check(set(drop) == with_addition, f"{version}: drop frames ({len(drop)}) != frames with an armAE34 "
                                               f"addition in the prelabels ({len(with_addition)})")
             check(len(drop) == spec["n_reviewed"], f"{version}: {len(drop)} reviewed frames, expected {spec['n_reviewed']}")
-            by = {k: v for k, v in prev_by.items() if k not in drop}
+            base = by_of[spec["base"]] if spec.get("base") else prev_by
+            by = {k: v for k, v in base.items() if k not in drop}
             by.update(drop)
             reviewed = set(drop)
         rows = flatten(by)
@@ -509,6 +539,7 @@ def derive_versions(frames: list[Frame], job_root) -> dict[str, tuple[list, set]
             print(f"  {version}: {len(rows)} boxes, boxes.csv md5 {got} (not pinned yet)")
         out[version] = (rows, reviewed)
         prev_by = {k: v for k, v in by.items() if v}
+        by_of[version] = prev_by
     return out
 
 
@@ -880,9 +911,10 @@ def verify(args) -> None:
         if spec.get("pinned_md5") and md5_of(dst("boxes", version, "boxes.csv")) != spec["pinned_md5"]:
             fail(f"boxes/{version}/boxes.csv md5 != pinned md5")
         if version != "v1":
-            prev = read_csv(dst("boxes", f"v{int(version[1:]) - 1}", "boxes.csv"), BOX_COLS)
+            base = spec.get("base") or f"v{int(version[1:]) - 1}"
+            prev = read_csv(dst("boxes", base, "boxes.csv"), BOX_COLS)
             if [r for r in prev if r[0] not in reviewed] != [r for r in rows if r[0] not in reviewed]:
-                fail(f"boxes/{version}: a frame outside the reviewed set changed against the previous version")
+                fail(f"boxes/{version}: a frame outside the reviewed set changed against {base}")
         print(f"boxes/{version}: {len(rows)} rows, {len({r[0] for r in rows})} images with boxes, "
               f"{len(reviewed)} reviewed ({time.time() - t0:.0f}s)")
 

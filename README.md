@@ -91,8 +91,8 @@ git ls-files -z | xargs -0 stat -c '%s %n' | sort -rn | head
 | face10k | 11,507 | v1 v2 v3 |
 | faceback_45 | 84,954 | v1 v2 v3 |
 | faceight_a | 42,408 | v1 |
-| faceight_b | 60,000 | v1 v2 |
-| faceight_c | 40,000 | v1 v2 |
+| faceight_b | 60,000 | v1 v2 v3 |
+| faceight_c | 40,000 | v1 v2 v3 |
 | face_mine_v1 | 62,587 | v1 v2 v3 |
 | face_mine_right | 62,423 | v1 v2 |
 | gt_bench_full | 9,636 | v1 |

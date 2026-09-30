@@ -52,7 +52,10 @@ from multiprocessing import Pool
 
 # PII-1449: the live store; data/pii_root.py resolves it (env PII_ROOT or PII2_ROOT,
 # default /data/esteban/pii). A clone elsewhere (shang, fluence) sets the env var.
-STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# datasets/<name>/build/<this file> is three levels under the store root, so four
+# dirname() calls (PII-1681: the PII-1649 move left three, which resolved to
+# <store>/datasets and made every builder fail on `import pii_root`).
+STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(STORE, "data"))
 from pii_root import LEGACY_ROOT, PII_ROOT, resolve_legacy  # noqa: E402
 
