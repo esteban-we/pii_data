@@ -55,7 +55,11 @@ from collections import Counter, defaultdict
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from pii_root import CODE_ROOT, LEGACY_ROOT  # noqa: E402  (PII-1639: the store-local resolver)
+from pii_root import CODE_ROOT  # noqa: E402  (PII-1639: the store-local resolver)
+
+# Provenance (PII-1682): the pre-PII-1315 tree this script read. The project retired it, so the
+# paths below record where the data came from; they are not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
 
 # The label sources this table reads (face-mine_labeled.csv, gt_bench_v1/, the old dataset
 # names) exist only in the pre-PII-1315 tree, /data/esteban/pii_backup after PII-1448.

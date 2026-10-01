@@ -39,6 +39,11 @@
 # Population tables: 15 GB of parquet, OSS content.
 /tables/population/
 
+# Close-out chain state: the .done markers and summary.md of
+# training/closeout/closeout_arm.sh in the pii repo, which PII-1682 moved here from
+# the retired run tree. Progress of a run, not data.
+/runs/closeout/
+
 # Python bytecode: data/oss_sync.py is run from this checkout on every box.
 __pycache__/
 *.pyc

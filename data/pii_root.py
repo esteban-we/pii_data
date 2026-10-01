@@ -12,17 +12,16 @@ literal, so a clone anywhere resolves itself.
                  runs/train/{scrfd,egoblur,rfdetr}/<arm>/{epochs,onnx,pick.yaml},
                  tables/, calib/. Default: the parent of this file's directory.
 
-    LEGACY_ROOT  the pre-PII-1315 tree, read-only as /data/esteban/pii_backup after the
-                 PII-1448 rename. It still holds what the store never took:
-                 face-mine_labeled.csv, gt_bench_v1/, face_mine_v1_eda/, weights/,
-                 closeout/, the corpus CSVs. The build_*_pii2.py scripts read it.
-
     CODE_ROOT    the pii code repo, the one that keeps training/ and evaluation/. The
                  labelv2 GT manifests and the .knuth/pages media dirs live there, and
                  a few scripts here read them. Default: /home/esteban/repos/pii.
 
-Env vars, highest first: PII_ROOT then PII2_ROOT for the live store; PII_LEGACY_ROOT for
-the old tree; PII_CODE_ROOT for the code repo.
+Env vars, highest first: PII_ROOT then PII2_ROOT for the live store; PII_CODE_ROOT for the
+code repo.
+
+There is one data root. Until PII-1682 there was a second, LEGACY_ROOT, the pre-PII-1315 tree
+the build_*_pii2.py scripts read; the project retired it, so each of those scripts now carries
+the path as its own provenance constant and nothing resolves it here.
 
 Stdlib only, no imports beyond os/pathlib/gzip, so any standalone script can
 `from pii_root import PII_ROOT` after adding <store>/data to sys.path.
@@ -36,7 +35,6 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_ROOT = str(HERE.parent)
-DEFAULT_LEGACY_ROOT = "/data/esteban/pii_backup"
 DEFAULT_CODE_ROOT = "/home/esteban/repos/pii"
 
 
@@ -49,7 +47,6 @@ def _env(*names: str) -> str | None:
 
 
 PII_ROOT = _env("PII_ROOT", "PII2_ROOT") or DEFAULT_ROOT
-LEGACY_ROOT = _env("PII_LEGACY_ROOT") or DEFAULT_LEGACY_ROOT
 CODE_ROOT = _env("PII_CODE_ROOT") or DEFAULT_CODE_ROOT
 
 ROOT = Path(PII_ROOT)
@@ -61,7 +58,6 @@ TABLES = ROOT / "tables"
 CALIB = ROOT / "calib"
 DATA = ROOT / "data"
 
-LEGACY = Path(LEGACY_ROOT)
 CODE = Path(CODE_ROOT)
 
 
@@ -88,11 +84,6 @@ def onnx(family: str, name: str, filename: str) -> Path:
     return TRAIN / family / name / "onnx" / filename
 
 
-def legacy(*parts: str) -> Path:
-    """A path in the pre-PII-1315 tree (/data/esteban/pii_backup)."""
-    return LEGACY.joinpath(*parts)
-
-
 def code(*parts: str) -> Path:
     """A path in the pii code repo (training/manifests/..., .knuth/pages/media/...)."""
     return CODE.joinpath(*parts)
@@ -106,21 +97,6 @@ def manifest(name: str) -> Path:
 def pages_media(*parts: str) -> Path:
     """.knuth/pages/media/... in the code repo: the page dumps and thumbnails."""
     return CODE.joinpath(".knuth", "pages", "media", *parts)
-
-
-# PII-1448 renamed the old tree out from under every absolute path recorded before the
-# move. frames.csv `src_path`, MANIFEST.tsv `src` and data/oss_pii_keys.jsonl `local_path`
-# all name /data/esteban/pii/... meaning the OLD tree. Those indexes are the ledger and
-# are not rewritten for a rename; a reader resolves them through here instead.
-OLD_ROOT_PREFIX = "/data/esteban/pii/"
-
-
-def resolve_legacy(path: str) -> str:
-    """An absolute path recorded before the PII-1448 rename, as it resolves today."""
-    path = str(path)
-    if path.startswith(OLD_ROOT_PREFIX) and not path.startswith(LEGACY_ROOT.rstrip("/") + "/"):
-        return LEGACY_ROOT.rstrip("/") + "/" + path[len(OLD_ROOT_PREFIX):]
-    return path
 
 
 # GitHub refuses a blob over 100 MB, and data/faceight/frames.csv is 107,370,665 B, so
@@ -148,5 +124,4 @@ def open_index(path, mode="rt"):
 
 if __name__ == "__main__":
     print(f"PII_ROOT     {PII_ROOT}  (exists={ROOT.is_dir()})")
-    print(f"LEGACY_ROOT  {LEGACY_ROOT}  (exists={LEGACY.is_dir()})")
     print(f"CODE_ROOT    {CODE_ROOT}  (exists={CODE.is_dir()})")

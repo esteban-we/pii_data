@@ -57,7 +57,11 @@ from multiprocessing import Pool
 # <store>/datasets and made every builder fail on `import pii_root`).
 STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(STORE, "data"))
-from pii_root import CODE_ROOT, LEGACY_ROOT, PII_ROOT  # noqa: E402
+from pii_root import CODE_ROOT, PII_ROOT  # noqa: E402
+
+# Provenance (PII-1682): the pre-PII-1315 tree this script read. The project retired it, so the
+# paths below record where the data came from; they are not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
 
 SRC_V3 = LEGACY_ROOT + "/datasets/face10k_v3"    # PII-1448: the old tree
 SRC_REPAIR = os.path.join(SRC_V3, "repair_v1")

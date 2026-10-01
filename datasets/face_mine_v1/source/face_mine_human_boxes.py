@@ -23,11 +23,13 @@ from pathlib import Path
 
 STORE = Path(__file__).resolve().parents[3]   # the pii_data checkout (PII-1639)
 sys.path.insert(0, str(STORE / "data"))
-from pii_root import images as dataset_images, legacy, pages_media  # noqa: E402
+from pii_root import images as dataset_images, pages_media  # noqa: E402
+# Provenance (PII-1682): the pre-PII-1315 tree this script read, now retired. The path below
+# records where the input came from; it is not a tree to read today.
+LEGACY_ROOT = Path("/data/esteban/pii_backup")
 
 MEDIA = pages_media("face-mine")
-# PII-1449: no equivalent in the live store, so this reads LEGACY_ROOT.
-CSV_PATH = legacy("face-mine_labeled.csv")
+CSV_PATH = LEGACY_ROOT / "face-mine_labeled.csv"
 IMAGES = dataset_images("face_mine_v1")
 COORD_W, COORD_H = 2328, 1748
 IOU_THRESHOLD = 0.5

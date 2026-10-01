@@ -53,7 +53,7 @@ from pathlib import Path
 # PII-1449: the live store; data/pii_root.py resolves it (env PII_ROOT or PII2_ROOT,
 # default /data/esteban/pii). A clone elsewhere (shang, fluence) sets the env var.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pii_root import LEGACY_ROOT, PII_ROOT  # noqa: E402
+from pii_root import PII_ROOT  # noqa: E402
 
 PII2_ROOT = PII_ROOT          # kept: the name every caller and doc already uses
 DATASETS = Path(PII2_ROOT) / "datasets"

@@ -99,10 +99,13 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "data"))
-from pii_root import LEGACY, ROOT, onnx  # noqa: E402
+from pii_root import ROOT, onnx  # noqa: E402
+# Provenance (PII-1682): the pre-PII-1315 tree this script read, now retired. The path below
+# records where the input came from; it is not a tree to read today.
+LEGACY = Path("/data/esteban/pii_backup")
 
 PII = ROOT          # the live store (PII_ROOT), PII-1315 layout
-PII_OLD = LEGACY    # the pre-PII-1315 tree, still the only home of the .jsonl human files
+PII_OLD = LEGACY    # the only home the .jsonl human files ever had
 # frames_from: "dir" takes the frame set from the image dir listing; "human" takes
 # it from the human file, for a dataset whose image dir holds far more than the
 # labeled frames (faceight_c points at the whole 372k / 414k frame trees).

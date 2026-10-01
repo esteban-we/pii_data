@@ -64,7 +64,11 @@ DEFAULT_CSV = "/home/esteban/repos/pii-data/models.csv"
 # /data/esteban/pii_backup by the PII-1448 rename. data/oss_sync.py replaces it for the
 # new store; this stays only to re-read what it once pushed.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pii_root import CODE_ROOT, LEGACY_ROOT  # noqa: E402
+from pii_root import CODE_ROOT  # noqa: E402
+
+# Provenance (PII-1682): the pre-PII-1315 tree this script read. The project retired it, so the
+# paths below record where the data came from; they are not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
 
 RT = LEGACY_ROOT + "/runs/train"
 WT = LEGACY_ROOT + "/weights"

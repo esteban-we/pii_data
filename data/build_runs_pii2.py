@@ -79,7 +79,24 @@ from pathlib import Path
 # PII-1449: the live store; data/pii_root.py resolves it (env PII_ROOT or PII2_ROOT,
 # default /data/esteban/pii). A clone elsewhere (shang, fluence) sets the env var.
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pii_root import CODE_ROOT, LEGACY_ROOT, PII_ROOT, resolve_legacy  # noqa: E402
+from pii_root import CODE_ROOT, PII_ROOT  # noqa: E402
+
+# Provenance (PII-1682): the pre-PII-1315 tree this script read. The project retired it, so the
+# paths below record where the data came from; they are not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
+
+
+# The manifest/index is the ledger and was never rewritten for the PII-1448 rename: paths in it
+# read /data/esteban/pii/... meaning the tree that became LEGACY_ROOT above (PII-1682).
+OLD_ROOT_PREFIX = "/data/esteban/pii/"
+
+
+def resolve_legacy(path: str) -> str:
+    """An absolute path recorded before the PII-1448 rename, as it resolved after it."""
+    path = str(path)
+    if path.startswith(OLD_ROOT_PREFIX) and not path.startswith(LEGACY_ROOT + "/"):
+        return LEGACY_ROOT + "/" + path[len(OLD_ROOT_PREFIX):]
+    return path
 
 # PII-1448: the source is the PRE-PII-1315 tree, renamed to /data/esteban/pii_backup.
 SRC = Path(LEGACY_ROOT)

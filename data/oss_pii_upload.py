@@ -63,10 +63,10 @@ from email.utils import formatdate
 
 BUCKET = "algorithm-datasets"
 HOST = f"{BUCKET}.oss-cn-shanghai.aliyuncs.com"
-# PII-1449: the PRE-PII-1315 tree, kept read-only as /data/esteban/pii_backup
-# (PII-1448 rename). data/oss_sync.py is the uploader for the new store.
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pii_root import LEGACY_ROOT  # noqa: E402
+# This uploader's source is the PRE-PII-1315 tree; data/oss_sync.py is the uploader for the
+# new store. Provenance (PII-1682): that tree is retired, so the path below records where the
+# objects under pii/data/ came from and is not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
 
 ROOT = LEGACY_ROOT + "/datasets"
 TOP = "pii/data/"      # images: pii/data/<dataset>/<basename>   (WOR-164)

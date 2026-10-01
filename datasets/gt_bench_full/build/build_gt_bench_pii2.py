@@ -66,7 +66,24 @@ from multiprocessing import Pool
 # <store>/datasets and made every builder fail on `import pii_root`).
 STORE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.insert(0, os.path.join(STORE, "data"))
-from pii_root import CODE_ROOT, LEGACY_ROOT, PII_ROOT, resolve_legacy  # noqa: E402
+from pii_root import CODE_ROOT, PII_ROOT  # noqa: E402
+
+# Provenance (PII-1682): the pre-PII-1315 tree this script read. The project retired it, so the
+# paths below record where the data came from; they are not a tree to read today.
+LEGACY_ROOT = "/data/esteban/pii_backup"
+
+
+# The manifest/index is the ledger and was never rewritten for the PII-1448 rename: paths in it
+# read /data/esteban/pii/... meaning the tree that became LEGACY_ROOT above (PII-1682).
+OLD_ROOT_PREFIX = "/data/esteban/pii/"
+
+
+def resolve_legacy(path: str) -> str:
+    """An absolute path recorded before the PII-1448 rename, as it resolved after it."""
+    path = str(path)
+    if path.startswith(OLD_ROOT_PREFIX) and not path.startswith(LEGACY_ROOT + "/"):
+        return LEGACY_ROOT + "/" + path[len(OLD_ROOT_PREFIX):]
+    return path
 
 SRC = LEGACY_ROOT + "/datasets/gt_bench_v1"    # PII-1448: the old tree
 SRC_LABELS = os.path.join(SRC, "labels")
