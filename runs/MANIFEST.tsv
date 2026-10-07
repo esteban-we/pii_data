@@ -1449,26 +1449,26 @@ runs/egoblurC_n8/train/slurm-8575.err	/data/esteban/pii_backup/runs/train/wd_ego
 runs/egoblurC_n8/train/slurm-8575.out	/data/esteban/pii_backup/runs/train/wd_egoblurC_n8_fluence/slurm-8575.out	419	8d5c635a86baab80990d918042851ab4	
 runs/egoblurC_n8/train/train.log	/data/esteban/pii_backup/runs/train/wd_egoblurC_n8_fluence/train.log	97289458	7ca56bf9ab3489908c682cd10fb86829	pii/models/egoblur/egoblurC_n8/train.log
 runs/egoblurC_n8/train/wandb_run_id.txt	/data/esteban/pii_backup/runs/train/wd_egoblurC_n8_fluence/wandb_run_id.txt	9	519f8165ad7b8c907b17ddaf917867ad	
-runs/train/egoblur/stock/ego_blur_face_gen1.jit	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit	419970476	cd968cbd700dba5af9560c3f4728145d	pii/models/egoblur/stock/ego_blur_face_gen1.jit
-runs/train/egoblur/stock/ego_blur_face_gen1.jit.provenance.txt	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit.provenance.txt	876	a1c01467e7839687c5a9729e04db7ac1	
-runs/train/egoblur/stock/ego_blur_face_gen1.jit.sha256	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit.sha256	89	6f48f17d63a66337d2b8e22093bb5622	
-runs/train/egoblur/stock/ego_blur_face_gen1.zip	/data/esteban/pii_backup/weights/ego_blur_face_gen1.zip	389722017	74b6a63f2859b1f61620aed44b7c4f07	pii/models/egoblur/stock/ego_blur_face_gen1.zip
-runs/train/egoblur/stock/ego_blur_face_gen2.jit	/data/esteban/pii_backup/weights/ego_blur_face_gen2.jit	419594295	e8c8a2e207a35feceb4c644a54cbdc7d	pii/models/egoblur/stock/ego_blur_face_gen2.jit
-runs/train/egoblur/stock/ego_blur_face_gen2.zip	/data/esteban/pii_backup/weights/ego_blur_face_gen2.zip	389471475	95de6b0cfe6d40c2c82cac7a2bbd4631	pii/models/egoblur/stock/ego_blur_face_gen2.zip
-runs/train/egoblur/stock/egoblur_build/egoblur_face_gen2_d2.pth	/data/esteban/pii_backup/runs/egoblur_build/egoblur_face_gen2_d2.pth	419415303	a3acde60656f27a7110bb7e8afdf6149	pii/models/egoblur/stock/egoblur_build/egoblur_face_gen2_d2.pth
-runs/train/egoblur/stock/egoblur_build/egoblur_face_gen2_jit_sd.pth	/data/esteban/pii_backup/runs/egoblur_build/egoblur_face_gen2_jit_sd.pth	419423296	5c5ca6a7695b4719deac0d522790993b	pii/models/egoblur/stock/egoblur_build/egoblur_face_gen2_jit_sd.pth
-runs/train/egoblur/stock/egoblur_build/jit_dump.json	/data/esteban/pii_backup/runs/egoblur_build/jit_dump.json	90374	27799d6fc7fadff5133903814b02adc3	
-runs/train/egoblur/stock/egoblur_build/jit_dump.py	/data/esteban/pii_backup/runs/egoblur_build/jit_dump.py	4316	31e9a83beba32b476696fd021484d2b0	
-runs/train/egoblur/stock/egoblur_build/parity/parity_n50_1200.json	/data/esteban/pii_backup/runs/egoblur_build/parity/parity_n50_1200.json	17124	cdef0536550612a8c918b9ac76c320cc	
-runs/train/egoblur/stock/egoblur_build/parity/parity_n50_native.json	/data/esteban/pii_backup/runs/egoblur_build/parity/parity_n50_native.json	17992	aeda278f9f9aab3f947291f912209589	
-runs/train/scrfd/stock/SCRFD_10G_KPS_official.pth	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth	17005828	d016238ca847b4222f9eca748bc34638	pii/models/scrfd/stock/SCRFD_10G_KPS_official.pth
-runs/train/scrfd/stock/SCRFD_10G_KPS_official.pth.provenance.txt	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth.provenance.txt	327	610ae49eeb25a65ef0da5adcd65cace6	
-runs/train/scrfd/stock/SCRFD_10G_KPS_official.pth.sha256	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth.sha256	93	d5df8cac6cbe0ec8c1478b7f50ad2d00	
-runs/train/scrfd/stock/SCRFD_34G_official.pth	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth	39677731	4f692734370d0fae43da68c2abe0b1b6	pii/models/scrfd/stock/SCRFD_34G_official.pth
-runs/train/scrfd/stock/SCRFD_34G_official.pth.provenance.txt	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth.provenance.txt	445	b1122c1b71872cb189915cb3b7d13c14	
-runs/train/scrfd/stock/SCRFD_34G_official.pth.sha256	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth.sha256	89	8e620a5aa383c9d2c050d1ac51f51b4b	
-runs/train/scrfd/stock/det_10g.onnx	/data/esteban/pii_backup/weights/det_10g.onnx	16923827	4c10eef5c9e168357a16fdd580fa8371	pii/models/scrfd/stock/det_10g.onnx
-runs/train/scrfd/stock/stock34_det34g.onnx	/data/esteban/pii_backup/weights/stock34_det34g.onnx	39427800	5cdf510ec3303a1cd415c47ea7308a69	pii/models/scrfd/stock/stock34_det34g.onnx
-runs/train/scrfd/stock/stock34_det34g.onnx.md5	/data/esteban/pii_backup/weights/stock34_det34g.onnx.md5	54	4a7e214bf0a44c548735c2d2eefd35de	
-runs/train/scrfd/stock/stock34_det34g.onnx.provenance.txt	/data/esteban/pii_backup/weights/stock34_det34g.onnx.provenance.txt	1597	dd8565730ab2ec9d3d76855910b406f7	
-runs/train/scrfd/stock/stock34_det34g.onnx.sha256	/data/esteban/pii_backup/weights/stock34_det34g.onnx.sha256	86	3b6a38cb6c29c6f47b3c0b1dfa24920a	
+runs/stock_egoblur/ego_blur_face_gen1.jit	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit	419970476	cd968cbd700dba5af9560c3f4728145d	pii/models/egoblur/stock/ego_blur_face_gen1.jit
+runs/stock_egoblur/ego_blur_face_gen1.jit.provenance.txt	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit.provenance.txt	876	a1c01467e7839687c5a9729e04db7ac1	
+runs/stock_egoblur/ego_blur_face_gen1.jit.sha256	/data/esteban/pii_backup/weights/ego_blur_face_gen1.jit.sha256	89	6f48f17d63a66337d2b8e22093bb5622	
+runs/stock_egoblur/ego_blur_face_gen1.zip	/data/esteban/pii_backup/weights/ego_blur_face_gen1.zip	389722017	74b6a63f2859b1f61620aed44b7c4f07	pii/models/egoblur/stock/ego_blur_face_gen1.zip
+runs/stock_egoblur/ego_blur_face_gen2.jit	/data/esteban/pii_backup/weights/ego_blur_face_gen2.jit	419594295	e8c8a2e207a35feceb4c644a54cbdc7d	pii/models/egoblur/stock/ego_blur_face_gen2.jit
+runs/stock_egoblur/ego_blur_face_gen2.zip	/data/esteban/pii_backup/weights/ego_blur_face_gen2.zip	389471475	95de6b0cfe6d40c2c82cac7a2bbd4631	pii/models/egoblur/stock/ego_blur_face_gen2.zip
+runs/stock_egoblur/egoblur_build/egoblur_face_gen2_d2.pth	/data/esteban/pii_backup/runs/egoblur_build/egoblur_face_gen2_d2.pth	419415303	a3acde60656f27a7110bb7e8afdf6149	pii/models/egoblur/stock/egoblur_build/egoblur_face_gen2_d2.pth
+runs/stock_egoblur/egoblur_build/egoblur_face_gen2_jit_sd.pth	/data/esteban/pii_backup/runs/egoblur_build/egoblur_face_gen2_jit_sd.pth	419423296	5c5ca6a7695b4719deac0d522790993b	pii/models/egoblur/stock/egoblur_build/egoblur_face_gen2_jit_sd.pth
+runs/stock_egoblur/egoblur_build/jit_dump.json	/data/esteban/pii_backup/runs/egoblur_build/jit_dump.json	90374	27799d6fc7fadff5133903814b02adc3	
+runs/stock_egoblur/egoblur_build/jit_dump.py	/data/esteban/pii_backup/runs/egoblur_build/jit_dump.py	4316	31e9a83beba32b476696fd021484d2b0	
+runs/stock_egoblur/egoblur_build/parity/parity_n50_1200.json	/data/esteban/pii_backup/runs/egoblur_build/parity/parity_n50_1200.json	17124	cdef0536550612a8c918b9ac76c320cc	
+runs/stock_egoblur/egoblur_build/parity/parity_n50_native.json	/data/esteban/pii_backup/runs/egoblur_build/parity/parity_n50_native.json	17992	aeda278f9f9aab3f947291f912209589	
+runs/stock_scrfd/SCRFD_10G_KPS_official.pth	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth	17005828	d016238ca847b4222f9eca748bc34638	pii/models/scrfd/stock/SCRFD_10G_KPS_official.pth
+runs/stock_scrfd/SCRFD_10G_KPS_official.pth.provenance.txt	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth.provenance.txt	327	610ae49eeb25a65ef0da5adcd65cace6	
+runs/stock_scrfd/SCRFD_10G_KPS_official.pth.sha256	/data/esteban/pii_backup/weights/SCRFD_10G_KPS_official.pth.sha256	93	d5df8cac6cbe0ec8c1478b7f50ad2d00	
+runs/stock_scrfd/SCRFD_34G_official.pth	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth	39677731	4f692734370d0fae43da68c2abe0b1b6	pii/models/scrfd/stock/SCRFD_34G_official.pth
+runs/stock_scrfd/SCRFD_34G_official.pth.provenance.txt	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth.provenance.txt	445	b1122c1b71872cb189915cb3b7d13c14	
+runs/stock_scrfd/SCRFD_34G_official.pth.sha256	/data/esteban/pii_backup/weights/SCRFD_34G_official.pth.sha256	89	8e620a5aa383c9d2c050d1ac51f51b4b	
+runs/stock_scrfd/det_10g.onnx	/data/esteban/pii_backup/weights/det_10g.onnx	16923827	4c10eef5c9e168357a16fdd580fa8371	pii/models/scrfd/stock/det_10g.onnx
+runs/stock_scrfd/stock34_det34g.onnx	/data/esteban/pii_backup/weights/stock34_det34g.onnx	39427800	5cdf510ec3303a1cd415c47ea7308a69	pii/models/scrfd/stock/stock34_det34g.onnx
+runs/stock_scrfd/stock34_det34g.onnx.md5	/data/esteban/pii_backup/weights/stock34_det34g.onnx.md5	54	4a7e214bf0a44c548735c2d2eefd35de	
+runs/stock_scrfd/stock34_det34g.onnx.provenance.txt	/data/esteban/pii_backup/weights/stock34_det34g.onnx.provenance.txt	1597	dd8565730ab2ec9d3d76855910b406f7	
+runs/stock_scrfd/stock34_det34g.onnx.sha256	/data/esteban/pii_backup/weights/stock34_det34g.onnx.sha256	86	3b6a38cb6c29c6f47b3c0b1dfa24920a	

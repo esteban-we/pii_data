@@ -60,10 +60,11 @@ runs/                       one directory per arm (PII-2118), no family level
                             `checkpoints:` and the `pick_checkpoint:` this disk keeps
     config, launch and export scripts, eval/*.json, small logs
     epochs/, onnx/, train.log                                        (ignored, OSS)
-  train/<family>/stock/     upstream baselines: .sha256, .provenance.txt and .md5
-                            tracked, the weights themselves ignored. Both families
-                            call this dir `stock`, so it is the one thing PII-2118
-                            left under a family level
+  stock_<family>/           upstream baselines, one dir per family (PII-2128):
+                            .sha256, .provenance.txt and .md5 tracked, the weights
+                            themselves ignored. No train/ level, there being no run;
+                            the OSS key still says <family>/stock
+  train/logs_replay/        PII-1627's replayed mmdet logs, with their own index
 
 tables/corpus/              session, episode and chunk tables for the whole corpus
 tables/population/          15 GB of parquet over the full frame population
@@ -128,8 +129,8 @@ eval_faceight_a_v1 8,482; gt_bench_sparse_v1 889.
 
 ## Runs
 
-48 SCRFD arms, 5 EgoBlur arms and 1 RF-DETR arm, plus one `stock` directory
-for scrfd and one for egoblur, so 56 rows in `runs/models.csv`. Every
+48 SCRFD arms, 5 EgoBlur arms and 1 RF-DETR arm, plus `stock_scrfd` and
+`stock_egoblur`, so 56 rows in `runs/models.csv`. Every
 `pick.yaml` is `rule: last_epoch` for now (PII-1372 replaces it with a per-epoch
 sweep); `status` is the W&B tag from `alex-qiu-worldengineai/pii-face-eval`, and
 it is the default `active` for every arm trained after that read (PII-1633).
@@ -145,9 +146,9 @@ An arm under the rule says `checkpoints: pick` in its `pick.yaml` and in the
 `checkpoints` column of `models.csv`, and names the one file it keeps in
 `pick_checkpoint:` (`epochs/epoch_20.pth` for a scrfd arm,
 `epochs/model_final.pth` for an egoblur arm). The older value `local` means
-every epoch is also on disk; `upstream release` is the two `stock` dirs, which
-have no epochs. `epochs/latest.pth` is a symlink, not bytes: it has no OSS
-object and is never pruned.
+every epoch is also on disk; `upstream release` is `stock_scrfd` and
+`stock_egoblur`, which have no epochs. `epochs/latest.pth` is a symlink, not
+bytes: it has no OSS object and is never pruned.
 
 **Not every arm's epochs are on OSS.** The fourteen arms PII-2112 registered
 (armAU, armAV34, armAW34, armAX, armAY, armAZ34 and armBA34 to armBH34) were

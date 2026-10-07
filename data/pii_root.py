@@ -9,8 +9,8 @@ literal, so a clone anywhere resolves itself.
     PII_ROOT     the live store, the pii_data checkout in the PII-1315 layout.
                  datasets/<name>/{frames.csv,split.csv,boxes/vN/boxes.csv,images/},
                  views/<name>/{recipe.yaml,scrfd.txt,d2.json,summary.json},
-                 runs/<arm>/train/{epochs,onnx,pick.yaml} (PII-2118; the two
-                 upstream-release dirs stayed at runs/train/<family>/stock/),
+                 runs/<arm>/train/{epochs,onnx,pick.yaml} (PII-2118) and
+                 runs/stock_<family>/ for the two upstream releases (PII-2128),
                  tables/, calib/. Default: the parent of this file's directory.
 
     CODE_ROOT    the pii code repo, the one that keeps training/ and evaluation/. The
@@ -54,7 +54,7 @@ ROOT = Path(PII_ROOT)
 DATASETS = ROOT / "datasets"
 VIEWS = ROOT / "views"
 RUNS = ROOT / "runs"
-TRAIN = RUNS / "train"   # PII-2118: <family>/stock/ and logs_replay/ only
+TRAIN = RUNS / "train"   # PII-2128: logs_replay/ only, the stock dirs left too
 TABLES = ROOT / "tables"
 CALIB = ROOT / "calib"
 DATA = ROOT / "data"
@@ -79,9 +79,12 @@ def view(name: str) -> Path:
 def arm(family: str, name: str) -> Path:
     """An arm's dir: runs/<arm>/train/ (PII-2118). The family is kept in the
     signature because it is what the OSS key and models.csv still carry, and
-    because `stock` needs it: both families have one, so those two dirs stayed
-    at runs/train/<family>/stock/."""
-    return TRAIN / family / name if name == "stock" else RUNS / name / "train"
+    because the two upstream releases need it: PII-2128 named them
+    runs/stock_<family>/, with no train/ level, since there is no run. Both
+    spellings resolve, `stock` and the new name."""
+    if name in ("stock", f"stock_{family}"):
+        return RUNS / f"stock_{family}"
+    return RUNS / name / "train"
 
 
 def onnx(family: str, name: str, filename: str) -> Path:

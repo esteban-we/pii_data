@@ -1,5 +1,5 @@
 # PII-1379. Stock weights, not trained here.
-arm: stock
+arm: stock_egoblur
 family: egoblur
 rule: last_epoch
 epoch: unknown

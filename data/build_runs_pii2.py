@@ -10,15 +10,16 @@ Layout produced (see PII-1379, parent PII-1315):
         <arm>/train/onnx/           every <arm>*.onnx from runs/train/
         <arm>/train/pick.yaml       rule: last_epoch
         <arm>/train/...             config and logs, as in the work dir
-        train/scrfd/stock/          InsightFace and official SCRFD weights
-        train/egoblur/stock/        EgoBlur gen1/gen2 releases and the d2 build
+        stock_scrfd/                InsightFace and official SCRFD weights
+        stock_egoblur/              EgoBlur gen1/gen2 releases and the d2 build
     /data/esteban/pii/experiments/verifier_probe/   probe scripts and json
 
 PII-2118 put the arms in runs/<arm>/train/ and moved the two indexes up to runs/.
 The family (scrfd, egoblur, rfdetr) is no longer a directory: the OSS key still
-carries it, unchanged, and so does the `family` column of models.csv. The two
-upstream-release dirs stayed at runs/train/<family>/stock/, since both families
-call them `stock` and one runs/stock/ cannot be both.
+carries it, unchanged, and so does the `family` column of models.csv. PII-2128 named the two
+upstream-release dirs runs/stock_scrfd/ and runs/stock_egoblur/, since both families
+called theirs `stock` and one runs/stock/ could not be both; they have no train/
+level, there being no run, and their OSS keys still say <family>/stock.
 
 A MANIFEST src column is empty when the file was produced on this box straight
 into the store and was never copied from anywhere (PII-2112: the ONNX exports of
@@ -118,19 +119,25 @@ SRC_PROBE = SRC / "runs/verifier_probe"
 PII2_ROOT = PII_ROOT          # kept: the name every caller and doc already uses
 PII2 = Path(PII2_ROOT)
 RUNS = PII2 / "runs"
-DST_TRAIN = RUNS / "train"    # PII-2118: only <family>/stock/ and logs_replay/ now
+DST_TRAIN = RUNS / "train"    # PII-2128: only logs_replay/ is left under it
 DST_PROBE = PII2 / "experiments/verifier_probe"
 
 MANIFEST = RUNS / "MANIFEST.tsv"
 MODELS_CSV = RUNS / "models.csv"
 
-STOCK = ("stock",)
+# The two upstream releases. PII-2128 renamed the dirs and the models.csv `arm` of
+# both; `family` did not change, and neither did the OSS key, which still says
+# <family>/stock -- STOCK_KEY_ARM is that component.
+STOCK = ("stock_scrfd", "stock_egoblur")
+STOCK_FAMILY = {"stock_scrfd": "scrfd", "stock_egoblur": "egoblur"}
+STOCK_ARM = {f: a for a, f in STOCK_FAMILY.items()}
+STOCK_KEY_ARM = "stock"
 
 
 def arm_dir(family, arm):
     """Where an arm's files are (PII-2118): runs/<arm>/train/, no family component.
-    `stock` is the exception and keeps runs/train/<family>/stock/."""
-    return DST_TRAIN / family / arm if arm in STOCK else RUNS / arm / "train"
+    An upstream release is runs/stock_<family>/, with no train/ level (PII-2128)."""
+    return RUNS / arm if arm in STOCK else RUNS / arm / "train"
 
 
 def runs_rel(family, arm, rel=""):
@@ -1253,7 +1260,7 @@ def do_copy(logpath):
 
         # scrfd stock
         for name in SCRFD_STOCK_FILES:
-            rsync_file(SRC_WEIGHTS / name, DST_TRAIN / "scrfd/stock" / name, log)
+            rsync_file(SRC_WEIGHTS / name, arm_dir("scrfd", "stock_scrfd") / name, log)
 
         # egoblur work dirs. PII-1633: egoblurB_n's is on shang, and a remote
         # work dir is pulled by pull_remotes(), not rsynced out of the old tree.
@@ -1269,10 +1276,10 @@ def do_copy(logpath):
 
         # egoblur stock
         for name in EGOBLUR_STOCK_FILES:
-            rsync_file(SRC_WEIGHTS / name, DST_TRAIN / "egoblur/stock" / name, log)
+            rsync_file(SRC_WEIGHTS / name, arm_dir("egoblur", "stock_egoblur") / name, log)
         for rel in EGOBLUR_BUILD_FILES:
             rsync_file(SRC_EGOBUILD / rel,
-                       DST_TRAIN / "egoblur/stock/egoblur_build" / rel, log)
+                       arm_dir("egoblur", "stock_egoblur") / "egoblur_build" / rel, log)
 
         # verifier probe: scripts and json only
         rsync_dir(SRC_PROBE, DST_PROBE, log, include=["*.py", "*.json"])
@@ -1360,7 +1367,7 @@ def copied_files():
                 out.append((q.relative_to(PII2).as_posix(), q, ""))
 
     for name in SCRFD_STOCK_FILES:
-        p = DST_TRAIN / "scrfd/stock" / name
+        p = arm_dir("scrfd", "stock_scrfd") / name
         out.append((p.relative_to(PII2).as_posix(), p, SRC_WEIGHTS / name))
 
     for arm, spec in EGOBLUR_ARMS.items():
@@ -1380,10 +1387,10 @@ def copied_files():
                             src_for(spec, srcrel.as_posix())))
 
     for name in EGOBLUR_STOCK_FILES:
-        p = DST_TRAIN / "egoblur/stock" / name
+        p = arm_dir("egoblur", "stock_egoblur") / name
         out.append((p.relative_to(PII2).as_posix(), p, SRC_WEIGHTS / name))
     for rel in EGOBLUR_BUILD_FILES:
-        p = DST_TRAIN / "egoblur/stock/egoblur_build" / rel
+        p = arm_dir("egoblur", "stock_egoblur") / "egoblur_build" / rel
         out.append((p.relative_to(PII2).as_posix(), p, SRC_EGOBUILD / rel))
 
     for p in sorted(DST_PROBE.rglob("*")):
@@ -1549,7 +1556,7 @@ def stock_pick(family, files_note):
     tags = WANDB_TAGS["scrfd_stock" if family == "scrfd" else "egoblur_stock"]
     return "\n".join([
         "# PII-1379. Stock weights, not trained here.",
-        f"arm: stock",
+        f"arm: {STOCK_ARM[family]}",
         f"family: {family}",
         "rule: last_epoch",
         "epoch: unknown",
@@ -1618,14 +1625,14 @@ def write_meta(logpath):
             source=(str(SRC_TRAIN / spec["wd"]) if spec["wd"] else remote_src(spec)),
         ))
 
-    (DST_TRAIN / "scrfd/stock/pick.yaml").write_text(stock_pick(
+    (arm_dir("scrfd", "stock_scrfd") / "pick.yaml").write_text(stock_pick(
         "scrfd",
         "det_10g.onnx is the InsightFace production 10G detector. "
         "SCRFD_10G_KPS_official.pth and SCRFD_34G_official.pth are the official SCRFD "
         "checkpoints the arms fine-tune from. stock34_det34g.onnx is the 34G export made "
         "here by wd_armY_ckpt/export_stock34_onnx.py (copied to scrfd/armY/), so it is the "
         "only file in this dir produced on this box. Source: the old tree's weights/."))
-    (DST_TRAIN / "egoblur/stock/pick.yaml").write_text(stock_pick(
+    (arm_dir("egoblur", "stock_egoblur") / "pick.yaml").write_text(stock_pick(
         "egoblur",
         "ego_blur_face_gen1 and gen2 are Meta EgoBlur releases (.jit plus the .zip they "
         "came in). egoblur_build/ holds what the gen2 to detectron2 conversion produced: "
@@ -1634,12 +1641,12 @@ def write_meta(logpath):
         "jit_dump.json plus jit_dump.py, and parity/. gen2 has no .sha256 or "
         ".provenance.txt next to it in the source; gen1 does. Sources: "
         "the old tree's weights/ and runs/egoblur_build/."))
-    rows.append(dict(arm="stock", family="scrfd", epoch="unknown", status="deprecated",
-                     onnx=runs_rel("scrfd", "stock", "det_10g.onnx"),
-                     onnx_md5=md5(DST_TRAIN / "scrfd/stock/det_10g.onnx"),
-                     onnx_size=(DST_TRAIN / "scrfd/stock/det_10g.onnx").stat().st_size,
+    rows.append(dict(arm="stock_scrfd", family="scrfd", epoch="unknown", status="deprecated",
+                     onnx=runs_rel("scrfd", "stock_scrfd", "det_10g.onnx"),
+                     onnx_md5=md5(arm_dir("scrfd", "stock_scrfd") / "det_10g.onnx"),
+                     onnx_size=(arm_dir("scrfd", "stock_scrfd") / "det_10g.onnx").stat().st_size,
                      n_onnx=2, checkpoints="upstream release", source=str(SRC_WEIGHTS)))
-    rows.append(dict(arm="stock", family="egoblur", epoch="unknown", status="deprecated",
+    rows.append(dict(arm="stock_egoblur", family="egoblur", epoch="unknown", status="deprecated",
                      onnx="", onnx_md5="", onnx_size="", n_onnx=0,
                      checkpoints="upstream release", source=str(SRC_WEIGHTS)))
 
@@ -1724,8 +1731,9 @@ def write_meta(logpath):
 # OSS keys (PII-1413)
 # --------------------------------------------------------------------------
 
-# oss://algorithm-datasets/pii/models/<family>/<arm>/<rel> holds every file under
-# runs/train that git does not track (checkpoints, ONNX exports, the training logs).
+# oss://algorithm-datasets/pii/models/<family>/<arm>/<rel> holds every file under a run
+# dir that git does not track (checkpoints, ONNX exports, the training logs, the
+# released weights).
 # Everything else in this tree is git content and has an empty oss_key.
 MODELS_TOP = "pii/models/"
 
@@ -1733,21 +1741,22 @@ MODELS_TOP = "pii/models/"
 def oss_key_for(dst_rel: str) -> str:
     """The OSS key of a manifest row, or "" when the file is git content.
 
-    PII-2118 did not change one key. The family the key carries comes from the
-    registry for an arm (runs/<arm>/train/<tail>) and from the path itself for the
-    two runs/train/<family>/stock/ dirs.
+    Neither PII-2118 nor PII-2128 changed one key. The family the key carries comes
+    from the registry for an arm (runs/<arm>/train/<tail>) and from the dir name for
+    the two upstream releases (runs/stock_<family>/<tail>), whose key component is
+    still `stock`.
     """
     parts = dst_rel.split("/")
-    if parts[0] != "runs" or len(parts) < 4:
+    if parts[0] != "runs" or len(parts) < 3:
         return ""
-    if parts[2] == "train":
+    if parts[1] in STOCK:
+        family, arm, tail = STOCK_FAMILY[parts[1]], STOCK_KEY_ARM, "/".join(parts[2:])
+    elif len(parts) >= 4 and parts[2] == "train":
         arm, tail = parts[1], "/".join(parts[3:])
         try:
             family = family_of(arm)
         except KeyError:
             return ""
-    elif parts[1] == "train" and parts[3] in STOCK:
-        family, arm, tail = parts[2], parts[3], "/".join(parts[4:])
     else:
         return ""
     base = os.path.basename(tail)
@@ -1777,7 +1786,7 @@ def disk_roots():
     this list, so a runs/<arm>/train/ another agent's run put there is never
     mistaken for a file of ours that fell out of the manifest."""
     roots = [arm_dir(f, a) for f, a, _ in all_arms()]
-    roots += [DST_TRAIN / "scrfd/stock", DST_TRAIN / "egoblur/stock", DST_PROBE]
+    roots += [arm_dir(f, a) for a, f in STOCK_FAMILY.items()] + [DST_PROBE]
     return [r for r in roots if r.is_dir()]
 
 
@@ -1882,8 +1891,8 @@ def do_verify(jobs, check_source=True):
                            f"vs {r['size']} md5 {digest} vs {r['md5']}")
 
     # 3. every arm dir has a pick.yaml and it says last_epoch
-    for fam, arms in (("scrfd", list(SCRFD_ARMS) + ["stock"]),
-                      ("egoblur", list(EGOBLUR_ARMS) + ["stock"]),
+    for fam, arms in (("scrfd", list(SCRFD_ARMS) + ["stock_scrfd"]),
+                      ("egoblur", list(EGOBLUR_ARMS) + ["stock_egoblur"]),
                       ("rfdetr", list(RFDETR_ARMS))):
         for arm in arms:
             pick = arm_dir(fam, arm) / "pick.yaml"

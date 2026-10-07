@@ -24,13 +24,14 @@
 /runs/train/*/*/train.log
 
 # PII-2118: the same four, for the per-arm layout runs/<arm>/train/.
-# The patterns above still cover runs/train/<family>/stock/.
+# PII-2128 moved the stock dirs out of runs/train/ as well, so the four patterns
+# above now cover only a local work dir a host left behind under the old path.
 /runs/*/train/epochs/
 /runs/*/train/onnx/
 /runs/*/train/logs/
 /runs/*/train/train.log
 
-# Model weights and archives anywhere in the tree, including runs/train/*/stock/.
+# Model weights and archives anywhere in the tree, including runs/stock_<family>/.
 # The .md5, .sha256 and .provenance.txt sidecars next to them stay tracked.
 *.pth
 *.onnx

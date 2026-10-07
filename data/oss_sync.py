@@ -11,9 +11,10 @@ carries in its `oss_key` column, and this script is the only thing that moves th
 
 PII-2118 moved the arms to runs/<arm>/train/ and the two indexes up to runs/. The
 family (scrfd, egoblur, rfdetr) is not a directory any more: it lives in the OSS key,
-which did not change, and in the `family` column of runs/models.csv. The two upstream
-release dirs stayed at runs/train/<family>/stock/, since both families call them
-`stock`.
+which did not change, and in the `family` column of runs/models.csv. PII-2128 named the
+two upstream release dirs runs/stock_scrfd/ and runs/stock_egoblur/ (both families called
+theirs `stock`); their keys still say <family>/stock, and nothing indexed is left under
+runs/train/.
 
 Checkpoint retention (PII-1601). OSS holds every epoch of every arm; this disk holds
 only the epoch that the arm's `runs/<arm>/train/pick.yaml` names, in
@@ -159,17 +160,25 @@ def parse_pick(path):
     return out
 
 
+# PII-2128: the two upstream-release dirs, runs/<dir>/ with no train/ level. Their OSS
+# keys still name <family>/stock, so the key prefix is spelled out here and does not
+# follow the dir name.
+STOCK_DIRS = {"stock_scrfd": "scrfd/stock", "stock_egoblur": "egoblur/stock"}
+
+
 def arm_family():
     """{arm: family} from runs/models.csv. PII-2118 dropped the family directory;
-    this column and the OSS key are where it survives."""
+    this column and the OSS key are where it survives. The two upstream-release rows
+    are not arms and are left out."""
     with open(os.path.join(ROOT, "runs/models.csv"), newline="") as f:
-        return {r["arm"]: r["family"] for r in csv.DictReader(f) if r["arm"] != "stock"}
+        return {r["arm"]: r["family"] for r in csv.DictReader(f)
+                if r["arm"] not in STOCK_DIRS and r["arm"] != "stock"}
 
 
 def run_dirs():
     """[(key_prefix, dir)] for every run dir under runs/, key_prefix being the
     <family>/<arm> the OSS key uses (PII-2118: an arm's dir is runs/<arm>/train/ and
-    carries no family; the two stock dirs stayed at runs/train/<family>/stock/).
+    carries no family; PII-2128: an upstream release is runs/stock_<family>/).
 
     An arm dir that runs/models.csv does not name has no family, so no key can be
     built for it: it is reported and skipped, never guessed at.
@@ -177,6 +186,11 @@ def run_dirs():
     fam_of, out, unknown = arm_family(), [], []
     base = os.path.join(ROOT, "runs")
     for arm in sorted(os.listdir(base)):
+        if arm in STOCK_DIRS:
+            d = os.path.join(base, arm)
+            if os.path.isdir(d):
+                out.append((STOCK_DIRS[arm], d))
+            continue
         d = os.path.join(base, arm, "train")
         if arm == "train" or not os.path.isdir(d):
             continue
@@ -184,10 +198,6 @@ def run_dirs():
             out.append((f"{fam_of[arm]}/{arm}", d))
         else:
             unknown.append(arm)
-    for family in sorted(os.listdir(os.path.join(base, "train"))):
-        d = os.path.join(base, "train", family, "stock")
-        if os.path.isdir(d):
-            out.append((f"{family}/stock", d))
     for arm in unknown:
         print(f"runs/{arm}/train has no runs/models.csv row, so no OSS key: skipped")
     return out
@@ -654,7 +664,9 @@ def cmd_pull(args):
 # --------------------------------------------------------------------------- push
 
 def unindexed_runs():
-    """Files under runs/<arm>/train/{epochs,onnx,logs}/ and train.log with no MANIFEST row."""
+    """Files under a run dir that OSS holds (epochs/, onnx/, logs/, train.log, and any
+    .pth/.onnx/.jit/.zip, which is what the two upstream-release dirs carry) with no
+    MANIFEST row."""
     known = {r["dst_rel"] for r in manifest_rows()}
     out = []
     for key_prefix, adir in run_dirs():
