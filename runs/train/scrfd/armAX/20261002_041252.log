@@ -1,0 +1,939 @@
+2026-10-02 04:12:52,055 - mmdet - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]
+CUDA available: True
+GPU 0,1,2,3,4,5,6,7: NVIDIA H100 80GB HBM3
+CUDA_HOME: /usr/local/cuda
+NVCC: Build cuda_13.0.r13.0/compiler.36424714_0
+GCC: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+PyTorch: 2.13.0+cu130
+PyTorch compiling details: PyTorch built with:
+  - GCC 13.3
+  - C++ Version: 202002
+  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.12.0 (Git Hash 80afa71049cd69a3df32adcccb623b12cd7baa22)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 13.0
+  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+  - CuDNN 92.0  (built against CUDA 13.2)
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=cf30153c4c131c8164ee7798e5022d810682e2cb, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.13.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+
+TorchVision: 0.28.0+cu130
+OpenCV: 4.11.0
+MMCV: 1.4.0
+MMCV Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMCV CUDA Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMDetection: 2.7.0+
+------------------------------------------------------------
+
+2026-10-02 04:12:52,593 - mmdet - INFO - Distributed training: True
+2026-10-02 04:12:53,317 - mmdet - INFO - Config:
+optimizer = dict(
+    type='AdamW',
+    lr=1e-05,
+    weight_decay=0.05,
+    betas=(0.9, 0.999),
+    paramwise_cfg=dict(
+        custom_keys=dict({
+            'backbone.patch_embed.':
+            dict(lr_mult=0.0037778931862957215),
+            'backbone.pos_embed':
+            dict(lr_mult=0.0037778931862957215, decay_mult=0.0),
+            'backbone.cls_token':
+            dict(lr_mult=0.0037778931862957215, decay_mult=0.0),
+            'backbone.register_tokens':
+            dict(lr_mult=0.0037778931862957215, decay_mult=0.0),
+            'backbone.patch_embed.proj.bias':
+            dict(lr_mult=0.0037778931862957215, decay_mult=0.0),
+            'backbone.blocks.0.':
+            dict(lr_mult=0.004722366482869652),
+            'backbone.blocks.0.norm1.weight':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.norm1.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.norm2.weight':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.norm2.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.ls1.gamma':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.ls2.gamma':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.attn.qkv.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.attn.proj.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.mlp.fc1.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.0.mlp.fc2.bias':
+            dict(lr_mult=0.004722366482869652, decay_mult=0.0),
+            'backbone.blocks.1.':
+            dict(lr_mult=0.005902958103587064),
+            'backbone.blocks.1.norm1.weight':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.norm1.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.norm2.weight':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.norm2.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.ls1.gamma':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.ls2.gamma':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.attn.qkv.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.attn.proj.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.mlp.fc1.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.1.mlp.fc2.bias':
+            dict(lr_mult=0.005902958103587064, decay_mult=0.0),
+            'backbone.blocks.2.':
+            dict(lr_mult=0.00737869762948383),
+            'backbone.blocks.2.norm1.weight':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.norm1.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.norm2.weight':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.norm2.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.ls1.gamma':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.ls2.gamma':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.attn.qkv.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.attn.proj.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.mlp.fc1.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.2.mlp.fc2.bias':
+            dict(lr_mult=0.00737869762948383, decay_mult=0.0),
+            'backbone.blocks.3.':
+            dict(lr_mult=0.009223372036854787),
+            'backbone.blocks.3.norm1.weight':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.norm1.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.norm2.weight':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.norm2.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.ls1.gamma':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.ls2.gamma':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.attn.qkv.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.attn.proj.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.mlp.fc1.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.3.mlp.fc2.bias':
+            dict(lr_mult=0.009223372036854787, decay_mult=0.0),
+            'backbone.blocks.4.':
+            dict(lr_mult=0.011529215046068483),
+            'backbone.blocks.4.norm1.weight':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.norm1.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.norm2.weight':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.norm2.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.ls1.gamma':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.ls2.gamma':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.attn.qkv.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.attn.proj.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.mlp.fc1.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.4.mlp.fc2.bias':
+            dict(lr_mult=0.011529215046068483, decay_mult=0.0),
+            'backbone.blocks.5.':
+            dict(lr_mult=0.014411518807585602),
+            'backbone.blocks.5.norm1.weight':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.norm1.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.norm2.weight':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.norm2.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.ls1.gamma':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.ls2.gamma':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.attn.qkv.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.attn.proj.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.mlp.fc1.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.5.mlp.fc2.bias':
+            dict(lr_mult=0.014411518807585602, decay_mult=0.0),
+            'backbone.blocks.6.':
+            dict(lr_mult=0.018014398509482003),
+            'backbone.blocks.6.norm1.weight':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.norm1.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.norm2.weight':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.norm2.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.ls1.gamma':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.ls2.gamma':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.attn.qkv.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.attn.proj.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.mlp.fc1.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.6.mlp.fc2.bias':
+            dict(lr_mult=0.018014398509482003, decay_mult=0.0),
+            'backbone.blocks.7.':
+            dict(lr_mult=0.022517998136852502),
+            'backbone.blocks.7.norm1.weight':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.norm1.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.norm2.weight':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.norm2.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.ls1.gamma':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.ls2.gamma':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.attn.qkv.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.attn.proj.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.mlp.fc1.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.7.mlp.fc2.bias':
+            dict(lr_mult=0.022517998136852502, decay_mult=0.0),
+            'backbone.blocks.8.':
+            dict(lr_mult=0.028147497671065624),
+            'backbone.blocks.8.norm1.weight':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.norm1.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.norm2.weight':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.norm2.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.ls1.gamma':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.ls2.gamma':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.attn.qkv.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.attn.proj.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.mlp.fc1.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.8.mlp.fc2.bias':
+            dict(lr_mult=0.028147497671065624, decay_mult=0.0),
+            'backbone.blocks.9.':
+            dict(lr_mult=0.03518437208883203),
+            'backbone.blocks.9.norm1.weight':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.norm1.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.norm2.weight':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.norm2.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.ls1.gamma':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.ls2.gamma':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.attn.qkv.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.attn.proj.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.mlp.fc1.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.9.mlp.fc2.bias':
+            dict(lr_mult=0.03518437208883203, decay_mult=0.0),
+            'backbone.blocks.10.':
+            dict(lr_mult=0.043980465111040035),
+            'backbone.blocks.10.norm1.weight':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.norm1.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.norm2.weight':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.norm2.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.ls1.gamma':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.ls2.gamma':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.attn.qkv.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.attn.proj.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.mlp.fc1.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.10.mlp.fc2.bias':
+            dict(lr_mult=0.043980465111040035, decay_mult=0.0),
+            'backbone.blocks.11.':
+            dict(lr_mult=0.054975581388800036),
+            'backbone.blocks.11.norm1.weight':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.norm1.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.norm2.weight':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.norm2.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.ls1.gamma':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.ls2.gamma':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.attn.qkv.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.attn.proj.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.mlp.fc1.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.11.mlp.fc2.bias':
+            dict(lr_mult=0.054975581388800036, decay_mult=0.0),
+            'backbone.blocks.12.':
+            dict(lr_mult=0.06871947673600004),
+            'backbone.blocks.12.norm1.weight':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.norm1.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.norm2.weight':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.norm2.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.ls1.gamma':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.ls2.gamma':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.attn.qkv.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.attn.proj.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.mlp.fc1.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.12.mlp.fc2.bias':
+            dict(lr_mult=0.06871947673600004, decay_mult=0.0),
+            'backbone.blocks.13.':
+            dict(lr_mult=0.08589934592000005),
+            'backbone.blocks.13.norm1.weight':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.norm1.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.norm2.weight':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.norm2.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.ls1.gamma':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.ls2.gamma':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.attn.qkv.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.attn.proj.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.mlp.fc1.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.13.mlp.fc2.bias':
+            dict(lr_mult=0.08589934592000005, decay_mult=0.0),
+            'backbone.blocks.14.':
+            dict(lr_mult=0.10737418240000006),
+            'backbone.blocks.14.norm1.weight':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.norm1.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.norm2.weight':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.norm2.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.ls1.gamma':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.ls2.gamma':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.attn.qkv.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.attn.proj.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.mlp.fc1.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.14.mlp.fc2.bias':
+            dict(lr_mult=0.10737418240000006, decay_mult=0.0),
+            'backbone.blocks.15.':
+            dict(lr_mult=0.13421772800000006),
+            'backbone.blocks.15.norm1.weight':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.norm1.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.norm2.weight':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.norm2.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.ls1.gamma':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.ls2.gamma':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.attn.qkv.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.attn.proj.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.mlp.fc1.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.15.mlp.fc2.bias':
+            dict(lr_mult=0.13421772800000006, decay_mult=0.0),
+            'backbone.blocks.16.':
+            dict(lr_mult=0.1677721600000001),
+            'backbone.blocks.16.norm1.weight':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.norm1.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.norm2.weight':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.norm2.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.ls1.gamma':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.ls2.gamma':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.attn.qkv.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.attn.proj.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.mlp.fc1.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.16.mlp.fc2.bias':
+            dict(lr_mult=0.1677721600000001, decay_mult=0.0),
+            'backbone.blocks.17.':
+            dict(lr_mult=0.20971520000000007),
+            'backbone.blocks.17.norm1.weight':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.norm1.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.norm2.weight':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.norm2.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.ls1.gamma':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.ls2.gamma':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.attn.qkv.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.attn.proj.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.mlp.fc1.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.17.mlp.fc2.bias':
+            dict(lr_mult=0.20971520000000007, decay_mult=0.0),
+            'backbone.blocks.18.':
+            dict(lr_mult=0.2621440000000001),
+            'backbone.blocks.18.norm1.weight':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.norm1.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.norm2.weight':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.norm2.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.ls1.gamma':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.ls2.gamma':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.attn.qkv.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.attn.proj.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.mlp.fc1.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.18.mlp.fc2.bias':
+            dict(lr_mult=0.2621440000000001, decay_mult=0.0),
+            'backbone.blocks.19.':
+            dict(lr_mult=0.3276800000000001),
+            'backbone.blocks.19.norm1.weight':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.norm1.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.norm2.weight':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.norm2.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.ls1.gamma':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.ls2.gamma':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.attn.qkv.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.attn.proj.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.mlp.fc1.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.19.mlp.fc2.bias':
+            dict(lr_mult=0.3276800000000001, decay_mult=0.0),
+            'backbone.blocks.20.':
+            dict(lr_mult=0.4096000000000001),
+            'backbone.blocks.20.norm1.weight':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.norm1.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.norm2.weight':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.norm2.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.ls1.gamma':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.ls2.gamma':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.attn.qkv.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.attn.proj.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.mlp.fc1.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.20.mlp.fc2.bias':
+            dict(lr_mult=0.4096000000000001, decay_mult=0.0),
+            'backbone.blocks.21.':
+            dict(lr_mult=0.5120000000000001),
+            'backbone.blocks.21.norm1.weight':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.norm1.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.norm2.weight':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.norm2.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.ls1.gamma':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.ls2.gamma':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.attn.qkv.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.attn.proj.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.mlp.fc1.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.21.mlp.fc2.bias':
+            dict(lr_mult=0.5120000000000001, decay_mult=0.0),
+            'backbone.blocks.22.':
+            dict(lr_mult=0.6400000000000001),
+            'backbone.blocks.22.norm1.weight':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.norm1.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.norm2.weight':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.norm2.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.ls1.gamma':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.ls2.gamma':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.attn.qkv.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.attn.proj.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.mlp.fc1.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.22.mlp.fc2.bias':
+            dict(lr_mult=0.6400000000000001, decay_mult=0.0),
+            'backbone.blocks.23.':
+            dict(lr_mult=0.8),
+            'backbone.blocks.23.norm1.weight':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.norm1.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.norm2.weight':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.norm2.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.ls1.gamma':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.ls2.gamma':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.attn.qkv.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.attn.proj.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.mlp.fc1.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.blocks.23.mlp.fc2.bias':
+            dict(lr_mult=0.8, decay_mult=0.0),
+            'backbone.norm.':
+            dict(lr_mult=1.0, decay_mult=0.0)
+        }),
+        norm_decay_mult=0.0,
+        bias_decay_mult=0.0))
+optimizer_config = dict(
+    type='GradientCumulativeOptimizerHook',
+    cumulative_iters=1,
+    grad_clip=dict(max_norm=1.0, norm_type=2))
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=200,
+    warmup_ratio=0.001,
+    step=[4])
+total_epochs = 5
+checkpoint_config = dict(interval=1)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = '/mnt/cachefs/esteban/pii/runs/train/wd_armAL_fluence/epoch_20.pth'
+work_dir = '/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence'
+resume_from = None
+workflow = [('train', 1)]
+dataset_type = 'RetinaFaceDataset'
+data_root = 'data/retinaface/'
+train_root = 'data/retinaface/train/'
+val_root = 'data/retinaface/val/'
+img_norm_cfg = dict(
+    mean=[127.5, 127.5, 127.5], std=[128.0, 128.0, 128.0], to_rgb=True)
+train_pipeline = [
+    dict(type='LoadImageFromFile', to_float32=True),
+    dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+    dict(
+        type='RandomSquareCrop',
+        crop_choice=[0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+        bbox_clip_border=False),
+    dict(
+        type='Resize',
+        img_scale=(672, 672),
+        keep_ratio=False,
+        bbox_clip_border=False),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='PhotoMetricDistortion',
+        brightness_delta=32,
+        contrast_range=(0.5, 1.5),
+        saturation_range=(0.5, 1.5),
+        hue_delta=18),
+    dict(
+        type='Normalize',
+        mean=[127.5, 127.5, 127.5],
+        std=[128.0, 128.0, 128.0],
+        to_rgb=True),
+    dict(type='DefaultFormatBundle'),
+    dict(
+        type='Collect',
+        keys=[
+            'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+            'gt_keypointss'
+        ])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(640, 640),
+        flip=False,
+        transforms=[
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip', flip_ratio=0.0),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='Pad', size=(640, 640), pad_val=0),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+data = dict(
+    samples_per_gpu=8,
+    workers_per_gpu=16,
+    train=dict(
+        type='RetinaFaceDataset',
+        ann_file='data/mix_ds/train_FD.txt',
+        img_prefix='data/mix_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile', to_float32=True),
+            dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+            dict(
+                type='RandomSquareCrop',
+                crop_choice=[
+                    0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0
+                ],
+                bbox_clip_border=False),
+            dict(
+                type='Resize',
+                img_scale=(672, 672),
+                keep_ratio=False,
+                bbox_clip_border=False),
+            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(
+                type='PhotoMetricDistortion',
+                brightness_delta=32,
+                contrast_range=(0.5, 1.5),
+                saturation_range=(0.5, 1.5),
+                hue_delta=18),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='DefaultFormatBundle'),
+            dict(
+                type='Collect',
+                keys=[
+                    'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+                    'gt_keypointss'
+                ])
+        ]),
+    val=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]),
+    test=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]))
+train_cfg = dict(
+    assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+    allowed_border=-1,
+    pos_weight=-1,
+    debug=False,
+    neg_weight_zero_prefix='/pii',
+    neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+    neg_weight_pii=0.5,
+    qscore='one')
+test_cfg = dict(
+    nms_pre=-1,
+    min_bbox_size=0,
+    score_thr=0.02,
+    nms=dict(type='nms', iou_threshold=0.45),
+    max_per_img=-1)
+model = dict(
+    type='SCRFD',
+    backbone=dict(
+        type='DINOv2ViT',
+        arch='vitl14',
+        patch_size=14,
+        registers=True,
+        drop_path_rate=0.3,
+        out_indices=(5, 11, 17, 23),
+        pretrained=
+        '/mnt/cachefs/esteban/pii/weights/dinov2_vitl14_reg4_pretrain.pth',
+        bf16=True,
+        use_checkpoint=False),
+    neck=dict(
+        type='SimpleFPN14',
+        in_channels=1024,
+        out_channels=128,
+        num_inputs=4,
+        fuse_inputs=False),
+    bbox_head=dict(
+        type='SCRFDHead',
+        num_classes=1,
+        in_channels=128,
+        stacked_convs=2,
+        feat_channels=256,
+        norm_cfg=dict(type='GN', num_groups=32, requires_grad=True),
+        cls_reg_share=True,
+        strides_share=True,
+        scale_mode=2,
+        anchor_generator=dict(
+            type='AnchorGenerator',
+            ratios=[1.0],
+            scales=[1, 2],
+            base_sizes=[16, 64, 256],
+            strides=[8, 16, 32]),
+        loss_cls=dict(
+            type='QualityFocalLoss',
+            use_sigmoid=True,
+            beta=2.0,
+            loss_weight=1.0),
+        loss_dfl=False,
+        reg_max=8,
+        loss_bbox=dict(type='DIoULoss', loss_weight=2.0),
+        use_kps=True,
+        loss_kps=dict(
+            type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
+        train_cfg=dict(
+            assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+            allowed_border=-1,
+            pos_weight=-1,
+            debug=False,
+            neg_weight_zero_prefix='/pii',
+            neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+            neg_weight_pii=0.5,
+            qscore='one'),
+        test_cfg=dict(
+            nms_pre=-1,
+            min_bbox_size=0,
+            score_thr=0.02,
+            nms=dict(type='nms', iou_threshold=0.45),
+            max_per_img=-1)))
+evaluation = dict(interval=10000, metric='mAP')
+custom_hooks = [
+    dict(
+        type='EMAHook', momentum=0.0002, interval=1, warm_up=100, priority=49)
+]
+custom_imports = dict(
+    imports=['dinov2_backbone', 'simple_fpn'], allow_failed_imports=False)
+gpu_ids = range(0, 8)
+
+2026-10-02 04:12:59,436 - mmdet - INFO - DINOv2ViT(vitl14) loaded /mnt/cachefs/esteban/pii/weights/dinov2_vitl14_reg4_pretrain.pth: 344 keys, missing=[] unexpected=['mask_token']
+2026-10-02 04:13:02,842 - mmdet - INFO - load checkpoint from local path: /mnt/cachefs/esteban/pii/runs/train/wd_armAL_fluence/epoch_20.pth
+2026-10-02 04:13:14,705 - mmdet - WARNING - The model and loaded state dict do not match exactly
+
+unexpected key in source state_dict: ema_backbone_cls_token, ema_backbone_pos_embed, ema_backbone_register_tokens, ema_backbone_patch_embed_proj_weight, ema_backbone_patch_embed_proj_bias, ema_backbone_blocks_0_norm1_weight, ema_backbone_blocks_0_norm1_bias, ema_backbone_blocks_0_attn_qkv_weight, ema_backbone_blocks_0_attn_qkv_bias, ema_backbone_blocks_0_attn_proj_weight, ema_backbone_blocks_0_attn_proj_bias, ema_backbone_blocks_0_ls1_gamma, ema_backbone_blocks_0_norm2_weight, ema_backbone_blocks_0_norm2_bias, ema_backbone_blocks_0_mlp_fc1_weight, ema_backbone_blocks_0_mlp_fc1_bias, ema_backbone_blocks_0_mlp_fc2_weight, ema_backbone_blocks_0_mlp_fc2_bias, ema_backbone_blocks_0_ls2_gamma, ema_backbone_blocks_1_norm1_weight, ema_backbone_blocks_1_norm1_bias, ema_backbone_blocks_1_attn_qkv_weight, ema_backbone_blocks_1_attn_qkv_bias, ema_backbone_blocks_1_attn_proj_weight, ema_backbone_blocks_1_attn_proj_bias, ema_backbone_blocks_1_ls1_gamma, ema_backbone_blocks_1_norm2_weight, ema_backbone_blocks_1_norm2_bias, ema_backbone_blocks_1_mlp_fc1_weight, ema_backbone_blocks_1_mlp_fc1_bias, ema_backbone_blocks_1_mlp_fc2_weight, ema_backbone_blocks_1_mlp_fc2_bias, ema_backbone_blocks_1_ls2_gamma, ema_backbone_blocks_2_norm1_weight, ema_backbone_blocks_2_norm1_bias, ema_backbone_blocks_2_attn_qkv_weight, ema_backbone_blocks_2_attn_qkv_bias, ema_backbone_blocks_2_attn_proj_weight, ema_backbone_blocks_2_attn_proj_bias, ema_backbone_blocks_2_ls1_gamma, ema_backbone_blocks_2_norm2_weight, ema_backbone_blocks_2_norm2_bias, ema_backbone_blocks_2_mlp_fc1_weight, ema_backbone_blocks_2_mlp_fc1_bias, ema_backbone_blocks_2_mlp_fc2_weight, ema_backbone_blocks_2_mlp_fc2_bias, ema_backbone_blocks_2_ls2_gamma, ema_backbone_blocks_3_norm1_weight, ema_backbone_blocks_3_norm1_bias, ema_backbone_blocks_3_attn_qkv_weight, ema_backbone_blocks_3_attn_qkv_bias, ema_backbone_blocks_3_attn_proj_weight, ema_backbone_blocks_3_attn_proj_bias, ema_backbone_blocks_3_ls1_gamma, ema_backbone_blocks_3_norm2_weight, ema_backbone_blocks_3_norm2_bias, ema_backbone_blocks_3_mlp_fc1_weight, ema_backbone_blocks_3_mlp_fc1_bias, ema_backbone_blocks_3_mlp_fc2_weight, ema_backbone_blocks_3_mlp_fc2_bias, ema_backbone_blocks_3_ls2_gamma, ema_backbone_blocks_4_norm1_weight, ema_backbone_blocks_4_norm1_bias, ema_backbone_blocks_4_attn_qkv_weight, ema_backbone_blocks_4_attn_qkv_bias, ema_backbone_blocks_4_attn_proj_weight, ema_backbone_blocks_4_attn_proj_bias, ema_backbone_blocks_4_ls1_gamma, ema_backbone_blocks_4_norm2_weight, ema_backbone_blocks_4_norm2_bias, ema_backbone_blocks_4_mlp_fc1_weight, ema_backbone_blocks_4_mlp_fc1_bias, ema_backbone_blocks_4_mlp_fc2_weight, ema_backbone_blocks_4_mlp_fc2_bias, ema_backbone_blocks_4_ls2_gamma, ema_backbone_blocks_5_norm1_weight, ema_backbone_blocks_5_norm1_bias, ema_backbone_blocks_5_attn_qkv_weight, ema_backbone_blocks_5_attn_qkv_bias, ema_backbone_blocks_5_attn_proj_weight, ema_backbone_blocks_5_attn_proj_bias, ema_backbone_blocks_5_ls1_gamma, ema_backbone_blocks_5_norm2_weight, ema_backbone_blocks_5_norm2_bias, ema_backbone_blocks_5_mlp_fc1_weight, ema_backbone_blocks_5_mlp_fc1_bias, ema_backbone_blocks_5_mlp_fc2_weight, ema_backbone_blocks_5_mlp_fc2_bias, ema_backbone_blocks_5_ls2_gamma, ema_backbone_blocks_6_norm1_weight, ema_backbone_blocks_6_norm1_bias, ema_backbone_blocks_6_attn_qkv_weight, ema_backbone_blocks_6_attn_qkv_bias, ema_backbone_blocks_6_attn_proj_weight, ema_backbone_blocks_6_attn_proj_bias, ema_backbone_blocks_6_ls1_gamma, ema_backbone_blocks_6_norm2_weight, ema_backbone_blocks_6_norm2_bias, ema_backbone_blocks_6_mlp_fc1_weight, ema_backbone_blocks_6_mlp_fc1_bias, ema_backbone_blocks_6_mlp_fc2_weight, ema_backbone_blocks_6_mlp_fc2_bias, ema_backbone_blocks_6_ls2_gamma, ema_backbone_blocks_7_norm1_weight, ema_backbone_blocks_7_norm1_bias, ema_backbone_blocks_7_attn_qkv_weight, ema_backbone_blocks_7_attn_qkv_bias, ema_backbone_blocks_7_attn_proj_weight, ema_backbone_blocks_7_attn_proj_bias, ema_backbone_blocks_7_ls1_gamma, ema_backbone_blocks_7_norm2_weight, ema_backbone_blocks_7_norm2_bias, ema_backbone_blocks_7_mlp_fc1_weight, ema_backbone_blocks_7_mlp_fc1_bias, ema_backbone_blocks_7_mlp_fc2_weight, ema_backbone_blocks_7_mlp_fc2_bias, ema_backbone_blocks_7_ls2_gamma, ema_backbone_blocks_8_norm1_weight, ema_backbone_blocks_8_norm1_bias, ema_backbone_blocks_8_attn_qkv_weight, ema_backbone_blocks_8_attn_qkv_bias, ema_backbone_blocks_8_attn_proj_weight, ema_backbone_blocks_8_attn_proj_bias, ema_backbone_blocks_8_ls1_gamma, ema_backbone_blocks_8_norm2_weight, ema_backbone_blocks_8_norm2_bias, ema_backbone_blocks_8_mlp_fc1_weight, ema_backbone_blocks_8_mlp_fc1_bias, ema_backbone_blocks_8_mlp_fc2_weight, ema_backbone_blocks_8_mlp_fc2_bias, ema_backbone_blocks_8_ls2_gamma, ema_backbone_blocks_9_norm1_weight, ema_backbone_blocks_9_norm1_bias, ema_backbone_blocks_9_attn_qkv_weight, ema_backbone_blocks_9_attn_qkv_bias, ema_backbone_blocks_9_attn_proj_weight, ema_backbone_blocks_9_attn_proj_bias, ema_backbone_blocks_9_ls1_gamma, ema_backbone_blocks_9_norm2_weight, ema_backbone_blocks_9_norm2_bias, ema_backbone_blocks_9_mlp_fc1_weight, ema_backbone_blocks_9_mlp_fc1_bias, ema_backbone_blocks_9_mlp_fc2_weight, ema_backbone_blocks_9_mlp_fc2_bias, ema_backbone_blocks_9_ls2_gamma, ema_backbone_blocks_10_norm1_weight, ema_backbone_blocks_10_norm1_bias, ema_backbone_blocks_10_attn_qkv_weight, ema_backbone_blocks_10_attn_qkv_bias, ema_backbone_blocks_10_attn_proj_weight, ema_backbone_blocks_10_attn_proj_bias, ema_backbone_blocks_10_ls1_gamma, ema_backbone_blocks_10_norm2_weight, ema_backbone_blocks_10_norm2_bias, ema_backbone_blocks_10_mlp_fc1_weight, ema_backbone_blocks_10_mlp_fc1_bias, ema_backbone_blocks_10_mlp_fc2_weight, ema_backbone_blocks_10_mlp_fc2_bias, ema_backbone_blocks_10_ls2_gamma, ema_backbone_blocks_11_norm1_weight, ema_backbone_blocks_11_norm1_bias, ema_backbone_blocks_11_attn_qkv_weight, ema_backbone_blocks_11_attn_qkv_bias, ema_backbone_blocks_11_attn_proj_weight, ema_backbone_blocks_11_attn_proj_bias, ema_backbone_blocks_11_ls1_gamma, ema_backbone_blocks_11_norm2_weight, ema_backbone_blocks_11_norm2_bias, ema_backbone_blocks_11_mlp_fc1_weight, ema_backbone_blocks_11_mlp_fc1_bias, ema_backbone_blocks_11_mlp_fc2_weight, ema_backbone_blocks_11_mlp_fc2_bias, ema_backbone_blocks_11_ls2_gamma, ema_backbone_blocks_12_norm1_weight, ema_backbone_blocks_12_norm1_bias, ema_backbone_blocks_12_attn_qkv_weight, ema_backbone_blocks_12_attn_qkv_bias, ema_backbone_blocks_12_attn_proj_weight, ema_backbone_blocks_12_attn_proj_bias, ema_backbone_blocks_12_ls1_gamma, ema_backbone_blocks_12_norm2_weight, ema_backbone_blocks_12_norm2_bias, ema_backbone_blocks_12_mlp_fc1_weight, ema_backbone_blocks_12_mlp_fc1_bias, ema_backbone_blocks_12_mlp_fc2_weight, ema_backbone_blocks_12_mlp_fc2_bias, ema_backbone_blocks_12_ls2_gamma, ema_backbone_blocks_13_norm1_weight, ema_backbone_blocks_13_norm1_bias, ema_backbone_blocks_13_attn_qkv_weight, ema_backbone_blocks_13_attn_qkv_bias, ema_backbone_blocks_13_attn_proj_weight, ema_backbone_blocks_13_attn_proj_bias, ema_backbone_blocks_13_ls1_gamma, ema_backbone_blocks_13_norm2_weight, ema_backbone_blocks_13_norm2_bias, ema_backbone_blocks_13_mlp_fc1_weight, ema_backbone_blocks_13_mlp_fc1_bias, ema_backbone_blocks_13_mlp_fc2_weight, ema_backbone_blocks_13_mlp_fc2_bias, ema_backbone_blocks_13_ls2_gamma, ema_backbone_blocks_14_norm1_weight, ema_backbone_blocks_14_norm1_bias, ema_backbone_blocks_14_attn_qkv_weight, ema_backbone_blocks_14_attn_qkv_bias, ema_backbone_blocks_14_attn_proj_weight, ema_backbone_blocks_14_attn_proj_bias, ema_backbone_blocks_14_ls1_gamma, ema_backbone_blocks_14_norm2_weight, ema_backbone_blocks_14_norm2_bias, ema_backbone_blocks_14_mlp_fc1_weight, ema_backbone_blocks_14_mlp_fc1_bias, ema_backbone_blocks_14_mlp_fc2_weight, ema_backbone_blocks_14_mlp_fc2_bias, ema_backbone_blocks_14_ls2_gamma, ema_backbone_blocks_15_norm1_weight, ema_backbone_blocks_15_norm1_bias, ema_backbone_blocks_15_attn_qkv_weight, ema_backbone_blocks_15_attn_qkv_bias, ema_backbone_blocks_15_attn_proj_weight, ema_backbone_blocks_15_attn_proj_bias, ema_backbone_blocks_15_ls1_gamma, ema_backbone_blocks_15_norm2_weight, ema_backbone_blocks_15_norm2_bias, ema_backbone_blocks_15_mlp_fc1_weight, ema_backbone_blocks_15_mlp_fc1_bias, ema_backbone_blocks_15_mlp_fc2_weight, ema_backbone_blocks_15_mlp_fc2_bias, ema_backbone_blocks_15_ls2_gamma, ema_backbone_blocks_16_norm1_weight, ema_backbone_blocks_16_norm1_bias, ema_backbone_blocks_16_attn_qkv_weight, ema_backbone_blocks_16_attn_qkv_bias, ema_backbone_blocks_16_attn_proj_weight, ema_backbone_blocks_16_attn_proj_bias, ema_backbone_blocks_16_ls1_gamma, ema_backbone_blocks_16_norm2_weight, ema_backbone_blocks_16_norm2_bias, ema_backbone_blocks_16_mlp_fc1_weight, ema_backbone_blocks_16_mlp_fc1_bias, ema_backbone_blocks_16_mlp_fc2_weight, ema_backbone_blocks_16_mlp_fc2_bias, ema_backbone_blocks_16_ls2_gamma, ema_backbone_blocks_17_norm1_weight, ema_backbone_blocks_17_norm1_bias, ema_backbone_blocks_17_attn_qkv_weight, ema_backbone_blocks_17_attn_qkv_bias, ema_backbone_blocks_17_attn_proj_weight, ema_backbone_blocks_17_attn_proj_bias, ema_backbone_blocks_17_ls1_gamma, ema_backbone_blocks_17_norm2_weight, ema_backbone_blocks_17_norm2_bias, ema_backbone_blocks_17_mlp_fc1_weight, ema_backbone_blocks_17_mlp_fc1_bias, ema_backbone_blocks_17_mlp_fc2_weight, ema_backbone_blocks_17_mlp_fc2_bias, ema_backbone_blocks_17_ls2_gamma, ema_backbone_blocks_18_norm1_weight, ema_backbone_blocks_18_norm1_bias, ema_backbone_blocks_18_attn_qkv_weight, ema_backbone_blocks_18_attn_qkv_bias, ema_backbone_blocks_18_attn_proj_weight, ema_backbone_blocks_18_attn_proj_bias, ema_backbone_blocks_18_ls1_gamma, ema_backbone_blocks_18_norm2_weight, ema_backbone_blocks_18_norm2_bias, ema_backbone_blocks_18_mlp_fc1_weight, ema_backbone_blocks_18_mlp_fc1_bias, ema_backbone_blocks_18_mlp_fc2_weight, ema_backbone_blocks_18_mlp_fc2_bias, ema_backbone_blocks_18_ls2_gamma, ema_backbone_blocks_19_norm1_weight, ema_backbone_blocks_19_norm1_bias, ema_backbone_blocks_19_attn_qkv_weight, ema_backbone_blocks_19_attn_qkv_bias, ema_backbone_blocks_19_attn_proj_weight, ema_backbone_blocks_19_attn_proj_bias, ema_backbone_blocks_19_ls1_gamma, ema_backbone_blocks_19_norm2_weight, ema_backbone_blocks_19_norm2_bias, ema_backbone_blocks_19_mlp_fc1_weight, ema_backbone_blocks_19_mlp_fc1_bias, ema_backbone_blocks_19_mlp_fc2_weight, ema_backbone_blocks_19_mlp_fc2_bias, ema_backbone_blocks_19_ls2_gamma, ema_backbone_blocks_20_norm1_weight, ema_backbone_blocks_20_norm1_bias, ema_backbone_blocks_20_attn_qkv_weight, ema_backbone_blocks_20_attn_qkv_bias, ema_backbone_blocks_20_attn_proj_weight, ema_backbone_blocks_20_attn_proj_bias, ema_backbone_blocks_20_ls1_gamma, ema_backbone_blocks_20_norm2_weight, ema_backbone_blocks_20_norm2_bias, ema_backbone_blocks_20_mlp_fc1_weight, ema_backbone_blocks_20_mlp_fc1_bias, ema_backbone_blocks_20_mlp_fc2_weight, ema_backbone_blocks_20_mlp_fc2_bias, ema_backbone_blocks_20_ls2_gamma, ema_backbone_blocks_21_norm1_weight, ema_backbone_blocks_21_norm1_bias, ema_backbone_blocks_21_attn_qkv_weight, ema_backbone_blocks_21_attn_qkv_bias, ema_backbone_blocks_21_attn_proj_weight, ema_backbone_blocks_21_attn_proj_bias, ema_backbone_blocks_21_ls1_gamma, ema_backbone_blocks_21_norm2_weight, ema_backbone_blocks_21_norm2_bias, ema_backbone_blocks_21_mlp_fc1_weight, ema_backbone_blocks_21_mlp_fc1_bias, ema_backbone_blocks_21_mlp_fc2_weight, ema_backbone_blocks_21_mlp_fc2_bias, ema_backbone_blocks_21_ls2_gamma, ema_backbone_blocks_22_norm1_weight, ema_backbone_blocks_22_norm1_bias, ema_backbone_blocks_22_attn_qkv_weight, ema_backbone_blocks_22_attn_qkv_bias, ema_backbone_blocks_22_attn_proj_weight, ema_backbone_blocks_22_attn_proj_bias, ema_backbone_blocks_22_ls1_gamma, ema_backbone_blocks_22_norm2_weight, ema_backbone_blocks_22_norm2_bias, ema_backbone_blocks_22_mlp_fc1_weight, ema_backbone_blocks_22_mlp_fc1_bias, ema_backbone_blocks_22_mlp_fc2_weight, ema_backbone_blocks_22_mlp_fc2_bias, ema_backbone_blocks_22_ls2_gamma, ema_backbone_blocks_23_norm1_weight, ema_backbone_blocks_23_norm1_bias, ema_backbone_blocks_23_attn_qkv_weight, ema_backbone_blocks_23_attn_qkv_bias, ema_backbone_blocks_23_attn_proj_weight, ema_backbone_blocks_23_attn_proj_bias, ema_backbone_blocks_23_ls1_gamma, ema_backbone_blocks_23_norm2_weight, ema_backbone_blocks_23_norm2_bias, ema_backbone_blocks_23_mlp_fc1_weight, ema_backbone_blocks_23_mlp_fc1_bias, ema_backbone_blocks_23_mlp_fc2_weight, ema_backbone_blocks_23_mlp_fc2_bias, ema_backbone_blocks_23_ls2_gamma, ema_backbone_norm_weight, ema_backbone_norm_bias, ema_neck_lateral_conv_weight, ema_neck_lateral_conv_bias, ema_neck_level_convs_0_conv_weight, ema_neck_level_convs_0_gn_weight, ema_neck_level_convs_0_gn_bias, ema_neck_level_convs_1_conv_weight, ema_neck_level_convs_1_gn_weight, ema_neck_level_convs_1_gn_bias, ema_neck_level_convs_2_conv_weight, ema_neck_level_convs_2_gn_weight, ema_neck_level_convs_2_gn_bias, ema_neck_out_convs_0_conv_weight, ema_neck_out_convs_0_gn_weight, ema_neck_out_convs_0_gn_bias, ema_neck_out_convs_1_conv_weight, ema_neck_out_convs_1_gn_weight, ema_neck_out_convs_1_gn_bias, ema_neck_out_convs_2_conv_weight, ema_neck_out_convs_2_gn_weight, ema_neck_out_convs_2_gn_bias, ema_bbox_head_cls_stride_convs_0_0_conv_weight, ema_bbox_head_cls_stride_convs_0_0_gn_weight, ema_bbox_head_cls_stride_convs_0_0_gn_bias, ema_bbox_head_cls_stride_convs_0_1_conv_weight, ema_bbox_head_cls_stride_convs_0_1_gn_weight, ema_bbox_head_cls_stride_convs_0_1_gn_bias, ema_bbox_head_stride_cls_0_weight, ema_bbox_head_stride_cls_0_bias, ema_bbox_head_stride_reg_0_weight, ema_bbox_head_stride_reg_0_bias, ema_bbox_head_stride_kps_0_weight, ema_bbox_head_stride_kps_0_bias, ema_bbox_head_scales_0_scale, ema_bbox_head_scales_1_scale, ema_bbox_head_scales_2_scale
+
+2026-10-02 04:13:14,707 - mmdet - INFO - Start running, host: esteban@fluence6, work_dir: /mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence
+2026-10-02 04:13:14,707 - mmdet - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(49          ) EMAHook                            
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) GradientCumulativeOptimizerHook    
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2026-10-02 04:13:14,707 - mmdet - INFO - workflow: [('train', 1)], max: 5 epochs
+2026-10-02 04:13:14,789 - mmdet - INFO - Checkpoints will be saved to /mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence by HardDiskBackend.
+2026-10-02 04:13:40,017 - mmdet - INFO - Epoch [1][50/454]	lr: 9.284e-09, eta: 0:18:39, time: 0.504, data_time: 0.129, memory: 23314, loss_cls: 0.5950, loss_bbox: 0.7107, loss_kps: 0.0000, loss: 1.3057, grad_norm: 14.2564
+2026-10-02 04:13:53,881 - mmdet - INFO - Epoch [1][100/454]	lr: 1.872e-08, eta: 0:14:08, time: 0.277, data_time: 0.008, memory: 23314, loss_cls: 0.5783, loss_bbox: 0.6888, loss_kps: 0.0000, loss: 1.2671, grad_norm: 13.3421
+2026-10-02 04:14:07,817 - mmdet - INFO - Epoch [1][150/454]	lr: 2.815e-08, eta: 0:12:29, time: 0.279, data_time: 0.008, memory: 23314, loss_cls: 0.5377, loss_bbox: 0.6436, loss_kps: 0.0000, loss: 1.1813, grad_norm: 12.4724
+2026-10-02 04:14:21,869 - mmdet - INFO - Epoch [1][200/454]	lr: 3.759e-08, eta: 0:11:34, time: 0.281, data_time: 0.008, memory: 23314, loss_cls: 0.5460, loss_bbox: 0.6334, loss_kps: 0.0000, loss: 1.1794, grad_norm: 12.2776
+2026-10-02 04:14:35,847 - mmdet - INFO - Epoch [1][250/454]	lr: 3.778e-08, eta: 0:10:54, time: 0.280, data_time: 0.008, memory: 23314, loss_cls: 0.5006, loss_bbox: 0.6330, loss_kps: 0.0000, loss: 1.1336, grad_norm: 11.2111
+2026-10-02 04:14:49,617 - mmdet - INFO - Epoch [1][300/454]	lr: 3.778e-08, eta: 0:10:22, time: 0.275, data_time: 0.008, memory: 23314, loss_cls: 0.5213, loss_bbox: 0.6183, loss_kps: 0.0000, loss: 1.1396, grad_norm: 11.7319
+2026-10-02 04:15:03,420 - mmdet - INFO - Epoch [1][350/454]	lr: 3.778e-08, eta: 0:09:55, time: 0.276, data_time: 0.008, memory: 23314, loss_cls: 0.4943, loss_bbox: 0.6220, loss_kps: 0.0000, loss: 1.1163, grad_norm: 11.2707
+2026-10-02 04:15:17,433 - mmdet - INFO - Epoch [1][400/454]	lr: 3.778e-08, eta: 0:09:33, time: 0.280, data_time: 0.009, memory: 23314, loss_cls: 0.5062, loss_bbox: 0.6319, loss_kps: 0.0000, loss: 1.1382, grad_norm: 11.0090
+2026-10-02 04:15:30,331 - mmdet - INFO - Epoch [1][450/454]	lr: 3.778e-08, eta: 0:09:08, time: 0.258, data_time: 0.008, memory: 23314, loss_cls: 0.5017, loss_bbox: 0.6366, loss_kps: 0.0000, loss: 1.1383, grad_norm: 11.3466
+2026-10-02 04:15:32,152 - mmdet - INFO - Saving checkpoint at 1 epochs
+2026-10-02 04:16:00,843 - mmdet - INFO - Epoch [2][50/454]	lr: 3.778e-08, eta: 0:08:57, time: 0.360, data_time: 0.083, memory: 23314, loss_cls: 0.4819, loss_bbox: 0.6085, loss_kps: 0.0000, loss: 1.0905, grad_norm: 10.0531
+2026-10-02 04:16:15,012 - mmdet - INFO - Epoch [2][100/454]	lr: 3.778e-08, eta: 0:08:39, time: 0.283, data_time: 0.007, memory: 23314, loss_cls: 0.4711, loss_bbox: 0.6082, loss_kps: 0.0000, loss: 1.0793, grad_norm: 10.0885
+2026-10-02 04:16:29,104 - mmdet - INFO - Epoch [2][150/454]	lr: 3.778e-08, eta: 0:08:21, time: 0.282, data_time: 0.007, memory: 23314, loss_cls: 0.4850, loss_bbox: 0.6300, loss_kps: 0.0000, loss: 1.1150, grad_norm: 11.1847
+2026-10-02 04:16:43,232 - mmdet - INFO - Epoch [2][200/454]	lr: 3.778e-08, eta: 0:08:04, time: 0.283, data_time: 0.007, memory: 23314, loss_cls: 0.4647, loss_bbox: 0.6261, loss_kps: 0.0000, loss: 1.0908, grad_norm: 10.5538
+2026-10-02 04:16:57,439 - mmdet - INFO - Epoch [2][250/454]	lr: 3.778e-08, eta: 0:07:47, time: 0.284, data_time: 0.008, memory: 23314, loss_cls: 0.4603, loss_bbox: 0.6117, loss_kps: 0.0000, loss: 1.0720, grad_norm: 10.0108
+2026-10-02 04:17:11,493 - mmdet - INFO - Epoch [2][300/454]	lr: 3.778e-08, eta: 0:07:30, time: 0.281, data_time: 0.007, memory: 23314, loss_cls: 0.4725, loss_bbox: 0.6102, loss_kps: 0.0000, loss: 1.0827, grad_norm: 10.8103
+2026-10-02 04:17:26,034 - mmdet - INFO - Epoch [2][350/454]	lr: 3.778e-08, eta: 0:07:15, time: 0.291, data_time: 0.008, memory: 23314, loss_cls: 0.4803, loss_bbox: 0.6307, loss_kps: 0.0000, loss: 1.1110, grad_norm: 10.8325
+2026-10-02 04:17:40,846 - mmdet - INFO - Epoch [2][400/454]	lr: 3.778e-08, eta: 0:07:00, time: 0.296, data_time: 0.008, memory: 23314, loss_cls: 0.4800, loss_bbox: 0.6110, loss_kps: 0.0000, loss: 1.0909, grad_norm: 10.5056
+2026-10-02 04:17:53,917 - mmdet - INFO - Epoch [2][450/454]	lr: 3.778e-08, eta: 0:06:42, time: 0.262, data_time: 0.009, memory: 23314, loss_cls: 0.4614, loss_bbox: 0.6044, loss_kps: 0.0000, loss: 1.0659, grad_norm: 9.9285
+2026-10-02 04:17:55,545 - mmdet - INFO - Saving checkpoint at 2 epochs
+2026-10-02 04:18:24,797 - mmdet - INFO - Epoch [3][50/454]	lr: 3.778e-08, eta: 0:06:30, time: 0.365, data_time: 0.082, memory: 23314, loss_cls: 0.4832, loss_bbox: 0.6209, loss_kps: 0.0000, loss: 1.1041, grad_norm: 9.9325
+2026-10-02 04:18:38,983 - mmdet - INFO - Epoch [3][100/454]	lr: 3.778e-08, eta: 0:06:14, time: 0.284, data_time: 0.007, memory: 23314, loss_cls: 0.4897, loss_bbox: 0.6075, loss_kps: 0.0000, loss: 1.0972, grad_norm: 10.7658
+2026-10-02 04:18:53,188 - mmdet - INFO - Epoch [3][150/454]	lr: 3.778e-08, eta: 0:05:58, time: 0.284, data_time: 0.007, memory: 23314, loss_cls: 0.4450, loss_bbox: 0.6214, loss_kps: 0.0000, loss: 1.0664, grad_norm: 10.2394
+2026-10-02 04:19:07,471 - mmdet - INFO - Epoch [3][200/454]	lr: 3.778e-08, eta: 0:05:43, time: 0.286, data_time: 0.008, memory: 23314, loss_cls: 0.4629, loss_bbox: 0.5968, loss_kps: 0.0000, loss: 1.0597, grad_norm: 9.3011
+2026-10-02 04:19:21,618 - mmdet - INFO - Epoch [3][250/454]	lr: 3.778e-08, eta: 0:05:28, time: 0.283, data_time: 0.007, memory: 23314, loss_cls: 0.4644, loss_bbox: 0.6257, loss_kps: 0.0000, loss: 1.0901, grad_norm: 9.9650
+2026-10-02 04:19:35,713 - mmdet - INFO - Epoch [3][300/454]	lr: 3.778e-08, eta: 0:05:12, time: 0.282, data_time: 0.008, memory: 23314, loss_cls: 0.4627, loss_bbox: 0.6164, loss_kps: 0.0000, loss: 1.0791, grad_norm: 9.4134
+2026-10-02 04:19:49,684 - mmdet - INFO - Epoch [3][350/454]	lr: 3.778e-08, eta: 0:04:57, time: 0.279, data_time: 0.007, memory: 23314, loss_cls: 0.4509, loss_bbox: 0.6063, loss_kps: 0.0000, loss: 1.0572, grad_norm: 9.9531
+2026-10-02 04:20:03,961 - mmdet - INFO - Epoch [3][400/454]	lr: 3.778e-08, eta: 0:04:42, time: 0.285, data_time: 0.007, memory: 23314, loss_cls: 0.4912, loss_bbox: 0.6117, loss_kps: 0.0000, loss: 1.1029, grad_norm: 9.5321
+2026-10-02 04:20:16,929 - mmdet - INFO - Epoch [3][450/454]	lr: 3.778e-08, eta: 0:04:26, time: 0.259, data_time: 0.007, memory: 23314, loss_cls: 0.4479, loss_bbox: 0.6052, loss_kps: 0.0000, loss: 1.0531, grad_norm: 9.6258
+2026-10-02 04:20:18,568 - mmdet - INFO - Saving checkpoint at 3 epochs
+2026-10-02 04:20:46,984 - mmdet - INFO - Epoch [4][50/454]	lr: 3.778e-08, eta: 0:04:12, time: 0.358, data_time: 0.081, memory: 23314, loss_cls: 0.4450, loss_bbox: 0.5883, loss_kps: 0.0000, loss: 1.0332, grad_norm: 9.7438
+2026-10-02 04:21:00,967 - mmdet - INFO - Epoch [4][100/454]	lr: 3.778e-08, eta: 0:03:57, time: 0.279, data_time: 0.008, memory: 23314, loss_cls: 0.4445, loss_bbox: 0.5933, loss_kps: 0.0000, loss: 1.0378, grad_norm: 9.6278
+2026-10-02 04:21:15,210 - mmdet - INFO - Epoch [4][150/454]	lr: 3.778e-08, eta: 0:03:42, time: 0.286, data_time: 0.008, memory: 23314, loss_cls: 0.4581, loss_bbox: 0.6323, loss_kps: 0.0000, loss: 1.0903, grad_norm: 10.6294
+2026-10-02 04:21:29,521 - mmdet - INFO - Epoch [4][200/454]	lr: 3.778e-08, eta: 0:03:27, time: 0.286, data_time: 0.007, memory: 23314, loss_cls: 0.4582, loss_bbox: 0.5996, loss_kps: 0.0000, loss: 1.0578, grad_norm: 9.3556
+2026-10-02 04:21:43,764 - mmdet - INFO - Epoch [4][250/454]	lr: 3.778e-08, eta: 0:03:12, time: 0.284, data_time: 0.007, memory: 23314, loss_cls: 0.4429, loss_bbox: 0.6029, loss_kps: 0.0000, loss: 1.0458, grad_norm: 9.0322
+2026-10-02 04:21:58,793 - mmdet - INFO - Epoch [4][300/454]	lr: 3.778e-08, eta: 0:02:58, time: 0.301, data_time: 0.008, memory: 23314, loss_cls: 0.4644, loss_bbox: 0.6070, loss_kps: 0.0000, loss: 1.0713, grad_norm: 10.0507
+2026-10-02 04:22:12,742 - mmdet - INFO - Epoch [4][350/454]	lr: 3.778e-08, eta: 0:02:43, time: 0.279, data_time: 0.007, memory: 23314, loss_cls: 0.4525, loss_bbox: 0.6163, loss_kps: 0.0000, loss: 1.0688, grad_norm: 10.1900
+2026-10-02 04:22:26,867 - mmdet - INFO - Epoch [4][400/454]	lr: 3.778e-08, eta: 0:02:28, time: 0.282, data_time: 0.008, memory: 23314, loss_cls: 0.4541, loss_bbox: 0.6065, loss_kps: 0.0000, loss: 1.0605, grad_norm: 8.9425
+2026-10-02 04:22:39,825 - mmdet - INFO - Epoch [4][450/454]	lr: 3.778e-08, eta: 0:02:13, time: 0.260, data_time: 0.009, memory: 23314, loss_cls: 0.4386, loss_bbox: 0.5965, loss_kps: 0.0000, loss: 1.0351, grad_norm: 9.1268
+2026-10-02 04:22:41,440 - mmdet - INFO - Saving checkpoint at 4 epochs
+2026-10-02 04:23:09,816 - mmdet - INFO - Epoch [5][50/454]	lr: 3.778e-09, eta: 0:01:58, time: 0.361, data_time: 0.082, memory: 23314, loss_cls: 0.4426, loss_bbox: 0.5931, loss_kps: 0.0000, loss: 1.0357, grad_norm: 9.5531
+2026-10-02 04:23:24,423 - mmdet - INFO - Epoch [5][100/454]	lr: 3.778e-09, eta: 0:01:43, time: 0.292, data_time: 0.008, memory: 23314, loss_cls: 0.4377, loss_bbox: 0.5935, loss_kps: 0.0000, loss: 1.0312, grad_norm: 9.2077
+2026-10-02 04:23:39,129 - mmdet - INFO - Epoch [5][150/454]	lr: 3.778e-09, eta: 0:01:28, time: 0.293, data_time: 0.008, memory: 23314, loss_cls: 0.4360, loss_bbox: 0.5964, loss_kps: 0.0000, loss: 1.0324, grad_norm: 9.8594
+2026-10-02 04:23:53,446 - mmdet - INFO - Epoch [5][200/454]	lr: 3.778e-09, eta: 0:01:14, time: 0.287, data_time: 0.008, memory: 23314, loss_cls: 0.4425, loss_bbox: 0.6148, loss_kps: 0.0000, loss: 1.0573, grad_norm: 10.2607
+2026-10-02 04:24:08,089 - mmdet - INFO - Epoch [5][250/454]	lr: 3.778e-09, eta: 0:00:59, time: 0.292, data_time: 0.007, memory: 23314, loss_cls: 0.4711, loss_bbox: 0.6022, loss_kps: 0.0000, loss: 1.0734, grad_norm: 10.3479
+2026-10-02 04:24:22,694 - mmdet - INFO - Epoch [5][300/454]	lr: 3.778e-09, eta: 0:00:45, time: 0.293, data_time: 0.009, memory: 23314, loss_cls: 0.4694, loss_bbox: 0.5966, loss_kps: 0.0000, loss: 1.0660, grad_norm: 9.7036
+2026-10-02 04:24:37,266 - mmdet - INFO - Epoch [5][350/454]	lr: 3.778e-09, eta: 0:00:30, time: 0.291, data_time: 0.008, memory: 23314, loss_cls: 0.4472, loss_bbox: 0.6098, loss_kps: 0.0000, loss: 1.0570, grad_norm: 9.9679
+2026-10-02 04:24:51,493 - mmdet - INFO - Epoch [5][400/454]	lr: 3.778e-09, eta: 0:00:15, time: 0.285, data_time: 0.009, memory: 23314, loss_cls: 0.4564, loss_bbox: 0.5977, loss_kps: 0.0000, loss: 1.0542, grad_norm: 9.8780
+2026-10-02 04:25:04,482 - mmdet - INFO - Epoch [5][450/454]	lr: 3.778e-09, eta: 0:00:01, time: 0.260, data_time: 0.007, memory: 23314, loss_cls: 0.4341, loss_bbox: 0.5923, loss_kps: 0.0000, loss: 1.0264, grad_norm: 9.6323
+2026-10-02 04:25:06,087 - mmdet - INFO - Saving checkpoint at 5 epochs

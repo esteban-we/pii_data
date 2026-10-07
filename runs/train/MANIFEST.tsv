@@ -1129,6 +1129,145 @@ runs/train/scrfd/armAT/scrfd_armAT_fluence.py	fluence1:/mnt/cachefs/esteban/pii/
 runs/train/scrfd/armAT/slurm-24121.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAT_fluence/slurm-24121.err	0	d41d8cd98f00b204e9800998ecf8427e	
 runs/train/scrfd/armAT/slurm-24121.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAT_fluence/slurm-24121.out	401	137471b3b13a6d8ca618e382f2b72a28	
 runs/train/scrfd/armAT/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAT_fluence/train.log	692278	2354ad227b324397fb8e5dff525292e4	pii/models/scrfd/armAT/train.log
+runs/train/scrfd/armAU/20260930_012445.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/20260930_012445.log	698878	6a8b618f7275a8fcd04a11d588bbce69	
+runs/train/scrfd/armAU/20260930_012445.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/20260930_012445.log.json	652006	e311862230c9c355e60c86d6bf0c799b	
+runs/train/scrfd/armAU/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/babysit.log	447	9b89ba01a7b51f0d06b6932e1cde2b52	
+runs/train/scrfd/armAU/epochs/epoch_30.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/epoch_30.pth	18217448964	6df5a96f281da7f6c22d67866f4618ce	pii/models/scrfd/armAU/epochs/epoch_30.pth
+runs/train/scrfd/armAU/scrfd_armAU_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/scrfd_armAU_fluence.py	55310	902e271e6d5bd43deaa51bab496ef273	
+runs/train/scrfd/armAU/slurm-24122.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/slurm-24122.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAU/slurm-24122.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/slurm-24122.out	401	2c2f935e60aead5e62f80a8ead159c30	
+runs/train/scrfd/armAU/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence/train.log	711530	500f78207398ceebbc3d92090ad90ae8	pii/models/scrfd/armAU/train.log
+runs/train/scrfd/armAV34/20261002_040344.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/20261002_040344.log	39392	56ab46f27b33092cfc6212b4ddcfcb11	
+runs/train/scrfd/armAV34/20261002_040344.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/20261002_040344.log.json	20701	eb5bf56fd9d0d011a69698747d045b96	
+runs/train/scrfd/armAV34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/babysit.log	452	25d69499a558673a5aacb9b49e6abae7	
+runs/train/scrfd/armAV34/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/epoch_5.pth	118915917	95fdb41b841fcb18676b39d1abe102ab	pii/models/scrfd/armAV34/epochs/epoch_5.pth
+runs/train/scrfd/armAV34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armAV34/onnx/armAV34_det34g.onnx		39427800	917f4f0f73fb47ccd3fa4c0ea24e9013	pii/models/scrfd/armAV34/onnx/armAV34_det34g.onnx
+runs/train/scrfd/armAV34/scrfd_armAV34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/scrfd_armAV34_fluence.py	8383	5d0cfaae5c929a523b5eba0b87b252d8	
+runs/train/scrfd/armAV34/slurm-27805.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/slurm-27805.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAV34/slurm-27805.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/slurm-27805.out	401	f2c89d7471e88352be28a9912ab9b08a	
+runs/train/scrfd/armAV34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence/train.log	50932	ddb09cfb19a14d5caa0ced52721e2cdd	pii/models/scrfd/armAV34/train.log
+runs/train/scrfd/armAW34/20261002_042533.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/20261002_042533.log	167375	f79f21e53e9f3685a1dedd08540f0eac	
+runs/train/scrfd/armAW34/20261002_042533.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/20261002_042533.log.json	139256	be5f3c93ef19c841d7cd4e8c6dad788a	
+runs/train/scrfd/armAW34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/babysit.log	452	cb1445ffb8e234b6fe746bbd0b26ce4c	
+runs/train/scrfd/armAW34/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/epoch_5.pth	118918413	8dc936abb16c0b79fdf98ac529f40d06	pii/models/scrfd/armAW34/epochs/epoch_5.pth
+runs/train/scrfd/armAW34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armAW34/onnx/armAW34_det34g.onnx		39427800	cc380cba5ea0f91a74008453f4a4131a	pii/models/scrfd/armAW34/onnx/armAW34_det34g.onnx
+runs/train/scrfd/armAW34/scrfd_armAW34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/scrfd_armAW34_fluence.py	10865	9ce7e6f11d037a0c3a59aaf40d078a4c	
+runs/train/scrfd/armAW34/slurm-27807.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/slurm-27807.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAW34/slurm-27807.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/slurm-27807.out	401	b00192f47ab9868ecf84aa828f99f3f5	
+runs/train/scrfd/armAW34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAW34_fluence/train.log	179115	05d401025a84ffdb2f2ef95f5245ce27	pii/models/scrfd/armAW34/train.log
+runs/train/scrfd/armAX/20261002_041252.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/20261002_041252.log	67637	baeb16d0232022ad04695baf38a1b109	
+runs/train/scrfd/armAX/20261002_041252.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/20261002_041252.log.json	50823	d79fe2639af40ff0a2366f7827ee4e29	
+runs/train/scrfd/armAX/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/babysit.log	446	e7b4e462097041387655ee6b36ca8dc7	
+runs/train/scrfd/armAX/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/epoch_5.pth	4902172396	c360c0d902a1b06fad819bae2344d10c	pii/models/scrfd/armAX/epochs/epoch_5.pth
+runs/train/scrfd/armAX/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armAX/onnx/armAX_dinov2l_672.onnx		1225767261	7012eefcf3b0262031c22596d9493e6d	pii/models/scrfd/armAX/onnx/armAX_dinov2l_672.onnx
+runs/train/scrfd/armAX/scrfd_armAX_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/scrfd_armAX_fluence.py	37083	30c2aeddd7a8267f2532e6a2b5e1d211	
+runs/train/scrfd/armAX/slurm-27806.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/slurm-27806.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAX/slurm-27806.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/slurm-27806.out	401	494fddb8a2c6ade6d1983bbb1d1175c9	
+runs/train/scrfd/armAX/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAX_fluence/train.log	80281	3c130210a2777fd4fa5a5f9a7dd4c525	pii/models/scrfd/armAX/train.log
+runs/train/scrfd/armAY/20261002_065832.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/20261002_065832.log	207174	28ba60dcfcb5c0dec6b1a8d0aaebd0f6	
+runs/train/scrfd/armAY/20261002_065832.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/20261002_065832.log.json	180970	12d2c60c0dc5ed06118661b0cdf14366	
+runs/train/scrfd/armAY/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/babysit.log	446	17c6d707422dc573323319396eafdc6a	
+runs/train/scrfd/armAY/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/epoch_5.pth	4902174892	fd1b75ca01952d012861fd425ae90773	pii/models/scrfd/armAY/epochs/epoch_5.pth
+runs/train/scrfd/armAY/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armAY/onnx/armAY_dinov2l_532x672.onnx		1225767261	0dfe0e7a79c16cefe39646f54399e070	pii/models/scrfd/armAY/onnx/armAY_dinov2l_532x672.onnx
+runs/train/scrfd/armAY/onnx/armAY_dinov2l_672.onnx		1225767261	c83339ca0d08863f0ebd53e60e121e40	pii/models/scrfd/armAY/onnx/armAY_dinov2l_672.onnx
+runs/train/scrfd/armAY/onnx/armAY_dinov2l_672x504.onnx		1225767261	2602cbe48371adadad760c3eeee4e84d	pii/models/scrfd/armAY/onnx/armAY_dinov2l_672x504.onnx
+runs/train/scrfd/armAY/scrfd_armAY_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/scrfd_armAY_fluence.py	39565	16fcf9e8f710738b96f6536f5b5dcf03	
+runs/train/scrfd/armAY/slurm-27808.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/slurm-27808.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAY/slurm-27808.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/slurm-27808.out	401	58728b11f2cb0a4d6bfcf138d5813174	
+runs/train/scrfd/armAY/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/train.log	220018	6dc226af46e039f65dfb3dcb408d9448	pii/models/scrfd/armAY/train.log
+runs/train/scrfd/armAZ34/20261006_185928.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/20261006_185928.log	88174	d1b31a990f752b680fddb23a4895282f	
+runs/train/scrfd/armAZ34/20261006_185928.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/20261006_185928.log.json	65743	d486341fa0f341c9fb9f1c099482cf8d	
+runs/train/scrfd/armAZ34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/babysit.log	449	9c26f70e5f004bc426977c8cc14e34ac	
+runs/train/scrfd/armAZ34/epochs/epoch_3.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/epoch_3.pth	118915917	7064a38f64b0fe623e5e86d7acad3621	pii/models/scrfd/armAZ34/epochs/epoch_3.pth
+runs/train/scrfd/armAZ34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/latest.pth	-1	symlink:epoch_3.pth	
+runs/train/scrfd/armAZ34/onnx/armAZ34_det34g.onnx		39426870	ac3b826b14857c4082f5cca5adb54b3f	pii/models/scrfd/armAZ34/onnx/armAZ34_det34g.onnx
+runs/train/scrfd/armAZ34/scrfd_armAZ34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/scrfd_armAZ34_fluence.py	8383	78e1d5261cf12cc9cbf3ebf9a2411f8d	
+runs/train/scrfd/armAZ34/slurm-35500.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/slurm-35500.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armAZ34/slurm-35500.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/slurm-35500.out	401	e14a8e1801cfb216a1c91e2008d7d30c	
+runs/train/scrfd/armAZ34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAZ34_fluence/train.log	99722	752ef2a419da33c8509323db17d46a4a	pii/models/scrfd/armAZ34/train.log
+runs/train/scrfd/armBA34/20261006_201146.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/20261006_201146.log	146137	f218b58a57a2cb2fcb46d070b5facfc6	
+runs/train/scrfd/armBA34/20261006_201146.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/20261006_201146.log.json	119385	12a022f9c4525e98fcb58044e33a79b9	
+runs/train/scrfd/armBA34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/babysit.log	449	953cae8f6582bb22df6ccbbf2d2c6067	
+runs/train/scrfd/armBA34/epochs/epoch_6.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/epoch_6.pth	118915917	b62f180424beb4f799f2b25d9512fa11	pii/models/scrfd/armBA34/epochs/epoch_6.pth
+runs/train/scrfd/armBA34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/latest.pth	-1	symlink:epoch_6.pth	
+runs/train/scrfd/armBA34/onnx/armBA34_det34g.onnx		39426870	55432ba8075887504df5e46b8f3464a1	pii/models/scrfd/armBA34/onnx/armBA34_det34g.onnx
+runs/train/scrfd/armBA34/scrfd_armBA34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/scrfd_armBA34_fluence.py	8383	2a325972bcae556e30735e5ef093e129	
+runs/train/scrfd/armBA34/slurm-35520.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/slurm-35520.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBA34/slurm-35520.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/slurm-35520.out	401	44102ddf31c629f60655b4c4713ea52b	
+runs/train/scrfd/armBA34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/train.log	157685	e13d8ebf05100ca0e9820584fde2cd7b	pii/models/scrfd/armBA34/train.log
+runs/train/scrfd/armBB34/20261007_035031.log	shang:/data/esteban/pii/runs/train/scrfd/armBB34/20261007_035031.log	195717	dea648533594af76a4d47f2571d3580c	
+runs/train/scrfd/armBB34/20261007_035031.log.json	shang:/data/esteban/pii/runs/train/scrfd/armBB34/20261007_035031.log.json	164298	478094ede9fc7942cc456f23d053d8e3	
+runs/train/scrfd/armBB34/babysit.log	shang:/data/esteban/pii/runs/train/scrfd/armBB34/babysit.log	494	cd7fa83d85abfaeac9e264eb29246144	
+runs/train/scrfd/armBB34/epochs/epoch_3.pth	shang:/data/esteban/pii/runs/train/scrfd/armBB34/epoch_3.pth	118918477	a1995ce570b9d597010bd2cc689c7fe7	pii/models/scrfd/armBB34/epochs/epoch_3.pth
+runs/train/scrfd/armBB34/epochs/latest.pth	shang:/data/esteban/pii/runs/train/scrfd/armBB34/latest.pth	-1	symlink:epoch_3.pth	
+runs/train/scrfd/armBB34/onnx/armBB34_det34g.onnx		39427335	3c43d50de6ad563a7824edd5ef751f6f	pii/models/scrfd/armBB34/onnx/armBB34_det34g.onnx
+runs/train/scrfd/armBB34/run_arm.sh	shang:/data/esteban/pii/runs/train/scrfd/armBB34/run_arm.sh	4896	82a4463253d640d35bc0750f5194f35a	
+runs/train/scrfd/armBB34/scrfd_armBB34.py	shang:/data/esteban/pii/runs/train/scrfd/armBB34/scrfd_armBB34.py	10918	bc00004f3a8438f41631cb85034fe4a4	
+runs/train/scrfd/armBB34/train.log	shang:/data/esteban/pii/runs/train/scrfd/armBB34/train.log	200808	8804e3a12825eab0dc27cd878bdcf26e	pii/models/scrfd/armBB34/train.log
+runs/train/scrfd/armBC34/20261006_194118.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/20261006_194118.log	194281	f321650622bc63535463ca3e5f3cfb3b	
+runs/train/scrfd/armBC34/20261006_194118.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/20261006_194118.log.json	164147	995bc9622c3596e759d68f0695725f2e	
+runs/train/scrfd/armBC34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/babysit.log	452	8c39b3ae3e6bc3d1e54575603a5f80d1	
+runs/train/scrfd/armBC34/epochs/epoch_6.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/epoch_6.pth	118918413	7339993434d288a927ddb1df9732a888	pii/models/scrfd/armBC34/epochs/epoch_6.pth
+runs/train/scrfd/armBC34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/latest.pth	-1	symlink:epoch_6.pth	
+runs/train/scrfd/armBC34/onnx/armBC34_det34g.onnx		39426870	e0d5766dc4252b872652623976439b1f	pii/models/scrfd/armBC34/onnx/armBC34_det34g.onnx
+runs/train/scrfd/armBC34/scrfd_armBC34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/scrfd_armBC34_fluence.py	10865	c8cbf0b4e5b6c1d6eddef096b66da890	
+runs/train/scrfd/armBC34/slurm-35502.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/slurm-35502.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBC34/slurm-35502.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/slurm-35502.out	401	07c96e46d26662f6d017591def70db37	
+runs/train/scrfd/armBC34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/train.log	206021	08648a306d5e13cef48fe27decb29e9f	pii/models/scrfd/armBC34/train.log
+runs/train/scrfd/armBD34/20261007_094731.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/20261007_094731.log	376678	f27f9e501ed60c5ca518902eb47d2ba8	
+runs/train/scrfd/armBD34/20261007_094731.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/20261007_094731.log.json	330643	60d395803c6b41b5f579e33201b97ad4	
+runs/train/scrfd/armBD34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/babysit.log	452	bc8747a37bd66dce47867154844de8bf	
+runs/train/scrfd/armBD34/epochs/epoch_3.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/epoch_3.pth	118920141	8e640194cca1cb4e2ce455dd0a7a7e80	pii/models/scrfd/armBD34/epochs/epoch_3.pth
+runs/train/scrfd/armBD34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/latest.pth	-1	symlink:epoch_3.pth	
+runs/train/scrfd/armBD34/onnx/armBD34_det34g.onnx		39426870	7dee9ad1401295765b2fd9338226bce2	pii/models/scrfd/armBD34/onnx/armBD34_det34g.onnx
+runs/train/scrfd/armBD34/scrfd_armBD34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/scrfd_armBD34_fluence.py	12614	ab853d4cbf0d4b4ddda9a348709209ef	
+runs/train/scrfd/armBD34/slurm-36594.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/slurm-36594.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBD34/slurm-36594.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/slurm-36594.out	401	d5b62dd124462303858b18eae0b0273f	
+runs/train/scrfd/armBD34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBD34_fluence/train.log	388626	b09c0fdede9fca0683a5b2ce41340506	pii/models/scrfd/armBD34/train.log
+runs/train/scrfd/armBE34/20261007_094731.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/20261007_094731.log	290561	dd75837553e32865ed20057785deef26	
+runs/train/scrfd/armBE34/20261007_094731.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/20261007_094731.log.json	251188	4758c8fef7fd2764d91400481079aff0	
+runs/train/scrfd/armBE34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/babysit.log	452	0b8e8e5a7c2acbbdd6019b2574c22539	
+runs/train/scrfd/armBE34/epochs/epoch_3.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/epoch_3.pth	118915917	7d27afe974bc4ef5b6b8372279c1fa1a	pii/models/scrfd/armBE34/epochs/epoch_3.pth
+runs/train/scrfd/armBE34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/latest.pth	-1	symlink:epoch_3.pth	
+runs/train/scrfd/armBE34/onnx/armBE34_det34g.onnx		39426870	e84049f7f9e41cea11472eeaeb0fbc4c	pii/models/scrfd/armBE34/onnx/armBE34_det34g.onnx
+runs/train/scrfd/armBE34/scrfd_armBE34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/scrfd_armBE34_fluence.py	8382	71f8a4ff5b2b96dc042c6f5440c320dd	
+runs/train/scrfd/armBE34/slurm-36595.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/slurm-36595.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBE34/slurm-36595.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/slurm-36595.out	401	4ec824a98ac00ffaf67421960632e413	
+runs/train/scrfd/armBE34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBE34_fluence/train.log	302117	f345843a160285d41a09bc054ae8a494	pii/models/scrfd/armBE34/train.log
+runs/train/scrfd/armBF34/20261007_041758.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/20261007_041758.log	41771	2492c6101ca7ffb4077114ee550bdd13	
+runs/train/scrfd/armBF34/20261007_041758.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/20261007_041758.log.json	23249	202a438201485f24b1f1bb6b8957e8d6	
+runs/train/scrfd/armBF34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/babysit.log	452	50d02311f94c35e5471e3b58ac52adb1	
+runs/train/scrfd/armBF34/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/epoch_5.pth	118916365	dd103e85ceb05dcc83687b1d0da9ed7d	pii/models/scrfd/armBF34/epochs/epoch_5.pth
+runs/train/scrfd/armBF34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armBF34/onnx/armBF34_det34g.onnx		39426870	d1a4c226a54be0332094de7138312efa	pii/models/scrfd/armBF34/onnx/armBF34_det34g.onnx
+runs/train/scrfd/armBF34/scrfd_armBF34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/scrfd_armBF34_fluence.py	8780	9d5ce113b059fac3c3229c8940d8ea47	
+runs/train/scrfd/armBF34/slurm-36277.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/slurm-36277.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBF34/slurm-36277.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/slurm-36277.out	401	59a4a671940eb41e7b1a48ebbd3fcded	
+runs/train/scrfd/armBF34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence/train.log	59951	571ede22928818cfa23293974197a481	pii/models/scrfd/armBF34/train.log
+runs/train/scrfd/armBG34/20261007_042831.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/20261007_042831.log	41771	c34f3c5901256e952529586897d018b9	
+runs/train/scrfd/armBG34/20261007_042831.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/20261007_042831.log.json	23258	e6953ffff84fe55d5984c0dcf302f5fc	
+runs/train/scrfd/armBG34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/babysit.log	452	14842790fa3e559d9db9264abbe1798a	
+runs/train/scrfd/armBG34/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/epoch_5.pth	118916365	b68ae8c5bf79817d6b7ac1363d6aa38d	pii/models/scrfd/armBG34/epochs/epoch_5.pth
+runs/train/scrfd/armBG34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armBG34/onnx/armBG34_det34g.onnx		39426870	7fd414a5dfcaf83bbfbab1bcd85d7890	pii/models/scrfd/armBG34/onnx/armBG34_det34g.onnx
+runs/train/scrfd/armBG34/scrfd_armBG34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/scrfd_armBG34_fluence.py	8780	d885f8b1f818376ec25ce7d84b759aa4	
+runs/train/scrfd/armBG34/slurm-36278.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/slurm-36278.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBG34/slurm-36278.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/slurm-36278.out	401	d89791964111dc8bfe067b51f17b92f1	
+runs/train/scrfd/armBG34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence/train.log	59951	6c03982775078cb3465be57e7fe7c92c	pii/models/scrfd/armBG34/train.log
+runs/train/scrfd/armBH34/20261007_151526.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/20261007_151526.log	39390	f2249279bb0d4723b05a625b88e01f8b	
+runs/train/scrfd/armBH34/20261007_151526.log.json	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/20261007_151526.log.json	20699	e9c8acded98bfeac19504c81a4187c27	
+runs/train/scrfd/armBH34/babysit.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/babysit.log	452	cef57520fd685e63b1a2aff30b30878f	
+runs/train/scrfd/armBH34/epochs/epoch_5.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/epoch_5.pth	118915917	9a83d2c92b758014eda355f3130bae67	pii/models/scrfd/armBH34/epochs/epoch_5.pth
+runs/train/scrfd/armBH34/epochs/latest.pth	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/latest.pth	-1	symlink:epoch_5.pth	
+runs/train/scrfd/armBH34/onnx/armBH34_det34g.onnx		39426870	2205cd2f85e94cd9e1bebbc57f9c77e2	pii/models/scrfd/armBH34/onnx/armBH34_det34g.onnx
+runs/train/scrfd/armBH34/scrfd_armBH34_fluence.py	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/scrfd_armBH34_fluence.py	8382	23e7dbc8cd5f16580796e9562ea21ab2	
+runs/train/scrfd/armBH34/slurm-37018.err	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/slurm-37018.err	0	d41d8cd98f00b204e9800998ecf8427e	
+runs/train/scrfd/armBH34/slurm-37018.out	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/slurm-37018.out	401	74a71fe81bc91658d51cf88ca3368f77	
+runs/train/scrfd/armBH34/train.log	fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence/train.log	50930	a0514d78bb9f2a85932023ad6d65ea2d	pii/models/scrfd/armBH34/train.log
 runs/train/scrfd/armW/armW_effective_cfg.py	/data/esteban/pii_backup/runs/train/armW_effective_cfg.py	8244	e77436fa517ff39e75dc8d89acdc649e	
 runs/train/scrfd/armW/epochs/epoch_20.pth	/data/esteban/pii_backup/weights/armW_epoch_20.pth	34020123	23665cb9b24cbf29538f34718902296a	pii/models/scrfd/armW/epochs/epoch_20.pth
 runs/train/scrfd/armW/onnx/armW_det10g.onnx	/data/esteban/pii_backup/weights/det_10g_armW.onnx	16962796	f445b1606444c8b7c72a2fb4de35e123	pii/models/scrfd/armW/onnx/armW_det10g.onnx

@@ -1,0 +1,28 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armBA34
+family: scrfd
+rule: last_epoch
+epoch: 6
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armBA34_det34g.onnx
+checkpoints: pick only (epochs 1 to 5 are on the training box, not on OSS)
+pick_checkpoint: epochs/epoch_6.pth
+remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence
+local_epochs: 1
+epoch_evidence: >-
+  epoch_6.pth, the config and the logs pulled from fluence1:runs/train/wd_armBA34_fluence/;
+  babysit.log records the trainer exiting rc=0 and `epoch_6.pth exists; success`; slurm job
+  35520 on fluence2
+notes: >-
+  PII-2041's chain.sh (the PII-1767 route with the arm substituted) pulled epoch_6.pth out of
+  fluence1:runs/train/wd_armBA34_fluence/, with the md5 compared on both hosts, together with
+  the config, the slurm files and the logs, and made epochs/latest.pth here; the ONNX under
+  onnx/ was exported on this box from that checkpoint
+  (training/export/export_armAH34_onnx.py), not copied. Epochs 1 to 5 stayed on the training
+  box and went to no object store, so this arm's rows are the pick epoch and the exports. The
+  training box keeps its copy, unmodified. armAI34's epoch_80 plus 6 epochs of train_Z6, the
+  longer twin of armAZ34 (PII-2031 moved it to fluence; close-out PII-2047). Its epoch_6.pth
+  and ONNX were put on OSS by hand (PII-2055), outside the index.

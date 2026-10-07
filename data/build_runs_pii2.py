@@ -15,6 +15,11 @@ Layout produced (see PII-1379, parent PII-1315):
         egoblur/stock/              EgoBlur gen1/gen2 releases and the d2 build
     /data/esteban/pii/experiments/verifier_probe/   probe scripts and json
 
+A MANIFEST src column is empty when the file was produced on this box straight
+into the store and was never copied from anywhere (PII-2112: the ONNX exports of
+the arms whose close-out chain exported them into <arm>/onnx/). `copy` leaves
+those alone and `verify` has no second copy to compare them against.
+
 Rules held by this script:
   * nothing under the source tree is written, renamed or deleted; every copy
     is an rsync out of it.
@@ -275,10 +280,22 @@ def remote_epoch_index(paths=None):
     return out
 
 
+def remote_base(spec):
+    """The absolute work dir on the other box.
+
+    PII-2112: `wd` is a name under REMOTE_TRAIN[host] for the arms PII-1447 and
+    PII-1633 pulled, and an absolute path when the work dir is somewhere else
+    (armBB34 trained in shang's own pii_data checkout, not in the pre-rename
+    tree REMOTE_TRAIN["shang"] names).
+    """
+    host, wd = spec["remote_wd"]
+    return wd if wd.startswith("/") else f"{REMOTE_TRAIN[host]}/{wd}"
+
+
 def remote_src(spec, rel=""):
     """`host:/abs/path` of a file in a remote work dir, or of the dir itself."""
-    host, wd = spec["remote_wd"]
-    return f"{host}:{REMOTE_TRAIN[host]}/{wd}" + (f"/{rel}" if rel else "")
+    host, _ = spec["remote_wd"]
+    return f"{host}:{remote_base(spec)}" + (f"/{rel}" if rel else "")
 
 
 def is_remote(src):
@@ -359,8 +376,30 @@ PULLED_FLUENCE = ("All {last} epochs were uploaded from "
 # up on that issue's route but under this one's number.
 PULLED_FLUENCE_1674 = PULLED_FLUENCE.replace("PII-1633", "PII-1674")
 
+# PII-2112: the sentence for an arm a close-out chain pulled ONE checkpoint
+# from. Those chains pull the final checkpoint, the config, the slurm files and
+# the logs and export the ONNX here from that checkpoint, so the epochs before
+# the pick are on the training box and in no object store.
+PULLED_PICK = (
+    "{route} pulled {ckpt} out of {wd}/, with the md5 compared on both hosts, together with "
+    "the config, the slurm files and the logs, and made epochs/latest.pth here; the ONNX "
+    "under onnx/ was exported on this box from that checkpoint "
+    "(training/export/export_armAH34_onnx.py), not copied. Epochs 1 to {prev} stayed on the "
+    "training box and went to no object store, so this arm's rows are the pick epoch and the "
+    "exports. The training box keeps its copy, unmodified."
+)
+
+# The `checkpoints` value for such an arm. PII-1601's plain `pick` would claim
+# OSS holds every epoch, which for these arms it does not; PII-1412 already
+# wrote a descriptive value where plain one would have been wrong.
+CKPT_PICK_ONLY = "pick only (epochs 1 to {prev} are on the training box, not on OSS)"
+
 # Per arm: work dir under runs/train (None if the checkpoints are not on this
 # box), pick epoch, where the epoch comes from, where checkpoints live.
+# `here_onnx` (PII-2112): the arm's ONNX exports were written on this box
+# straight into <arm>/onnx/, so they are indexed where they are, with no source
+# to copy from. `pick_onnx` names the export models.csv should carry when the
+# alphabetical first is not the one the arm was scored at.
 SCRFD_ARMS = {
     "armW": dict(
         wd=None,
@@ -581,6 +620,105 @@ SCRFD_ARMS = {
                          " The PII-1652 experiment: the armAL recipe (DINOv2 ViT-L/14 with "
                          "registers on a SimpleFPN14 neck, crop 672) stretched from 20 to 30 "
                          "epochs with step [21, 27], nothing else changed.")),
+
+    # ----------------------------------------------------------------------
+    # PII-2112: fourteen arm dirs that were on this disk with no row in either
+    # index. Every one is a finished run on another box (babysit.log records
+    # `success` for each) whose close-out chain brought ONE checkpoint here.
+    # ----------------------------------------------------------------------
+    "armAU": dict(wd=None, remote_wd=("fluence1", "wd_armAU_fluence"),
+                  epoch=30, checkpoints=CKPT_PICK_ONLY.format(prev=29),
+                  evidence=("epoch_30.pth, the config and the logs pulled from "
+                            "fluence1:runs/train/wd_armAU_fluence/; babysit.log records the "
+                            "trainer exiting rc=0 and `epoch_30.pth exists; success`; slurm "
+                            "job 24122 on fluence4"),
+                  notes=("armAR's recipe (DINOv2 ViT-g/14, crop 672) with the backbone layer "
+                         "decay at 0.9 instead of 0.8 and 30 epochs with the lr drops at "
+                         "[21, 27] (PII-1654). training/closeout/closeout_arm.sh AU pulled "
+                         "epoch_30.pth, 18.2 GB, the config and the logs into "
+                         "runs/train/scrfd/wd_armAU_fluence/, the shape PII-1610 flagged as "
+                         "neither the work dir's nor the store's; PII-2112 moved that dir to "
+                         "scrfd/armAU/ (epoch_30.pth into epochs/) as PII-1633 did for armAS "
+                         "and PII-1680 for armAT, and deleted nothing. The other 29 epochs "
+                         "stayed on fluence1 and are on no object store. There is no "
+                         "latest.pth and no ONNX here: the close-out exports live outside "
+                         "this tree (PII-1634), and PII-1690 and PII-1693 record them.")),
+    "armAV34": dict(wd=None, remote_wd=("fluence1", "wd_armAV34_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAV34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27805 on fluence6"),
+                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAV34_fluence", prev=4) + " The first of PII-1732's four facedub fine-tunes: armAM34's epoch_20 (SCRFD-34G, train_Z6) fine-tuned for 5 epochs on train_FD, facedub_a only, lr 1e-4 (PII-1748 job chain, close-out PII-1757).")),
+    "armAW34": dict(wd=None, remote_wd=("fluence1", "wd_armAW34_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAW34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27807 on fluence6"),
+                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAW34_fluence", prev=4) + " PII-1732's second facedub fine-tune: armAM34's epoch_20 fine-tuned for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-4 (close-out PII-1767). Its epoch_5.pth and ONNX were put on OSS by hand before this registration, outside the index (PII-1971).")),
+    "armAX": dict(wd=None, remote_wd=("fluence1", "wd_armAX_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAX_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27806 on fluence6"),
+                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAX_fluence", prev=4) + " PII-1732's third facedub fine-tune: armAL's epoch_20 (DINOv2 ViT-L/14 with registers on SimpleFPN14, crop 672) fine-tuned for 5 epochs on train_FD, facedub_a only, lr 1e-5 (PII-1763, PII-1966).")),
+    "armAY": dict(wd=None, remote_wd=("fluence1", "wd_armAY_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   pick_onnx="onnx/armAY_dinov2l_672.onnx",
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAY_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27808 on fluence6"),
+                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAY_fluence", prev=4) + " PII-1732's fourth facedub fine-tune: armAL's epoch_20 fine-tuned for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-5 (close-out PII-1773). Three ONNX were exported here, at 672, 672x504 and 532x672; `onnx:` names the 672 one, the export the arm was scored and published at. epoch_5.pth and the 672 ONNX went on OSS by hand (PII-1963), outside the index.")),
+    "armAZ34": dict(wd=None, remote_wd=("fluence1", "wd_armAZ34_fluence"),
+                   epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
+                   here_onnx=True,
+                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armAZ34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 35500 on fluence2"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armAZ34_fluence", prev=2) + " First of PII-2009's four 34G fine-tunes off armAI34's epoch_80: 3 epochs of train_Z6, SGD 1e-4, EMA 2e-4, crop 640 (close-out PII-2041).")),
+    "armBA34": dict(wd=None, remote_wd=("fluence1", "wd_armBA34_fluence"),
+                   epoch=6, checkpoints=CKPT_PICK_ONLY.format(prev=5),
+                   here_onnx=True,
+                   evidence=("epoch_6.pth, the config and the logs pulled from fluence1:runs/train/wd_armBA34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_6.pth exists; success`; slurm job 35520 on fluence2"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBA34_fluence", prev=5) + " armAI34's epoch_80 plus 6 epochs of train_Z6, the longer twin of armAZ34 (PII-2031 moved it to fluence; close-out PII-2047). Its epoch_6.pth and ONNX were put on OSS by hand (PII-2055), outside the index.")),
+    "armBC34": dict(wd=None, remote_wd=("fluence1", "wd_armBC34_fluence"),
+                   epoch=6, checkpoints=CKPT_PICK_ONLY.format(prev=5),
+                   here_onnx=True,
+                   evidence=("epoch_6.pth, the config and the logs pulled from fluence1:runs/train/wd_armBC34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_6.pth exists; success`; slurm job 35502 on fluence3"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBC34_fluence", prev=5) + " armAI34's epoch_80 plus 6 epochs of train_Z6 with facedub_a x4, the mix PII-2009 calls train_Z6+FDx4. Its epoch_6.pth and ONNX went on OSS by hand (PII-2055), outside the index.")),
+    "armBD34": dict(wd=None, remote_wd=("fluence1", "wd_armBD34_fluence"),
+                   epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
+                   here_onnx=True,
+                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armBD34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 36594 on fluence4"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBD34_fluence", prev=2) + " armAI34's epoch_80 plus 3 epochs of the mix PII-2041's chain records as train_Z6+FDx4+AY8.")),
+    "armBE34": dict(wd=None, remote_wd=("fluence1", "wd_armBE34_fluence"),
+                   epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
+                   here_onnx=True,
+                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armBE34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 36595 on fluence2"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBE34_fluence", prev=2) + " armBC34's epoch_6 plus 3 epochs of the set PII-2041's chain records as AY8.")),
+    "armBF34": dict(wd=None, remote_wd=("fluence1", "wd_armBF34_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBF34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 36277 on fluence4"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBF34_fluence", prev=4) + " armBA34's epoch_6 plus 5 epochs of train_FD with logit KD from armAY (PII-2071).")),
+    "armBG34": dict(wd=None, remote_wd=("fluence1", "wd_armBG34_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBG34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 36278 on fluence4"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBG34_fluence", prev=4) + " armBC34's epoch_6 plus 5 epochs of train_FD with logit KD from armAY, the armBF34 pair on a different parent (PII-2071).")),
+    "armBH34": dict(wd=None, remote_wd=("fluence1", "wd_armBH34_fluence"),
+                   epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
+                   here_onnx=True,
+                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBH34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 37018 on fluence2"),
+                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBH34_fluence", prev=4) + " armBC34's epoch_6 plus 5 epochs of train_FD, no KD (PII-2081).")),
+    "armBB34": dict(
+        wd=None,
+        remote_wd=("shang", "/data/esteban/pii/runs/train/scrfd/armBB34"),
+        epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2), here_onnx=True,
+        evidence=("epoch_3.pth, run_arm.sh, the config and the logs pulled from "
+                  "shang:/data/esteban/pii/runs/train/scrfd/armBB34/; babysit.log records the "
+                  "trainer exiting rc=0 and `epoch_3.pth exists; success`; no slurm job, the "
+                  "run was babysat on shang GPUs 1,5,6,7"),
+        notes=(PULLED_PICK.format(
+            route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth",
+            wd="shang:/data/esteban/pii/runs/train/scrfd/armBB34", prev=2) +
+            " armAI34's epoch_80 plus 3 epochs of train_Z6 with facedub_a x4 on shang's four "
+            "RTX 5090 instead of fluence (PII-2032; PII-2034 built facedub_a there). shang "
+            "trained straight into its own pii_data checkout, so the work dir is that "
+            "store's arm dir and not a wd_* dir under REMOTE_TRAIN[\"shang\"].")),
 }
 
 EGOBLUR_ARMS = {
@@ -822,9 +960,8 @@ def pull_remote(spec, dst, route, log):
     --ignore-existing would then skip for ever. Nothing is written on the remote
     side.
     """
-    host, wd = spec["remote_wd"]
     target, opts = route[0], route[1]
-    src = f"{target}:{REMOTE_TRAIN[host]}/{wd}/"
+    src = f"{target}:{remote_base(spec)}/"
     (dst / "epochs").mkdir(parents=True, exist_ok=True)
     base = ["rsync", "-a", "--no-compress", "--ignore-existing", "--stats"] + opts
     run(base + ["--include", "latest.pth", "--exclude", "*",
@@ -1085,6 +1222,14 @@ def copied_files():
         for src in onnx_by_arm.get(arm, []):
             p = dst / "onnx" / src.name
             out.append((p.relative_to(PII2).as_posix(), p, src))
+        # PII-2112: an arm whose ONNX was exported on this box straight into
+        # the store has no source to copy from, so its row's src column is
+        # EMPTY, the way an oss_key is empty for a file git tracks. `copy` has
+        # nothing to do for such a file and `verify` has no second copy to
+        # compare it against.
+        if spec.get("here_onnx"):
+            for q in sorted((dst / "onnx").glob("*.onnx")):
+                out.append((q.relative_to(PII2).as_posix(), q, ""))
 
     for name in SCRFD_STOCK_FILES:
         p = DST_TRAIN / "scrfd/stock" / name
@@ -1145,6 +1290,8 @@ def yaml_block(text, indent="  "):
 def scrfd_pick(arm, spec, onnx_paths, dst):
     epoch = spec["epoch"]
     loose = [rel.split("/")[-1] for _, rel in spec.get("loose_onnx", [])]
+    if spec.get("here_onnx"):
+        loose += [q.name for q in sorted((dst / "onnx").glob("*.onnx"))]
     epochs_dir = dst / "epochs"
     local_epochs = sorted(int(p.stem.split("_")[1])
                           for p in epochs_dir.glob("epoch_*.pth")) if epochs_dir.is_dir() else []
@@ -1159,6 +1306,10 @@ def scrfd_pick(arm, spec, onnx_paths, dst):
         pick_onnx = "onnx/" + per_epoch[-1][1]
     else:
         pick_onnx = ""
+    # PII-2112: armAY has three exports and the alphabetical first is not the
+    # one it was scored at, so the spec may name the pick.
+    if spec.get("pick_onnx"):
+        pick_onnx = spec["pick_onnx"]
     tags = WANDB_TAGS.get(arm, [])
     status = "deprecated" if "deprecated" in tags else "active"
     notes = spec["notes"]
@@ -1305,7 +1456,9 @@ def write_meta(logpath):
             onnx=(f"scrfd/{arm}/{pick_onnx}" if pick_onnx else ""),
             onnx_md5=(md5(pick_abs) if pick_abs and pick_abs.exists() else ""),
             onnx_size=(pick_abs.stat().st_size if pick_abs and pick_abs.exists() else ""),
-            n_onnx=len(onnx_by_arm.get(arm, [])) + len(spec.get("loose_onnx", [])),
+            n_onnx=(len(onnx_by_arm.get(arm, [])) + len(spec.get("loose_onnx", []))
+                    + (len(list((dst / "onnx").glob("*.onnx")))
+                       if spec.get("here_onnx") else 0)),
             checkpoints=checkpoints,
             source=(str(SRC_TRAIN / spec["wd"]) if spec["wd"] else
                     (remote_src(spec) if spec.get("remote_wd") else
@@ -1538,7 +1691,7 @@ def do_verify(jobs, check_source=True):
         got = dict((rel, (size, digest)) for rel, size, digest
                    in ex.map(_md5_job, work, chunksize=8))
 
-    src_work, remote_src_rows = [], 0
+    src_work, remote_src_rows, made_here_rows = [], 0, 0
     for r in rows:
         rel = r["dst_rel"]
         if rel not in got:
@@ -1550,7 +1703,11 @@ def do_verify(jobs, check_source=True):
             bad.append(f"copy changed: {rel} size {size} vs {r['size']} "
                        f"md5 {digest} vs {r['md5']}")
         if check_source:
-            if is_remote(r["src"]):
+            if not r["src"]:
+                # PII-2112: an empty src is a file produced on this box straight
+                # into the store (an ONNX export), so there is no second copy.
+                made_here_rows += 1
+            elif is_remote(r["src"]):
                 remote_src_rows += 1
             else:
                 src_work.append((rel, local_src(r["src"])))
@@ -1558,6 +1715,9 @@ def do_verify(jobs, check_source=True):
     if check_source and remote_src_rows:
         print(f"INFO {remote_src_rows} files came from a work dir on another box "
               f"(src is host:/abs/path); their source is not re-read here, use remote-check")
+    if check_source and made_here_rows:
+        print(f"INFO {made_here_rows} files were made on this box straight into the store "
+              f"(src empty); they have no source copy to compare against")
     if check_source:
         with ProcessPoolExecutor(max_workers=jobs) as ex:
             srcgot = dict((rel, (size, digest)) for rel, size, digest

@@ -89,9 +89,10 @@ git ls-files -z | xargs -0 stat -c '%s %n' | sort -rn | head
 | dataset | frames | box versions |
 | --- | --- | --- |
 | face10k | 11,507 | v1 v2 v3 |
+| facedub_a | 37,568 | v1 rec1 |
 | faceback_45 | 84,954 | v1 v2 v3 |
 | faceight_a | 42,408 | v1 |
-| faceight_b | 60,000 | v1 v2 v3 |
+| faceight_b | 60,000 | v1 v2 v3 rec1 |
 | faceight_c | 40,000 | v1 v2 v3 |
 | face_mine_v1 | 62,587 | v1 v2 v3 |
 | face_mine_right | 62,423 | v1 v2 |
@@ -102,10 +103,14 @@ git ls-files -z | xargs -0 stat -c '%s %n' | sort -rn | head
 | wider_fisheye_fill | 12,879 | v1 |
 | wider_fisheye_target | 12,879 | v1 |
 
-423,290 images, 236,516,907,573 bytes, none of them in git. Left and right eyes
+460,858 images, 244,789,003,925 bytes, none of them in git. Left and right eyes
 are separate datasets (`face_mine_v1` is left, `face_mine_right` is right).
 `frames.csv` is the source of truth for which images exist; `size` and `md5` are
-mandatory and are what a download is verified against.
+mandatory and are what a download is verified against. A `rec1` box version is
+the recognizable subset of the version it names, out of the three-pass
+facereview review (PII-1915): a strict subset of that version's boxes, plus
+`votes.csv`, which carries every pass's own judgement, so another threshold is
+rebuilt from that file alone.
 
 ## Views
 
@@ -121,10 +126,11 @@ eval_faceight_a_v1 8,482; gt_bench_sparse_v1 889.
 
 ## Runs
 
-26 SCRFD arms and 4 EgoBlur arms, plus one `stock` directory per family, so 32
-rows in `runs/train/models.csv`. Every `pick.yaml` is `rule: last_epoch` for now
-(PII-1372 replaces it with a per-epoch sweep); `status` is the W&B tag from
-`alex-qiu-worldengineai/pii-face-eval`.
+48 SCRFD arms, 5 EgoBlur arms and 1 RF-DETR arm, plus one `stock` directory
+for scrfd and one for egoblur, so 56 rows in `runs/train/models.csv`. Every
+`pick.yaml` is `rule: last_epoch` for now (PII-1372 replaces it with a per-epoch
+sweep); `status` is the W&B tag from `alex-qiu-worldengineai/pii-face-eval`, and
+it is the default `active` for every arm trained after that read (PII-1633).
 
 ### Checkpoint retention (PII-1601)
 
@@ -140,6 +146,16 @@ An arm under the rule says `checkpoints: pick` in its `pick.yaml` and in the
 every epoch is also on disk; `upstream release` is the two `stock` dirs, which
 have no epochs. `epochs/latest.pth` is a symlink, not bytes: it has no OSS
 object and is never pruned.
+
+**Not every arm's epochs are on OSS.** The fourteen arms PII-2112 registered
+(armAU, armAV34, armAW34, armAX, armAY, armAZ34 and armBA34 to armBH34) were
+closed out by a chain that pulls ONE checkpoint off the training box, so the
+epochs before the pick are still only on fluence1 or on shang and were never
+uploaded. Those arms say `pick only (epochs 1 to N are on the training box, not
+on OSS)` instead of plain `pick`, and their `MANIFEST.tsv` rows are the pick
+epoch, the ONNX exports and the logs: the index claims no object that does not
+exist. Their ONNX was exported on this box straight into `<arm>/onnx/`, which is
+why those rows have an empty `src` column.
 
 `MANIFEST.tsv` keeps a row for every epoch either way, with size, md5 and
 `oss_key`, so the index still proves the OSS copy complete and any epoch can be

@@ -1,0 +1,400 @@
+2026-10-07 04:28:31,757 - mmdet - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: linux
+Python: 3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]
+CUDA available: True
+GPU 0,1,2,3,4,5,6,7: NVIDIA H100 80GB HBM3
+CUDA_HOME: /usr/local/cuda
+NVCC: Build cuda_13.0.r13.0/compiler.36424714_0
+GCC: gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+PyTorch: 2.13.0+cu130
+PyTorch compiling details: PyTorch built with:
+  - GCC 13.3
+  - C++ Version: 202002
+  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v3.12.0 (Git Hash 80afa71049cd69a3df32adcccb623b12cd7baa22)
+  - OpenMP 201511 (a.k.a. OpenMP 4.5)
+  - LAPACK is enabled (usually provided by MKL)
+  - NNPACK is enabled
+  - CPU capability usage: AVX512
+  - CUDA Runtime 13.0
+  - NVCC architecture flags: -gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90;-gencode;arch=compute_100,code=sm_100;-gencode;arch=compute_120,code=sm_120
+  - CuDNN 92.0  (built against CUDA 13.2)
+  - Magma 2.6.1
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=cf30153c4c131c8164ee7798e5022d810682e2cb, CUDA_FLAGS= -DLIBCUDACXX_ENABLE_SIMPLIFIED_COMPLEX_OPERATIONS -Xfatbin -compress-all -DONNX_NAMESPACE=onnx_torch -gencode arch=compute_75,code=sm_75 -gencode arch=compute_80,code=sm_80 -gencode arch=compute_86,code=sm_86 -gencode arch=compute_90,code=sm_90 -gencode arch=compute_100,code=sm_100 -gencode arch=compute_120,code=sm_120 -Xcudafe --diag_suppress=cc_clobber_ignored,--diag_suppress=field_without_dll_interface,--diag_suppress=base_class_has_different_dll_interface,--diag_suppress=dll_interface_conflict_none_assumed,--diag_suppress=dll_interface_conflict_dllexport_assumed,--diag_suppress=bad_friend_decl --expt-relaxed-constexpr --expt-extended-lambda -Xfatbin -compress-all --threads 2 -compress-mode=size -Wno-deprecated-gpu-targets --expt-extended-lambda -DCUB_WRAPPED_NAMESPACE=at_cuda_detail -DDISABLE_CUSPARSE_DEPRECATED -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -DC10_NODEPRECATED, CUDA_VERSION=13.0, CUDNN_VERSION=9.20.0, CXX_COMPILER=/opt/rh/gcc-toolset-13/root/usr/bin/c++, CXX_FLAGS= -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DHAS_CUPTI -DUSE_FBGEMM -DUSE_MSLK -DUSE_PYTORCH_QNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -DC10_NODEPRECATED -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -faligned-new -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-dangling-reference -Wno-error=dangling-reference -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.13.0, USE_CUDA=1, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, USE_XCCL=OFF, USE_XPU=OFF, 
+
+TorchVision: 0.28.0+cu130
+OpenCV: 4.11.0
+MMCV: 1.4.0
+MMCV Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMCV CUDA Compiler: n/a (scrfd_shim: mmcv compiled without ops)
+MMDetection: 2.7.0+
+------------------------------------------------------------
+
+2026-10-07 04:28:32,086 - mmdet - INFO - Distributed training: True
+2026-10-07 04:28:32,414 - mmdet - INFO - Config:
+optimizer = dict(type='SGD', lr=0.0001, momentum=0.9, weight_decay=0.0005)
+optimizer_config = dict(
+    type='GradientCumulativeOptimizerHook', cumulative_iters=1, grad_clip=None)
+lr_config = dict(
+    policy='step',
+    warmup='linear',
+    warmup_iters=200,
+    warmup_ratio=0.001,
+    step=[4])
+total_epochs = 5
+checkpoint_config = dict(interval=1)
+log_config = dict(interval=50, hooks=[dict(type='TextLoggerHook')])
+dist_params = dict(backend='nccl')
+log_level = 'INFO'
+load_from = '/mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/epoch_6.pth'
+work_dir = '/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence'
+resume_from = None
+workflow = [('train', 1)]
+dataset_type = 'RetinaFaceDataset'
+data_root = 'data/retinaface/'
+train_root = 'data/retinaface/train/'
+val_root = 'data/retinaface/val/'
+img_norm_cfg = dict(
+    mean=[127.5, 127.5, 127.5], std=[128.0, 128.0, 128.0], to_rgb=True)
+train_pipeline = [
+    dict(type='LoadImageFromFile', to_float32=True),
+    dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+    dict(
+        type='RandomSquareCrop',
+        crop_choice=[0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0],
+        bbox_clip_border=False),
+    dict(
+        type='Resize',
+        img_scale=(640, 640),
+        keep_ratio=False,
+        bbox_clip_border=False),
+    dict(type='RandomFlip', flip_ratio=0.5),
+    dict(
+        type='PhotoMetricDistortion',
+        brightness_delta=32,
+        contrast_range=(0.5, 1.5),
+        saturation_range=(0.5, 1.5),
+        hue_delta=18),
+    dict(
+        type='Normalize',
+        mean=[127.5, 127.5, 127.5],
+        std=[128.0, 128.0, 128.0],
+        to_rgb=True),
+    dict(type='DefaultFormatBundle'),
+    dict(
+        type='Collect',
+        keys=[
+            'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+            'gt_keypointss'
+        ])
+]
+test_pipeline = [
+    dict(type='LoadImageFromFile'),
+    dict(
+        type='MultiScaleFlipAug',
+        img_scale=(640, 640),
+        flip=False,
+        transforms=[
+            dict(type='Resize', keep_ratio=True),
+            dict(type='RandomFlip', flip_ratio=0.0),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='Pad', size=(640, 640), pad_val=0),
+            dict(type='ImageToTensor', keys=['img']),
+            dict(type='Collect', keys=['img'])
+        ])
+]
+data = dict(
+    samples_per_gpu=8,
+    workers_per_gpu=16,
+    train=dict(
+        type='RetinaFaceDataset',
+        ann_file='data/mix_ds/train_FD.txt',
+        img_prefix='data/mix_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile', to_float32=True),
+            dict(type='LoadAnnotations', with_bbox=True, with_keypoints=True),
+            dict(
+                type='RandomSquareCrop',
+                crop_choice=[
+                    0.3, 0.45, 0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0
+                ],
+                bbox_clip_border=False),
+            dict(
+                type='Resize',
+                img_scale=(640, 640),
+                keep_ratio=False,
+                bbox_clip_border=False),
+            dict(type='RandomFlip', flip_ratio=0.5),
+            dict(
+                type='PhotoMetricDistortion',
+                brightness_delta=32,
+                contrast_range=(0.5, 1.5),
+                saturation_range=(0.5, 1.5),
+                hue_delta=18),
+            dict(
+                type='Normalize',
+                mean=[127.5, 127.5, 127.5],
+                std=[128.0, 128.0, 128.0],
+                to_rgb=True),
+            dict(type='DefaultFormatBundle'),
+            dict(
+                type='Collect',
+                keys=[
+                    'img', 'gt_bboxes', 'gt_labels', 'gt_bboxes_ignore',
+                    'gt_keypointss'
+                ])
+        ]),
+    val=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]),
+    test=dict(
+        type='RetinaFaceDataset',
+        ann_file='/data/liangzhenghao/face_pii/raw_ds/val/labelv2.txt',
+        img_prefix='/data/liangzhenghao/face_pii/raw_ds/images/',
+        pipeline=[
+            dict(type='LoadImageFromFile'),
+            dict(
+                type='MultiScaleFlipAug',
+                img_scale=(640, 640),
+                flip=False,
+                transforms=[
+                    dict(type='Resize', keep_ratio=True),
+                    dict(type='RandomFlip', flip_ratio=0.0),
+                    dict(
+                        type='Normalize',
+                        mean=[127.5, 127.5, 127.5],
+                        std=[128.0, 128.0, 128.0],
+                        to_rgb=True),
+                    dict(type='Pad', size=(640, 640), pad_val=0),
+                    dict(type='ImageToTensor', keys=['img']),
+                    dict(type='Collect', keys=['img'])
+                ])
+        ]))
+train_cfg = dict(
+    assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+    allowed_border=-1,
+    pos_weight=-1,
+    debug=False,
+    neg_weight_zero_prefix='/pii',
+    neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+    neg_weight_pii=0.5,
+    qscore='one')
+test_cfg = dict(
+    nms_pre=-1,
+    min_bbox_size=0,
+    score_thr=0.02,
+    nms=dict(type='nms', iou_threshold=0.45),
+    max_per_img=-1)
+model = dict(
+    type='KDSCRFD',
+    backbone=dict(
+        type='ResNetV1e',
+        depth=0,
+        block_cfg=dict(
+            block='Bottleneck',
+            stage_blocks=(17, 16, 2, 8),
+            stage_planes=[56, 56, 144, 184]),
+        base_channels=56,
+        num_stages=4,
+        out_indices=(0, 1, 2, 3),
+        norm_cfg=dict(type='BN', requires_grad=True),
+        norm_eval=False,
+        style='pytorch'),
+    neck=dict(
+        type='PAFPN',
+        in_channels=[224, 224, 576, 736],
+        out_channels=128,
+        start_level=1,
+        add_extra_convs='on_output',
+        num_outs=3),
+    bbox_head=dict(
+        type='SCRFDHead',
+        num_classes=1,
+        in_channels=128,
+        stacked_convs=2,
+        feat_channels=256,
+        norm_cfg=dict(type='GN', num_groups=32, requires_grad=True),
+        cls_reg_share=True,
+        strides_share=True,
+        scale_mode=2,
+        anchor_generator=dict(
+            type='AnchorGenerator',
+            ratios=[1.0],
+            scales=[1, 2],
+            base_sizes=[16, 64, 256],
+            strides=[8, 16, 32]),
+        loss_cls=dict(
+            type='QualityFocalLoss',
+            use_sigmoid=True,
+            beta=2.0,
+            loss_weight=1.0),
+        loss_dfl=False,
+        reg_max=8,
+        loss_bbox=dict(type='DIoULoss', loss_weight=2.0),
+        use_kps=True,
+        loss_kps=dict(
+            type='SmoothL1Loss', beta=0.1111111111111111, loss_weight=0.1),
+        train_cfg=dict(
+            assigner=dict(type='ATSSAssigner', topk=9, ignore_iof_thr=0.5),
+            allowed_border=-1,
+            pos_weight=-1,
+            debug=False,
+            neg_weight_zero_prefix='/pii',
+            neg_weight_full_substrings=['BTJPSP', 'NQYJPB'],
+            neg_weight_pii=0.5,
+            qscore='one'),
+        test_cfg=dict(
+            nms_pre=-1,
+            min_bbox_size=0,
+            score_thr=0.02,
+            nms=dict(type='nms', iou_threshold=0.45),
+            max_per_img=-1)),
+    kd=dict(
+        teacher_config=
+        '/mnt/cachefs/esteban/pii/runs/train/insightface/detection/scrfd/configs/scrfd/scrfd_armAY_fluence.py',
+        teacher_checkpoint=
+        '/mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/epoch_5.pth',
+        teacher_input=672,
+        precision='fp16',
+        cls_weight=1.0,
+        box_weight=1.0,
+        score_thr=0.3,
+        beta=2.0))
+evaluation = dict(interval=10000, metric='mAP')
+custom_hooks = [
+    dict(
+        type='EMAHook', momentum=0.0002, interval=1, warm_up=100, priority=49)
+]
+gpu_ids = range(0, 8)
+
+2026-10-07 04:28:35,324 - mmdet - INFO - load checkpoint from local path: /mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/epoch_6.pth
+2026-10-07 04:28:35,591 - mmdet - WARNING - The model and loaded state dict do not match exactly
+
+unexpected key in source state_dict: ema_backbone_stem_0_weight, ema_backbone_stem_1_weight, ema_backbone_stem_1_bias, ema_backbone_stem_3_weight, ema_backbone_stem_4_weight, ema_backbone_stem_4_bias, ema_backbone_stem_6_weight, ema_backbone_stem_7_weight, ema_backbone_stem_7_bias, ema_backbone_layer1_0_conv1_weight, ema_backbone_layer1_0_bn1_weight, ema_backbone_layer1_0_bn1_bias, ema_backbone_layer1_0_conv2_weight, ema_backbone_layer1_0_bn2_weight, ema_backbone_layer1_0_bn2_bias, ema_backbone_layer1_0_conv3_weight, ema_backbone_layer1_0_bn3_weight, ema_backbone_layer1_0_bn3_bias, ema_backbone_layer1_0_downsample_1_weight, ema_backbone_layer1_0_downsample_2_weight, ema_backbone_layer1_0_downsample_2_bias, ema_backbone_layer1_1_conv1_weight, ema_backbone_layer1_1_bn1_weight, ema_backbone_layer1_1_bn1_bias, ema_backbone_layer1_1_conv2_weight, ema_backbone_layer1_1_bn2_weight, ema_backbone_layer1_1_bn2_bias, ema_backbone_layer1_1_conv3_weight, ema_backbone_layer1_1_bn3_weight, ema_backbone_layer1_1_bn3_bias, ema_backbone_layer1_2_conv1_weight, ema_backbone_layer1_2_bn1_weight, ema_backbone_layer1_2_bn1_bias, ema_backbone_layer1_2_conv2_weight, ema_backbone_layer1_2_bn2_weight, ema_backbone_layer1_2_bn2_bias, ema_backbone_layer1_2_conv3_weight, ema_backbone_layer1_2_bn3_weight, ema_backbone_layer1_2_bn3_bias, ema_backbone_layer1_3_conv1_weight, ema_backbone_layer1_3_bn1_weight, ema_backbone_layer1_3_bn1_bias, ema_backbone_layer1_3_conv2_weight, ema_backbone_layer1_3_bn2_weight, ema_backbone_layer1_3_bn2_bias, ema_backbone_layer1_3_conv3_weight, ema_backbone_layer1_3_bn3_weight, ema_backbone_layer1_3_bn3_bias, ema_backbone_layer1_4_conv1_weight, ema_backbone_layer1_4_bn1_weight, ema_backbone_layer1_4_bn1_bias, ema_backbone_layer1_4_conv2_weight, ema_backbone_layer1_4_bn2_weight, ema_backbone_layer1_4_bn2_bias, ema_backbone_layer1_4_conv3_weight, ema_backbone_layer1_4_bn3_weight, ema_backbone_layer1_4_bn3_bias, ema_backbone_layer1_5_conv1_weight, ema_backbone_layer1_5_bn1_weight, ema_backbone_layer1_5_bn1_bias, ema_backbone_layer1_5_conv2_weight, ema_backbone_layer1_5_bn2_weight, ema_backbone_layer1_5_bn2_bias, ema_backbone_layer1_5_conv3_weight, ema_backbone_layer1_5_bn3_weight, ema_backbone_layer1_5_bn3_bias, ema_backbone_layer1_6_conv1_weight, ema_backbone_layer1_6_bn1_weight, ema_backbone_layer1_6_bn1_bias, ema_backbone_layer1_6_conv2_weight, ema_backbone_layer1_6_bn2_weight, ema_backbone_layer1_6_bn2_bias, ema_backbone_layer1_6_conv3_weight, ema_backbone_layer1_6_bn3_weight, ema_backbone_layer1_6_bn3_bias, ema_backbone_layer1_7_conv1_weight, ema_backbone_layer1_7_bn1_weight, ema_backbone_layer1_7_bn1_bias, ema_backbone_layer1_7_conv2_weight, ema_backbone_layer1_7_bn2_weight, ema_backbone_layer1_7_bn2_bias, ema_backbone_layer1_7_conv3_weight, ema_backbone_layer1_7_bn3_weight, ema_backbone_layer1_7_bn3_bias, ema_backbone_layer1_8_conv1_weight, ema_backbone_layer1_8_bn1_weight, ema_backbone_layer1_8_bn1_bias, ema_backbone_layer1_8_conv2_weight, ema_backbone_layer1_8_bn2_weight, ema_backbone_layer1_8_bn2_bias, ema_backbone_layer1_8_conv3_weight, ema_backbone_layer1_8_bn3_weight, ema_backbone_layer1_8_bn3_bias, ema_backbone_layer1_9_conv1_weight, ema_backbone_layer1_9_bn1_weight, ema_backbone_layer1_9_bn1_bias, ema_backbone_layer1_9_conv2_weight, ema_backbone_layer1_9_bn2_weight, ema_backbone_layer1_9_bn2_bias, ema_backbone_layer1_9_conv3_weight, ema_backbone_layer1_9_bn3_weight, ema_backbone_layer1_9_bn3_bias, ema_backbone_layer1_10_conv1_weight, ema_backbone_layer1_10_bn1_weight, ema_backbone_layer1_10_bn1_bias, ema_backbone_layer1_10_conv2_weight, ema_backbone_layer1_10_bn2_weight, ema_backbone_layer1_10_bn2_bias, ema_backbone_layer1_10_conv3_weight, ema_backbone_layer1_10_bn3_weight, ema_backbone_layer1_10_bn3_bias, ema_backbone_layer1_11_conv1_weight, ema_backbone_layer1_11_bn1_weight, ema_backbone_layer1_11_bn1_bias, ema_backbone_layer1_11_conv2_weight, ema_backbone_layer1_11_bn2_weight, ema_backbone_layer1_11_bn2_bias, ema_backbone_layer1_11_conv3_weight, ema_backbone_layer1_11_bn3_weight, ema_backbone_layer1_11_bn3_bias, ema_backbone_layer1_12_conv1_weight, ema_backbone_layer1_12_bn1_weight, ema_backbone_layer1_12_bn1_bias, ema_backbone_layer1_12_conv2_weight, ema_backbone_layer1_12_bn2_weight, ema_backbone_layer1_12_bn2_bias, ema_backbone_layer1_12_conv3_weight, ema_backbone_layer1_12_bn3_weight, ema_backbone_layer1_12_bn3_bias, ema_backbone_layer1_13_conv1_weight, ema_backbone_layer1_13_bn1_weight, ema_backbone_layer1_13_bn1_bias, ema_backbone_layer1_13_conv2_weight, ema_backbone_layer1_13_bn2_weight, ema_backbone_layer1_13_bn2_bias, ema_backbone_layer1_13_conv3_weight, ema_backbone_layer1_13_bn3_weight, ema_backbone_layer1_13_bn3_bias, ema_backbone_layer1_14_conv1_weight, ema_backbone_layer1_14_bn1_weight, ema_backbone_layer1_14_bn1_bias, ema_backbone_layer1_14_conv2_weight, ema_backbone_layer1_14_bn2_weight, ema_backbone_layer1_14_bn2_bias, ema_backbone_layer1_14_conv3_weight, ema_backbone_layer1_14_bn3_weight, ema_backbone_layer1_14_bn3_bias, ema_backbone_layer1_15_conv1_weight, ema_backbone_layer1_15_bn1_weight, ema_backbone_layer1_15_bn1_bias, ema_backbone_layer1_15_conv2_weight, ema_backbone_layer1_15_bn2_weight, ema_backbone_layer1_15_bn2_bias, ema_backbone_layer1_15_conv3_weight, ema_backbone_layer1_15_bn3_weight, ema_backbone_layer1_15_bn3_bias, ema_backbone_layer1_16_conv1_weight, ema_backbone_layer1_16_bn1_weight, ema_backbone_layer1_16_bn1_bias, ema_backbone_layer1_16_conv2_weight, ema_backbone_layer1_16_bn2_weight, ema_backbone_layer1_16_bn2_bias, ema_backbone_layer1_16_conv3_weight, ema_backbone_layer1_16_bn3_weight, ema_backbone_layer1_16_bn3_bias, ema_backbone_layer2_0_conv1_weight, ema_backbone_layer2_0_bn1_weight, ema_backbone_layer2_0_bn1_bias, ema_backbone_layer2_0_conv2_weight, ema_backbone_layer2_0_bn2_weight, ema_backbone_layer2_0_bn2_bias, ema_backbone_layer2_0_conv3_weight, ema_backbone_layer2_0_bn3_weight, ema_backbone_layer2_0_bn3_bias, ema_backbone_layer2_0_downsample_1_weight, ema_backbone_layer2_0_downsample_2_weight, ema_backbone_layer2_0_downsample_2_bias, ema_backbone_layer2_1_conv1_weight, ema_backbone_layer2_1_bn1_weight, ema_backbone_layer2_1_bn1_bias, ema_backbone_layer2_1_conv2_weight, ema_backbone_layer2_1_bn2_weight, ema_backbone_layer2_1_bn2_bias, ema_backbone_layer2_1_conv3_weight, ema_backbone_layer2_1_bn3_weight, ema_backbone_layer2_1_bn3_bias, ema_backbone_layer2_2_conv1_weight, ema_backbone_layer2_2_bn1_weight, ema_backbone_layer2_2_bn1_bias, ema_backbone_layer2_2_conv2_weight, ema_backbone_layer2_2_bn2_weight, ema_backbone_layer2_2_bn2_bias, ema_backbone_layer2_2_conv3_weight, ema_backbone_layer2_2_bn3_weight, ema_backbone_layer2_2_bn3_bias, ema_backbone_layer2_3_conv1_weight, ema_backbone_layer2_3_bn1_weight, ema_backbone_layer2_3_bn1_bias, ema_backbone_layer2_3_conv2_weight, ema_backbone_layer2_3_bn2_weight, ema_backbone_layer2_3_bn2_bias, ema_backbone_layer2_3_conv3_weight, ema_backbone_layer2_3_bn3_weight, ema_backbone_layer2_3_bn3_bias, ema_backbone_layer2_4_conv1_weight, ema_backbone_layer2_4_bn1_weight, ema_backbone_layer2_4_bn1_bias, ema_backbone_layer2_4_conv2_weight, ema_backbone_layer2_4_bn2_weight, ema_backbone_layer2_4_bn2_bias, ema_backbone_layer2_4_conv3_weight, ema_backbone_layer2_4_bn3_weight, ema_backbone_layer2_4_bn3_bias, ema_backbone_layer2_5_conv1_weight, ema_backbone_layer2_5_bn1_weight, ema_backbone_layer2_5_bn1_bias, ema_backbone_layer2_5_conv2_weight, ema_backbone_layer2_5_bn2_weight, ema_backbone_layer2_5_bn2_bias, ema_backbone_layer2_5_conv3_weight, ema_backbone_layer2_5_bn3_weight, ema_backbone_layer2_5_bn3_bias, ema_backbone_layer2_6_conv1_weight, ema_backbone_layer2_6_bn1_weight, ema_backbone_layer2_6_bn1_bias, ema_backbone_layer2_6_conv2_weight, ema_backbone_layer2_6_bn2_weight, ema_backbone_layer2_6_bn2_bias, ema_backbone_layer2_6_conv3_weight, ema_backbone_layer2_6_bn3_weight, ema_backbone_layer2_6_bn3_bias, ema_backbone_layer2_7_conv1_weight, ema_backbone_layer2_7_bn1_weight, ema_backbone_layer2_7_bn1_bias, ema_backbone_layer2_7_conv2_weight, ema_backbone_layer2_7_bn2_weight, ema_backbone_layer2_7_bn2_bias, ema_backbone_layer2_7_conv3_weight, ema_backbone_layer2_7_bn3_weight, ema_backbone_layer2_7_bn3_bias, ema_backbone_layer2_8_conv1_weight, ema_backbone_layer2_8_bn1_weight, ema_backbone_layer2_8_bn1_bias, ema_backbone_layer2_8_conv2_weight, ema_backbone_layer2_8_bn2_weight, ema_backbone_layer2_8_bn2_bias, ema_backbone_layer2_8_conv3_weight, ema_backbone_layer2_8_bn3_weight, ema_backbone_layer2_8_bn3_bias, ema_backbone_layer2_9_conv1_weight, ema_backbone_layer2_9_bn1_weight, ema_backbone_layer2_9_bn1_bias, ema_backbone_layer2_9_conv2_weight, ema_backbone_layer2_9_bn2_weight, ema_backbone_layer2_9_bn2_bias, ema_backbone_layer2_9_conv3_weight, ema_backbone_layer2_9_bn3_weight, ema_backbone_layer2_9_bn3_bias, ema_backbone_layer2_10_conv1_weight, ema_backbone_layer2_10_bn1_weight, ema_backbone_layer2_10_bn1_bias, ema_backbone_layer2_10_conv2_weight, ema_backbone_layer2_10_bn2_weight, ema_backbone_layer2_10_bn2_bias, ema_backbone_layer2_10_conv3_weight, ema_backbone_layer2_10_bn3_weight, ema_backbone_layer2_10_bn3_bias, ema_backbone_layer2_11_conv1_weight, ema_backbone_layer2_11_bn1_weight, ema_backbone_layer2_11_bn1_bias, ema_backbone_layer2_11_conv2_weight, ema_backbone_layer2_11_bn2_weight, ema_backbone_layer2_11_bn2_bias, ema_backbone_layer2_11_conv3_weight, ema_backbone_layer2_11_bn3_weight, ema_backbone_layer2_11_bn3_bias, ema_backbone_layer2_12_conv1_weight, ema_backbone_layer2_12_bn1_weight, ema_backbone_layer2_12_bn1_bias, ema_backbone_layer2_12_conv2_weight, ema_backbone_layer2_12_bn2_weight, ema_backbone_layer2_12_bn2_bias, ema_backbone_layer2_12_conv3_weight, ema_backbone_layer2_12_bn3_weight, ema_backbone_layer2_12_bn3_bias, ema_backbone_layer2_13_conv1_weight, ema_backbone_layer2_13_bn1_weight, ema_backbone_layer2_13_bn1_bias, ema_backbone_layer2_13_conv2_weight, ema_backbone_layer2_13_bn2_weight, ema_backbone_layer2_13_bn2_bias, ema_backbone_layer2_13_conv3_weight, ema_backbone_layer2_13_bn3_weight, ema_backbone_layer2_13_bn3_bias, ema_backbone_layer2_14_conv1_weight, ema_backbone_layer2_14_bn1_weight, ema_backbone_layer2_14_bn1_bias, ema_backbone_layer2_14_conv2_weight, ema_backbone_layer2_14_bn2_weight, ema_backbone_layer2_14_bn2_bias, ema_backbone_layer2_14_conv3_weight, ema_backbone_layer2_14_bn3_weight, ema_backbone_layer2_14_bn3_bias, ema_backbone_layer2_15_conv1_weight, ema_backbone_layer2_15_bn1_weight, ema_backbone_layer2_15_bn1_bias, ema_backbone_layer2_15_conv2_weight, ema_backbone_layer2_15_bn2_weight, ema_backbone_layer2_15_bn2_bias, ema_backbone_layer2_15_conv3_weight, ema_backbone_layer2_15_bn3_weight, ema_backbone_layer2_15_bn3_bias, ema_backbone_layer3_0_conv1_weight, ema_backbone_layer3_0_bn1_weight, ema_backbone_layer3_0_bn1_bias, ema_backbone_layer3_0_conv2_weight, ema_backbone_layer3_0_bn2_weight, ema_backbone_layer3_0_bn2_bias, ema_backbone_layer3_0_conv3_weight, ema_backbone_layer3_0_bn3_weight, ema_backbone_layer3_0_bn3_bias, ema_backbone_layer3_0_downsample_1_weight, ema_backbone_layer3_0_downsample_2_weight, ema_backbone_layer3_0_downsample_2_bias, ema_backbone_layer3_1_conv1_weight, ema_backbone_layer3_1_bn1_weight, ema_backbone_layer3_1_bn1_bias, ema_backbone_layer3_1_conv2_weight, ema_backbone_layer3_1_bn2_weight, ema_backbone_layer3_1_bn2_bias, ema_backbone_layer3_1_conv3_weight, ema_backbone_layer3_1_bn3_weight, ema_backbone_layer3_1_bn3_bias, ema_backbone_layer4_0_conv1_weight, ema_backbone_layer4_0_bn1_weight, ema_backbone_layer4_0_bn1_bias, ema_backbone_layer4_0_conv2_weight, ema_backbone_layer4_0_bn2_weight, ema_backbone_layer4_0_bn2_bias, ema_backbone_layer4_0_conv3_weight, ema_backbone_layer4_0_bn3_weight, ema_backbone_layer4_0_bn3_bias, ema_backbone_layer4_0_downsample_1_weight, ema_backbone_layer4_0_downsample_2_weight, ema_backbone_layer4_0_downsample_2_bias, ema_backbone_layer4_1_conv1_weight, ema_backbone_layer4_1_bn1_weight, ema_backbone_layer4_1_bn1_bias, ema_backbone_layer4_1_conv2_weight, ema_backbone_layer4_1_bn2_weight, ema_backbone_layer4_1_bn2_bias, ema_backbone_layer4_1_conv3_weight, ema_backbone_layer4_1_bn3_weight, ema_backbone_layer4_1_bn3_bias, ema_backbone_layer4_2_conv1_weight, ema_backbone_layer4_2_bn1_weight, ema_backbone_layer4_2_bn1_bias, ema_backbone_layer4_2_conv2_weight, ema_backbone_layer4_2_bn2_weight, ema_backbone_layer4_2_bn2_bias, ema_backbone_layer4_2_conv3_weight, ema_backbone_layer4_2_bn3_weight, ema_backbone_layer4_2_bn3_bias, ema_backbone_layer4_3_conv1_weight, ema_backbone_layer4_3_bn1_weight, ema_backbone_layer4_3_bn1_bias, ema_backbone_layer4_3_conv2_weight, ema_backbone_layer4_3_bn2_weight, ema_backbone_layer4_3_bn2_bias, ema_backbone_layer4_3_conv3_weight, ema_backbone_layer4_3_bn3_weight, ema_backbone_layer4_3_bn3_bias, ema_backbone_layer4_4_conv1_weight, ema_backbone_layer4_4_bn1_weight, ema_backbone_layer4_4_bn1_bias, ema_backbone_layer4_4_conv2_weight, ema_backbone_layer4_4_bn2_weight, ema_backbone_layer4_4_bn2_bias, ema_backbone_layer4_4_conv3_weight, ema_backbone_layer4_4_bn3_weight, ema_backbone_layer4_4_bn3_bias, ema_backbone_layer4_5_conv1_weight, ema_backbone_layer4_5_bn1_weight, ema_backbone_layer4_5_bn1_bias, ema_backbone_layer4_5_conv2_weight, ema_backbone_layer4_5_bn2_weight, ema_backbone_layer4_5_bn2_bias, ema_backbone_layer4_5_conv3_weight, ema_backbone_layer4_5_bn3_weight, ema_backbone_layer4_5_bn3_bias, ema_backbone_layer4_6_conv1_weight, ema_backbone_layer4_6_bn1_weight, ema_backbone_layer4_6_bn1_bias, ema_backbone_layer4_6_conv2_weight, ema_backbone_layer4_6_bn2_weight, ema_backbone_layer4_6_bn2_bias, ema_backbone_layer4_6_conv3_weight, ema_backbone_layer4_6_bn3_weight, ema_backbone_layer4_6_bn3_bias, ema_backbone_layer4_7_conv1_weight, ema_backbone_layer4_7_bn1_weight, ema_backbone_layer4_7_bn1_bias, ema_backbone_layer4_7_conv2_weight, ema_backbone_layer4_7_bn2_weight, ema_backbone_layer4_7_bn2_bias, ema_backbone_layer4_7_conv3_weight, ema_backbone_layer4_7_bn3_weight, ema_backbone_layer4_7_bn3_bias, ema_neck_lateral_convs_0_conv_weight, ema_neck_lateral_convs_0_conv_bias, ema_neck_lateral_convs_1_conv_weight, ema_neck_lateral_convs_1_conv_bias, ema_neck_lateral_convs_2_conv_weight, ema_neck_lateral_convs_2_conv_bias, ema_neck_fpn_convs_0_conv_weight, ema_neck_fpn_convs_0_conv_bias, ema_neck_fpn_convs_1_conv_weight, ema_neck_fpn_convs_1_conv_bias, ema_neck_fpn_convs_2_conv_weight, ema_neck_fpn_convs_2_conv_bias, ema_neck_downsample_convs_0_conv_weight, ema_neck_downsample_convs_0_conv_bias, ema_neck_downsample_convs_1_conv_weight, ema_neck_downsample_convs_1_conv_bias, ema_neck_pafpn_convs_0_conv_weight, ema_neck_pafpn_convs_0_conv_bias, ema_neck_pafpn_convs_1_conv_weight, ema_neck_pafpn_convs_1_conv_bias, ema_bbox_head_cls_stride_convs_0_0_conv_weight, ema_bbox_head_cls_stride_convs_0_0_gn_weight, ema_bbox_head_cls_stride_convs_0_0_gn_bias, ema_bbox_head_cls_stride_convs_0_1_conv_weight, ema_bbox_head_cls_stride_convs_0_1_gn_weight, ema_bbox_head_cls_stride_convs_0_1_gn_bias, ema_bbox_head_stride_cls_0_weight, ema_bbox_head_stride_cls_0_bias, ema_bbox_head_stride_reg_0_weight, ema_bbox_head_stride_reg_0_bias, ema_bbox_head_stride_kps_0_weight, ema_bbox_head_stride_kps_0_bias, ema_bbox_head_scales_0_scale, ema_bbox_head_scales_1_scale, ema_bbox_head_scales_2_scale
+
+2026-10-07 04:28:35,593 - mmdet - INFO - Start running, host: esteban@fluence4, work_dir: /mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence
+2026-10-07 04:28:35,593 - mmdet - INFO - Hooks will be executed in the following order:
+before_run:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_epoch:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(49          ) EMAHook                            
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_train_iter:
+(VERY_HIGH   ) StepLrUpdaterHook                  
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_train_iter:
+(ABOVE_NORMAL) GradientCumulativeOptimizerHook    
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_train_epoch:
+(49          ) EMAHook                            
+(NORMAL      ) CheckpointHook                     
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_epoch:
+(NORMAL      ) DistSamplerSeedHook                
+(LOW         ) IterTimerHook                      
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+before_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_iter:
+(LOW         ) IterTimerHook                      
+ -------------------- 
+after_val_epoch:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+after_run:
+(VERY_LOW    ) TextLoggerHook                     
+ -------------------- 
+2026-10-07 04:28:35,593 - mmdet - INFO - workflow: [('train', 1)], max: 5 epochs
+2026-10-07 04:28:35,602 - mmdet - INFO - Checkpoints will be saved to /mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence by HardDiskBackend.
+2026-10-07 04:28:45,736 - mmdet - INFO - DINOv2ViT(vitl14): random init (no pretrained path)
+2026-10-07 04:29:01,444 - mmdet - INFO - Epoch [1][50/454]	lr: 2.458e-05, eta: 0:19:06, time: 0.517, data_time: 0.086, memory: 14691, loss_cls: 0.4366, loss_bbox: 0.5572, loss_kps: 0.0000, loss_kd_cls: 0.0346, loss_kd_box: 0.6189, loss: 1.6472
+2026-10-07 04:29:13,526 - mmdet - INFO - Epoch [1][100/454]	lr: 4.955e-05, eta: 0:13:42, time: 0.242, data_time: 0.008, memory: 14691, loss_cls: 0.4405, loss_bbox: 0.5729, loss_kps: 0.0000, loss_kd_cls: 0.0323, loss_kd_box: 0.5909, loss: 1.6365
+2026-10-07 04:29:25,763 - mmdet - INFO - Epoch [1][150/454]	lr: 7.453e-05, eta: 0:11:48, time: 0.245, data_time: 0.008, memory: 14691, loss_cls: 0.4446, loss_bbox: 0.5867, loss_kps: 0.0000, loss_kd_cls: 0.0313, loss_kd_box: 0.5802, loss: 1.6428
+2026-10-07 04:29:37,884 - mmdet - INFO - Epoch [1][200/454]	lr: 9.950e-05, eta: 0:10:44, time: 0.242, data_time: 0.008, memory: 14691, loss_cls: 0.4616, loss_bbox: 0.5796, loss_kps: 0.0000, loss_kd_cls: 0.0341, loss_kd_box: 0.5739, loss: 1.6492
+2026-10-07 04:29:50,104 - mmdet - INFO - Epoch [1][250/454]	lr: 1.000e-04, eta: 0:10:01, time: 0.244, data_time: 0.007, memory: 14691, loss_cls: 0.4293, loss_bbox: 0.5830, loss_kps: 0.0000, loss_kd_cls: 0.0309, loss_kd_box: 0.5720, loss: 1.6153
+2026-10-07 04:30:02,166 - mmdet - INFO - Epoch [1][300/454]	lr: 1.000e-04, eta: 0:09:28, time: 0.241, data_time: 0.008, memory: 14691, loss_cls: 0.4489, loss_bbox: 0.5610, loss_kps: 0.0000, loss_kd_cls: 0.0322, loss_kd_box: 0.5593, loss: 1.6014
+2026-10-07 04:30:14,181 - mmdet - INFO - Epoch [1][350/454]	lr: 1.000e-04, eta: 0:09:00, time: 0.240, data_time: 0.008, memory: 14691, loss_cls: 0.4473, loss_bbox: 0.5765, loss_kps: 0.0000, loss_kd_cls: 0.0313, loss_kd_box: 0.5542, loss: 1.6093
+2026-10-07 04:30:26,189 - mmdet - INFO - Epoch [1][400/454]	lr: 1.000e-04, eta: 0:08:36, time: 0.240, data_time: 0.009, memory: 14691, loss_cls: 0.4553, loss_bbox: 0.5816, loss_kps: 0.0000, loss_kd_cls: 0.0311, loss_kd_box: 0.5492, loss: 1.6172
+2026-10-07 04:30:37,411 - mmdet - INFO - Epoch [1][450/454]	lr: 1.000e-04, eta: 0:08:12, time: 0.224, data_time: 0.008, memory: 14691, loss_cls: 0.4541, loss_bbox: 0.5823, loss_kps: 0.0000, loss_kd_cls: 0.0309, loss_kd_box: 0.5740, loss: 1.6412
+2026-10-07 04:30:38,724 - mmdet - INFO - Saving checkpoint at 1 epochs
+2026-10-07 04:30:58,973 - mmdet - INFO - Epoch [2][50/454]	lr: 1.000e-04, eta: 0:08:16, time: 0.400, data_time: 0.162, memory: 14691, loss_cls: 0.4500, loss_bbox: 0.5736, loss_kps: 0.0000, loss_kd_cls: 0.0311, loss_kd_box: 0.5453, loss: 1.6000
+2026-10-07 04:31:11,106 - mmdet - INFO - Epoch [2][100/454]	lr: 1.000e-04, eta: 0:07:56, time: 0.243, data_time: 0.008, memory: 14691, loss_cls: 0.4392, loss_bbox: 0.5645, loss_kps: 0.0000, loss_kd_cls: 0.0291, loss_kd_box: 0.5239, loss: 1.5567
+2026-10-07 04:31:23,096 - mmdet - INFO - Epoch [2][150/454]	lr: 1.000e-04, eta: 0:07:37, time: 0.240, data_time: 0.008, memory: 14691, loss_cls: 0.4383, loss_bbox: 0.5711, loss_kps: 0.0000, loss_kd_cls: 0.0273, loss_kd_box: 0.5424, loss: 1.5790
+2026-10-07 04:31:35,324 - mmdet - INFO - Epoch [2][200/454]	lr: 1.000e-04, eta: 0:07:20, time: 0.245, data_time: 0.008, memory: 14691, loss_cls: 0.4290, loss_bbox: 0.5802, loss_kps: 0.0000, loss_kd_cls: 0.0295, loss_kd_box: 0.5322, loss: 1.5710
+2026-10-07 04:31:47,573 - mmdet - INFO - Epoch [2][250/454]	lr: 1.000e-04, eta: 0:07:03, time: 0.245, data_time: 0.008, memory: 14691, loss_cls: 0.4169, loss_bbox: 0.5658, loss_kps: 0.0000, loss_kd_cls: 0.0282, loss_kd_box: 0.5632, loss: 1.5741
+2026-10-07 04:31:59,710 - mmdet - INFO - Epoch [2][300/454]	lr: 1.000e-04, eta: 0:06:47, time: 0.243, data_time: 0.008, memory: 14691, loss_cls: 0.4574, loss_bbox: 0.5570, loss_kps: 0.0000, loss_kd_cls: 0.0303, loss_kd_box: 0.5407, loss: 1.5855
+2026-10-07 04:32:12,275 - mmdet - INFO - Epoch [2][350/454]	lr: 1.000e-04, eta: 0:06:32, time: 0.251, data_time: 0.008, memory: 14691, loss_cls: 0.4581, loss_bbox: 0.5801, loss_kps: 0.0000, loss_kd_cls: 0.0291, loss_kd_box: 0.5397, loss: 1.6069
+2026-10-07 04:32:24,535 - mmdet - INFO - Epoch [2][400/454]	lr: 1.000e-04, eta: 0:06:16, time: 0.245, data_time: 0.008, memory: 14691, loss_cls: 0.4446, loss_bbox: 0.5681, loss_kps: 0.0000, loss_kd_cls: 0.0274, loss_kd_box: 0.5390, loss: 1.5791
+2026-10-07 04:32:36,143 - mmdet - INFO - Epoch [2][450/454]	lr: 1.000e-04, eta: 0:06:01, time: 0.232, data_time: 0.007, memory: 14691, loss_cls: 0.4313, loss_bbox: 0.5612, loss_kps: 0.0000, loss_kd_cls: 0.0267, loss_kd_box: 0.5062, loss: 1.5254
+2026-10-07 04:32:37,736 - mmdet - INFO - Saving checkpoint at 2 epochs
+2026-10-07 04:32:57,977 - mmdet - INFO - Epoch [3][50/454]	lr: 1.000e-04, eta: 0:05:54, time: 0.400, data_time: 0.135, memory: 14691, loss_cls: 0.4419, loss_bbox: 0.5689, loss_kps: 0.0000, loss_kd_cls: 0.0294, loss_kd_box: 0.5247, loss: 1.5650
+2026-10-07 04:33:10,013 - mmdet - INFO - Epoch [3][100/454]	lr: 1.000e-04, eta: 0:05:39, time: 0.241, data_time: 0.007, memory: 14691, loss_cls: 0.4377, loss_bbox: 0.5651, loss_kps: 0.0000, loss_kd_cls: 0.0277, loss_kd_box: 0.5133, loss: 1.5438
+2026-10-07 04:33:22,107 - mmdet - INFO - Epoch [3][150/454]	lr: 1.000e-04, eta: 0:05:24, time: 0.242, data_time: 0.007, memory: 14691, loss_cls: 0.4132, loss_bbox: 0.5733, loss_kps: 0.0000, loss_kd_cls: 0.0283, loss_kd_box: 0.5169, loss: 1.5317
+2026-10-07 04:33:34,229 - mmdet - INFO - Epoch [3][200/454]	lr: 1.000e-04, eta: 0:05:09, time: 0.242, data_time: 0.007, memory: 14691, loss_cls: 0.4138, loss_bbox: 0.5563, loss_kps: 0.0000, loss_kd_cls: 0.0263, loss_kd_box: 0.5112, loss: 1.5076
+2026-10-07 04:33:46,330 - mmdet - INFO - Epoch [3][250/454]	lr: 1.000e-04, eta: 0:04:55, time: 0.242, data_time: 0.007, memory: 14691, loss_cls: 0.4228, loss_bbox: 0.5707, loss_kps: 0.0000, loss_kd_cls: 0.0267, loss_kd_box: 0.5098, loss: 1.5300
+2026-10-07 04:33:58,501 - mmdet - INFO - Epoch [3][300/454]	lr: 1.000e-04, eta: 0:04:40, time: 0.243, data_time: 0.008, memory: 14691, loss_cls: 0.4370, loss_bbox: 0.5673, loss_kps: 0.0000, loss_kd_cls: 0.0281, loss_kd_box: 0.5023, loss: 1.5347
+2026-10-07 04:34:10,661 - mmdet - INFO - Epoch [3][350/454]	lr: 1.000e-04, eta: 0:04:26, time: 0.243, data_time: 0.007, memory: 14691, loss_cls: 0.4262, loss_bbox: 0.5512, loss_kps: 0.0000, loss_kd_cls: 0.0268, loss_kd_box: 0.5137, loss: 1.5179
+2026-10-07 04:34:22,689 - mmdet - INFO - Epoch [3][400/454]	lr: 1.000e-04, eta: 0:04:12, time: 0.241, data_time: 0.007, memory: 14691, loss_cls: 0.4452, loss_bbox: 0.5717, loss_kps: 0.0000, loss_kd_cls: 0.0281, loss_kd_box: 0.5173, loss: 1.5622
+2026-10-07 04:34:33,906 - mmdet - INFO - Epoch [3][450/454]	lr: 1.000e-04, eta: 0:03:58, time: 0.224, data_time: 0.006, memory: 14691, loss_cls: 0.4111, loss_bbox: 0.5479, loss_kps: 0.0000, loss_kd_cls: 0.0256, loss_kd_box: 0.4822, loss: 1.4668
+2026-10-07 04:34:35,528 - mmdet - INFO - Saving checkpoint at 3 epochs
+2026-10-07 04:34:55,701 - mmdet - INFO - Epoch [4][50/454]	lr: 1.000e-04, eta: 0:03:47, time: 0.397, data_time: 0.162, memory: 14691, loss_cls: 0.4423, loss_bbox: 0.5627, loss_kps: 0.0000, loss_kd_cls: 0.0270, loss_kd_box: 0.5229, loss: 1.5549
+2026-10-07 04:35:07,759 - mmdet - INFO - Epoch [4][100/454]	lr: 1.000e-04, eta: 0:03:33, time: 0.241, data_time: 0.007, memory: 14691, loss_cls: 0.4119, loss_bbox: 0.5578, loss_kps: 0.0000, loss_kd_cls: 0.0258, loss_kd_box: 0.4877, loss: 1.4833
+2026-10-07 04:35:19,709 - mmdet - INFO - Epoch [4][150/454]	lr: 1.000e-04, eta: 0:03:19, time: 0.239, data_time: 0.008, memory: 14691, loss_cls: 0.4277, loss_bbox: 0.5640, loss_kps: 0.0000, loss_kd_cls: 0.0263, loss_kd_box: 0.4908, loss: 1.5088
+2026-10-07 04:35:32,131 - mmdet - INFO - Epoch [4][200/454]	lr: 1.000e-04, eta: 0:03:06, time: 0.248, data_time: 0.008, memory: 14691, loss_cls: 0.4383, loss_bbox: 0.5723, loss_kps: 0.0000, loss_kd_cls: 0.0264, loss_kd_box: 0.5036, loss: 1.5406
+2026-10-07 04:35:44,321 - mmdet - INFO - Epoch [4][250/454]	lr: 1.000e-04, eta: 0:02:52, time: 0.244, data_time: 0.008, memory: 14691, loss_cls: 0.4211, loss_bbox: 0.5561, loss_kps: 0.0000, loss_kd_cls: 0.0267, loss_kd_box: 0.4975, loss: 1.5014
+2026-10-07 04:35:56,468 - mmdet - INFO - Epoch [4][300/454]	lr: 1.000e-04, eta: 0:02:39, time: 0.243, data_time: 0.008, memory: 14691, loss_cls: 0.4411, loss_bbox: 0.5776, loss_kps: 0.0000, loss_kd_cls: 0.0259, loss_kd_box: 0.5121, loss: 1.5567
+2026-10-07 04:36:09,117 - mmdet - INFO - Epoch [4][350/454]	lr: 1.000e-04, eta: 0:02:26, time: 0.253, data_time: 0.008, memory: 14691, loss_cls: 0.4360, loss_bbox: 0.5723, loss_kps: 0.0000, loss_kd_cls: 0.0291, loss_kd_box: 0.5322, loss: 1.5696
+2026-10-07 04:36:21,188 - mmdet - INFO - Epoch [4][400/454]	lr: 1.000e-04, eta: 0:02:12, time: 0.241, data_time: 0.009, memory: 14691, loss_cls: 0.4461, loss_bbox: 0.5642, loss_kps: 0.0000, loss_kd_cls: 0.0262, loss_kd_box: 0.5052, loss: 1.5417
+2026-10-07 04:36:32,458 - mmdet - INFO - Epoch [4][450/454]	lr: 1.000e-04, eta: 0:01:59, time: 0.225, data_time: 0.008, memory: 14691, loss_cls: 0.4420, loss_bbox: 0.5607, loss_kps: 0.0000, loss_kd_cls: 0.0273, loss_kd_box: 0.5003, loss: 1.5303
+2026-10-07 04:36:34,082 - mmdet - INFO - Saving checkpoint at 4 epochs
+2026-10-07 04:36:54,267 - mmdet - INFO - Epoch [5][50/454]	lr: 1.000e-05, eta: 0:01:46, time: 0.399, data_time: 0.165, memory: 14691, loss_cls: 0.4200, loss_bbox: 0.5602, loss_kps: 0.0000, loss_kd_cls: 0.0250, loss_kd_box: 0.4725, loss: 1.4777
+2026-10-07 04:37:06,421 - mmdet - INFO - Epoch [5][100/454]	lr: 1.000e-05, eta: 0:01:33, time: 0.243, data_time: 0.007, memory: 14691, loss_cls: 0.4107, loss_bbox: 0.5526, loss_kps: 0.0000, loss_kd_cls: 0.0242, loss_kd_box: 0.4660, loss: 1.4536
+2026-10-07 04:37:18,580 - mmdet - INFO - Epoch [5][150/454]	lr: 1.000e-05, eta: 0:01:19, time: 0.243, data_time: 0.008, memory: 14691, loss_cls: 0.4084, loss_bbox: 0.5510, loss_kps: 0.0000, loss_kd_cls: 0.0262, loss_kd_box: 0.5100, loss: 1.4956
+2026-10-07 04:37:30,631 - mmdet - INFO - Epoch [5][200/454]	lr: 1.000e-05, eta: 0:01:06, time: 0.241, data_time: 0.009, memory: 14691, loss_cls: 0.4428, loss_bbox: 0.5626, loss_kps: 0.0000, loss_kd_cls: 0.0257, loss_kd_box: 0.4986, loss: 1.5296
+2026-10-07 04:37:42,614 - mmdet - INFO - Epoch [5][250/454]	lr: 1.000e-05, eta: 0:00:53, time: 0.240, data_time: 0.008, memory: 14691, loss_cls: 0.4278, loss_bbox: 0.5558, loss_kps: 0.0000, loss_kd_cls: 0.0250, loss_kd_box: 0.4832, loss: 1.4917
+2026-10-07 04:37:54,633 - mmdet - INFO - Epoch [5][300/454]	lr: 1.000e-05, eta: 0:00:40, time: 0.240, data_time: 0.008, memory: 14691, loss_cls: 0.4412, loss_bbox: 0.5690, loss_kps: 0.0000, loss_kd_cls: 0.0261, loss_kd_box: 0.5072, loss: 1.5435
+2026-10-07 04:38:06,732 - mmdet - INFO - Epoch [5][350/454]	lr: 1.000e-05, eta: 0:00:27, time: 0.242, data_time: 0.008, memory: 14691, loss_cls: 0.4383, loss_bbox: 0.5766, loss_kps: 0.0000, loss_kd_cls: 0.0275, loss_kd_box: 0.5063, loss: 1.5488
+2026-10-07 04:38:18,795 - mmdet - INFO - Epoch [5][400/454]	lr: 1.000e-05, eta: 0:00:14, time: 0.241, data_time: 0.008, memory: 14691, loss_cls: 0.4133, loss_bbox: 0.5486, loss_kps: 0.0000, loss_kd_cls: 0.0244, loss_kd_box: 0.4828, loss: 1.4691
+2026-10-07 04:38:29,946 - mmdet - INFO - Epoch [5][450/454]	lr: 1.000e-05, eta: 0:00:01, time: 0.223, data_time: 0.008, memory: 14691, loss_cls: 0.4086, loss_bbox: 0.5626, loss_kps: 0.0000, loss_kd_cls: 0.0253, loss_kd_box: 0.4863, loss: 1.4827
+2026-10-07 04:38:31,718 - mmdet - INFO - Saving checkpoint at 5 epochs

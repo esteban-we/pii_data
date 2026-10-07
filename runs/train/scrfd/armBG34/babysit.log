@@ -1,0 +1,5 @@
+2026-10-07 04:28:14 === babysitter start (pid 1097345) arm=BG34_fluence gpu= nproc=8 port=29662 config=configs/scrfd/scrfd_armBG34_fluence.py workdir=/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence extra_cfg='' ===
+2026-10-07 04:28:14 attempt 1 launching (resume: none)
+2026-10-07 04:28:14 attempt 1 trainer pid 1097375 (stop the run: kill -TERM 1097345)
+2026-10-07 04:38:35 attempt 1 exited rc=0
+2026-10-07 04:38:35 epoch_5.pth exists; success

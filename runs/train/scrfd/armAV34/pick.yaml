@@ -1,0 +1,28 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAV34
+family: scrfd
+rule: last_epoch
+epoch: 5
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armAV34_det34g.onnx
+checkpoints: pick only (epochs 1 to 4 are on the training box, not on OSS)
+pick_checkpoint: epochs/epoch_5.pth
+remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAV34_fluence
+local_epochs: 1
+epoch_evidence: >-
+  epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAV34_fluence/;
+  babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job
+  27805 on fluence6
+notes: >-
+  PII-1755's close-out chain (pull.sh, the PII-1767 route) pulled epoch_5.pth out of
+  fluence1:runs/train/wd_armAV34_fluence/, with the md5 compared on both hosts, together with
+  the config, the slurm files and the logs, and made epochs/latest.pth here; the ONNX under
+  onnx/ was exported on this box from that checkpoint
+  (training/export/export_armAH34_onnx.py), not copied. Epochs 1 to 4 stayed on the training
+  box and went to no object store, so this arm's rows are the pick epoch and the exports. The
+  training box keeps its copy, unmodified. The first of PII-1732's four facedub fine-tunes:
+  armAM34's epoch_20 (SCRFD-34G, train_Z6) fine-tuned for 5 epochs on train_FD, facedub_a
+  only, lr 1e-4 (PII-1748 job chain, close-out PII-1757).

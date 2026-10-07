@@ -1,0 +1,27 @@
+# PII-1379. rule is last_epoch for every arm until the per-epoch sweep
+# (PII-1372) replaces it. No eval number is recorded here.
+arm: armAU
+family: scrfd
+rule: last_epoch
+epoch: 30
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx:
+checkpoints: pick only (epochs 1 to 29 are on the training box, not on OSS)
+pick_checkpoint: epochs/epoch_30.pth
+remote_wd: fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAU_fluence
+local_epochs: 1
+epoch_evidence: >-
+  epoch_30.pth, the config and the logs pulled from fluence1:runs/train/wd_armAU_fluence/;
+  babysit.log records the trainer exiting rc=0 and `epoch_30.pth exists; success`; slurm job
+  24122 on fluence4
+notes: >-
+  armAR's recipe (DINOv2 ViT-g/14, crop 672) with the backbone layer decay at 0.9 instead of
+  0.8 and 30 epochs with the lr drops at [21, 27] (PII-1654).
+  training/closeout/closeout_arm.sh AU pulled epoch_30.pth, 18.2 GB, the config and the logs
+  into runs/train/scrfd/wd_armAU_fluence/, the shape PII-1610 flagged as neither the work
+  dir's nor the store's; PII-2112 moved that dir to scrfd/armAU/ (epoch_30.pth into epochs/)
+  as PII-1633 did for armAS and PII-1680 for armAT, and deleted nothing. The other 29 epochs
+  stayed on fluence1 and are on no object store. There is no latest.pth and no ONNX here: the
+  close-out exports live outside this tree (PII-1634), and PII-1690 and PII-1693 record them.
