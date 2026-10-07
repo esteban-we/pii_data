@@ -3,17 +3,22 @@
 
 Layout produced (see PII-1379, parent PII-1315):
 
-    /data/esteban/pii/runs/train/
+    /data/esteban/pii/runs/
         models.csv                  one row per arm
         MANIFEST.tsv                one row per copied file (dst, src, size, md5, oss_key)
-        scrfd/<arm>/epochs/         epoch_N.pth from runs/train/wd_<arm>*/
-        scrfd/<arm>/onnx/           every <arm>*.onnx from runs/train/
-        scrfd/<arm>/pick.yaml       rule: last_epoch
-        scrfd/<arm>/...             config and logs, as in the work dir
-        scrfd/stock/                InsightFace and official SCRFD weights
-        egoblur/<arm>/epochs/       model_*.pth from runs/train/wd_egoblur*/
-        egoblur/stock/              EgoBlur gen1/gen2 releases and the d2 build
+        <arm>/train/epochs/         epoch_N.pth from runs/train/wd_<arm>*/
+        <arm>/train/onnx/           every <arm>*.onnx from runs/train/
+        <arm>/train/pick.yaml       rule: last_epoch
+        <arm>/train/...             config and logs, as in the work dir
+        train/scrfd/stock/          InsightFace and official SCRFD weights
+        train/egoblur/stock/        EgoBlur gen1/gen2 releases and the d2 build
     /data/esteban/pii/experiments/verifier_probe/   probe scripts and json
+
+PII-2118 put the arms in runs/<arm>/train/ and moved the two indexes up to runs/.
+The family (scrfd, egoblur, rfdetr) is no longer a directory: the OSS key still
+carries it, unchanged, and so does the `family` column of models.csv. The two
+upstream-release dirs stayed at runs/train/<family>/stock/, since both families
+call them `stock` and one runs/stock/ cannot be both.
 
 A MANIFEST src column is empty when the file was produced on this box straight
 into the store and was never copied from anywhere (PII-2112: the ONNX exports of
@@ -112,11 +117,26 @@ SRC_PROBE = SRC / "runs/verifier_probe"
 
 PII2_ROOT = PII_ROOT          # kept: the name every caller and doc already uses
 PII2 = Path(PII2_ROOT)
-DST_TRAIN = PII2 / "runs/train"
+RUNS = PII2 / "runs"
+DST_TRAIN = RUNS / "train"    # PII-2118: only <family>/stock/ and logs_replay/ now
 DST_PROBE = PII2 / "experiments/verifier_probe"
 
-MANIFEST = DST_TRAIN / "MANIFEST.tsv"
-MODELS_CSV = DST_TRAIN / "models.csv"
+MANIFEST = RUNS / "MANIFEST.tsv"
+MODELS_CSV = RUNS / "models.csv"
+
+STOCK = ("stock",)
+
+
+def arm_dir(family, arm):
+    """Where an arm's files are (PII-2118): runs/<arm>/train/, no family component.
+    `stock` is the exception and keeps runs/train/<family>/stock/."""
+    return DST_TRAIN / family / arm if arm in STOCK else RUNS / arm / "train"
+
+
+def runs_rel(family, arm, rel=""):
+    """A path under an arm dir, relative to runs/: what models.csv `onnx` holds."""
+    d = arm_dir(family, arm).relative_to(RUNS).as_posix()
+    return f"{d}/{rel}" if rel else d
 
 # --------------------------------------------------------------------------
 # PII-1601: checkpoint retention. `checkpoints: pick` means OSS holds every
@@ -151,37 +171,29 @@ def parse_pick(path):
 
 
 def epoch_rel_parts(dst_rel):
-    """(family, arm, name) for a manifest row under an arm's epochs/, else None."""
+    """(arm, name) for a manifest row under an arm's epochs/, else None.
+    PII-2118: runs/<arm>/train/epochs/<name>."""
     parts = dst_rel.split("/")
-    if len(parts) == 6 and parts[:2] == ["runs", "train"] and parts[4] == "epochs":
-        return parts[2], parts[3], parts[5]
+    if len(parts) == 5 and parts[0] == "runs" and parts[2:4] == ["train", "epochs"]:
+        return parts[1], parts[4]
     return None
 
 
-def families_on_disk():
-    """The <family> dirs under runs/train, read from the tree (PII-1633 added
-    rfdetr, so the list is no longer a constant)."""
-    if not DST_TRAIN.is_dir():
-        return []
-    return sorted(p.name for p in DST_TRAIN.iterdir()
-                  if p.is_dir() and p.name != "logs_replay")
-
-
 def retained_names():
-    """{(family, arm): kept epoch file name} for every arm under the rule."""
+    """{arm: kept epoch file name} for every arm under the rule.
+
+    Read off the registry rather than off the tree: runs/ now holds one dir per
+    arm, and a dir another agent's run put there is not ours to interpret.
+    """
     keep = {}
-    for family in families_on_disk():
-        fdir = DST_TRAIN / family
-        if not fdir.is_dir():
+    for family, arm, _spec in all_arms():
+        pick = arm_dir(family, arm) / "pick.yaml"
+        if not pick.is_file():
             continue
-        for adir in sorted(p for p in fdir.iterdir() if p.is_dir()):
-            pick = adir / "pick.yaml"
-            if not pick.is_file():
-                continue
-            spec = parse_pick(pick)
-            if spec.get("checkpoints") != RETENTION or not spec.get("pick_checkpoint"):
-                continue
-            keep[(family, adir.name)] = os.path.basename(spec["pick_checkpoint"])
+        spec = parse_pick(pick)
+        if spec.get("checkpoints") != RETENTION or not spec.get("pick_checkpoint"):
+            continue
+        keep[arm] = os.path.basename(spec["pick_checkpoint"])
     return keep
 
 
@@ -197,8 +209,8 @@ def oss_only_epochs(rows):
         got = epoch_rel_parts(r["dst_rel"])
         if not got or int(r["size"]) < 0:
             continue
-        family, arm, name = got
-        kept = keep.get((family, arm))
+        arm, name = got
+        kept = keep.get(arm)
         if kept and name != kept:
             out.add(r["dst_rel"])
     return out
@@ -1027,7 +1039,7 @@ def pull_remotes(logpath):
         # remainder, and several arms already hold their pick epoch.
         left = {}
         for fam, arm, sp in arms:
-            edir = DST_TRAIN / fam / arm / "epochs"
+            edir = arm_dir(fam, arm) / "epochs"
             here = sum(q.stat().st_size for q in edir.glob("epoch_*.pth")) \
                 if edir.is_dir() else 0
             left[arm] = max(0, size.get(sp["remote_wd"][1], 0) - here)
@@ -1048,7 +1060,7 @@ def pull_remotes(logpath):
                 t0 = time.time()
                 log.write(f"\n==== {arm} via {route[0]} start {time.strftime('%F %T')} ====\n")
                 try:
-                    pull_remote(spec, DST_TRAIN / fam / arm, route, log)
+                    pull_remote(spec, arm_dir(fam, arm), route, log)
                     msg = "ok"
                 except SystemExit as e:
                     errors.append((arm, str(e)))
@@ -1108,7 +1120,7 @@ def remote_check(jobs=8):
             msrc = {r["dst_rel"]: r["src"] for r in csv.DictReader(fh, delimiter="\t")}
     todo = {}
     for fam, arm, spec in remote_arms():
-        dst = DST_TRAIN / fam / arm
+        dst = arm_dir(fam, arm)
         cands = []
         for sub_dir, prefix in ((dst / "epochs", "epochs/"), (dst, "")):
             if not sub_dir.is_dir():
@@ -1219,7 +1231,7 @@ def do_copy(logpath):
 
         # scrfd and rfdetr work dirs
         for family, arm, spec in _mmdet_like_arms():
-            dst = DST_TRAIN / family / arm
+            dst = arm_dir(family, arm)
             if spec["wd"]:
                 wd = SRC_TRAIN / spec["wd"]
                 rsync_dir(wd, dst / "epochs", log,
@@ -1237,7 +1249,7 @@ def do_copy(logpath):
         # scrfd onnx
         for arm, paths in scan_onnx().items():
             for p in paths:
-                rsync_file(p, DST_TRAIN / "scrfd" / arm / "onnx" / p.name, log)
+                rsync_file(p, arm_dir("scrfd", arm) / "onnx" / p.name, log)
 
         # scrfd stock
         for name in SCRFD_STOCK_FILES:
@@ -1249,7 +1261,7 @@ def do_copy(logpath):
             if not spec["wd"]:
                 continue
             wd = SRC_TRAIN / spec["wd"]
-            dst = DST_TRAIN / "egoblur" / arm
+            dst = arm_dir("egoblur", arm)
             rsync_dir(wd, dst / "epochs", log, include=["model_*.pth"])
             rsync_dir(wd, dst, log,
                       exclude=["model_*.pth", "wandb/***",
@@ -1320,7 +1332,7 @@ def copied_files():
     # the work dir's root files), so the two families share this loop. armAO has
     # no onnx/ and no epochs/latest.pth.
     for family, arm, spec in _mmdet_like_arms():
-        dst = DST_TRAIN / family / arm
+        dst = arm_dir(family, arm)
         if spec["wd"] or spec.get("remote_wd"):
             walk(dst / "epochs", lambda p, sp=spec: src_for(sp, p.name))
             for dirpath, dirnames, filenames in os.walk(dst):
@@ -1352,7 +1364,7 @@ def copied_files():
         out.append((p.relative_to(PII2).as_posix(), p, SRC_WEIGHTS / name))
 
     for arm, spec in EGOBLUR_ARMS.items():
-        dst = DST_TRAIN / "egoblur" / arm
+        dst = arm_dir("egoblur", arm)
         for dirpath, dirnames, filenames in os.walk(dst):
             dirnames.sort()
             for fn in sorted(filenames):
@@ -1562,14 +1574,14 @@ def write_meta(logpath):
     rows = []
 
     for arm, spec in SCRFD_ARMS.items():
-        dst = DST_TRAIN / "scrfd" / arm
+        dst = arm_dir("scrfd", arm)
         text, epoch, status, pick_onnx, checkpoints = scrfd_pick(
             arm, spec, onnx_by_arm.get(arm, []), dst)
         (dst / "pick.yaml").write_text(text)
         pick_abs = dst / pick_onnx if pick_onnx else None
         rows.append(dict(
             arm=arm, family="scrfd", epoch=epoch, status=status,
-            onnx=(f"scrfd/{arm}/{pick_onnx}" if pick_onnx else ""),
+            onnx=(runs_rel("scrfd", arm, pick_onnx) if pick_onnx else ""),
             onnx_md5=(md5(pick_abs) if pick_abs and pick_abs.exists() else ""),
             onnx_size=(pick_abs.stat().st_size if pick_abs and pick_abs.exists() else ""),
             n_onnx=(len(onnx_by_arm.get(arm, [])) + len(spec.get("loose_onnx", []))
@@ -1583,7 +1595,7 @@ def write_meta(logpath):
         ))
 
     for arm, spec in RFDETR_ARMS.items():
-        dst = DST_TRAIN / "rfdetr" / arm
+        dst = arm_dir("rfdetr", arm)
         dst.mkdir(parents=True, exist_ok=True)
         text, epoch, status = rfdetr_pick(arm, spec, dst)
         (dst / "pick.yaml").write_text(text)
@@ -1596,7 +1608,7 @@ def write_meta(logpath):
         ))
 
     for arm, spec in EGOBLUR_ARMS.items():
-        dst = DST_TRAIN / "egoblur" / arm
+        dst = arm_dir("egoblur", arm)
         dst.mkdir(parents=True, exist_ok=True)
         text, last, status = egoblur_pick(arm, spec, dst)
         (dst / "pick.yaml").write_text(text)
@@ -1623,7 +1635,7 @@ def write_meta(logpath):
         ".provenance.txt next to it in the source; gen1 does. Sources: "
         "the old tree's weights/ and runs/egoblur_build/."))
     rows.append(dict(arm="stock", family="scrfd", epoch="unknown", status="deprecated",
-                     onnx="scrfd/stock/det_10g.onnx",
+                     onnx=runs_rel("scrfd", "stock", "det_10g.onnx"),
                      onnx_md5=md5(DST_TRAIN / "scrfd/stock/det_10g.onnx"),
                      onnx_size=(DST_TRAIN / "scrfd/stock/det_10g.onnx").stat().st_size,
                      n_onnx=2, checkpoints="upstream release", source=str(SRC_WEIGHTS)))
@@ -1639,10 +1651,10 @@ def write_meta(logpath):
     for r in rows:
         pick = r["onnx"]
         if not pick:
-            pf = DST_TRAIN / r["family"] / r["arm"] / "pick.yaml"
+            pf = arm_dir(r["family"], r["arm"]) / "pick.yaml"
             ck = parse_pick(pf).get("pick_checkpoint", "") if pf.is_file() else ""
-            pick = f"{r['family']}/{r['arm']}/{ck}" if ck else ""
-        r["oss_key"] = oss_key_for(f"runs/train/{pick}") if pick else ""
+            pick = runs_rel(r["family"], r["arm"], ck) if ck else ""
+        r["oss_key"] = oss_key_for(f"runs/{pick}") if pick else ""
     cols = ["arm", "family", "epoch", "status", "onnx", "onnx_md5", "onnx_size",
             "n_onnx", "checkpoints", "source", "oss_key"]
     with open(MODELS_CSV, "w", newline="") as fh:
@@ -1657,7 +1669,7 @@ def write_meta(logpath):
     # row, from shang's md5 list, so `oss_sync.py pull --arm` can fetch it.
     pending = []
     for arm, epochs in remote_epoch_index().items():
-        dst = DST_TRAIN / family_of(arm) / arm
+        dst = arm_dir(family_of(arm), arm)
         for name, (size, digest) in sorted(epochs.items()):
             rel = (dst / "epochs" / name).relative_to(PII2).as_posix()
             if not (dst / "epochs" / name).exists():
@@ -1719,18 +1731,29 @@ MODELS_TOP = "pii/models/"
 
 
 def oss_key_for(dst_rel: str) -> str:
-    """The OSS key of a manifest row, or "" when the file is git content."""
-    if not dst_rel.startswith("runs/train/"):
+    """The OSS key of a manifest row, or "" when the file is git content.
+
+    PII-2118 did not change one key. The family the key carries comes from the
+    registry for an arm (runs/<arm>/train/<tail>) and from the path itself for the
+    two runs/train/<family>/stock/ dirs.
+    """
+    parts = dst_rel.split("/")
+    if parts[0] != "runs" or len(parts) < 4:
         return ""
-    rel = dst_rel[len("runs/train/"):]
-    parts = rel.split("/")
-    if len(parts) < 3:
+    if parts[2] == "train":
+        arm, tail = parts[1], "/".join(parts[3:])
+        try:
+            family = family_of(arm)
+        except KeyError:
+            return ""
+    elif parts[1] == "train" and parts[3] in STOCK:
+        family, arm, tail = parts[2], parts[3], "/".join(parts[4:])
+    else:
         return ""
-    tail = "/".join(parts[2:])
     base = os.path.basename(tail)
     on_oss = (tail.startswith(("epochs/", "onnx/", "logs/")) or tail == "train.log"
               or base.endswith((".pth", ".onnx", ".jit", ".zip")))
-    return MODELS_TOP + rel if on_oss else ""
+    return f"{MODELS_TOP}{family}/{arm}/{tail}" if on_oss else ""
 
 
 # --------------------------------------------------------------------------
@@ -1748,10 +1771,20 @@ SKIP_NAMES = ("MANIFEST.tsv", "models.csv", "pick.yaml")
 SKIP_DIRS = ("logs_replay",)
 
 
+def disk_roots():
+    """Every tree this script owns: one dir per registered arm, the two stock dirs
+    and the verifier probe. PII-2118 replaced the single walk over runs/train/ with
+    this list, so a runs/<arm>/train/ another agent's run put there is never
+    mistaken for a file of ours that fell out of the manifest."""
+    roots = [arm_dir(f, a) for f, a, _ in all_arms()]
+    roots += [DST_TRAIN / "scrfd/stock", DST_TRAIN / "egoblur/stock", DST_PROBE]
+    return [r for r in roots if r.is_dir()]
+
+
 def disk_files():
     """Every file that is actually under the pii2 roots this script owns."""
     out = []
-    for root in (DST_TRAIN, DST_PROBE):
+    for root in disk_roots():
         for dirpath, dirnames, filenames in os.walk(root):
             dirnames[:] = sorted(d for d in dirnames
                                  if not (Path(dirpath) == root and d in SKIP_DIRS))
@@ -1787,8 +1820,8 @@ def do_verify(jobs, check_source=True):
     if pruned:
         by_arm = {}
         for rel in pruned:
-            family, arm, _ = epoch_rel_parts(rel)
-            by_arm[f"{family}/{arm}"] = by_arm.get(f"{family}/{arm}", 0) + 1
+            arm, _ = epoch_rel_parts(rel)
+            by_arm[arm] = by_arm.get(arm, 0) + 1
         nbytes = sum(int(r["size"]) for r in rows if r["dst_rel"] in set(pruned))
         print(f"INFO {len(pruned)} epochs over {len(by_arm)} arms are on OSS only "
               f"(checkpoints: {RETENTION}), {nbytes:,} B; "
@@ -1853,7 +1886,7 @@ def do_verify(jobs, check_source=True):
                       ("egoblur", list(EGOBLUR_ARMS) + ["stock"]),
                       ("rfdetr", list(RFDETR_ARMS))):
         for arm in arms:
-            pick = DST_TRAIN / fam / arm / "pick.yaml"
+            pick = arm_dir(fam, arm) / "pick.yaml"
             if not pick.exists():
                 bad.append(f"no pick.yaml: {fam}/{arm}")
                 continue
@@ -1870,7 +1903,7 @@ def do_verify(jobs, check_source=True):
                 if not rel:
                     bad.append(f"pick.yaml says checkpoints: {RETENTION} but names no "
                                f"pick_checkpoint: {fam}/{arm}")
-                elif not (DST_TRAIN / fam / arm / rel).exists():
+                elif not (arm_dir(fam, arm) / rel).exists():
                     bad.append(f"the pick checkpoint is not on this disk: {fam}/{arm}/{rel}")
     if not MODELS_CSV.exists():
         bad.append("no models.csv")
@@ -1918,18 +1951,18 @@ def do_prune(arms=None, apply_it=False, jobs=8):
         rows = list(csv.DictReader(fh, delimiter="\t"))
     by_arm, absent = {}, 0
     for rel in sorted(oss_only_epochs(rows)):
-        family, arm, _ = epoch_rel_parts(rel)
+        arm, _ = epoch_rel_parts(rel)
         if arms and arm not in arms:
             continue
         p = PII2 / rel
         if not p.exists() or p.is_symlink():
             absent += 1
             continue
-        by_arm.setdefault(f"{family}/{arm}", []).append(
+        by_arm.setdefault(arm, []).append(
             next(r for r in rows if r["dst_rel"] == rel))
     if arms:
         for arm in arms:
-            if not any(k.split("/")[1] == arm for k in by_arm):
+            if arm not in by_arm:
                 print(f"INFO nothing to prune for {arm}")
     if not by_arm:
         print(f"nothing to prune ({absent} epochs already on OSS only)")

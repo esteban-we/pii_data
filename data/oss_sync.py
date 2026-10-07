@@ -6,11 +6,17 @@ checkpoints, ONNX exports, training logs) live on OSS under the key each index r
 carries in its `oss_key` column, and this script is the only thing that moves them.
 
     datasets/<name>/frames.csv    image, size, md5, oss_key -> datasets/<name>/images/<image>
-    runs/train/MANIFEST.tsv       dst_rel, size, md5, oss_key -> <dst_rel> (oss_key empty
+    runs/MANIFEST.tsv             dst_rel, size, md5, oss_key -> <dst_rel> (oss_key empty
                                   when the file is git content)
 
+PII-2118 moved the arms to runs/<arm>/train/ and the two indexes up to runs/. The
+family (scrfd, egoblur, rfdetr) is not a directory any more: it lives in the OSS key,
+which did not change, and in the `family` column of runs/models.csv. The two upstream
+release dirs stayed at runs/train/<family>/stock/, since both families call them
+`stock`.
+
 Checkpoint retention (PII-1601). OSS holds every epoch of every arm; this disk holds
-only the epoch that the arm's `runs/train/<family>/<arm>/pick.yaml` names, in
+only the epoch that the arm's `runs/<arm>/train/pick.yaml` names, in
 `pick_checkpoint:`, when that pick.yaml says `checkpoints: pick`. MANIFEST.tsv keeps a
 row for every epoch either way, so the rest are indexed, on OSS, and deliberately not
 here: `status` counts them under `oss_only`, never under `missing`, and `pull` leaves
@@ -26,7 +32,7 @@ Subcommands
         --all-epochs, which is how a pruned epoch comes back on demand.
     push [--dataset D ...] [--arm A ...] [--indexed]
         Upload local files that are in the index but not on OSS, and files under
-        runs/train/ that are on disk in a known layout with no index row yet (the row is
+        runs/ that are on disk in a known layout with no index row yet (the row is
         appended to MANIFEST.tsv; commit it afterwards). ETag is asserted equal to the
         md5. An object already on OSS whose ETag differs is an error, never an
         overwrite. Nothing is ever deleted.
@@ -131,11 +137,11 @@ def dataset_items(datasets=None, want_images=None):
 
 
 def manifest_rows():
-    p = os.path.join(ROOT, "runs/train/MANIFEST.tsv")
+    p = os.path.join(ROOT, "runs/MANIFEST.tsv")
     with open(p, newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
     if rows and "oss_key" not in rows[0]:
-        die("runs/train/MANIFEST.tsv has no oss_key column; rebuild it with the pii repo build script")
+        die("runs/MANIFEST.tsv has no oss_key column; rebuild it with the pii repo build script")
     return rows
 
 
@@ -153,25 +159,55 @@ def parse_pick(path):
     return out
 
 
+def arm_family():
+    """{arm: family} from runs/models.csv. PII-2118 dropped the family directory;
+    this column and the OSS key are where it survives."""
+    with open(os.path.join(ROOT, "runs/models.csv"), newline="") as f:
+        return {r["arm"]: r["family"] for r in csv.DictReader(f) if r["arm"] != "stock"}
+
+
+def run_dirs():
+    """[(key_prefix, dir)] for every run dir under runs/, key_prefix being the
+    <family>/<arm> the OSS key uses (PII-2118: an arm's dir is runs/<arm>/train/ and
+    carries no family; the two stock dirs stayed at runs/train/<family>/stock/).
+
+    An arm dir that runs/models.csv does not name has no family, so no key can be
+    built for it: it is reported and skipped, never guessed at.
+    """
+    fam_of, out, unknown = arm_family(), [], []
+    base = os.path.join(ROOT, "runs")
+    for arm in sorted(os.listdir(base)):
+        d = os.path.join(base, arm, "train")
+        if arm == "train" or not os.path.isdir(d):
+            continue
+        if arm in fam_of:
+            out.append((f"{fam_of[arm]}/{arm}", d))
+        else:
+            unknown.append(arm)
+    for family in sorted(os.listdir(os.path.join(base, "train"))):
+        d = os.path.join(base, "train", family, "stock")
+        if os.path.isdir(d):
+            out.append((f"{family}/stock", d))
+    for arm in unknown:
+        print(f"runs/{arm}/train has no runs/models.csv row, so no OSS key: skipped")
+    return out
+
+
 def retained_names():
-    """{(family, arm): the one epoch file name this disk keeps} (PII-1601).
+    """{arm: the one epoch file name this disk keeps} (PII-1601).
 
     Only arms whose pick.yaml says `checkpoints: pick` are in it; an arm that
     still says `local` keeps every epoch and is absent here.
     """
     keep = {}
-    base = os.path.join(ROOT, "runs/train")
-    for family in sorted(os.listdir(base)):
-        fdir = os.path.join(base, family)
-        if not os.path.isdir(fdir):
+    base = os.path.join(ROOT, "runs")
+    for arm in sorted(os.listdir(base)):
+        p = os.path.join(base, arm, "train", "pick.yaml")
+        if arm == "train" or not os.path.isfile(p):
             continue
-        for arm in sorted(os.listdir(fdir)):
-            p = os.path.join(fdir, arm, "pick.yaml")
-            if not os.path.isfile(p):
-                continue
-            spec = parse_pick(p)
-            if spec.get("checkpoints") == "pick" and spec.get("pick_checkpoint"):
-                keep[(family, arm)] = os.path.basename(spec["pick_checkpoint"])
+        spec = parse_pick(p)
+        if spec.get("checkpoints") == "pick" and spec.get("pick_checkpoint"):
+            keep[arm] = os.path.basename(spec["pick_checkpoint"])
     return keep
 
 
@@ -182,10 +218,10 @@ def oss_only(dst_rel, size, keep):
     no OSS object, so it is never OSS-only.
     """
     parts = dst_rel.split("/")
-    if size < 0 or len(parts) != 6 or parts[:2] != ["runs", "train"] or parts[4] != "epochs":
+    if size < 0 or len(parts) != 5 or parts[0] != "runs" or parts[2:4] != ["train", "epochs"]:
         return False
-    kept = keep.get((parts[2], parts[3]))
-    return bool(kept) and parts[5] != kept
+    kept = keep.get(parts[1])
+    return bool(kept) and parts[4] != kept
 
 
 def run_items(arms=None):
@@ -482,11 +518,11 @@ def list_prefixes(ak, sk, prefixes, jobs):
 
 
 def models_keys():
-    """Every oss_key runs/train/models.csv names: each arm's pick checkpoint, and its
+    """Every oss_key runs/models.csv names: each arm's pick checkpoint, and its
     pick ONNX when it has one. Each is also a MANIFEST.tsv row, which is why pushing
     the MANIFEST covers models.csv; `push --indexed` cross-checks that rather than
     assuming it."""
-    with open(os.path.join(ROOT, "runs/train/models.csv"), newline="") as f:
+    with open(os.path.join(ROOT, "runs/models.csv"), newline="") as f:
         return {r["oss_key"] for r in csv.DictReader(f) if r.get("oss_key")}
 
 
@@ -556,7 +592,7 @@ def restore_symlinks(arms=None):
             continue
         target = r["md5"][len("symlink:"):]
         path = os.path.join(ROOT, r["dst_rel"])
-        if arms and r["dst_rel"].split("/")[3] not in arms:
+        if arms and r["dst_rel"].split("/")[1] not in arms:
             continue
         if os.path.islink(path) and os.readlink(path) == target:
             continue
@@ -618,39 +654,31 @@ def cmd_pull(args):
 # --------------------------------------------------------------------------- push
 
 def unindexed_runs():
-    """Files under runs/train/<family>/<arm>/{epochs,onnx,logs}/ and train.log with no MANIFEST row."""
+    """Files under runs/<arm>/train/{epochs,onnx,logs}/ and train.log with no MANIFEST row."""
     known = {r["dst_rel"] for r in manifest_rows()}
     out = []
-    base = os.path.join(ROOT, "runs/train")
-    for family in sorted(os.listdir(base)):
-        fdir = os.path.join(base, family)
-        if not os.path.isdir(fdir):
-            continue
-        for arm in sorted(os.listdir(fdir)):
-            adir = os.path.join(fdir, arm)
-            if not os.path.isdir(adir):
-                continue
-            for dp, _, fns in os.walk(adir):
-                for fn in sorted(fns):
-                    p = os.path.join(dp, fn)
-                    if os.path.islink(p):
-                        continue
-                    rel = os.path.relpath(p, ROOT)
-                    tail = os.path.relpath(p, adir)
-                    on_oss = (tail.startswith(("epochs/", "onnx/", "logs/")) or tail == "train.log"
-                              or fn.endswith((".pth", ".onnx", ".jit", ".zip")))
-                    if on_oss and rel not in known:
-                        out.append((rel, f"{MODELS_TOP}{family}/{arm}/{tail}"))
+    for key_prefix, adir in run_dirs():
+        for dp, _, fns in os.walk(adir):
+            for fn in sorted(fns):
+                p = os.path.join(dp, fn)
+                if os.path.islink(p):
+                    continue
+                rel = os.path.relpath(p, ROOT)
+                tail = os.path.relpath(p, adir)
+                on_oss = (tail.startswith(("epochs/", "onnx/", "logs/")) or tail == "train.log"
+                          or fn.endswith((".pth", ".onnx", ".jit", ".zip")))
+                if on_oss and rel not in known:
+                    out.append((rel, f"{MODELS_TOP}{key_prefix}/{tail}"))
     return out
 
 
 def append_manifest(new_rows):
-    p = os.path.join(ROOT, "runs/train/MANIFEST.tsv")
+    p = os.path.join(ROOT, "runs/MANIFEST.tsv")
     with open(p, "a", newline="") as f:
         w = csv.writer(f, delimiter="\t")
         for r in new_rows:
             w.writerow(r)
-    print(f"appended {len(new_rows)} rows to runs/train/MANIFEST.tsv (commit it)")
+    print(f"appended {len(new_rows)} rows to runs/MANIFEST.tsv (commit it)")
 
 
 def cmd_push(args):
@@ -700,7 +728,7 @@ def cmd_push(args):
     for it in lost:
         print(f"NO BYTES {it.key}: not on this disk ({os.path.relpath(it.path, ROOT)}) and not on OSS")
     for k in orphan:
-        print(f"NO BYTES {k}: runs/train/models.csv names it and runs/train/MANIFEST.tsv does not")
+        print(f"NO BYTES {k}: runs/models.csv names it and runs/MANIFEST.tsv does not")
     if lost or orphan:
         print(f"{len(lost) + len(orphan)} indexed objects have no bytes anywhere: restore the "
               f"files and rerun, or fix the index row")

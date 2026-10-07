@@ -10,16 +10,16 @@ wandb_tags: []
 onnx: onnx/armBB34_det34g.onnx
 checkpoints: pick only (epochs 1 to 2 are on the training box, not on OSS)
 pick_checkpoint: epochs/epoch_3.pth
-remote_wd: shang:/data/esteban/pii/runs/train/scrfd/armBB34
+remote_wd: shang:/data/esteban/pii/runs/armBB34/train
 local_epochs: 1
 epoch_evidence: >-
   epoch_3.pth, run_arm.sh, the config and the logs pulled from
-  shang:/data/esteban/pii/runs/train/scrfd/armBB34/; babysit.log records the trainer exiting
+  shang:/data/esteban/pii/runs/armBB34/train/; babysit.log records the trainer exiting
   rc=0 and `epoch_3.pth exists; success`; no slurm job, the run was babysat on shang GPUs
   1,5,6,7
 notes: >-
   PII-2041's chain.sh (the PII-1767 route with the arm substituted) pulled epoch_3.pth out of
-  shang:/data/esteban/pii/runs/train/scrfd/armBB34/, with the md5 compared on both hosts,
+  shang:/data/esteban/pii/runs/armBB34/train/, with the md5 compared on both hosts,
   together with the config, run_arm.sh and the logs, and made epochs/latest.pth here; the ONNX
   under onnx/ was exported on this box from that checkpoint
   (training/export/export_armAH34_onnx.py), not copied. Epochs 1 to 2 stayed on the training

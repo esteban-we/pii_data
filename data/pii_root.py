@@ -9,7 +9,8 @@ literal, so a clone anywhere resolves itself.
     PII_ROOT     the live store, the pii_data checkout in the PII-1315 layout.
                  datasets/<name>/{frames.csv,split.csv,boxes/vN/boxes.csv,images/},
                  views/<name>/{recipe.yaml,scrfd.txt,d2.json,summary.json},
-                 runs/train/{scrfd,egoblur,rfdetr}/<arm>/{epochs,onnx,pick.yaml},
+                 runs/<arm>/train/{epochs,onnx,pick.yaml} (PII-2118; the two
+                 upstream-release dirs stayed at runs/train/<family>/stock/),
                  tables/, calib/. Default: the parent of this file's directory.
 
     CODE_ROOT    the pii code repo, the one that keeps training/ and evaluation/. The
@@ -53,7 +54,7 @@ ROOT = Path(PII_ROOT)
 DATASETS = ROOT / "datasets"
 VIEWS = ROOT / "views"
 RUNS = ROOT / "runs"
-TRAIN = RUNS / "train"
+TRAIN = RUNS / "train"   # PII-2118: <family>/stock/ and logs_replay/ only
 TABLES = ROOT / "tables"
 CALIB = ROOT / "calib"
 DATA = ROOT / "data"
@@ -76,12 +77,15 @@ def view(name: str) -> Path:
 
 
 def arm(family: str, name: str) -> Path:
-    """runs/train/<family>/<arm>/, family being scrfd, egoblur or rfdetr."""
-    return TRAIN / family / name
+    """An arm's dir: runs/<arm>/train/ (PII-2118). The family is kept in the
+    signature because it is what the OSS key and models.csv still carry, and
+    because `stock` needs it: both families have one, so those two dirs stayed
+    at runs/train/<family>/stock/."""
+    return TRAIN / family / name if name == "stock" else RUNS / name / "train"
 
 
 def onnx(family: str, name: str, filename: str) -> Path:
-    return TRAIN / family / name / "onnx" / filename
+    return arm(family, name) / "onnx" / filename
 
 
 def code(*parts: str) -> Path:

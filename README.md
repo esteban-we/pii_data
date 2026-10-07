@@ -50,18 +50,20 @@ views/<name>/               one declared training mix or eval set
   recipe.yaml               the source of truth: datasets, box versions, splits, filters
   scrfd.txt, d2.json, summary.json                                  (ignored, rendered)
 
-runs/train/
+runs/                       one directory per arm (PII-2118), no family level
   models.csv                arm, family, epoch, status, pick ONNX with md5 and size,
                             oss_key of the pick
   MANIFEST.tsv              every copied file with size, md5 and oss_key (empty when
                             the file is git content)
-  <family>/<arm>/
+  <arm>/train/
     pick.yaml               which epoch this arm is, the rule that chose it, evidence,
                             `checkpoints:` and the `pick_checkpoint:` this disk keeps
     config, launch and export scripts, eval/*.json, small logs
     epochs/, onnx/, train.log                                        (ignored, OSS)
-  <family>/stock/           upstream baselines: .sha256, .provenance.txt and .md5
-                            tracked, the weights themselves ignored
+  train/<family>/stock/     upstream baselines: .sha256, .provenance.txt and .md5
+                            tracked, the weights themselves ignored. Both families
+                            call this dir `stock`, so it is the one thing PII-2118
+                            left under a family level
 
 tables/corpus/              session, episode and chunk tables for the whole corpus
 tables/population/          15 GB of parquet over the full frame population
@@ -74,7 +76,7 @@ experiments/                one-off probes: scripts and their result JSON
 ## What is tracked
 
 Ignored (see `.gitignore`): `datasets/*/images/`, `views/*/{scrfd.txt,d2.json,summary.json}`,
-`runs/train/*/*/{epochs,onnx,logs}/` and `train.log`, every `*.pth` `*.onnx` `*.jit` `*.zip`
+`runs/*/train/{epochs,onnx,logs}/` and `train.log`, every `*.pth` `*.onnx` `*.jit` `*.zip`
 anywhere (this is what covers the stock weights), and `tables/population/`.
 
 Everything else is committed. No tracked file may exceed 100 MB; the largest
@@ -127,7 +129,7 @@ eval_faceight_a_v1 8,482; gt_bench_sparse_v1 889.
 ## Runs
 
 48 SCRFD arms, 5 EgoBlur arms and 1 RF-DETR arm, plus one `stock` directory
-for scrfd and one for egoblur, so 56 rows in `runs/train/models.csv`. Every
+for scrfd and one for egoblur, so 56 rows in `runs/models.csv`. Every
 `pick.yaml` is `rule: last_epoch` for now (PII-1372 replaces it with a per-epoch
 sweep); `status` is the W&B tag from `alex-qiu-worldengineai/pii-face-eval`, and
 it is the default `active` for every arm trained after that read (PII-1633).
@@ -188,7 +190,7 @@ after the prune: OK, 1068 files, 81,046,302,640 B.
 A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints and
 ONNX exports are not there and the view manifests are not rendered. Everything else is
 on OSS: as of 2026-09-24 the mirror held 423,703 objects and 297,059,234,866 B, which
-is every image of the 13 datasets and every file under `runs/train/` that git ignores.
+is every image of the 13 datasets and every file under `runs/` that git ignores.
 PII-2112 added 37,603 objects and 36,338,538,553 B on 2026-10-07, the facedub_a images
 and the fourteen arms it registered, and `oss_sync.py status --remote` reported
 nothing on this disk and not on OSS afterwards.
@@ -199,9 +201,11 @@ Every index row that stands for a file on OSS carries its key:
 `datasets/<name>/frames.csv` has an `oss_key` column
 (`pii/data/<set>/<image>`; the two `face10k` batches keep the prefixes
 `face10k_v3` and `face10k_repair` they were uploaded under), and
-`runs/train/MANIFEST.tsv` has one that is filled in
+`runs/MANIFEST.tsv` has one that is filled in
 (`pii/models/<family>/<arm>/<rel>`) exactly for the files git ignores and empty for
-the files git tracks. `runs/train/models.csv` carries the key of each arm's pick.
+the files git tracks. `runs/models.csv` carries the key of each arm's pick.
+An OSS key still names the family (`pii/models/<family>/<arm>/<rel>`) even though the
+family is no longer a directory on disk: PII-2118 was a local rename and changed no key.
 
 ```
 bash data/setup.sh                       # git pull --ff-only, then the hooks, then pull
@@ -225,7 +229,7 @@ whole tree again.
 `push` uploads single part with `Content-MD5` and asserts the returned ETag equals
 the md5. It never overwrites: an object already on OSS whose md5 differs from the local
 one is reported as a conflict and the run fails. It never deletes. A file under
-`runs/train/<family>/<arm>/{epochs,onnx,logs}/` with no MANIFEST row is uploaded and its
+`runs/<arm>/train/{epochs,onnx,logs}/` with no MANIFEST row is uploaded and its
 row appended (commit it); a new dataset image has to come from the dataset build script
 in the `pii` repo, which is what writes `frames.csv`.
 
@@ -253,7 +257,7 @@ They live in the `pii` repo (`/home/esteban/repos/pii`), not here:
 `data/build_faceback45_pii2.py`, `build_face10k_pii2.py`, `build_faceight_pii2.py`,
 `build_facemine_pii2.py`, `build_gt_bench_pii2.py`, `build_pii_frames_pii2.py`,
 `build_wider_pii2.py` per dataset; `data/build_view.py` for views;
-`data/build_runs_pii2.py` for `runs/train`; `data/oss_pii2_mirror.py` for the OSS
+`data/build_runs_pii2.py` for `runs/`; `data/oss_pii2_mirror.py` for the OSS
 mirror. `data/oss_sync.py` and `data/setup.sh` in this repo are the only things a
 consumer needs.
 Each has a `verify` or `check` subcommand that re-checks the tree against sizes
