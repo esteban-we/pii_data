@@ -6,7 +6,11 @@ Written by data/build_facedub_pii2.py; `verify` re-derives every file from the d
 
     frames.csv        image,session,chunk,eye,frame_idx,t_ms,size,md5,round,local_name,src_oss_key,oss_key
                       size and md5 are the OSS object size and ETag of src_oss_key (the Verdict
-                      object); the images themselves live on fluence (PII-1717), not here
+                      object), and every landed image has been checked against them
+                      (images.md5, images_train.md5, images_eval.md5). PII-1717 landed the
+                      images on fluence first; all 37,568 are on this disk under images/ too,
+                      and PII-2112 put them on OSS under the oss_key column,
+                      pii/data/facedub_a/<image>, which is what oss_sync.py pull reads
     split.csv         session,role; session level, 25 train / 8 eval, seed 10330
     boxes/v1/         the round-1 pass: frames.csv (image,reviewed), boxes.csv (pixel xyxy at one
                       decimal, sorted by image,x1,y1), job/output/ byte copies of the two drops

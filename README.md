@@ -189,6 +189,9 @@ A fresh clone is metadata only: `datasets/*/images/` is empty, the checkpoints a
 ONNX exports are not there and the view manifests are not rendered. Everything else is
 on OSS: as of 2026-09-24 the mirror held 423,703 objects and 297,059,234,866 B, which
 is every image of the 13 datasets and every file under `runs/train/` that git ignores.
+PII-2112 added 37,603 objects and 36,338,538,553 B on 2026-10-07, the facedub_a images
+and the fourteen arms it registered, and `oss_sync.py status --remote` reported
+nothing on this disk and not on OSS afterwards.
 An object's ETag is its md5, except for the ones over OSS's 5 GB simple-upload cap, which
 go up multipart and carry their file md5 in `x-oss-meta-md5` instead (PII-1633).
 

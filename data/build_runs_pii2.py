@@ -382,7 +382,7 @@ PULLED_FLUENCE_1674 = PULLED_FLUENCE.replace("PII-1633", "PII-1674")
 # the pick are on the training box and in no object store.
 PULLED_PICK = (
     "{route} pulled {ckpt} out of {wd}/, with the md5 compared on both hosts, together with "
-    "the config, the slurm files and the logs, and made epochs/latest.pth here; the ONNX "
+    "{files}, and made epochs/latest.pth here; the ONNX "
     "under onnx/ was exported on this box from that checkpoint "
     "(training/export/export_armAH34_onnx.py), not copied. Epochs 1 to {prev} stayed on the "
     "training box and went to no object store, so this arm's rows are the pick epoch and the "
@@ -393,6 +393,14 @@ PULLED_PICK = (
 # OSS holds every epoch, which for these arms it does not; PII-1412 already
 # wrote a descriptive value where plain one would have been wrong.
 CKPT_PICK_ONLY = "pick only (epochs 1 to {prev} are on the training box, not on OSS)"
+
+# What the chain's whitelist brought with the checkpoint. The fluence arms have
+# slurm-<job>.{out,err}; armBB34, babysat on shang, has run_arm.sh instead.
+FILES_SLURM = "the config, the slurm files and the logs"
+
+# The two close-out chains that pulled these arms here.
+ROUTE_1755 = "PII-1755's close-out chain (pull.sh, the PII-1767 route)"
+ROUTE_2041 = "PII-2041's chain.sh (the PII-1767 route with the arm substituted)"
 
 # Per arm: work dir under runs/train (None if the checkpoints are not on this
 # box), pick epoch, where the epoch comes from, where checkpoints live.
@@ -646,64 +654,171 @@ SCRFD_ARMS = {
     "armAV34": dict(wd=None, remote_wd=("fluence1", "wd_armAV34_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAV34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27805 on fluence6"),
-                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAV34_fluence", prev=4) + " The first of PII-1732's four facedub fine-tunes: armAM34's epoch_20 (SCRFD-34G, train_Z6) fine-tuned for 5 epochs on train_FD, facedub_a only, lr 1e-4 (PII-1748 job chain, close-out PII-1757).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armAV34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_5.pth exists; success`; "
+                             "slurm job 27805 on fluence6"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_1755,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAV34_fluence",
+                       prev=4)
+                       + " The first of PII-1732's four facedub fine-tunes: armAM34's "
+                         "epoch_20 (SCRFD-34G, train_Z6) fine-tuned for 5 epochs on "
+                         "train_FD, facedub_a only, lr 1e-4 (PII-1748 job chain, close-out "
+                         "PII-1757).")),
     "armAW34": dict(wd=None, remote_wd=("fluence1", "wd_armAW34_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAW34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27807 on fluence6"),
-                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAW34_fluence", prev=4) + " PII-1732's second facedub fine-tune: armAM34's epoch_20 fine-tuned for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-4 (close-out PII-1767). Its epoch_5.pth and ONNX were put on OSS by hand before this registration, outside the index (PII-1971).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armAW34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_5.pth exists; success`; "
+                             "slurm job 27807 on fluence6"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_1755,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAW34_fluence",
+                       prev=4)
+                       + " PII-1732's second facedub fine-tune: armAM34's epoch_20 "
+                         "fine-tuned for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-4 "
+                         "(close-out PII-1767). Its epoch_5.pth and ONNX were put on OSS by "
+                         "hand before this registration, outside the index (PII-1971).")),
     "armAX": dict(wd=None, remote_wd=("fluence1", "wd_armAX_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAX_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27806 on fluence6"),
-                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAX_fluence", prev=4) + " PII-1732's third facedub fine-tune: armAL's epoch_20 (DINOv2 ViT-L/14 with registers on SimpleFPN14, crop 672) fine-tuned for 5 epochs on train_FD, facedub_a only, lr 1e-5 (PII-1763, PII-1966).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armAX_fluence/; babysit.log records the "
+                             "trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm "
+                             "job 27806 on fluence6"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_1755,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAX_fluence", prev=4)
+                       + " PII-1732's third facedub fine-tune: armAL's epoch_20 (DINOv2 "
+                         "ViT-L/14 with registers on SimpleFPN14, crop 672) fine-tuned for "
+                         "5 epochs on train_FD, facedub_a only, lr 1e-5 (PII-1763, "
+                         "PII-1966).")),
     "armAY": dict(wd=None, remote_wd=("fluence1", "wd_armAY_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
                    pick_onnx="onnx/armAY_dinov2l_672.onnx",
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armAY_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 27808 on fluence6"),
-                   notes=(PULLED_PICK.format(route="PII-1755's close-out chain (pull.sh, the PII-1767 route)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAY_fluence", prev=4) + " PII-1732's fourth facedub fine-tune: armAL's epoch_20 fine-tuned for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-5 (close-out PII-1773). Three ONNX were exported here, at 672, 672x504 and 532x672; `onnx:` names the 672 one, the export the arm was scored and published at. epoch_5.pth and the 672 ONNX went on OSS by hand (PII-1963), outside the index.")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armAY_fluence/; babysit.log records the "
+                             "trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm "
+                             "job 27808 on fluence6"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_1755,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armAY_fluence", prev=4)
+                       + " PII-1732's fourth facedub fine-tune: armAL's epoch_20 fine-tuned "
+                         "for 5 epochs on train_Z6 plus facedub_a x4, lr 1e-5 (close-out "
+                         "PII-1773). Three ONNX were exported here, at 672, 672x504 and "
+                         "532x672; `onnx:` names the 672 one, the export the arm was scored "
+                         "and published at. epoch_5.pth and the 672 ONNX went on OSS by "
+                         "hand (PII-1963), outside the index.")),
     "armAZ34": dict(wd=None, remote_wd=("fluence1", "wd_armAZ34_fluence"),
                    epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
                    here_onnx=True,
-                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armAZ34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 35500 on fluence2"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armAZ34_fluence", prev=2) + " First of PII-2009's four 34G fine-tunes off armAI34's epoch_80: 3 epochs of train_Z6, SGD 1e-4, EMA 2e-4, crop 640 (close-out PII-2041).")),
+                   evidence=("epoch_3.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armAZ34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_3.pth exists; success`; "
+                             "slurm job 35500 on fluence2"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armAZ34_fluence",
+                       prev=2)
+                       + " First of PII-2009's four 34G fine-tunes off armAI34's epoch_80: 3 "
+                         "epochs of train_Z6, SGD 1e-4, EMA 2e-4, crop 640 (close-out "
+                         "PII-2041).")),
     "armBA34": dict(wd=None, remote_wd=("fluence1", "wd_armBA34_fluence"),
                    epoch=6, checkpoints=CKPT_PICK_ONLY.format(prev=5),
                    here_onnx=True,
-                   evidence=("epoch_6.pth, the config and the logs pulled from fluence1:runs/train/wd_armBA34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_6.pth exists; success`; slurm job 35520 on fluence2"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBA34_fluence", prev=5) + " armAI34's epoch_80 plus 6 epochs of train_Z6, the longer twin of armAZ34 (PII-2031 moved it to fluence; close-out PII-2047). Its epoch_6.pth and ONNX were put on OSS by hand (PII-2055), outside the index.")),
+                   evidence=("epoch_6.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBA34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_6.pth exists; success`; "
+                             "slurm job 35520 on fluence2"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBA34_fluence",
+                       prev=5)
+                       + " armAI34's epoch_80 plus 6 epochs of train_Z6, the longer twin of "
+                         "armAZ34 (PII-2031 moved it to fluence; close-out PII-2047). Its "
+                         "epoch_6.pth and ONNX were put on OSS by hand (PII-2055), outside "
+                         "the index.")),
     "armBC34": dict(wd=None, remote_wd=("fluence1", "wd_armBC34_fluence"),
                    epoch=6, checkpoints=CKPT_PICK_ONLY.format(prev=5),
                    here_onnx=True,
-                   evidence=("epoch_6.pth, the config and the logs pulled from fluence1:runs/train/wd_armBC34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_6.pth exists; success`; slurm job 35502 on fluence3"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBC34_fluence", prev=5) + " armAI34's epoch_80 plus 6 epochs of train_Z6 with facedub_a x4, the mix PII-2009 calls train_Z6+FDx4. Its epoch_6.pth and ONNX went on OSS by hand (PII-2055), outside the index.")),
+                   evidence=("epoch_6.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBC34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_6.pth exists; success`; "
+                             "slurm job 35502 on fluence3"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_6.pth", wd="fluence1:runs/train/wd_armBC34_fluence",
+                       prev=5)
+                       + " armAI34's epoch_80 plus 6 epochs of train_Z6 with facedub_a x4, "
+                         "the mix PII-2009 calls train_Z6+FDx4. Its epoch_6.pth and ONNX "
+                         "went on OSS by hand (PII-2055), outside the index.")),
     "armBD34": dict(wd=None, remote_wd=("fluence1", "wd_armBD34_fluence"),
                    epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
                    here_onnx=True,
-                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armBD34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 36594 on fluence4"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBD34_fluence", prev=2) + " armAI34's epoch_80 plus 3 epochs of the mix PII-2041's chain records as train_Z6+FDx4+AY8.")),
+                   evidence=("epoch_3.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBD34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_3.pth exists; success`; "
+                             "slurm job 36594 on fluence4"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBD34_fluence",
+                       prev=2)
+                       + " armAI34's epoch_80 plus 3 epochs of the mix PII-2041's chain "
+                         "records as train_Z6+FDx4+AY8.")),
     "armBE34": dict(wd=None, remote_wd=("fluence1", "wd_armBE34_fluence"),
                    epoch=3, checkpoints=CKPT_PICK_ONLY.format(prev=2),
                    here_onnx=True,
-                   evidence=("epoch_3.pth, the config and the logs pulled from fluence1:runs/train/wd_armBE34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_3.pth exists; success`; slurm job 36595 on fluence2"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBE34_fluence", prev=2) + " armBC34's epoch_6 plus 3 epochs of the set PII-2041's chain records as AY8.")),
+                   evidence=("epoch_3.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBE34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_3.pth exists; success`; "
+                             "slurm job 36595 on fluence2"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_3.pth", wd="fluence1:runs/train/wd_armBE34_fluence",
+                       prev=2)
+                       + " armBC34's epoch_6 plus 3 epochs of the set PII-2041's chain "
+                         "records as AY8.")),
     "armBF34": dict(wd=None, remote_wd=("fluence1", "wd_armBF34_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBF34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 36277 on fluence4"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBF34_fluence", prev=4) + " armBA34's epoch_6 plus 5 epochs of train_FD with logit KD from armAY (PII-2071).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBF34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_5.pth exists; success`; "
+                             "slurm job 36277 on fluence4"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBF34_fluence",
+                       prev=4)
+                       + " armBA34's epoch_6 plus 5 epochs of train_FD with logit KD from "
+                         "armAY (PII-2071).")),
     "armBG34": dict(wd=None, remote_wd=("fluence1", "wd_armBG34_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBG34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 36278 on fluence4"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBG34_fluence", prev=4) + " armBC34's epoch_6 plus 5 epochs of train_FD with logit KD from armAY, the armBF34 pair on a different parent (PII-2071).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBG34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_5.pth exists; success`; "
+                             "slurm job 36278 on fluence4"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBG34_fluence",
+                       prev=4)
+                       + " armBC34's epoch_6 plus 5 epochs of train_FD with logit KD from "
+                         "armAY, the armBF34 pair on a different parent (PII-2071).")),
     "armBH34": dict(wd=None, remote_wd=("fluence1", "wd_armBH34_fluence"),
                    epoch=5, checkpoints=CKPT_PICK_ONLY.format(prev=4),
                    here_onnx=True,
-                   evidence=("epoch_5.pth, the config and the logs pulled from fluence1:runs/train/wd_armBH34_fluence/; babysit.log records the trainer exiting rc=0 and `epoch_5.pth exists; success`; slurm job 37018 on fluence2"),
-                   notes=(PULLED_PICK.format(route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBH34_fluence", prev=4) + " armBC34's epoch_6 plus 5 epochs of train_FD, no KD (PII-2081).")),
+                   evidence=("epoch_5.pth, the config and the logs pulled from "
+                             "fluence1:runs/train/wd_armBH34_fluence/; babysit.log records "
+                             "the trainer exiting rc=0 and `epoch_5.pth exists; success`; "
+                             "slurm job 37018 on fluence2"),
+                   notes=(PULLED_PICK.format(files=FILES_SLURM,
+                       route=ROUTE_2041,
+                       ckpt="epoch_5.pth", wd="fluence1:runs/train/wd_armBH34_fluence",
+                       prev=4)
+                       + " armBC34's epoch_6 plus 5 epochs of train_FD, no KD (PII-2081).")),
     "armBB34": dict(
         wd=None,
         remote_wd=("shang", "/data/esteban/pii/runs/train/scrfd/armBB34"),
@@ -713,7 +828,8 @@ SCRFD_ARMS = {
                   "trainer exiting rc=0 and `epoch_3.pth exists; success`; no slurm job, the "
                   "run was babysat on shang GPUs 1,5,6,7"),
         notes=(PULLED_PICK.format(
-            route="PII-2041's chain.sh (the PII-1767 route with the arm substituted)", ckpt="epoch_3.pth",
+            files="the config, run_arm.sh and the logs",
+            route=ROUTE_2041, ckpt="epoch_3.pth",
             wd="shang:/data/esteban/pii/runs/train/scrfd/armBB34", prev=2) +
             " armAI34's epoch_80 plus 3 epochs of train_Z6 with facedub_a x4 on shang's four "
             "RTX 5090 instead of fluence (PII-2032; PII-2034 built facedub_a there). shang "
