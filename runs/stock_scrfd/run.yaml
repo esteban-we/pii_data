@@ -1,0 +1,28 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# An upstream release: no run, so no run to record.
+arm: stock_scrfd
+host: unknown
+gpus: unknown
+arch: scrfd_10g
+view: unknown
+oversample: unknown
+epochs: unknown
+lr: unknown
+lr_steps: unknown
+warmup_iters: unknown
+load_from: unknown
+samples_per_gpu: unknown
+cumulative_iters: unknown
+ignore_regions: unknown
+kd: unknown
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/models.csv
+    - runs/stock_scrfd/pick.yaml

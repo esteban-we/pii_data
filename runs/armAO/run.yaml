@@ -1,0 +1,31 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config training_config.json, the rfdetr dump.
+arm: armAO
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: rfdetr_2xl
+view: train_Z6
+oversample: 1
+epochs: 20
+lr: 0.0001
+lr_steps: unknown
+warmup_iters: unknown
+load_from: /mnt/cachefs/esteban/pii/runs/rfdetr_build/rf_home/rf-detr-xxlarge.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: false
+kd: null
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - 'repo:training/rfdetr/make_coco_Z6.py'
+    - runs/armAO/train/pick.yaml
+    - runs/armAO/train/slurm-13592.out
+    - runs/armAO/train/training_config.json
+    - runs/models.csv

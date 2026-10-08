@@ -1,0 +1,29 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config embedded_config.py, mmdet cfg.dump().
+arm: armY
+host: unknown
+gpus: unknown
+arch: scrfd_34g
+view: train_X
+oversample: 1
+epochs: 20
+lr: 0.001
+lr_steps: [14, 18]
+warmup_iters: 500
+load_from: /home/esteban/pii/weights/SCRFD_34G_official.pth
+samples_per_gpu: 8
+cumulative_iters: 8
+ignore_regions: true
+kd: null
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/armY/train/embedded_config.py
+    - runs/armY/train/pick.yaml
+    - runs/models.csv

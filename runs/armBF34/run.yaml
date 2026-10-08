@@ -1,0 +1,38 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config scrfd_armBF34_fluence.py, mmdet cfg.dump().
+arm: armBF34
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: scrfd_34g
+view: train_FD
+oversample: 1
+epochs: 5
+lr: 0.0001
+lr_steps: [4]
+warmup_iters: 200
+load_from: /mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/epoch_6.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+kd:
+  teacher_config: /mnt/cachefs/esteban/pii/runs/train/insightface/detection/scrfd/configs/scrfd/scrfd_armAY_fluence.py
+  teacher_checkpoint: /mnt/cachefs/esteban/pii/runs/train/wd_armAY_fluence/epoch_5.pth
+  teacher_input: 672
+  precision: fp16
+  cls_weight: 1.0
+  box_weight: 1.0
+  score_thr: 0.3
+  beta: 2.0
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/armBF34/train/pick.yaml
+    - runs/armBF34/train/scrfd_armBF34_fluence.py
+    - runs/armBF34/train/slurm-36277.out
+    - runs/models.csv

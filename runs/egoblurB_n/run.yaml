@@ -1,0 +1,31 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config config.yaml, the detectron2 dump: epochs is MAX_ITER / CHECKPOINT_PERIOD and
+# lr_steps the STEPS in those same units.
+arm: egoblurB_n
+host: shang
+gpus: [4, 5]
+arch: egoblur_g2
+view: train_Z3
+oversample: 1
+epochs: 6
+lr: 0.001
+lr_steps: unknown
+warmup_iters: 500
+load_from: /data/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth
+samples_per_gpu: 2
+cumulative_iters: 1
+ignore_regions: true
+kd: null
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/egoblurB_n/train/babysit.log
+    - runs/egoblurB_n/train/config.yaml
+    - runs/egoblurB_n/train/pick.yaml
+    - runs/models.csv

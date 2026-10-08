@@ -1,0 +1,30 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config scrfd_armW_fe2.py, mmdet cfg.dump().
+arm: armW_fe2
+host: gpu-002
+gpus: [4, 5]
+arch: scrfd_10g
+view: train_W_fe2
+oversample: 1
+epochs: 20
+lr: 0.001
+lr_steps: [14, 18]
+warmup_iters: 500
+load_from: /data/esteban/pii/weights/SCRFD_10G_KPS_official.pth
+samples_per_gpu: 32
+cumulative_iters: 1
+ignore_regions: true
+kd: null
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/armW_fe2/train/LAUNCH_CMD.sh
+    - runs/armW_fe2/train/pick.yaml
+    - runs/armW_fe2/train/scrfd_armW_fe2.py
+    - runs/models.csv

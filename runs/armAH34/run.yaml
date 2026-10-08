@@ -1,0 +1,30 @@
+# Backfilled by neuf/train/backfill_run_yaml.py (PII-2147). This arm ran before neuf/train
+# existed, so every value below was read back off the run's own record rather than written
+# before it; `unknown` is a value that record does not preserve, or that this key set cannot
+# express. resolved.sources lists what was read.
+# Source config scrfd_armAH34_fluence.py, mmdet cfg.dump().
+arm: armAH34
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: scrfd_34g
+view: train_Z5
+oversample: 1
+epochs: 20
+lr: 0.001
+lr_steps: [14, 18]
+warmup_iters: 500
+load_from: /mnt/cachefs/esteban/pii/weights/SCRFD_34G_official.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+kd: null
+
+# written by neuf/train/backfill_run_yaml.py; no shas and no command, because
+# no launcher here started this run.
+resolved:
+  backfilled: true
+  sources:
+    - runs/armAH34/train/pick.yaml
+    - runs/armAH34/train/scrfd_armAH34_fluence.py
+    - runs/armAH34/train/slurm-8574.out
+    - runs/models.csv
