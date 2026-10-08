@@ -8,6 +8,10 @@ carries in its `oss_key` column, and this script is the only thing that moves th
     datasets/<name>/frames.csv    image, size, md5, oss_key -> datasets/<name>/images/<image>
     runs/MANIFEST.tsv             dst_rel, size, md5, oss_key -> <dst_rel> (oss_key empty
                                   when the file is git content)
+    exports/MANIFEST.tsv          dst_rel, size, md5, oss_key -> <dst_rel>, the Verdict
+                                  annotation CSVs (PII-2151); same columns, its own file
+                                  because data/build_runs_pii2.py rewrites runs/MANIFEST.tsv
+                                  whole from the run tree and would drop these rows
 
 PII-2118 moved the arms to runs/<arm>/train/ and the two indexes up to runs/. The
 family (scrfd, egoblur, rfdetr) is not a directory any more: it lives in the OSS key,
@@ -24,14 +28,14 @@ here: `status` counts them under `oss_only`, never under `missing`, and `pull` l
 them alone unless asked for them with `--all-epochs`.
 
 Subcommands
-    pull [--dataset D ...] [--view V ...] [--arm A ...] [--all-epochs]
+    pull [--dataset D ...] [--view V ...] [--arm A ...] [--exports] [--all-epochs]
         Download every indexed object that is missing locally or whose bytes differ from
         the index. A local file that already matches is never rewritten, so a rerun
         resumes. Every download is verified against the index md5 before it is renamed
         into place. Prints one line per prefix, and exactly `up to date` when nothing
         was missing. An epoch the retention rule keeps on OSS only is fetched only with
         --all-epochs, which is how a pruned epoch comes back on demand.
-    push [--dataset D ...] [--arm A ...] [--indexed]
+    push [--dataset D ...] [--arm A ...] [--exports] [--indexed]
         Upload local files that are in the index but not on OSS, and files under
         runs/ that are on disk in a known layout with no index row yet (the row is
         appended to MANIFEST.tsv; commit it afterwards). ETag is asserted equal to the
@@ -80,6 +84,7 @@ HOST = f"{BUCKET}.oss-cn-shanghai.aliyuncs.com"
 TOP = "pii/"
 DATA_TOP = "pii/data/"
 MODELS_TOP = "pii/models/"
+EXPORTS_TOP = "pii/exports/"
 JOBS = 16
 
 
@@ -247,6 +252,20 @@ def run_items(arms=None):
         out.append(Item(os.path.join(ROOT, r["dst_rel"]), r["oss_key"], size, r["md5"], arm,
                         local_expected=not oss_only(r["dst_rel"], size, keep)))
     return out
+
+
+def export_items():
+    """exports/MANIFEST.tsv (PII-2151): the Verdict annotation CSVs under exports/, the
+    provenance of every boxes/vN GT. One row per file, `src` empty, key pii/exports/<rel>."""
+    p = os.path.join(ROOT, "exports/MANIFEST.tsv")
+    if not os.path.isfile(p):
+        return []
+    with open(p, newline="") as f:
+        rows = list(csv.DictReader(f, delimiter="\t"))
+    if rows and "oss_key" not in rows[0]:
+        die("exports/MANIFEST.tsv has no oss_key column")
+    return [Item(os.path.join(ROOT, r["dst_rel"]), r["oss_key"], int(r["size"]), r["md5"],
+                 "exports") for r in rows if r["oss_key"]]
 
 
 # --------------------------------------------------------------------------- view recipes
@@ -547,6 +566,10 @@ def local_ok(it):
 
 
 def select(args):
+    # PII-2151: --exports is exports/MANIFEST.tsv and nothing else; an unscoped run takes
+    # it in alongside the datasets and the runs, so `push --indexed` covers it.
+    if getattr(args, "exports", False):
+        return export_items()
     items = []
     if getattr(args, "view", None):
         items += dataset_items(None, view_images(args.view))
@@ -556,6 +579,8 @@ def select(args):
         items += dataset_items()
     if getattr(args, "arm", None) or not (getattr(args, "dataset", None) or getattr(args, "view", None)):
         items += run_items(getattr(args, "arm", None))
+    if not (getattr(args, "dataset", None) or getattr(args, "view", None) or getattr(args, "arm", None)):
+        items += export_items()
     return items
 
 
@@ -627,7 +652,7 @@ def cmd_pull(args):
                   f"--all-epochs fetches them")
     todo = [it for it in items if not local_ok(it)]
     links = restore_symlinks(getattr(args, "arm", None)) if not getattr(args, "dataset", None) \
-        and not getattr(args, "view", None) else []
+        and not getattr(args, "view", None) and not getattr(args, "exports", False) else []
     for rel in links:
         print(f"symlink restored: {rel}")
     if not todo and not links:
@@ -697,7 +722,7 @@ def cmd_push(args):
     items = select(args)
     indexed_only = getattr(args, "indexed", False)
     new_rows = []
-    if not args.dataset and not indexed_only:
+    if not args.dataset and not indexed_only and not getattr(args, "exports", False):
         for rel, key in unindexed_runs():
             path = os.path.join(ROOT, rel)
             size, md5 = os.path.getsize(path), md5_file(path)
@@ -789,11 +814,11 @@ def cmd_status(args):
     if args.remote:
         ak, sk = load_creds()
         c = OSS(ak, sk)
-        for top in (DATA_TOP, MODELS_TOP):
+        for top in (DATA_TOP, MODELS_TOP, EXPORTS_TOP):
             remote.update(c.list(top))
-    # --remote lists everything under pii/data/ and pii/models/, so the "unindexed" set is
+    # --remote lists everything under pii/data/, pii/models/ and pii/exports/, so the "unindexed" set is
     # compared against the WHOLE index, not against the scope the other columns use.
-    indexed = {it.key for it in (dataset_items() + run_items())} if args.remote \
+    indexed = {it.key for it in (dataset_items() + run_items() + export_items())} if args.remote \
         else {it.key for it in items}
     unpushed = [it for it in present if args.remote and it.key not in remote]
     if not args.remote:
@@ -835,6 +860,8 @@ def main():
     p.add_argument("--dataset", nargs="*")
     p.add_argument("--view", nargs="*")
     p.add_argument("--arm", nargs="*")
+    p.add_argument("--exports", action="store_true",
+                   help="only the exports/MANIFEST.tsv rows (PII-2151)")
     p.add_argument("--jobs", type=int, default=JOBS)
     p.add_argument("--all-epochs", action="store_true",
                    help="also fetch the epochs the retention rule keeps on OSS only")
@@ -842,6 +869,8 @@ def main():
     q = sub.add_parser("push")
     q.add_argument("--dataset", nargs="*")
     q.add_argument("--arm", nargs="*")
+    q.add_argument("--exports", action="store_true",
+                   help="only the exports/MANIFEST.tsv rows (PII-2151)")
     q.add_argument("--jobs", type=int, default=JOBS)
     q.add_argument("--dry-run", action="store_true")
     q.add_argument("--indexed", action="store_true",
@@ -852,6 +881,8 @@ def main():
     s.add_argument("--dataset", nargs="*")
     s.add_argument("--view", nargs="*")
     s.add_argument("--arm", nargs="*")
+    s.add_argument("--exports", action="store_true",
+                   help="only the exports/MANIFEST.tsv rows (PII-2151)")
     s.add_argument("--remote", action="store_true",
                    help="list all of pii/data/ and pii/models/ to find objects no index row claims")
     s.set_defaults(fn=cmd_status)

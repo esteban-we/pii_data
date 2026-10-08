@@ -208,12 +208,26 @@ the files git tracks. `runs/models.csv` carries the key of each arm's pick.
 An OSS key still names the family (`pii/models/<family>/<arm>/<rel>`) even though the
 family is no longer a directory on disk: PII-2118 was a local rename and changed no key.
 
+`exports/` is the third index (PII-2151). It holds the Verdict annotation CSVs that
+`tools/verdict_export.py` in the `pii` repo writes, 90 files and 657,993,513 B: one
+`prelabels.csv` and one `round_N.csv` per review round of each Verdict dataset, plus
+`all_rounds.csv.gz`. They are the provenance of every `boxes/vN` GT, so the store keeps
+them, as OSS content under `pii/exports/<rel>`: git tracks `exports/MANIFEST.tsv`
+(`dst_rel`, an empty `src`, `size`, `md5`, `oss_key`, the same columns as
+`runs/MANIFEST.tsv`) and `.gitignore` keeps the CSVs themselves out. It is a file of its
+own because `data/build_runs_pii2.py` rewrites `runs/MANIFEST.tsv` whole from the run
+tree and would drop any row that is not a run's. `pull`, `push`, `status` and
+`push --indexed` take it in with the rest; `--exports` restricts `pull` and `status` to
+it. `runs/train/logs_replay/` is not store bytes and is ignored where it is: PII-1627's
+replayed mmdet logs carry their own index, `logs_replay/MANIFEST.json`.
+
 ```
 bash data/setup.sh                       # git pull --ff-only, then the hooks, then pull
 python3 data/oss_sync.py pull            # everything the index names
 python3 data/oss_sync.py pull --view train_Z5      # only what one view needs
 python3 data/oss_sync.py pull --dataset gt_bench_full --arm armAC
 python3 data/oss_sync.py pull --all-epochs --arm armAF             # also the pruned epochs
+python3 data/oss_sync.py pull --exports            # only the Verdict annotation CSVs
 python3 data/oss_sync.py status [--remote]
 python3 data/oss_sync.py push --arm armNEW         # after a new training run
 python3 data/oss_sync.py push --indexed            # what .githooks/pre-push runs
@@ -234,10 +248,11 @@ one is reported as a conflict and the run fails. It never deletes. A file under
 row appended (commit it); a new dataset image has to come from the dataset build script
 in the `pii` repo, which is what writes `frames.csv`.
 
-`push --indexed` is the pre-push mode. It covers exactly what the three indexes name
-(every `frames.csv` `oss_key`, every filled `oss_key` of `MANIFEST.tsv`, and
-`models.csv`, whose keys it checks are MANIFEST rows), invents no MANIFEST row, and
-fails with `NO BYTES <key>` for any indexed object that is on neither this disk nor OSS.
+`push --indexed` is the pre-push mode. It covers exactly what the indexes name
+(every `frames.csv` `oss_key`, every filled `oss_key` of `runs/MANIFEST.tsv` and of
+`exports/MANIFEST.tsv`, and `models.csv`, whose keys it checks are MANIFEST rows),
+invents no MANIFEST row, and fails with `NO BYTES <key>` for any indexed object that is
+on neither this disk nor OSS.
 An epoch the retention rule keeps on OSS only is not such a case.
 
 The credential is the `default` AK profile of `~/.aliyun/config.json` (RAM user

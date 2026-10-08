@@ -55,3 +55,14 @@
 # Python bytecode: data/oss_sync.py is run from this checkout on every box.
 __pycache__/
 *.pyc
+
+# PII-2151: the Verdict annotation CSVs, 658 MB written by tools/verdict_export.py in
+# the pii repo and the provenance of every boxes/vN GT. OSS content under
+# pii/exports/<rel>; exports/MANIFEST.tsv is their index and stays tracked.
+/exports/**
+!/exports/MANIFEST.tsv
+
+# PII-1635: runs/train/logs_replay/, PII-1627's replayed mmdet logs. They carry their
+# own index, logs_replay/MANIFEST.json (source_host, source_path, md5, rows, W&B run
+# id), are not store bytes and are not on OSS, so they are ignored where they are.
+/runs/train/logs_replay/
