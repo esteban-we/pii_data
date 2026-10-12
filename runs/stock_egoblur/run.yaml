@@ -12,6 +12,7 @@ oversample: unknown
 epochs: unknown
 lr: unknown
 lr_steps: unknown
+lr_schedule: unknown
 warmup_iters: unknown
 load_from: unknown
 samples_per_gpu: unknown

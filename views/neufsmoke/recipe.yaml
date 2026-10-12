@@ -1,0 +1,20 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: neufsmoke
+role: train
+sources:
+  - dataset: pii_frames
+    boxes: v1
+    split: train
+    where: {session: 20260623_054943_KAMYUT}
+legacy:
+  note: no legacy manifest; this view was created for PII-2117 and reproduces nothing
+notes: |
+  A ~200 frame training view, the smallest thing the neuf/train launcher can be smoke tested
+  on (PII-2117). One session of pii_frames on boxes v1, the train side of split.csv:
+  20260623_054943_KAMYUT, 191 frames, the single session whose train frame count is nearest
+  200. It is a slice of an existing train mix member, not new data, so nothing has to be
+  labelled or uploaded for it. Its paths contain '/datasets/pii_frames/' and the session is
+  neither BTJPSP nor NQYJPB, so its face-free frames train background at neg_weight_pii 0.5,
+  exactly as they do inside train_Z..train_Z6 (PII-1449 / PII-1381).

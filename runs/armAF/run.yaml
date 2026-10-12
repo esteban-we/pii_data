@@ -12,6 +12,7 @@ oversample: 1
 epochs: 80
 lr: 0.01
 lr_steps: [55, 68]
+lr_schedule: step
 warmup_iters: 1500
 load_from: null
 samples_per_gpu: 32

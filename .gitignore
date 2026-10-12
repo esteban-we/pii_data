@@ -66,3 +66,7 @@ __pycache__/
 # own index, logs_replay/MANIFEST.json (source_host, source_path, md5, rows, W&B run
 # id), are not store bytes and are not on OSS, so they are ignored where they are.
 /runs/train/logs_replay/
+
+# PII-2199/PII-2201: the chain's fcntl.flock files, one beside each shared target
+# (runs/.models.csv.lock, neuf/wandb/.wandb_sync.yaml.lock). Empty, progress not data.
+.*.lock

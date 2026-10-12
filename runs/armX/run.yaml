@@ -12,6 +12,7 @@ oversample: 1
 epochs: 20
 lr: 0.001
 lr_steps: [14, 18]
+lr_schedule: step
 warmup_iters: 500
 load_from: /data/esteban/pii/weights/SCRFD_10G_KPS_official.pth
 samples_per_gpu: 64

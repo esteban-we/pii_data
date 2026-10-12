@@ -1,0 +1,108 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: train_AY
+role: train
+pending: datasets/facedub_b is not built yet (PII-2248 item 1); --all skips this view
+sources:
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 2b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 7b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 3b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 8b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 1b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 6b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 4b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+  - dataset: facedub_b
+    boxes: ay1
+    split: all
+    where: {round: 9b}
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_b
+    legacy_path: flat
+legacy:
+  manifest: /home/esteban/repos/pii/training/manifests/train_AY.txt
+  order: |
+    the eight rounds in the dump's order 2b 7b 3b 8b 1b 6b 4b 9b, one source block each;
+    frames sorted by image name inside a block, which is the legacy order too (checked:
+    every one of the eight blocks of train_AY.txt is already sorted by header path)
+notes: |
+  NOT RENDERABLE YET: datasets/facedub_b does not exist in this store. It is item 1 of
+  PII-2248 and the blocker for this view; see the child issue, which pins the four names
+  this recipe depends on (dataset facedub_b, boxes version ay1, frames.csv `image` =
+  "<round>/<file>" and a `round` column).
+
+  What it is: the armAY pseudo-label pool over the eight facedub_b rounds, PII-2056's data
+  and PII-2061's labels, written today by training/mk_mix_AY.py into
+  training/manifests/train_AY.txt (md5 d4f82396533a010d279829ee3ba39092) and read by armBD34
+  (train_Z6 + train_FD x4 + train_AY x1) and armBE34 (train_AY alone).
+
+  The label rule, which the boxes/ay1 build must carry, not this recipe: per armAY box score
+  s, s >= 0.6 is a positive, 0.1 <= s < 0.6 is an IGNORE row (`ignore` 1 in boxes.csv, the
+  5-field `x1 y1 x2 y2 1` form in scrfd.txt), a frame with no box at all is kept as a
+  negative with a header and no box line. Boxes are clipped into the 1024x1280 frame and a
+  clipped side under 1 px is dropped. Counts mk_mix_AY.py reported over the eight rounds:
+  1,338,489 frames, 795,704 positives, 7,363,650 ignores, 395,254 frames with no box at all,
+  885,209 with no positive, 627,716 clipped, 6 dropped degenerate.
+
+  Per round, in this recipe's source order: 2b 167,651 frames / 99,555 pos / 922,941 ign;
+  7b 167,095 / 99,063 / 917,340; 3b 167,532 / 99,943 / 923,135; 8b 166,981 / 99,433 /
+  922,374; 1b 167,766 / 99,375 / 925,046; 6b 167,187 / 99,474 / 918,146; 4b 167,424 /
+  99,509 / 917,424; 9b 166,853 / 99,352 / 917,244.
+
+  `boxes: ay1`, not a vN: the store README reserves vN for a labelling pass and already has a
+  non-vN derived version (facedub_a boxes/rec1). These are machine labels from armAY epoch_5,
+  not a human pass, so calling them v1 would claim a review that never happened. PII-2248's
+  own text says boxes/<vN>; this is the one departure from it, and it is the child issue's
+  first decision.
+
+  `split: all`: facedub_b is a pseudo-label training pool with no eval side. If its
+  split.csv marks every session train, `split: train` would read the same; `all` says the
+  view does not depend on that.
+
+  Box order inside a frame will differ from the legacy manifest, as it does for every view:
+  mk_mix_AY.py writes a frame's positives first and its ignores after, boxes.csv and
+  therefore scrfd.txt sort by (image, x1, y1). The `legacy` check reports box order
+  separately from box content for exactly this reason. Frame set, box set and record order
+  should match exactly; that is the Tier 3 comparison PII-2248 asks for and it is UNRUN.

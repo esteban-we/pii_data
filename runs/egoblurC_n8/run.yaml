@@ -13,6 +13,7 @@ oversample: 1
 epochs: 10
 lr: 0.016
 lr_steps: [7, 9]
+lr_schedule: step
 warmup_iters: 375
 load_from: /mnt/cachefs/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth
 samples_per_gpu: 8

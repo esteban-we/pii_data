@@ -4,15 +4,24 @@
 # express. resolved.sources lists what was read.
 # Source config config.yaml, the detectron2 dump: epochs is MAX_ITER / CHECKPOINT_PERIOD and
 # lr_steps the STEPS in those same units.
+# PII-2170, 2026-10-09: `view` was `unknown`. The d2 dataset this run registered is named
+# train_Z3 but held 139,587 frames, train_Z3's manifest restricted to what was on local disk
+# (its own summary: face_mine_right 49,701 and faceight_a 33,926 entirely missing). That
+# subset is the store view train_Z2: the legacy json and views/train_Z2/d2.json carry the
+# same 139,587 frames, 0 only in either, and identical boxes and iscrowd on every frame; only
+# record order differs. Same n_images / boxes / ignore / empty_frames too (139,587 / 186,852 /
+# 3,668 / 59,185). So this cell was an expressible value the backfill could not find, not a
+# key-set gap.
 arm: egoblurA
 host: gpu-002
 gpus: [0, 1, 3, 5, 6, 7]
 arch: egoblur_g2
-view: unknown
+view: train_Z2
 oversample: 1
 epochs: 6
 lr: 0.012
-lr_steps: unknown
+lr_steps: [4.2, 5.4]
+lr_schedule: step
 warmup_iters: 500
 load_from: /data/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth
 samples_per_gpu: 8
@@ -29,3 +38,5 @@ resolved:
     - runs/egoblurA/train/config.yaml
     - runs/egoblurA/train/pick.yaml
     - runs/models.csv
+    - 'legacy:datasets/d2/train_Z3.summary.json'   # under /data/esteban/pii_backup, PII-2170
+    - 'legacy:datasets/d2/train_Z3.json'

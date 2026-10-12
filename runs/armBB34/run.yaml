@@ -7,11 +7,12 @@ arm: armBB34
 host: shang
 gpus: [1, 5, 6, 7]
 arch: scrfd_34g
-view: unknown
-oversample: unknown
+view: [train_Z6, train_FD]
+oversample: [1, 4]
 epochs: 3
 lr: 0.0001
 lr_steps: [2]
+lr_schedule: step
 warmup_iters: 200
 load_from: /data/esteban/pii/runs/train/scrfd/armAI34/epochs/epoch_80.pth
 samples_per_gpu: 8

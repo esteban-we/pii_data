@@ -1,0 +1,22 @@
+{
+ "arm": "armBB34",
+ "interval": "sync",
+ "steps": [
+  "sync"
+ ],
+ "project": null,
+ "command": "neuf/chain.py armBB34 sync",
+ "status": "done",
+ "current": null,
+ "start": "2026-10-08T13:18:32",
+ "updated": "2026-10-08T13:18:36",
+ "end": "2026-10-08T13:18:36",
+ "step": {
+  "sync": {
+   "start": "2026-10-08T13:18:32",
+   "progress": "done",
+   "end": "2026-10-08T13:18:36",
+   "result": "ok"
+  }
+ }
+}

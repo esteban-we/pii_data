@@ -1,0 +1,10 @@
+# PII-2146: the (arm, dataset, version) pairs the W&B model dashboard shows, and the one
+# gate on what reaches it. One entry per arm; neuf/wandb/schema.yaml in the pii repo is
+# the key set. Only real arms belong here (the arms of runs/models.csv); a test arm syncs
+# into a throwaway project with `--project` instead (PII-2193).
+
+- arm: armBB34
+  tags: []
+  scores:
+    - dataset: gt_bench_sparse
+      version: v1

@@ -12,6 +12,7 @@ oversample: 1
 epochs: 5
 lr: 0.0001
 lr_steps: [4]
+lr_schedule: step
 warmup_iters: 200
 load_from: /mnt/cachefs/esteban/pii/runs/train/wd_armBC34_fluence/epoch_6.pth
 samples_per_gpu: 8

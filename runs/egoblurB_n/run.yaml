@@ -12,7 +12,8 @@ view: train_Z3
 oversample: 1
 epochs: 6
 lr: 0.001
-lr_steps: unknown
+lr_steps: [4.2, 5.4]
+lr_schedule: step
 warmup_iters: 500
 load_from: /data/esteban/pii/runs/egoblur_build/egoblur_face_gen2_d2.pth
 samples_per_gpu: 2

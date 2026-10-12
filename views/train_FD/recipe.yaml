@@ -1,0 +1,49 @@
+# Rendered by data/build_view.py (PII-1373). Image paths are absolute into
+# /data/esteban/pii/datasets/<dataset>/images/; boxes come from
+# /data/esteban/pii/datasets/<dataset>/boxes/<boxes>/boxes.csv.
+name: train_FD
+role: train
+sources:
+  - dataset: facedub_a
+    boxes: v1
+    split: train
+    size: {width: 1024, height: 1280}
+    legacy_prefix: facedub_a
+    legacy_path: flat
+legacy:
+  manifest: /home/esteban/repos/pii/training/manifests/facedub_a_train_labelv2.txt
+  order: one source block; frames sorted by image name
+notes: |
+  The facedub_a round-1 train slice alone: the 25 train sessions of
+  datasets/facedub_a/split.csv on boxes v1, 29,018 of the dataset's 37,568 frames and
+  21,569 boxes, no ignore rows (counted off split.csv + boxes/v1/boxes.csv). The legacy
+  manifest training/manifests/facedub_a_train_labelv2.txt has exactly those counts,
+  29,018 headers and 21,569 box lines, md5 9858b2a39dfad43ece03f039f96f6152.
+
+  The name comes from data/mix_ds/train_FD.txt, which PII-1726's training/mk_mix_fd.py says
+  it wrote as a byte copy of that manifest. That file lives on fluence
+  (/mnt/cachefs/esteban/pii/datasets/views/mix_ds) and is not in this store, so the copy is
+  taken from the script, not re-checked here. runs/armBB34/train/train_FD_abs.txt, the
+  absolute-path form training/configs/scrfd_armBB34.py names, is NOT in the store either
+  (PII-2118 moved the run dir and did not carry it).
+
+  Who names it: armAV34 and armAX train on train_FD alone, and armBF34, armBG34 and armBH34
+  inherit armAV34's data block. armAW34, armAY, armBB34, armBC34 and armBD34 train on
+  train_Z6 PLUS train_FD at multiplicity 4 (mmdet ConcatDataset + RepeatDataset(times=4)).
+  The oversampling is NOT in this recipe and cannot be: a repeated manifest header collapses
+  in RetinaFaceDataset.load_annotations (PII-1730), so the x4 lives in the trainer and, in
+  the neuf schema, in run.yaml's view/oversample pair (PII-2170).
+
+  `size:` is why this recipe needs one key the older ones do not: facedub_a is 1024x1280 and
+  its frames.csv has no width/height column, so build_view.py's size_of() fell back to
+  DEFAULT_SIZE and wrote "2328 1748" on all 29,018 headers (measured: against the legacy
+  manifest, 0 frames only-rendered, 0 only-legacy, 0 with different boxes, record order
+  identical, 29,018 with different w/h). PII-2248 added the per-source `size:` key for it.
+
+  RENDERED and REPRODUCED (PII-2248, 2026-10-09). `build_view.py legacy train_FD`: 29,018 vs
+  29,018 frames, 0 only-rendered, 0 only-legacy, 0 with different boxes, 0 with different
+  w/h, 0 with a different box order, record order identical. Stronger: rewriting the rendered
+  scrfd.txt's header prefix /data/esteban/pii/datasets/facedub_a/images/ back to facedub_a/
+  gives md5 9858b2a39dfad43ece03f039f96f6152, the legacy manifest's own md5, so the two are
+  identical line for line. scrfd.txt as rendered (absolute paths) is md5
+  191757945d24f6cbabb8b0eb464fdbd0.

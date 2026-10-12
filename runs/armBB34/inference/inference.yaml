@@ -1,0 +1,22 @@
+arm: armBB34
+checkpoint: runs/armBB34/train/onnx/armBB34_det34g.onnx
+datasets: [gt_bench_sparse]
+split: eval
+det_size: 1024
+pad: true
+host: gpu-002
+gpus: [6]
+
+# written by neuf/inference/inference.py
+resolved:
+  gt_bench_sparse:
+    eval:
+      repo_sha: 1605d33f43a1cc45028a57d5ae934fbff9888e77
+      store_sha: 23018f5e2c682bace03a94e5604654b3c888f58e
+      host: gpu-002
+      onnx_md5: 3c43d50de6ad563a7824edd5ef751f6f
+      det_size: 1024
+      n_frames: 889
+      n_boxes: 349605
+      start: '2026-10-07T18:28:25'
+      end: '2026-10-07T18:29:10'

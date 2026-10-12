@@ -1,0 +1,16 @@
+predictions: runs/armBB34/inference/gt_bench_sparse/predictions.csv
+split: eval
+boxes_version: v1
+min_side: 40
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: 10ffebd680fa1a7be4de79c4f3e66f48649ddf1d
+  store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+  host: gpu-002
+  predictions_md5_verified: 9c16624abb6e91390d95fd4f77a9fad7
+  n_frames: 889
+  n_gt: 1541
+  duration_s: 6.2
+  start: 2026-10-08T11:29:01
+  end: 2026-10-08T11:29:07

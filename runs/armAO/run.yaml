@@ -3,6 +3,12 @@
 # before it; `unknown` is a value that record does not preserve, or that this key set cannot
 # express. resolved.sources lists what was read.
 # Source config training_config.json, the rfdetr dump.
+# PII-2170, 2026-10-09: `warmup_iters` was `unknown` because training_config.json records
+# warmup_epochs 1.0 and no iteration count. It is derivable from keys already in this file:
+# iters/epoch = ceil(303,407 frames of train_Z6 / (samples_per_gpu 8 x 8 gpus)) = 4,741, so
+# 1.0 epoch is 4,741 iterations. runs/armAO/train/metrics.csv agrees: its per-epoch step
+# counter runs 0..4,740, and train/lr rises linearly and first reaches the configured 1e-4 at
+# step 4,749, the first row logged (every 50 steps) after 4,741.
 arm: armAO
 host: fluence1
 gpus: [0, 1, 2, 3, 4, 5, 6, 7]
@@ -11,8 +17,9 @@ view: train_Z6
 oversample: 1
 epochs: 20
 lr: 0.0001
-lr_steps: unknown
-warmup_iters: unknown
+lr_steps: []
+lr_schedule: cosine
+warmup_iters: 4741
 load_from: /mnt/cachefs/esteban/pii/runs/rfdetr_build/rf_home/rf-detr-xxlarge.pth
 samples_per_gpu: 8
 cumulative_iters: 1
@@ -29,3 +36,4 @@ resolved:
     - runs/armAO/train/slurm-13592.out
     - runs/armAO/train/training_config.json
     - runs/models.csv
+    - runs/armAO/train/metrics.csv   # PII-2170: the warmup_iters derivation
