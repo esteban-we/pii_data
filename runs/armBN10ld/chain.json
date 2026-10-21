@@ -9,33 +9,20 @@
  "command": "/mnt/cachefs/esteban/repos/pii/neuf/chain.py armBN10ld publish",
  "status": "running",
  "current": "publish",
- "start": "2026-10-21T03:21:45",
- "updated": "2026-10-21T03:21:56",
- "heartbeat": "2026-10-21T03:21:56+00:00",
+ "start": "2026-10-21T03:23:10",
+ "updated": "2026-10-21T03:23:24",
+ "heartbeat": "2026-10-21T03:23:24+00:00",
  "end": null,
  "reason": null,
  "step": {
   "publish": {
-   "start": "2026-10-21T03:21:45",
+   "start": "2026-10-21T03:23:10",
    "progress": "committing",
    "end": null,
    "result": null
   }
  },
  "previous": [
-  {
-   "interval": "train..wandb_sync",
-   "status": "done",
-   "start": "2026-10-16T21:34:50",
-   "end": "2026-10-17T01:52:38",
-   "reason": null,
-   "step": {
-    "train": "ok",
-    "inference": "ok",
-    "score": "ok",
-    "wandb_sync": "ok"
-   }
-  },
   {
    "interval": "publish",
    "status": "failed",
@@ -71,6 +58,16 @@
    "status": "done",
    "start": "2026-10-21T03:06:58",
    "end": "2026-10-21T03:19:56",
+   "reason": null,
+   "step": {
+    "publish": "ok"
+   }
+  },
+  {
+   "interval": "publish",
+   "status": "done",
+   "start": "2026-10-21T03:21:45",
+   "end": "2026-10-21T03:22:06",
    "reason": null,
    "step": {
     "publish": "ok"
