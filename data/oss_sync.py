@@ -29,8 +29,12 @@ them alone unless asked for them with `--all-epochs`.
 
 Subcommands
     pull [--dataset D ...] [--view V ...] [--arm A ...] [--exports] [--all-epochs]
+        [--exclude GLOB ...]
         Download every indexed object that is missing locally or whose bytes differ from
-        the index. A local file that already matches is never rewritten, so a rerun
+        the index. --exclude drops the rows whose dst_rel matches a glob: it is how
+        neuf/chain.py's preflight pull (PII-2664) keeps from fetching the very outputs the
+        interval it is about to run will rewrite, which would both cost the download and
+        make the step refuse ("this score dir already holds output"). A local file that already matches is never rewritten, so a rerun
         resumes. Every download is verified against the index md5 before it is renamed
         into place. Prints one line per prefix, and exactly `up to date` when nothing
         was missing. An epoch the retention rule keeps on OSS only is fetched only with
@@ -62,6 +66,7 @@ from __future__ import annotations
 import argparse
 import base64
 import csv
+import fnmatch
 import hashlib
 import hmac
 import http.client
@@ -644,6 +649,16 @@ def restore_symlinks(arms=None):
 
 def cmd_pull(args):
     items = select(args)
+    # PII-2664: the rows a caller says not to fetch, by dst_rel glob. A chain that is about to
+    # re-score an arm does not want the dump it is about to replace brought back first.
+    skip = getattr(args, "exclude", None) or []
+    if skip:
+        keep = [it for it in items
+                if not any(fnmatch.fnmatch(os.path.relpath(it.path, ROOT), g) for g in skip)]
+        if len(keep) != len(items):
+            print(f"{len(items) - len(keep)} indexed objects match --exclude {skip} and are "
+                  f"not fetched")
+        items = keep
     if not getattr(args, "all_epochs", False):
         skipped = [it for it in items if not it.local_expected]
         items = [it for it in items if it.local_expected]
@@ -865,6 +880,9 @@ def main():
     p.add_argument("--jobs", type=int, default=JOBS)
     p.add_argument("--all-epochs", action="store_true",
                    help="also fetch the epochs the retention rule keeps on OSS only")
+    p.add_argument("--exclude", nargs="*", metavar="GLOB",
+                   help="do not fetch the indexed objects whose dst_rel matches a glob "
+                        "(neuf/chain.py's preflight, PII-2664)")
     p.set_defaults(fn=cmd_pull)
     q = sub.add_parser("push")
     q.add_argument("--dataset", nargs="*")
