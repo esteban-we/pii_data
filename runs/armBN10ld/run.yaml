@@ -1,0 +1,52 @@
+# why PII-2545: armBN34's recipe on the SCRFD-10G architecture. Every leaf is
+# runs/armBN34/run.yaml's (PII-2501: view train_FQ_p4_i2, pos_thr 0.4 / ign_thr 0.2 over the
+# facequar_a ap2 pool, 3 epochs, lr 1e-4, step [2], warmup 200, crop 640, batch 8 x 8) except
+# the substitutions armBK made for the 10G chain (PII-2417):
+#   arch        scrfd_10g, not scrfd_34g
+#   load_from   armAF epoch_80, the from-scratch 10G arm (md5
+#               cb25fe8a85cc846d3f6a75696c5a060f), which is to the 10G chain what armAI34
+#               epoch_80 is to the 34G chain (PII-2092)
+#   kd          logit distillation from armBN34 itself (teacher epoch_3), the weights
+#               armBF34/armBG34 ran and PII-2072 fixed: QFL cls at 1.0 beta 2.0, stride-
+#               normalised L1 box at 1.0 over teacher score >= 0.3, teacher fp16. The
+#               teacher canvas is 640, not armAY's 672: armBN34's own crop is 640, so the
+#               student crop IS the canvas and kd_pad is the identity. Both heads are
+#               SCRFDHead on strides 8/16/32 with base_sizes [16,64,256], scales [1,2],
+#               ratios [1.0], centre_offset 0, reg_max 8, use_kps True, so cell (x,y) means
+#               the same thing on both sides (kd_scrfd._head_signature asserts it).
+# host/gpus are armBN34's: fluence1, 8 GPUs, which chain.py turns into one sbatch
+# --gres=gpu:8 (the values name nothing there, only the count).
+arm: armBN10ld
+group: fpv_distill
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: scrfd_10g
+view: train_FQ_p4_i2
+oversample: 1
+epochs: 3
+lr: 0.0001
+lr_steps: [2]
+lr_schedule: step
+warmup_iters: 200
+load_from: /mnt/cachefs/esteban/pii2/runs/armAF/train/epochs/epoch_80.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+kd:
+  teacher_config: /mnt/cachefs/esteban/pii/runs/train/insightface/detection/scrfd/configs/scrfd/neuf_armBN34.py
+  teacher_checkpoint: /mnt/cachefs/esteban/pii2/runs/armBN34/train/epochs/epoch_3.pth
+  teacher_input: 640
+  precision: fp16
+  cls_weight: 1.0
+  box_weight: 1.0
+  score_thr: 0.3
+  beta: 2.0
+
+# appended by neuf/train/train.py
+resolved:
+  repo_sha: f0b4a1175f8354bbadce9838fd5dc6425413215a
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: fluence1
+  command: '/mnt/cachefs/esteban/repos/pii/neuf/_step.py train /mnt/cachefs/esteban/pii2/runs/armBN10ld/run.yaml'
+  start: 2026-10-16T21:42:41
+  end: 2026-10-17T01:40:13

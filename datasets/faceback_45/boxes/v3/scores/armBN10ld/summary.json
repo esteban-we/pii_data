@@ -1,0 +1,114 @@
+{
+ "arm": "armBN10ld",
+ "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/faceback_45/boxes/v3/boxes.csv",
+ "boxes_md5": "11212aad66c27f57a23d72ee8edba7ec",
+ "boxes_version": "v3",
+ "by_iou": {
+  "0.2": {
+   "counts": {
+    "fp": 2218374,
+    "hit": 20326,
+    "ignore_dets": 24770,
+    "ignore_gt": 7084,
+    "miss": 44,
+    "tp": 20326
+   },
+   "pauc": {
+    "ceiling": 2.0,
+    "floor": 2.95159386068477e-05,
+    "fp_at": {
+     "0.80": 0.05185094228812343,
+     "0.85": 0.08007216885635901,
+     "0.90": 0.1324553689799062,
+     "0.95": 0.4089537970918354
+    },
+    "grid": {
+     "hi": 0.95,
+     "lo": 0.8,
+     "n": 151,
+     "step": 0.001
+    },
+    "max_recall": 0.9978399607265587,
+    "pauc": -0.9537988804042219,
+    "reached": {
+     "0.80": true,
+     "0.85": true,
+     "0.90": true,
+     "0.95": true
+    },
+    "rec2_at": {
+     "0.80": null,
+     "0.85": null,
+     "0.90": null,
+     "0.95": null
+    },
+    "threshold_at": {
+     "0.80": 0.69,
+     "0.85": 0.65,
+     "0.90": 0.57,
+     "0.95": 0.39
+    }
+   },
+   "recall_at_fp_per_frame": {
+    "0.01": {
+     "recall": 0.613304,
+     "threshold": 0.8
+    },
+    "0.05": {
+     "recall": 0.783309,
+     "threshold": 0.71
+    },
+    "0.1": {
+     "recall": 0.868434,
+     "threshold": 0.63
+    },
+    "0.15": {
+     "recall": 0.908149,
+     "threshold": 0.56
+    },
+    "0.5": {
+     "recall": 0.954737,
+     "threshold": 0.37
+    },
+    "1": {
+     "recall": 0.968434,
+     "threshold": 0.27
+    }
+   }
+  }
+ },
+ "coord_space": [
+  2328,
+  1748
+ ],
+ "counts_at": 0.02,
+ "curves": "curves.csv",
+ "dataset": "faceback_45",
+ "fp_per_frame_grid": [
+  0.01,
+  0.05,
+  0.1,
+  0.15,
+  0.5,
+  1.0
+ ],
+ "grid": {
+  "hi": 0.99,
+  "lo": 0.02,
+  "n": 98,
+  "step": 0.01
+ },
+ "iou": 0.2,
+ "matches": "armBN10ld.json",
+ "min_side": 40,
+ "n_frames": 16940,
+ "n_gt": 20370,
+ "n_gt_ignored": 7084,
+ "n_pred": 2263470,
+ "pauc_definition": "evaluation/pauc.py",
+ "predictions": "runs/armBN10ld/inference/faceback_45/predictions.csv",
+ "predictions_md5": "b5931f0e54c99ad44290833164da6f8a",
+ "rec_boxes_version": "none",
+ "script": "neuf/score/score.py",
+ "split": "eval"
+}

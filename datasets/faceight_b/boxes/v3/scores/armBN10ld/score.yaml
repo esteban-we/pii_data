@@ -1,0 +1,21 @@
+# PII-2545: armBN10ld on faceight_b boxes/v3, IoU 0.2 (score.py's constant, PII-2181).
+# min_side 40: 40 is what every stored eval used; facedub_a is scored at 17.6, the floor
+# PII-2041 reported that set at.
+predictions: runs/armBN10ld/inference/faceight_b/predictions.csv
+split: eval
+boxes_version: v3
+min_side: 40
+# PII-2448: Recognizable Recall against boxes/rec1, at this file's own min_side.
+rec_boxes_version: rec1
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: f0b4a1175f8354bbadce9838fd5dc6425413215a
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: fluence1
+  predictions_md5: c66da55bbaff35a589046b165bc9e7db
+  n_frames: 11927
+  n_gt: 8247
+  duration_s: 56.5
+  start: 2026-10-17T01:49:51
+  end: 2026-10-17T01:50:47
