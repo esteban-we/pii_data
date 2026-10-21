@@ -1,11 +1,12 @@
 {
  "arm": "armBN34",
- "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/faceight_b/boxes/v3/boxes.csv",
+ "boxes_csv": "/data/esteban/pii/datasets/faceight_b/boxes/v3/boxes.csv",
  "boxes_md5": "317ee5e166c7ecb457893806772cde22",
  "boxes_version": "v3",
  "by_iou": {
   "0.2": {
    "counts": {
+    "extra_fp": 742906,
     "fp": 746739,
     "hit": 8159,
     "ignore_dets": 12921,
@@ -51,26 +52,32 @@
    },
    "recall_at_fp_per_frame": {
     "0.01": {
+     "extra_fp_per_frame": 0.000671,
      "recall": 0.260458,
      "threshold": 0.84
     },
     "0.05": {
+     "extra_fp_per_frame": 0.01048,
      "recall": 0.606281,
      "threshold": 0.73
     },
     "0.1": {
+     "extra_fp_per_frame": 0.033286,
      "recall": 0.720989,
      "threshold": 0.65
     },
     "0.15": {
+     "extra_fp_per_frame": 0.060703,
      "recall": 0.773008,
      "threshold": 0.59
     },
     "0.5": {
+     "extra_fp_per_frame": 0.344177,
      "recall": 0.876804,
      "threshold": 0.35
     },
     "1": {
+     "extra_fp_per_frame": 0.796177,
      "recall": 0.905299,
      "threshold": 0.24
     }
@@ -84,6 +91,9 @@
  "counts_at": 0.02,
  "curves": "curves.csv",
  "dataset": "faceight_b",
+ "extra_gt_md5": "1f9fe8d581833f05a6dab93d38822df7",
+ "extra_gt_predictions": "runs/armAP/inference/faceight_b/predictions.csv",
+ "extra_gt_thr": 0.4,
  "fp_per_frame_grid": [
   0.01,
   0.05,
@@ -101,6 +111,8 @@
  "iou": 0.2,
  "matches": "armBN34.json",
  "min_side": 40,
+ "n_extra_gt": 1334,
+ "n_extra_gt_ignored": 773,
  "n_frames": 11927,
  "n_gt": 8247,
  "n_gt_ignored": 4534,
@@ -110,7 +122,7 @@
  "pauc_definition": "evaluation/pauc.py",
  "predictions": "runs/armBN34/inference/faceight_b/predictions.csv",
  "predictions_md5": "a80afe2cbd8225a2ac172268b98e436d",
- "rec_boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/faceight_b/boxes/rec1/boxes.csv",
+ "rec_boxes_csv": "/data/esteban/pii/datasets/faceight_b/boxes/rec1/boxes.csv",
  "rec_boxes_md5": "2e010f5ffc89296ac9033c6a3e821e99",
  "rec_boxes_version": "rec1",
  "script": "neuf/score/score.py",

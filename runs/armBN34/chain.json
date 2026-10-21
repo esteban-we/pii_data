@@ -1,22 +1,36 @@
 {
  "arm": "armBN34",
- "host": "fluence1",
- "interval": "publish",
+ "host": "gpu-002",
+ "interval": "score..wandb_sync",
  "steps": [
+  "score",
+  "wandb_sync",
   "publish"
  ],
  "project": null,
- "command": "/mnt/cachefs/esteban/repos/pii/neuf/chain.py armBN34 publish",
+ "command": "/home/esteban/repos/pii/neuf/chain.py armBN34 score..wandb_sync",
  "status": "running",
  "current": "publish",
- "start": "2026-10-21T04:06:52",
- "updated": "2026-10-21T04:12:00",
- "heartbeat": "2026-10-21T04:12:00+00:00",
+ "start": "2026-10-20T21:34:04",
+ "updated": "2026-10-20T21:47:19",
+ "heartbeat": "2026-10-21T04:47:19+00:00",
  "end": null,
  "reason": null,
  "step": {
+  "score": {
+   "start": "2026-10-20T21:34:04",
+   "progress": "5 of 5 datasets scored",
+   "end": "2026-10-20T21:36:58",
+   "result": "ok"
+  },
+  "wandb_sync": {
+   "start": "2026-10-20T21:36:58",
+   "progress": "done",
+   "end": "2026-10-20T21:37:06",
+   "result": "ok"
+  },
   "publish": {
-   "start": "2026-10-21T04:06:52",
+   "start": "2026-10-20T21:37:06",
    "progress": "committing",
    "end": null,
    "result": null
@@ -60,6 +74,16 @@
    "interval": "publish",
    "status": "running",
    "start": "2026-10-21T03:24:04",
+   "end": null,
+   "reason": null,
+   "step": {
+    "publish": null
+   }
+  },
+  {
+   "interval": "publish",
+   "status": "running",
+   "start": "2026-10-21T04:06:52",
    "end": null,
    "reason": null,
    "step": {
