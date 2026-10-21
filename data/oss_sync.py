@@ -739,11 +739,13 @@ def cmd_push(args):
     new_rows = []
     if not args.dataset and not indexed_only and not getattr(args, "exports", False):
         for rel, key in unindexed_runs():
-            path = os.path.join(ROOT, rel)
-            size, md5 = os.path.getsize(path), md5_file(path)
+            # The arm first: md5_file on every unindexed file of every arm on the box, only to
+            # drop all but one of them, is minutes of hashing a `push --arm A` never needed.
             arm = key.split("/")[3]
             if args.arm and arm not in args.arm:
                 continue
+            path = os.path.join(ROOT, rel)
+            size, md5 = os.path.getsize(path), md5_file(path)
             items.append(Item(path, key, size, md5, arm))
             new_rows.append([rel, path, size, md5, key])
     missing_local = [it for it in items if not os.path.isfile(it.path)]
