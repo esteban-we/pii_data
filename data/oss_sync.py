@@ -854,15 +854,16 @@ def cmd_push(args):
     if indexed_only:
         prefixes |= {it.prefix for it in missing_local}
     remote = list_prefixes(ak, sk, sorted(prefixes), args.jobs)
-    todo, ok, conflicts = [], 0, []
+    todo, already, conflicts = [], [], []
     for it in items:
         r = remote.get(it.key)
         if r is None:
             todo.append(it)
         elif remote_is(c, it, r):
-            ok += 1
+            already.append(it.key)
         else:
             conflicts.append((it, r))
+    ok = len(already)
     # Indexed, not on this disk and not on OSS: the row names bytes that exist nowhere,
     # so the index is a lie and the push has to fail. An epoch the retention rule keeps
     # on OSS only (PII-1601) is not on disk either and is fine: it is in `remote`.
@@ -908,10 +909,15 @@ def cmd_push(args):
             local.c.put(it.key, data, it.md5, ctype_of(it.key))
         return len(data)
 
-    done, failed, _ = parallel(todo, work, args.jobs, sum(i.size for i in todo), "push")
-    pushed = {it.key for it in todo}
-    if new_rows and not failed:
-        append_manifest([r for r in new_rows if r[4] in pushed])
+    done, failed, errors = parallel(todo, work, args.jobs, sum(i.size for i in todo), "push")
+    # PII-2664: a row for every file this run indexed whose bytes ARE now on OSS -- the ones it
+    # uploaded here and the ones an earlier interrupted run had already put there. Keyed on
+    # what this run uploaded alone, and skipped entirely when any object failed, a run that
+    # died on its last object left the rest on OSS with no row at all, and a row is the only
+    # thing that makes those bytes fetchable (PII-2539).
+    on_oss = (set(already) | {it.key for it in todo}) - {k for k, _why in errors}
+    if new_rows:
+        append_manifest([r for r in new_rows if r[4] in on_oss])
     return 1 if failed else 0
 
 
