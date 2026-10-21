@@ -1,0 +1,15 @@
+# Written by neuf/train/train.py for arm armBN34 (PII-2237); do not edit.
+# rule is last_epoch for every arm until the per-epoch sweep (PII-1372) replaces
+# it. No eval number is recorded here.
+arm: armBN34
+family: scrfd
+rule: last_epoch
+epoch: 3
+epoch_unit: epoch
+status: active
+wandb_tags: []
+onnx: onnx/armBN34.onnx
+checkpoints: pick
+pick_checkpoint: epochs/epoch_3.pth
+epoch_evidence: epochs/epoch_3.pth, the epoch run.yaml asks for and the one the babysitter stopped on; onnx/armBN34.onnx was exported from it on this box, and run.yaml's resolved block carries the host, the shas and the times
+notes: written by neuf/train, which picks the last epoch of the run it just finished; this arm was trained where its bytes are, so there is no remote_wd

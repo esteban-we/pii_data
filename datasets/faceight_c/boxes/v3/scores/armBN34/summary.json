@@ -1,0 +1,118 @@
+{
+ "arm": "armBN34",
+ "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/faceight_c/boxes/v3/boxes.csv",
+ "boxes_md5": "e3268102de95c60449d24389029159e9",
+ "boxes_version": "v3",
+ "by_iou": {
+  "0.2": {
+   "counts": {
+    "fp": 519952,
+    "hit": 4417,
+    "ignore_dets": 7085,
+    "ignore_gt": 2289,
+    "miss": 11,
+    "tp": 4417
+   },
+   "pauc": {
+    "ceiling": 2.0,
+    "floor": 6.34517766497462e-05,
+    "fp_at": {
+     "0.80": 0.11623266109287199,
+     "0.85": 0.15755320684599677,
+     "0.90": 0.2417477370492287,
+     "0.95": 0.6164438032779069
+    },
+    "grid": {
+     "hi": 0.95,
+     "lo": 0.8,
+     "n": 151,
+     "step": 0.001
+    },
+    "max_recall": 0.9975158084914183,
+    "pauc": -0.678602976109824,
+    "reached": {
+     "0.80": true,
+     "0.85": true,
+     "0.90": true,
+     "0.95": true
+    },
+    "rec2_at": {
+     "0.80": null,
+     "0.85": null,
+     "0.90": null,
+     "0.95": null
+    },
+    "threshold_at": {
+     "0.80": 0.7,
+     "0.85": 0.67,
+     "0.90": 0.59,
+     "0.95": 0.38
+    }
+   },
+   "recall_at_fp_per_frame": {
+    "0.01": {
+     "recall": 0.230126,
+     "threshold": 0.86
+    },
+    "0.05": {
+     "recall": 0.605691,
+     "threshold": 0.78
+    },
+    "0.1": {
+     "recall": 0.763324,
+     "threshold": 0.73
+    },
+    "0.15": {
+     "recall": 0.841915,
+     "threshold": 0.68
+    },
+    "0.5": {
+     "recall": 0.941057,
+     "threshold": 0.44
+    },
+    "1": {
+     "recall": 0.96364,
+     "threshold": 0.28
+    }
+   }
+  }
+ },
+ "coord_space": [
+  2328,
+  1748
+ ],
+ "counts_at": 0.02,
+ "curves": "curves.csv",
+ "dataset": "faceight_c",
+ "fp_per_frame_grid": [
+  0.01,
+  0.05,
+  0.1,
+  0.15,
+  0.5,
+  1.0
+ ],
+ "grid": {
+  "hi": 0.99,
+  "lo": 0.02,
+  "n": 98,
+  "step": 0.01
+ },
+ "iou": 0.2,
+ "matches": "armBN34.json",
+ "min_side": 40,
+ "n_frames": 7880,
+ "n_gt": 4428,
+ "n_gt_ignored": 2289,
+ "n_pred": 531454,
+ "n_rec_gt": 711,
+ "n_rec_gt_ignored": 82,
+ "pauc_definition": "evaluation/pauc.py",
+ "predictions": "runs/armBN34/inference/faceight_c/predictions.csv",
+ "predictions_md5": "8ec52bf32f9ad87586cdac087c24822a",
+ "rec_boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/faceight_c/boxes/rec1/boxes.csv",
+ "rec_boxes_md5": "befe123d0b9969a777696fff3a03868f",
+ "rec_boxes_version": "rec1",
+ "script": "neuf/score/score.py",
+ "split": "eval"
+}

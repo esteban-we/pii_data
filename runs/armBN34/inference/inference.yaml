@@ -1,0 +1,76 @@
+# why PII-2501: armBN34's inference on FLUENCE, the host that trained it, so the ONNX the
+# train step wrote is already here and there is no hop to gpu-002 (PII-2478, PII-2484).
+# Every key is armBJ34's fluence inference.yaml's but `arm` and `checkpoint`.
+# gpus: [0] is a COUNT of 1 on a slurm host: chain.py asks --gres=gpu:1 and slurm picks the
+# device.
+arm: armBN34
+checkpoint: runs/armBN34/train/onnx/armBN34.onnx
+datasets: [gt_bench_sparse, faceback_45, faceight_b, faceight_c, facedub_a]
+split: eval
+det_size: 1024
+pad: true
+host: fluence1
+gpus: [0]
+
+# written by neuf/inference/inference.py
+resolved:
+  gt_bench_sparse:
+    eval:
+      repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+      store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+      host: fluence1
+      onnx_md5: 20187bb7b83833f5643597ffd04b4754
+      det_size: 1024
+      pad: true
+      n_frames: 889
+      n_boxes: 125836
+      start: '2026-10-15T22:30:12'
+      end: '2026-10-15T22:30:32'
+  faceback_45:
+    eval:
+      repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+      store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+      host: fluence1
+      onnx_md5: 20187bb7b83833f5643597ffd04b4754
+      det_size: 1024
+      pad: true
+      n_frames: 16940
+      n_boxes: 1214704
+      start: '2026-10-15T22:30:32'
+      end: '2026-10-15T22:35:00'
+  faceight_b:
+    eval:
+      repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+      store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+      host: fluence1
+      onnx_md5: 20187bb7b83833f5643597ffd04b4754
+      det_size: 1024
+      pad: true
+      n_frames: 11927
+      n_boxes: 767819
+      start: '2026-10-15T22:35:00'
+      end: '2026-10-15T22:38:05'
+  faceight_c:
+    eval:
+      repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+      store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+      host: fluence1
+      onnx_md5: 20187bb7b83833f5643597ffd04b4754
+      det_size: 1024
+      pad: true
+      n_frames: 7880
+      n_boxes: 531454
+      start: '2026-10-15T22:38:05'
+      end: '2026-10-15T22:40:12'
+  facedub_a:
+    eval:
+      repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+      store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+      host: fluence1
+      onnx_md5: 20187bb7b83833f5643597ffd04b4754
+      det_size: 1024
+      pad: true
+      n_frames: 8550
+      n_boxes: 592545
+      start: '2026-10-15T22:40:13'
+      end: '2026-10-15T22:42:15'
