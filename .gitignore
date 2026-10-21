@@ -70,3 +70,13 @@ __pycache__/
 # PII-2199/PII-2201: the chain's fcntl.flock files, one beside each shared target
 # (runs/.models.csv.lock, neuf/wandb/.wandb_sync.yaml.lock). Empty, progress not data.
 .*.lock
+
+# PII-2664: the chain's BIG outputs, the two files neuf/chain.py's publish step indexes
+# instead. Each gets a runs/MANIFEST.tsv row with its md5 and an OSS object keyed by that
+# md5, and git keeps the row and the small files beside it (score.yaml, curves.csv,
+# summary.json). The match dump is <arm>.json next to summary.json, so the rule is every
+# .json in a score dir but summary.json. armBB34's dump and its one predictions.csv
+# predate this and stay tracked: .gitignore does not untrack a file.
+/runs/*/inference/*/predictions.csv
+/datasets/*/boxes/*/scores/*/*.json
+!/datasets/*/boxes/*/scores/*/summary.json

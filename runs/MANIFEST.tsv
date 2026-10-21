@@ -1472,3 +1472,5 @@ runs/stock_scrfd/stock34_det34g.onnx	/data/esteban/pii_backup/weights/stock34_de
 runs/stock_scrfd/stock34_det34g.onnx.md5	/data/esteban/pii_backup/weights/stock34_det34g.onnx.md5	54	4a7e214bf0a44c548735c2d2eefd35de	
 runs/stock_scrfd/stock34_det34g.onnx.provenance.txt	/data/esteban/pii_backup/weights/stock34_det34g.onnx.provenance.txt	1597	dd8565730ab2ec9d3d76855910b406f7	
 runs/stock_scrfd/stock34_det34g.onnx.sha256	/data/esteban/pii_backup/weights/stock34_det34g.onnx.sha256	86	3b6a38cb6c29c6f47b3c0b1dfa24920a	
+runs/armAP/train/onnx/armAP_dinov2l_672.onnx	/data/esteban/pii/runs/armAP/train/onnx/armAP_dinov2l_672.onnx	1225767261	83a69d57dd12b19848e65859e57ff803	pii/models/scrfd/armAP/onnx/armAP_dinov2l_672.onnx
+runs/armAP/train/onnx/armAP_dinov2l_1024.onnx	/data/esteban/pii/runs/armAP/train/onnx/armAP_dinov2l_1024.onnx	1225770739	53cf33493d41c009f5b84d6177cfbf67	pii/models/scrfd/armAP/onnx/armAP_dinov2l_1024.onnx
