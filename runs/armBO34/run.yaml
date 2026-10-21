@@ -1,0 +1,33 @@
+# why PII-2501: the ignore-band ablation of armBM34. ONE key differs from
+# runs/armBM34/run.yaml, `view`: train_FQ_p4_i3 is train_FQ_p4 with ign_thr 0.1 -> 0.3
+# and nothing else (the recipe diff is that one scalar, views/train_FQ_p4_i3/recipe.yaml).
+# Same pool (facequar_a boxes/ap2, PII-2381), same init armBA34 epoch 6 md5
+# b62f180424beb4f799f2b25d9512fa11, same 3 epochs / lr 1e-4 / step [2] as armBM34 (PII-2452).
+# Prediction on record (PII-2501): armBM34's shape, a recall ceiling about 0.99 with
+# compressed scores, and a small precision change (PII-2496).
+arm: armBO34
+group: fpv_distill
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: scrfd_34g
+view: train_FQ_p4_i3
+oversample: 1
+epochs: 3
+lr: 0.0001
+lr_steps: [2]
+lr_schedule: step
+warmup_iters: 200
+load_from: /mnt/cachefs/esteban/pii/runs/train/wd_armBA34_fluence/epoch_6.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+kd: null
+
+# appended by neuf/train/train.py
+resolved:
+  repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+  store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+  host: fluence1
+  command: '/mnt/cachefs/esteban/repos/pii/neuf/_step.py train /mnt/cachefs/esteban/pii2/runs/armBO34/run.yaml'
+  start: 2026-10-15T18:20:25
+  end: 2026-10-15T22:33:01

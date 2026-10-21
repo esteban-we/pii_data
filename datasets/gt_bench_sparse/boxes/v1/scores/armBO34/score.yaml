@@ -1,0 +1,21 @@
+# PII-2501: armBO34 on gt_bench_sparse boxes/v1, IoU 0.2 (score.py's constant, PII-2181).
+# min_side 40: 40 is what every stored eval used; facedub_a is scored at 17.6, the floor
+# PII-2041 reported that set at.
+predictions: runs/armBO34/inference/gt_bench_sparse/predictions.csv
+split: eval
+boxes_version: v1
+min_side: 40
+# PII-2448: this dataset has no recognizable subset in the store, so no rec recall.
+rec_boxes_version: none
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
+  store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
+  host: fluence1
+  predictions_md5: 9115ff4300088980d407ad223dc5d1e7
+  n_frames: 889
+  n_gt: 1541
+  duration_s: 2.1
+  start: 2026-10-15T22:45:02
+  end: 2026-10-15T22:45:04

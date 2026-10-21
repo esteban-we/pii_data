@@ -1,0 +1,60 @@
+{
+ "arm": "armBO34",
+ "host": "fluence1",
+ "interval": "publish",
+ "steps": [
+  "publish"
+ ],
+ "project": null,
+ "command": "/mnt/cachefs/esteban/repos/pii/neuf/chain.py armBO34 publish",
+ "status": "running",
+ "current": "publish",
+ "start": "2026-10-21T04:13:25",
+ "updated": "2026-10-21T04:33:02",
+ "heartbeat": "2026-10-21T04:33:02+00:00",
+ "end": null,
+ "reason": null,
+ "step": {
+  "publish": {
+   "start": "2026-10-21T04:13:25",
+   "progress": "committing",
+   "end": null,
+   "result": null
+  }
+ },
+ "previous": [
+  {
+   "interval": "train..wandb_sync",
+   "status": "done",
+   "start": "2026-10-15T18:20:23",
+   "end": "2026-10-15T22:47:27",
+   "reason": null,
+   "step": {
+    "train": "ok",
+    "inference": "ok",
+    "score": "ok",
+    "wandb_sync": "ok"
+   }
+  },
+  {
+   "interval": "wandb_sync",
+   "status": "done",
+   "start": "2026-10-16T20:20:25",
+   "end": "2026-10-16T20:20:29",
+   "reason": null,
+   "step": {
+    "wandb_sync": "ok"
+   }
+  },
+  {
+   "interval": "wandb_sync",
+   "status": "done",
+   "start": "2026-10-16T20:33:01",
+   "end": "2026-10-16T20:33:13",
+   "reason": null,
+   "step": {
+    "wandb_sync": "ok"
+   }
+  }
+ ]
+}
