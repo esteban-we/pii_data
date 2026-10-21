@@ -357,6 +357,18 @@ def load_creds():
 # attempts, six `The write operation timed out`, and a publish that refused. An upload's
 # budget is now its own size at this floor rate, never less than the old 600 s.
 MIN_UPLOAD_RATE = 50_000        # B/s: the slowest link worth waiting for
+# PII-2664: an object this size or over goes up in PARTS, uploaded in parallel. One TCP stream
+# from fluence1 to cn-shanghai carries 50 to 100 kB/s when that link is busy, so a single
+# 229 MB PUT cannot finish inside any sane budget there, while sixteen streams carry sixteen
+# times as much -- which is what `push` already gets across SEPARATE objects. Below the
+# threshold the upload stays a single PUT, whose ETag IS the file md5, the simpler invariant.
+# A completed multipart object's ETag is the WOR-163 assembly hash instead, and its file md5
+# is the x-oss-meta-md5 that `head_md5`, `remote_is` and `pull` already read (PII-1633).
+MULTIPART_ABOVE = 64 * 1024 ** 2
+PART_SIZE = 16 * 1024 ** 2
+PART_JOBS = 8
+# The multipart sub-resources a V1 signature has to carry (WOR-163).
+SUBRES = ("uploads", "partNumber", "uploadId")
 
 
 def upload_timeout(size):
@@ -382,13 +394,17 @@ class OSS:
     def _sign(self, verb, key, headers):
         oss_hdrs = "".join(f"{k.lower()}:{v}\n" for k, v in sorted(headers.items())
                            if k.lower().startswith("x-oss-"))
+        # The signed resource carries the multipart sub-resources (?uploads,
+        # ?partNumber=N&uploadId=...) and nothing else of the query (WOR-163).
         s2s = (f"{verb}\n{headers.get('Content-MD5','')}\n{headers.get('Content-Type','')}\n"
-               f"{headers['Date']}\n{oss_hdrs}/{BUCKET}/{key}")
+               f"{headers['Date']}\n{oss_hdrs}/{BUCKET}/{key}{getattr(self, '_subres', '')}")
         sig = base64.b64encode(hmac.new(self.sk.encode(), s2s.encode(), hashlib.sha1).digest()).decode()
         return f"OSS {self.ak}:{sig}"
 
     def request(self, verb, key, body=None, headers=None, query="", retries=6):
         headers = dict(headers or {})
+        subres = sorted(q for q in query.split("&") if q and q.split("=")[0] in SUBRES)
+        self._subres = ("?" + "&".join(subres)) if subres else ""
         last = None
         for attempt in range(retries):
             try:
@@ -478,6 +494,73 @@ class OSS:
 
 def ctype_of(key):
     return "image/jpeg" if key.endswith(".jpg") else "application/octet-stream"
+
+
+def expected_multipart_etag(part_md5s):
+    """The ETag OSS gives a completed multipart object: md5 of the concatenated UPPERCASE hex
+    part ETags, then `-<n parts>`. Established against this bucket in WOR-163 (2026-09-10);
+    it is NOT the S3 rule, which hashes the concatenated BINARY part md5s."""
+    return hashlib.md5("".join(m.upper() for m in part_md5s).encode()).hexdigest() \
+        + f"-{len(part_md5s)}"
+
+
+def put_multipart(ak, sk, key, data, md5_hex, part_size=PART_SIZE, jobs=PART_JOBS):
+    """Upload one object in parallel parts; returns its ETag (WOR-163, PII-2664).
+
+    Ported from data/oss_models_upload.py's put_multipart in the pii repo, which proved the
+    rules against this bucket: every part carries Content-MD5 and has its ETag asserted equal
+    to the part md5, Complete takes the part ETags UPPERCASE and quoted (lowercase is refused
+    with InvalidPart), the file md5 travels as x-oss-meta-md5, and the object's own ETag is
+    asserted equal to expected_multipart_etag. One connection per part thread, each with the
+    budget one part's size earns."""
+    c = OSS(ak, sk, timeout=upload_timeout(part_size))
+    h = {"Content-Type": ctype_of(key), "x-oss-meta-md5": md5_hex}
+    st, _rh, body = c.request("POST", key, headers=h, query="uploads")
+    if st != 200:
+        raise RuntimeError(f"InitiateMultipartUpload {key}: HTTP {st}: {body[:300]!r}")
+    root = ET.fromstring(body)
+    ns = root.tag.split("}")[0] + "}" if root.tag.startswith("{") else ""
+    upload_id = root.find(f"{ns}UploadId").text
+    parts = [(i + 1, data[o:o + part_size])
+             for i, o in enumerate(range(0, len(data), part_size))]
+    local = threading.local()
+
+    def work(item):
+        n, chunk = item
+        if not hasattr(local, "c"):
+            local.c = OSS(ak, sk, timeout=upload_timeout(part_size))
+        pm = hashlib.md5(chunk).hexdigest()
+        ph = {"Content-MD5": base64.b64encode(bytes.fromhex(pm)).decode(),
+              "Content-Length": str(len(chunk))}
+        st, rh, body = local.c.request("PUT", key, body=chunk, headers=ph,
+                                       query=f"partNumber={n}&uploadId={upload_id}")
+        if st != 200:
+            raise RuntimeError(f"UploadPart {key} #{n}: HTTP {st}: {body[:300]!r}")
+        et = rh.get("ETag", "").strip(chr(34)).lower()
+        if et != pm:
+            raise RuntimeError(f"UploadPart {key} #{n}: ETag {et} != part md5 {pm}")
+        return n, pm
+
+    with ThreadPoolExecutor(max_workers=min(jobs, len(parts))) as ex:
+        done = dict(ex.map(work, parts))
+    part_md5s = [done[n] for n, _ in parts]
+    xml = "<CompleteMultipartUpload>" + "".join(
+        f"<Part><PartNumber>{n}</PartNumber><ETag>&quot;{done[n].upper()}&quot;</ETag></Part>"
+        for n, _ in parts) + "</CompleteMultipartUpload>"
+    xml = xml.replace("&quot;", chr(34))
+    st, rh, body = c.request("POST", key, body=xml.encode(),
+                             headers={"Content-Type": "application/xml"},
+                             query=f"uploadId={upload_id}")
+    if st != 200:
+        raise RuntimeError(f"CompleteMultipartUpload {key}: HTTP {st}: {body[:300]!r}")
+    root = ET.fromstring(body)
+    ns = root.tag.split("}")[0] + "}" if root.tag.startswith("{") else ""
+    et = root.find(f"{ns}ETag")
+    etag = (et.text if et is not None and et.text else rh.get("ETag", "")).strip(chr(34)).lower()
+    exp = expected_multipart_etag(part_md5s)
+    if etag != exp:
+        raise RuntimeError(f"Complete {key}: ETag {etag} != expected multipart ETag {exp}")
+    return etag
 
 
 # --------------------------------------------------------------------------- local state
@@ -819,7 +902,10 @@ def cmd_push(args):
             data = f.read()
         if len(data) != it.size or hashlib.md5(data).hexdigest() != it.md5:
             raise RuntimeError(f"{it.path}: bytes changed since the index was read")
-        local.c.put(it.key, data, it.md5, ctype_of(it.key))
+        if it.size >= MULTIPART_ABOVE:
+            put_multipart(ak, sk, it.key, data, it.md5)
+        else:
+            local.c.put(it.key, data, it.md5, ctype_of(it.key))
         return len(data)
 
     done, failed, _ = parallel(todo, work, args.jobs, sum(i.size for i in todo), "push")
