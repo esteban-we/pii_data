@@ -1,0 +1,36 @@
+# why PII-2545: armBN34's recipe on the SCRFD-10G architecture. Every leaf is
+# runs/armBN34/run.yaml's (PII-2501: view train_FQ_p4_i2, pos_thr 0.4 / ign_thr 0.2 over the
+# facequar_a ap2 pool, 3 epochs, lr 1e-4, step [2], warmup 200, crop 640, batch 8 x 8) except
+# the substitutions armBK made for the 10G chain (PII-2417):
+#   arch        scrfd_10g, not scrfd_34g
+#   load_from   armAF epoch_80, the from-scratch 10G arm (md5
+#               cb25fe8a85cc846d3f6a75696c5a060f), which is to the 10G chain what armAI34
+#               epoch_80 is to the 34G chain (PII-2092)
+# host/gpus are armBN34's: fluence1, 8 GPUs, which chain.py turns into one sbatch
+# --gres=gpu:8 (the values name nothing there, only the count).
+arm: armBN10
+group: fpv_distill
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: scrfd_10g
+view: train_FQ_p4_i2
+oversample: 1
+epochs: 3
+lr: 0.0001
+lr_steps: [2]
+lr_schedule: step
+warmup_iters: 200
+load_from: /mnt/cachefs/esteban/pii2/runs/armAF/train/epochs/epoch_80.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+kd: null
+
+# appended by neuf/train/train.py
+resolved:
+  repo_sha: f0b4a1175f8354bbadce9838fd5dc6425413215a
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: fluence1
+  command: '/mnt/cachefs/esteban/repos/pii/neuf/_step.py train /mnt/cachefs/esteban/pii2/runs/armBN10/run.yaml'
+  start: 2026-10-16T20:55:26
+  end: 2026-10-17T01:01:17

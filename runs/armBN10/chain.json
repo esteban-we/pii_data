@@ -1,0 +1,40 @@
+{
+ "arm": "armBN10",
+ "host": "fluence1",
+ "interval": "publish",
+ "steps": [
+  "publish"
+ ],
+ "project": null,
+ "command": "/mnt/cachefs/esteban/repos/pii/neuf/chain.py armBN10 publish",
+ "status": "running",
+ "current": "publish",
+ "start": "2026-10-21T00:49:41",
+ "updated": "2026-10-21T01:02:27",
+ "heartbeat": "2026-10-21T01:02:27+00:00",
+ "end": null,
+ "reason": null,
+ "step": {
+  "publish": {
+   "start": "2026-10-21T00:49:41",
+   "progress": "committing",
+   "end": null,
+   "result": null
+  }
+ },
+ "previous": [
+  {
+   "interval": "train..wandb_sync",
+   "status": "done",
+   "start": "2026-10-16T20:55:24",
+   "end": "2026-10-17T01:15:43",
+   "reason": null,
+   "step": {
+    "train": "ok",
+    "inference": "ok",
+    "score": "ok",
+    "wandb_sync": "ok"
+   }
+  }
+ ]
+}
