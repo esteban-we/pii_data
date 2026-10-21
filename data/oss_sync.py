@@ -351,6 +351,18 @@ def load_creds():
     die(f"profile {cur} not in {p}")
 
 
+# PII-2664: a socket timeout covers the WHOLE sendall, so one fixed budget caps the object
+# size an upload can carry at the link's rate: fluence1 pushes at 0.2 to 1.6 MB/s, and a
+# 229 MB predictions.csv there needs 19 minutes of writing, which 600 s cannot hold -- six
+# attempts, six `The write operation timed out`, and a publish that refused. An upload's
+# budget is now its own size at this floor rate, never less than the old 600 s.
+MIN_UPLOAD_RATE = 50_000        # B/s: the slowest link worth waiting for
+
+
+def upload_timeout(size):
+    return max(600, int(size / MIN_UPLOAD_RATE))
+
+
 class OSS:
     """Minimal OSS REST client (V1 signing), one HTTPS connection per instance."""
 
@@ -798,8 +810,11 @@ def cmd_push(args):
     local = threading.local()
 
     def work(it):
-        if not hasattr(local, "c"):
-            local.c = OSS(ak, sk)
+        # One client per thread, re-made when this object needs a longer write budget than
+        # the last one did (the timeout is the connection's, PII-2664).
+        budget = upload_timeout(it.size)
+        if not hasattr(local, "c") or local.c.timeout < budget:
+            local.c = OSS(ak, sk, timeout=budget)
         with open(it.path, "rb") as f:
             data = f.read()
         if len(data) != it.size or hashlib.md5(data).hexdigest() != it.md5:
