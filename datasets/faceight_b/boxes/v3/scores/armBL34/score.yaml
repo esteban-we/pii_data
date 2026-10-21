@@ -1,0 +1,30 @@
+# PII-2452: armBL34 on faceight_b boxes/v3, IoU 0.2 (score.py's constant, PII-2181).
+# min_side 40: 40 is what every stored eval used; facedub_a is scored at 17.6, the floor
+# PII-2041 reported that set at. Same keys as armBJ34's score.yaml for this set.
+predictions: runs/armBL34/inference/faceight_b/predictions.csv
+split: eval
+boxes_version: v3
+min_side: 40
+# PII-2448: Recognizable Recall against boxes/rec1, at this file's own min_side; `none` where
+# the dataset has no recognizable subset.
+rec_boxes_version: rec1
+
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/faceight_b/predictions.csv
+  thr: 0.4
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: 2fef852600c2e5241a745284ecc8902515d16720
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: gpu-002
+  predictions_md5: 3e99e8f76d2db78756b25f29463357a7
+  n_frames: 11927
+  n_gt: 8247
+  duration_s: 28.1
+  start: 2026-10-19T12:49:29
+  end: 2026-10-19T12:49:57

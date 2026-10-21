@@ -6,6 +6,7 @@
  "by_iou": {
   "0.2": {
    "counts": {
+    "extra_fp": 342415,
     "fp": 348065,
     "hit": 1540,
     "ignore_dets": 0,
@@ -51,26 +52,32 @@
    },
    "recall_at_fp_per_frame": {
     "0.01": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.697599,
      "threshold": 0.75
     },
     "0.05": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.792992,
      "threshold": 0.72
     },
     "0.1": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.841661,
      "threshold": 0.7
     },
     "0.15": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.878001,
      "threshold": 0.68
     },
     "0.5": {
+     "extra_fp_per_frame": 0.00225,
      "recall": 0.972745,
      "threshold": 0.6
     },
     "1": {
+     "extra_fp_per_frame": 0.034871,
      "recall": 0.984426,
      "threshold": 0.52
     }
@@ -84,6 +91,9 @@
  "counts_at": 0.02,
  "curves": "curves.csv",
  "dataset": "gt_bench_sparse",
+ "extra_gt_md5": "d6e79857614c3b977c71d1f233a67119",
+ "extra_gt_predictions": "runs/armAP/inference/gt_bench_sparse/predictions.csv",
+ "extra_gt_thr": 0.4,
  "fp_per_frame_grid": [
   0.01,
   0.05,
@@ -101,6 +111,8 @@
  "iou": 0.2,
  "matches": "armBB34.json",
  "min_side": 40,
+ "n_extra_gt": 326,
+ "n_extra_gt_ignored": 1370,
  "n_frames": 889,
  "n_gt": 1541,
  "n_gt_ignored": 0,
@@ -108,6 +120,7 @@
  "pauc_definition": "evaluation/pauc.py",
  "predictions": "runs/armBB34/inference/gt_bench_sparse/predictions.csv",
  "predictions_md5": "9c16624abb6e91390d95fd4f77a9fad7",
+ "rec_boxes_version": "none",
  "script": "neuf/score/score.py",
  "split": "eval"
 }

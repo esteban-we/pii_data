@@ -1,0 +1,29 @@
+# PII-2447: armBD34 on faceback_45 boxes/v3, IoU 0.2 (score.py's constant, PII-2181).
+# min_side 40: 40 is what every stored eval used; facedub_a is scored at 17.6, the floor
+# PII-2041 reported that set at. Copied from armBI34's score.yaml (PII-2383).
+predictions: runs/armBD34/inference/faceback_45/predictions.csv
+split: eval
+boxes_version: v3
+min_side: 40
+# PII-2448: this dataset has no recognizable subset in the store, so no rec recall.
+rec_boxes_version: none
+
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/faceback_45/predictions.csv
+  thr: 0.4
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: 2fef852600c2e5241a745284ecc8902515d16720
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: gpu-002
+  predictions_md5: fd14a3f69624e71d1e6bffb6f167c9e6
+  n_frames: 16940
+  n_gt: 20370
+  duration_s: 61.8
+  start: 2026-10-19T12:48:40
+  end: 2026-10-19T12:49:42

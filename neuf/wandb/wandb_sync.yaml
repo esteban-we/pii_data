@@ -1,10 +1,275 @@
-# PII-2146: the (arm, dataset, version) pairs the W&B model dashboard shows, and the one
-# gate on what reaches it. One entry per arm; neuf/wandb/schema.yaml in the pii repo is
-# the key set. Only real arms belong here (the arms of runs/models.csv); a test arm syncs
-# into a throwaway project with `--project` instead (PII-2193).
+# PII-2146 / PII-2420: the series the W&B model dashboard shows, and the one gate on what
+# reaches it. One entry per arm; neuf/wandb/schema.yaml in the pii repo is the key set. A
+# series is one or more store scores POOLED per threshold (sync.py's pool_curves), and its
+# name is the key on the run, plot/eval/<name>/. Only real arms belong here (the arms of
+# runs/models.csv); a test arm syncs into a throwaway project with `--project` instead
+# (PII-2193).
+#
+# PII-2558: gt_bench_sparse is nobody's series any more and is listed under no arm. armBB34
+# went with it: it had no other score, and sync.py refuses an entry whose series list is
+# empty. Dropping a series does not delete what is already on a run; PII-2558 deletes the
+# plot/eval/gt_bench_sparse/* summary keys separately.
 
-- arm: armBB34
+# PII-2641: `fpv_extra` and `wrist_extra` are EXTRA-ONLY series, the same members as `fpv` and
+# `wrist` pooled again under a second name, writing only [score, recall,
+# extra_fp_per_frame] -- PII-2620's FP/frame beyond the teacher. W&B history is append-only, so
+# that column cannot be added to the fpv and wrist rows already pushed; the four "FP/frame
+# beyond teacher" panels of the eval-curves view plot these keys instead. score and recall come
+# along as the panels' two x axes. Their `_score_hash` marker is per series, so an extra push
+# leaves fpv and wrist exactly as they are, and the append-only guard refuses a second one.
+
+# PII-2383, the FPV distillation pair: drafted with the arms, pushed only when
+# `chain.py <arm> wandb_sync` runs. Untagged, as armBD34/armBE34 were (PII-2061), so the
+# "eval curves" view takes them. The four dashboard sections of PII-2420 are fpv (faceight_b
+# + faceight_c pooled) and wrist (facedub_a), each by score and by recall; faceback_45 is no
+# longer pushed or plotted.
+- arm: armBI34
   tags: []
-  scores:
-    - dataset: gt_bench_sparse
-      version: v1
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+- arm: armBJ34
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+
+# PII-2417: armBK, armBD34's recipe on SCRFD-10G. Same two series as the FPV pair above
+# (PII-2420's fpv and wrist sections), untagged so the "eval curves"
+# view takes it. faceback_45 IS scored for the comparison table but is not a series: PII-2420
+# stopped pushing and plotting it.
+- arm: armBK
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+
+# PII-2452, the threshold ablation of armBJ34: armBL34 (train_FQ_i3, ign_thr 0.3) and armBM34
+# (train_FQ_p4, pos_thr 0.4). The same two series armBJ34 carries, so the three arms land on
+# the same panels: fpv = faceight_b v3 + faceight_c v3 pooled and wrist = facedub_a v1.
+# Untagged, so the "eval curves" view takes them. faceback_45 is scored for
+# the comparison table and is not a series (PII-2420 stopped pushing and plotting it).
+- arm: armBL34
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+- arm: armBM34
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+
+# PII-2501, the ignore-band ablation of armBM34: armBN34 (train_FQ_p4_i2, ign_thr 0.2) and
+# armBO34 (train_FQ_p4_i3, ign_thr 0.3). The same two series armBM34 carries, so the arms
+# land on the same panels: fpv = faceight_b v3 + faceight_c v3 pooled and wrist = facedub_a v1.
+# Untagged, so the "eval curves" view takes them. faceback_45 is scored
+# for the comparison table and is not a series (PII-2420 stopped pushing and plotting it).
+- arm: armBN34
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+- arm: armBO34
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+
+# PII-2545, the 10G pair off armBN34's recipe: armBN10 (plain) and armBN10ld (logit KD from
+# armBN34). The same series armBN34 carries, so the arms land on the same panels: fpv =
+# faceight_b v3 + faceight_c v3 pooled and wrist = facedub_a v1, each with its PII-2641
+# extra-only twin. Untagged, so the "eval curves" view takes them. faceback_45 and
+# gt_bench_sparse are scored for the comparison table and are nobody's series (PII-2420,
+# PII-2558). Trained and scored on fluence1, published from there and re-scored here with
+# PII-2620's extra_gt (PII-2664).
+- arm: armBN10
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1
+- arm: armBN10ld
+  tags: []
+  series:
+    - name: fpv
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist
+      members:
+        - dataset: facedub_a
+          version: v1
+    - name: fpv_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: faceight_b
+          version: v3
+        - dataset: faceight_c
+          version: v3
+    - name: wrist_extra
+      keys: [score, recall, extra_fp_per_frame]
+      members:
+        - dataset: facedub_a
+          version: v1

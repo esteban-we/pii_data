@@ -1,3 +1,6 @@
+# PII-2558: gt_bench_sparse is nobody's eval set any more, and it is the ONLY dataset this
+# finished arm ran, so the list cannot drop it (`datasets` is non-empty by schema). The
+# arm's entry left wandb_sync.yaml instead: nothing of armBB34 reaches W&B.
 arm: armBB34
 checkpoint: runs/armBB34/train/onnx/armBB34_det34g.onnx
 datasets: [gt_bench_sparse]

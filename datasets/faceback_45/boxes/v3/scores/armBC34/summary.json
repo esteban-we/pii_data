@@ -1,0 +1,126 @@
+{
+ "arm": "armBC34",
+ "boxes_csv": "/data/esteban/pii/datasets/faceback_45/boxes/v3/boxes.csv",
+ "boxes_md5": "11212aad66c27f57a23d72ee8edba7ec",
+ "boxes_version": "v3",
+ "by_iou": {
+  "0.2": {
+   "counts": {
+    "extra_fp": 3478739,
+    "fp": 3481881,
+    "hit": 20337,
+    "ignore_dets": 25413,
+    "ignore_gt": 7084,
+    "miss": 33,
+    "tp": 20337
+   },
+   "pauc": {
+    "ceiling": 2.0,
+    "floor": 2.95159386068477e-05,
+    "fp_at": {
+     "0.80": 0.01664000755257504,
+     "0.85": 0.0436107828478922,
+     "0.90": 0.11621519621133634,
+     "0.95": 0.4621062845896228
+    },
+    "grid": {
+     "hi": 0.95,
+     "lo": 0.8,
+     "n": 151,
+     "step": 0.001
+    },
+    "max_recall": 0.998379970544919,
+    "pauc": -1.1301816072954,
+    "reached": {
+     "0.80": true,
+     "0.85": true,
+     "0.90": true,
+     "0.95": true
+    },
+    "rec2_at": {
+     "0.80": null,
+     "0.85": null,
+     "0.90": null,
+     "0.95": null
+    },
+    "threshold_at": {
+     "0.80": 0.54,
+     "0.85": 0.49,
+     "0.90": 0.43,
+     "0.95": 0.32
+    }
+   },
+   "recall_at_fp_per_frame": {
+    "0.01": {
+     "extra_fp_per_frame": 0.003955,
+     "recall": 0.761365,
+     "threshold": 0.57
+    },
+    "0.05": {
+     "extra_fp_per_frame": 0.021901,
+     "recall": 0.852086,
+     "threshold": 0.49
+    },
+    "0.1": {
+     "extra_fp_per_frame": 0.046989,
+     "recall": 0.885567,
+     "threshold": 0.45
+    },
+    "0.15": {
+     "extra_fp_per_frame": 0.084416,
+     "recall": 0.906971,
+     "threshold": 0.42
+    },
+    "0.5": {
+     "extra_fp_per_frame": 0.402479,
+     "recall": 0.951399,
+     "threshold": 0.32
+    },
+    "1": {
+     "extra_fp_per_frame": 0.878926,
+     "recall": 0.964899,
+     "threshold": 0.26
+    }
+   }
+  }
+ },
+ "coord_space": [
+  2328,
+  1748
+ ],
+ "counts_at": 0.02,
+ "curves": "curves.csv",
+ "dataset": "faceback_45",
+ "extra_gt_md5": "3c6c749eeba79a145aa951ba8284d195",
+ "extra_gt_predictions": "runs/armAP/inference/faceback_45/predictions.csv",
+ "extra_gt_thr": 0.4,
+ "fp_per_frame_grid": [
+  0.01,
+  0.05,
+  0.1,
+  0.15,
+  0.5,
+  1.0
+ ],
+ "grid": {
+  "hi": 0.99,
+  "lo": 0.02,
+  "n": 98,
+  "step": 0.01
+ },
+ "iou": 0.2,
+ "matches": "armBC34.json",
+ "min_side": 40,
+ "n_extra_gt": 1430,
+ "n_extra_gt_ignored": 445,
+ "n_frames": 16940,
+ "n_gt": 20370,
+ "n_gt_ignored": 7084,
+ "n_pred": 3527631,
+ "pauc_definition": "evaluation/pauc.py",
+ "predictions": "runs/armBC34/inference/faceback_45/predictions.csv",
+ "predictions_md5": "a1a6920d0cb0cceffb9650172b604942",
+ "rec_boxes_version": "none",
+ "script": "neuf/score/score.py",
+ "split": "eval"
+}

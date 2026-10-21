@@ -1,0 +1,29 @@
+# PII-2417: armBK on gt_bench_sparse boxes/v1, IoU 0.2 (score.py's constant, PII-2181).
+# Keys and values are armBI34's (PII-2383, rec key PII-2448). min_side 40 is what every stored
+# eval used; facedub_a is the one exception, scored at 17.6, the floor PII-2041 reported it at.
+predictions: runs/armBK/inference/gt_bench_sparse/predictions.csv
+split: eval
+boxes_version: v1
+min_side: 40
+# PII-2448: this dataset has no recognizable subset in the store, so no rec recall.
+rec_boxes_version: none
+
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/gt_bench_sparse/predictions.csv
+  thr: 0.4
+
+# appended by neuf/score/score.py
+resolved:
+  repo_sha: 6de3a2a996814e8f5158c5e75f27ba352a0d694f
+  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
+  host: gpu-002
+  predictions_md5: 66e384b24e2e06a736cd231df878dbea
+  n_frames: 889
+  n_gt: 1541
+  duration_s: 5.3
+  start: 2026-10-14T19:17:45
+  end: 2026-10-14T19:17:50

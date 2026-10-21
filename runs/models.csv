@@ -25,7 +25,7 @@ armAK34,scrfd,30,active,armAK34/train/onnx/armAK34_det34g.onnx,0d6a6e4123c02f088
 armAL,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAL_fluence,pii/models/scrfd/armAL/epochs/epoch_20.pth
 armAM34,scrfd,20,active,armAM34/train/onnx/armAM34_det34g.onnx,3f4cef1010c131b304c975f5a6e0fc53,39427800,1,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAM34_fluence,pii/models/scrfd/armAM34/onnx/armAM34_det34g.onnx
 armAN,scrfd,5,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAN_fluence,pii/models/scrfd/armAN/epochs/epoch_5.pth
-armAP,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAP_fluence,pii/models/scrfd/armAP/epochs/epoch_20.pth
+armAP,scrfd,20,active,armAP/train/onnx/armAP_dinov2l_1024.onnx,53cf33493d41c009f5b84d6177cfbf67,1225770739,2,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAP_fluence,pii/models/scrfd/armAP/onnx/armAP_dinov2l_1024.onnx
 armAQ,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAQ_fluence,pii/models/scrfd/armAQ/epochs/epoch_20.pth
 armAR,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAR_fluence,pii/models/scrfd/armAR/epochs/epoch_20.pth
 armAS,scrfd,20,active,,,,0,pick,fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAS_fluence,pii/models/scrfd/armAS/epochs/epoch_20.pth
@@ -44,6 +44,11 @@ armBE34,scrfd,3,active,armBE34/train/onnx/armBE34_det34g.onnx,e84049f7f9e41cea11
 armBF34,scrfd,5,active,armBF34/train/onnx/armBF34_det34g.onnx,d1a4c226a54be0332094de7138312efa,39426870,1,"pick only (epochs 1 to 4 are on the training box, not on OSS)",fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBF34_fluence,pii/models/scrfd/armBF34/onnx/armBF34_det34g.onnx
 armBG34,scrfd,5,active,armBG34/train/onnx/armBG34_det34g.onnx,7fd414a5dfcaf83bbfbab1bcd85d7890,39426870,1,"pick only (epochs 1 to 4 are on the training box, not on OSS)",fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBG34_fluence,pii/models/scrfd/armBG34/onnx/armBG34_det34g.onnx
 armBH34,scrfd,5,active,armBH34/train/onnx/armBH34_det34g.onnx,2205cd2f85e94cd9e1bebbc57f9c77e2,39426870,1,"pick only (epochs 1 to 4 are on the training box, not on OSS)",fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armBH34_fluence,pii/models/scrfd/armBH34/onnx/armBH34_det34g.onnx
+armBI34,scrfd,3,active,armBI34/train/onnx/armBI34.onnx,111f93c379275b2338942dc017bb76bb,39426870,1,pick,,pii/models/scrfd/armBI34/onnx/armBI34.onnx
+armBJ34,scrfd,3,active,armBJ34/train/onnx/armBJ34.onnx,eef3b9625030a833fd6be612ef05fb5c,39426870,1,pick,,pii/models/scrfd/armBJ34/onnx/armBJ34.onnx
+armBK,scrfd,3,active,armBK/train/onnx/armBK.onnx,090c9e6083f245f1647f4e62fa0ef42c,16962746,1,pick,,pii/models/scrfd/armBK/onnx/armBK.onnx
+armBL34,scrfd,3,active,armBL34/train/onnx/armBL34.onnx,8fc030d231c7d83f2d7349dab271eed5,39426870,1,pick,,pii/models/scrfd/armBL34/onnx/armBL34.onnx
+armBM34,scrfd,3,active,armBM34/train/onnx/armBM34.onnx,0d511d1151356cefc9b76b25bf507ed7,39426870,1,pick,,pii/models/scrfd/armBM34/onnx/armBM34.onnx
 armW,scrfd,20,active,armW/train/onnx/armW_det10g.onnx,f445b1606444c8b7c72a2fb4de35e123,16962796,1,pick,/data/esteban/pii_backup/weights,pii/models/scrfd/armW/onnx/armW_det10g.onnx
 armW_fe2,scrfd,20,deprecated,armW_fe2/train/onnx/armW_fe2_det10g.onnx,10df1f8bbe91a9d07a5b981ed798e0db,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_fe2,pii/models/scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx
 armW_nowider,scrfd,20,deprecated,armW_nowider/train/onnx/armW_nowider_det10g.onnx,fbdafd176b60d54cd04844cb10325572,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_nowider,pii/models/scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx

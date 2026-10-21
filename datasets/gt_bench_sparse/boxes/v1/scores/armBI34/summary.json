@@ -1,0 +1,114 @@
+{
+ "arm": "armBI34",
+ "boxes_csv": "/data/esteban/pii/datasets/gt_bench_sparse/boxes/v1/boxes.csv",
+ "boxes_md5": "de1d589fe2e0c81f1181a74ef69ed2d0",
+ "boxes_version": "v1",
+ "by_iou": {
+  "0.2": {
+   "counts": {
+    "fp": 163875,
+    "hit": 1540,
+    "ignore_dets": 0,
+    "ignore_gt": 0,
+    "miss": 1,
+    "tp": 1540
+   },
+   "pauc": {
+    "ceiling": 2.0,
+    "floor": 0.0005624296962879641,
+    "fp_at": {
+     "0.80": 0.06102055628599083,
+     "0.85": 0.11331325828214113,
+     "0.90": 0.16761113923028867,
+     "0.95": 0.295818786945556
+    },
+    "grid": {
+     "hi": 0.95,
+     "lo": 0.8,
+     "n": 151,
+     "step": 0.001
+    },
+    "max_recall": 0.9993510707332901,
+    "pauc": -0.8624948228399785,
+    "reached": {
+     "0.80": true,
+     "0.85": true,
+     "0.90": true,
+     "0.95": true
+    },
+    "rec2_at": {
+     "0.80": null,
+     "0.85": null,
+     "0.90": null,
+     "0.95": null
+    },
+    "threshold_at": {
+     "0.80": 0.72,
+     "0.85": 0.7,
+     "0.90": 0.67,
+     "0.95": 0.64
+    }
+   },
+   "recall_at_fp_per_frame": {
+    "0.01": {
+     "recall": 0.667099,
+     "threshold": 0.77
+    },
+    "0.05": {
+     "recall": 0.768981,
+     "threshold": 0.74
+    },
+    "0.1": {
+     "recall": 0.829332,
+     "threshold": 0.71
+    },
+    "0.15": {
+     "recall": 0.879299,
+     "threshold": 0.69
+    },
+    "0.5": {
+     "recall": 0.975341,
+     "threshold": 0.6
+    },
+    "1": {
+     "recall": 0.986372,
+     "threshold": 0.51
+    }
+   }
+  }
+ },
+ "coord_space": [
+  2328,
+  1748
+ ],
+ "counts_at": 0.02,
+ "curves": "curves.csv",
+ "dataset": "gt_bench_sparse",
+ "fp_per_frame_grid": [
+  0.01,
+  0.05,
+  0.1,
+  0.15,
+  0.5,
+  1.0
+ ],
+ "grid": {
+  "hi": 0.99,
+  "lo": 0.02,
+  "n": 98,
+  "step": 0.01
+ },
+ "iou": 0.2,
+ "matches": "armBI34.json",
+ "min_side": 40,
+ "n_frames": 889,
+ "n_gt": 1541,
+ "n_gt_ignored": 0,
+ "n_pred": 165415,
+ "pauc_definition": "evaluation/pauc.py",
+ "predictions": "runs/armBI34/inference/gt_bench_sparse/predictions.csv",
+ "predictions_md5": "d273eb5e2683da2727b7a1c30e383ef2",
+ "rec_boxes_version": "none",
+ "script": "neuf/score/score.py",
+ "split": "eval"
+}

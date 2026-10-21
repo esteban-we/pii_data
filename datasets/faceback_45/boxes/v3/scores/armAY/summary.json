@@ -1,0 +1,114 @@
+{
+ "arm": "armAY",
+ "boxes_csv": "/data/esteban/pii/datasets/faceback_45/boxes/v3/boxes.csv",
+ "boxes_md5": "11212aad66c27f57a23d72ee8edba7ec",
+ "boxes_version": "v3",
+ "by_iou": {
+  "0.2": {
+   "counts": {
+    "fp": 1225581,
+    "hit": 20328,
+    "ignore_dets": 18475,
+    "ignore_gt": 7084,
+    "miss": 42,
+    "tp": 20326
+   },
+   "pauc": {
+    "ceiling": 2.0,
+    "floor": 2.95159386068477e-05,
+    "fp_at": {
+     "0.80": 0.020708123452773595,
+     "0.85": 0.04297258270791035,
+     "0.90": 0.10164004514237415,
+     "0.95": 0.36270664937766245
+    },
+    "grid": {
+     "hi": 0.95,
+     "lo": 0.8,
+     "n": 151,
+     "step": 0.001
+    },
+    "max_recall": 0.9979381443298969,
+    "pauc": -1.1525497443180277,
+    "reached": {
+     "0.80": true,
+     "0.85": true,
+     "0.90": true,
+     "0.95": true
+    },
+    "rec2_at": {
+     "0.80": null,
+     "0.85": null,
+     "0.90": null,
+     "0.95": null
+    },
+    "threshold_at": {
+     "0.80": 0.5,
+     "0.85": 0.45,
+     "0.90": 0.38,
+     "0.95": 0.28
+    }
+   },
+   "recall_at_fp_per_frame": {
+    "0.01": {
+     "recall": 0.756946,
+     "threshold": 0.54
+    },
+    "0.05": {
+     "recall": 0.854786,
+     "threshold": 0.45
+    },
+    "0.1": {
+     "recall": 0.895778,
+     "threshold": 0.39
+    },
+    "0.15": {
+     "recall": 0.914875,
+     "threshold": 0.36
+    },
+    "0.5": {
+     "recall": 0.957241,
+     "threshold": 0.26
+    },
+    "1": {
+     "recall": 0.96809,
+     "threshold": 0.21
+    }
+   }
+  }
+ },
+ "coord_space": [
+  2328,
+  1748
+ ],
+ "counts_at": 0.02,
+ "curves": "curves.csv",
+ "dataset": "faceback_45",
+ "fp_per_frame_grid": [
+  0.01,
+  0.05,
+  0.1,
+  0.15,
+  0.5,
+  1.0
+ ],
+ "grid": {
+  "hi": 0.99,
+  "lo": 0.02,
+  "n": 98,
+  "step": 0.01
+ },
+ "iou": 0.2,
+ "matches": "armAY.json",
+ "min_side": 40,
+ "n_frames": 16940,
+ "n_gt": 20370,
+ "n_gt_ignored": 7084,
+ "n_pred": 1264382,
+ "pauc_definition": "evaluation/pauc.py",
+ "predictions": "runs/armAY/inference/faceback_45/predictions.csv",
+ "predictions_md5": "d3a30d172954302c8ebcac4b8300b25b",
+ "rec_boxes_version": "none",
+ "script": "neuf/score/score.py",
+ "split": "eval"
+}
