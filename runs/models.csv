@@ -49,6 +49,10 @@ armBJ34,scrfd,3,active,armBJ34/train/onnx/armBJ34.onnx,eef3b9625030a833fd6be612e
 armBK,scrfd,3,active,armBK/train/onnx/armBK.onnx,090c9e6083f245f1647f4e62fa0ef42c,16962746,1,pick,,pii/models/scrfd/armBK/onnx/armBK.onnx
 armBL34,scrfd,3,active,armBL34/train/onnx/armBL34.onnx,8fc030d231c7d83f2d7349dab271eed5,39426870,1,pick,,pii/models/scrfd/armBL34/onnx/armBL34.onnx
 armBM34,scrfd,3,active,armBM34/train/onnx/armBM34.onnx,0d511d1151356cefc9b76b25bf507ed7,39426870,1,pick,,pii/models/scrfd/armBM34/onnx/armBM34.onnx
+armBN10,scrfd,3,active,armBN10/train/onnx/armBN10.onnx,fe290a11ed719cdf9c34601fa8ab046f,16962746,1,pick,,pii/models/scrfd/armBN10/onnx/armBN10.onnx
+armBN10ld,scrfd,3,active,armBN10ld/train/onnx/armBN10ld.onnx,8a0a5f5d27c2c0c627e094acd587f6d2,16962746,1,pick,,pii/models/scrfd/armBN10ld/onnx/armBN10ld.onnx
+armBN34,scrfd,3,active,armBN34/train/onnx/armBN34.onnx,20187bb7b83833f5643597ffd04b4754,39426870,1,pick,,pii/models/scrfd/armBN34/onnx/armBN34.onnx
+armBO34,scrfd,3,active,armBO34/train/onnx/armBO34.onnx,1db105b243c9ed59165830bb6de7895d,39426870,1,pick,,pii/models/scrfd/armBO34/onnx/armBO34.onnx
 armW,scrfd,20,active,armW/train/onnx/armW_det10g.onnx,f445b1606444c8b7c72a2fb4de35e123,16962796,1,pick,/data/esteban/pii_backup/weights,pii/models/scrfd/armW/onnx/armW_det10g.onnx
 armW_fe2,scrfd,20,deprecated,armW_fe2/train/onnx/armW_fe2_det10g.onnx,10df1f8bbe91a9d07a5b981ed798e0db,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_fe2,pii/models/scrfd/armW_fe2/onnx/armW_fe2_det10g.onnx
 armW_nowider,scrfd,20,deprecated,armW_nowider/train/onnx/armW_nowider_det10g.onnx,fbdafd176b60d54cd04844cb10325572,16962796,1,pick,/data/esteban/pii_backup/runs/train/wd_armW_nowider,pii/models/scrfd/armW_nowider/onnx/armW_nowider_det10g.onnx
