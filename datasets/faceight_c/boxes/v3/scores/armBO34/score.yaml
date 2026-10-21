@@ -8,14 +8,22 @@ min_side: 40
 # PII-2448: Recognizable Recall against boxes/rec1, at this file's own min_side.
 rec_boxes_version: rec1
 
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/faceight_c/predictions.csv
+  thr: 0.4
+
 # appended by neuf/score/score.py
 resolved:
-  repo_sha: 0b49c0bc744381c08b47e7968d29c8a74fed3488
-  store_sha: 43072c1051b5d1a3d4480c25e6b731900533b805
-  host: fluence1
+  repo_sha: d82cdb10976a5d78fff99a35d959d3cb266a58a5
+  store_sha: cd860bd6bab8c3900dd765e0eb320f0b166a1791
+  host: gpu-002
   predictions_md5: de75cc9567b43409a0238d16b6128a8f
   n_frames: 7880
   n_gt: 4428
-  duration_s: 16.8
-  start: 2026-10-15T22:45:50
-  end: 2026-10-15T22:46:06
+  duration_s: 26.9
+  start: 2026-10-20T21:49:45
+  end: 2026-10-20T21:50:12

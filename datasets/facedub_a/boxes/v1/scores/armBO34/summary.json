@@ -1,11 +1,12 @@
 {
  "arm": "armBO34",
- "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/facedub_a/boxes/v1/boxes.csv",
+ "boxes_csv": "/data/esteban/pii/datasets/facedub_a/boxes/v1/boxes.csv",
  "boxes_md5": "db4fe9ca98767ca39edb002f191d7d6b",
  "boxes_version": "v1",
  "by_iou": {
   "0.2": {
    "counts": {
+    "extra_fp": 539167,
     "fp": 541518,
     "hit": 5286,
     "ignore_dets": 3328,
@@ -51,26 +52,32 @@
    },
    "recall_at_fp_per_frame": {
     "0.01": {
+     "extra_fp_per_frame": 0.001287,
      "recall": 0.18822,
      "threshold": 0.73
     },
     "0.05": {
+     "extra_fp_per_frame": 0.009825,
      "recall": 0.409548,
      "threshold": 0.65
     },
     "0.1": {
+     "extra_fp_per_frame": 0.029708,
      "recall": 0.542894,
      "threshold": 0.57
     },
     "0.15": {
+     "extra_fp_per_frame": 0.051813,
      "recall": 0.596854,
      "threshold": 0.52
     },
     "0.5": {
+     "extra_fp_per_frame": 0.323041,
      "recall": 0.728736,
      "threshold": 0.32
     },
     "1": {
+     "extra_fp_per_frame": 0.736491,
      "recall": 0.778306,
      "threshold": 0.23
     }
@@ -84,6 +91,9 @@
  "counts_at": 0.02,
  "curves": "curves.csv",
  "dataset": "facedub_a",
+ "extra_gt_md5": "62e334b937fd63c40f96d3364013060e",
+ "extra_gt_predictions": "runs/armAP/inference/facedub_a/predictions.csv",
+ "extra_gt_thr": 0.4,
  "fp_per_frame_grid": [
   0.01,
   0.05,
@@ -101,6 +111,8 @@
  "iou": 0.2,
  "matches": "armBO34.json",
  "min_side": 17.6,
+ "n_extra_gt": 2432,
+ "n_extra_gt_ignored": 0,
  "n_frames": 8550,
  "n_gt": 5467,
  "n_gt_ignored": 1382,
@@ -110,7 +122,7 @@
  "pauc_definition": "evaluation/pauc.py",
  "predictions": "runs/armBO34/inference/facedub_a/predictions.csv",
  "predictions_md5": "0038f1cab257383f354cea36c89f5a58",
- "rec_boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/facedub_a/boxes/rec1/boxes.csv",
+ "rec_boxes_csv": "/data/esteban/pii/datasets/facedub_a/boxes/rec1/boxes.csv",
  "rec_boxes_md5": "81bd531e4db3a00de1ca5327133fa854",
  "rec_boxes_version": "rec1",
  "script": "neuf/score/score.py",
