@@ -1,11 +1,12 @@
 {
  "arm": "armBN10ld",
- "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/gt_bench_sparse/boxes/v1/boxes.csv",
+ "boxes_csv": "/data/esteban/pii/datasets/gt_bench_sparse/boxes/v1/boxes.csv",
  "boxes_md5": "de1d589fe2e0c81f1181a74ef69ed2d0",
  "boxes_version": "v1",
  "by_iou": {
   "0.2": {
    "counts": {
+    "extra_fp": 223723,
     "fp": 229270,
     "hit": 1540,
     "ignore_dets": 0,
@@ -51,26 +52,32 @@
    },
    "recall_at_fp_per_frame": {
     "0.01": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.625568,
      "threshold": 0.89
     },
     "0.05": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.706684,
      "threshold": 0.87
     },
     "0.1": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.737184,
      "threshold": 0.86
     },
     "0.15": {
+     "extra_fp_per_frame": 0.0,
      "recall": 0.784555,
      "threshold": 0.84
     },
     "0.5": {
+     "extra_fp_per_frame": 0.007874,
      "recall": 0.918235,
      "threshold": 0.78
     },
     "1": {
+     "extra_fp_per_frame": 0.074241,
      "recall": 0.9695,
      "threshold": 0.71
     }
@@ -84,6 +91,9 @@
  "counts_at": 0.02,
  "curves": "curves.csv",
  "dataset": "gt_bench_sparse",
+ "extra_gt_md5": "d6e79857614c3b977c71d1f233a67119",
+ "extra_gt_predictions": "runs/armAP/inference/gt_bench_sparse/predictions.csv",
+ "extra_gt_thr": 0.4,
  "fp_per_frame_grid": [
   0.01,
   0.05,
@@ -101,6 +111,8 @@
  "iou": 0.2,
  "matches": "armBN10ld.json",
  "min_side": 40,
+ "n_extra_gt": 326,
+ "n_extra_gt_ignored": 1370,
  "n_frames": 889,
  "n_gt": 1541,
  "n_gt_ignored": 0,

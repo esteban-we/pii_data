@@ -1,38 +1,42 @@
 {
  "arm": "armBN10ld",
- "host": "fluence1",
- "interval": "publish",
+ "host": "gpu-002",
+ "interval": "score..wandb_sync",
  "steps": [
+  "score",
+  "wandb_sync",
   "publish"
  ],
  "project": null,
- "command": "/mnt/cachefs/esteban/repos/pii/neuf/chain.py armBN10ld publish",
+ "command": "/home/esteban/repos/pii/neuf/chain.py armBN10ld score..wandb_sync",
  "status": "running",
  "current": "publish",
- "start": "2026-10-21T03:23:10",
- "updated": "2026-10-21T03:23:24",
- "heartbeat": "2026-10-21T03:23:24+00:00",
+ "start": "2026-10-20T21:56:50",
+ "updated": "2026-10-20T22:00:32",
+ "heartbeat": "2026-10-21T05:00:32+00:00",
  "end": null,
  "reason": null,
  "step": {
+  "score": {
+   "start": "2026-10-20T21:56:50",
+   "progress": "5 of 5 datasets scored",
+   "end": "2026-10-20T22:00:08",
+   "result": "ok"
+  },
+  "wandb_sync": {
+   "start": "2026-10-20T22:00:08",
+   "progress": "done",
+   "end": "2026-10-20T22:00:16",
+   "result": "ok"
+  },
   "publish": {
-   "start": "2026-10-21T03:23:10",
+   "start": "2026-10-20T22:00:16",
    "progress": "committing",
    "end": null,
    "result": null
   }
  },
  "previous": [
-  {
-   "interval": "publish",
-   "status": "failed",
-   "start": "2026-10-21T01:08:24",
-   "end": "2026-10-21T02:09:41",
-   "reason": null,
-   "step": {
-    "publish": "failed rc=1"
-   }
-  },
   {
    "interval": "publish",
    "status": "running",
@@ -71,6 +75,16 @@
    "reason": null,
    "step": {
     "publish": "ok"
+   }
+  },
+  {
+   "interval": "publish",
+   "status": "running",
+   "start": "2026-10-21T03:23:10",
+   "end": null,
+   "reason": null,
+   "step": {
+    "publish": null
    }
   }
  ]

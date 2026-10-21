@@ -8,14 +8,22 @@ min_side: 40
 # PII-2448: this dataset has no recognizable subset in the store, so no rec recall.
 rec_boxes_version: none
 
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/faceback_45/predictions.csv
+  thr: 0.4
+
 # appended by neuf/score/score.py
 resolved:
-  repo_sha: f0b4a1175f8354bbadce9838fd5dc6425413215a
-  store_sha: f84b5f89ae088c5e12b7105defd8d2afd5b6c9d9
-  host: fluence1
+  repo_sha: d82cdb10976a5d78fff99a35d959d3cb266a58a5
+  store_sha: 38534b9c462b768abc2194804855799be5ae3117
+  host: gpu-002
   predictions_md5: b5931f0e54c99ad44290833164da6f8a
   n_frames: 16940
   n_gt: 20370
-  duration_s: 90.7
-  start: 2026-10-17T01:48:19
-  end: 2026-10-17T01:49:49
+  duration_s: 75.0
+  start: 2026-10-20T21:57:01
+  end: 2026-10-20T21:58:16

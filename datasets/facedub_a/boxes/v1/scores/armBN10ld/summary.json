@@ -1,11 +1,12 @@
 {
  "arm": "armBN10ld",
- "boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/facedub_a/boxes/v1/boxes.csv",
+ "boxes_csv": "/data/esteban/pii/datasets/facedub_a/boxes/v1/boxes.csv",
  "boxes_md5": "db4fe9ca98767ca39edb002f191d7d6b",
  "boxes_version": "v1",
  "by_iou": {
   "0.2": {
    "counts": {
+    "extra_fp": 701240,
     "fp": 703523,
     "hit": 5155,
     "ignore_dets": 3988,
@@ -51,26 +52,32 @@
    },
    "recall_at_fp_per_frame": {
     "0.01": {
+     "extra_fp_per_frame": 0.008538,
      "recall": 0.084873,
      "threshold": 0.78
     },
     "0.05": {
+     "extra_fp_per_frame": 0.03193,
      "recall": 0.349003,
      "threshold": 0.66
     },
     "0.1": {
+     "extra_fp_per_frame": 0.059649,
      "recall": 0.449973,
      "threshold": 0.57
     },
     "0.15": {
+     "extra_fp_per_frame": 0.089357,
      "recall": 0.498445,
      "threshold": 0.51
     },
     "0.5": {
+     "extra_fp_per_frame": 0.36,
      "recall": 0.623925,
      "threshold": 0.3
     },
     "1": {
+     "extra_fp_per_frame": 0.776842,
      "recall": 0.676422,
      "threshold": 0.21
     }
@@ -84,6 +91,9 @@
  "counts_at": 0.02,
  "curves": "curves.csv",
  "dataset": "facedub_a",
+ "extra_gt_md5": "62e334b937fd63c40f96d3364013060e",
+ "extra_gt_predictions": "runs/armAP/inference/facedub_a/predictions.csv",
+ "extra_gt_thr": 0.4,
  "fp_per_frame_grid": [
   0.01,
   0.05,
@@ -101,6 +111,8 @@
  "iou": 0.2,
  "matches": "armBN10ld.json",
  "min_side": 17.6,
+ "n_extra_gt": 2432,
+ "n_extra_gt_ignored": 0,
  "n_frames": 8550,
  "n_gt": 5467,
  "n_gt_ignored": 1382,
@@ -110,7 +122,7 @@
  "pauc_definition": "evaluation/pauc.py",
  "predictions": "runs/armBN10ld/inference/facedub_a/predictions.csv",
  "predictions_md5": "1e6b73bd511698cb8931e49c8fcede1b",
- "rec_boxes_csv": "/mnt/cachefs/esteban/pii2/datasets/facedub_a/boxes/rec1/boxes.csv",
+ "rec_boxes_csv": "/data/esteban/pii/datasets/facedub_a/boxes/rec1/boxes.csv",
  "rec_boxes_md5": "81bd531e4db3a00de1ca5327133fa854",
  "rec_boxes_version": "rec1",
  "script": "neuf/score/score.py",
