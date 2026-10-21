@@ -886,6 +886,11 @@ def cmd_push(args):
         return 1
     if not todo:
         print("up to date")
+        if new_rows:
+            # Nothing to upload and still something to index: every one of this run's files is
+            # on OSS already, put there by an earlier run that did not get to write the rows
+            # (PII-2664).
+            append_manifest([r for r in new_rows if r[4] in set(already)])
         return 0
     for p, its in sorted(by_prefix(todo).items()):
         print(f"{p:44} {len(its):>7} objects {sum(i.size for i in its):>14} B to push")
