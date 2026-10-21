@@ -360,12 +360,14 @@ MIN_UPLOAD_RATE = 50_000        # B/s: the slowest link worth waiting for
 # PII-2664: an object this size or over goes up in PARTS, uploaded in parallel. One TCP stream
 # from fluence1 to cn-shanghai carries 50 to 100 kB/s when that link is busy, so a single
 # 229 MB PUT cannot finish inside any sane budget there, while sixteen streams carry sixteen
-# times as much -- which is what `push` already gets across SEPARATE objects. Below the
+# times as much -- which is what `push` already gets across SEPARATE objects. The threshold is
+# low (32 MB, in 8 MB parts) because the rate per stream is what is scarce there: a 63 MB score
+# dump single-PUT takes 20 minutes and times out, and in eight parts it takes two. Below the
 # threshold the upload stays a single PUT, whose ETag IS the file md5, the simpler invariant.
 # A completed multipart object's ETag is the WOR-163 assembly hash instead, and its file md5
 # is the x-oss-meta-md5 that `head_md5`, `remote_is` and `pull` already read (PII-1633).
-MULTIPART_ABOVE = 64 * 1024 ** 2
-PART_SIZE = 16 * 1024 ** 2
+MULTIPART_ABOVE = 32 * 1024 ** 2
+PART_SIZE = 8 * 1024 ** 2
 PART_JOBS = 8
 # The multipart sub-resources a V1 signature has to carry (WOR-163).
 SUBRES = ("uploads", "partNumber", "uploadId")
