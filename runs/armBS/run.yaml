@@ -1,0 +1,31 @@
+# why PII-2729 / PII-2627: the front_weight ladder. Four arms fine-tune armAP's epoch 20 on
+# train_Z6f, the `front` flag of faceight_b/c boxes/front1 in the 20th scrfd.txt field
+# (PII-2694), and differ from one another in ONE key, front_weight: armBP 1, armBQ 4,
+# armBR 8, armBS 16. This is the 16x arm, the top of the ladder.
+# vs runs/armAP/run.yaml, six keys differ: view (train_Z6f, train_Z6 plus the flag),
+# epochs 3, lr 1e-5, lr_steps [2] and warmup_iters 200 (a short fine-tune, not armAP's 20
+# epochs at 1e-4 with warmup 1000), load_from armAP's checkpoint instead of null, plus
+# front_weight itself. Everything else is armAP's: fluence1, 8 gpus, dinov2_l (crop 672),
+# oversample 1, lr_schedule step, samples_per_gpu 8, cumulative_iters 1, ignore_regions
+# true, kd null.
+# load_from is the epoch_20.pth of the armAP work dir runs/models.csv names as that arm's
+# source (fluence1:/mnt/cachefs/esteban/pii/runs/train/wd_armAP_fluence); its ONNX export
+# is the row with onnx_md5 53cf33493d41c009f5b84d6177cfbf67.
+arm: armBS
+group: fpv_dino
+host: fluence1
+gpus: [0, 1, 2, 3, 4, 5, 6, 7]
+arch: dinov2_l
+view: train_Z6f
+oversample: 1
+epochs: 3
+lr: 0.00001
+lr_steps: [2]
+lr_schedule: step
+warmup_iters: 200
+load_from: /mnt/cachefs/esteban/pii/runs/train/wd_armAP_fluence/epoch_20.pth
+samples_per_gpu: 8
+cumulative_iters: 1
+ignore_regions: true
+front_weight: 16.0
+kd: null

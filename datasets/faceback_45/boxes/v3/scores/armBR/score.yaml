@@ -1,0 +1,17 @@
+# PII-2729: armBR on faceback_45 boxes/v3, IoU 0.2 (score.py's constant, PII-2181).
+# min_side 40: 40 is what every stored eval used; facedub_a is scored at 17.6, the floor
+# PII-2041 reported that set at.
+predictions: runs/armBR/inference/faceback_45/predictions.csv
+split: eval
+boxes_version: v3
+min_side: 40
+# PII-2448: this dataset has no recognizable subset in the store, so no rec recall.
+rec_boxes_version: none
+
+# PII-2620: Extra FP per frame against a SECOND GT, armAP's dump at 0.4 -- the
+# /model-eval GT-row rule (PII-2520 / PII-2529) at gti 0.2. curves.csv gains
+# extra_fp_per_frame_iou0.2, the dets at or above the threshold that match no GT2
+# box at IoU 0.2, per eval frame.
+extra_gt:
+  predictions: runs/armAP/inference/faceback_45/predictions.csv
+  thr: 0.4

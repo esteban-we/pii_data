@@ -1,0 +1,17 @@
+# why PII-2729: armBP's inference on FLUENCE, the host that trained it, so the ONNX the train
+# step wrote is already here and there is no hop to gpu-002 (PII-2478, PII-2484). The keys are
+# armBO34's fluence inference.yaml's but `arm`, `checkpoint` and `det_size`.
+# det_size 672, NOT armBO34's 1024: this is a dinov2_l arm, neuf/train's base config trains at
+# crop 672 and its exporter runs export_dinov2_onnx.py --size 672, so the ONNX graph is fixed
+# at 672 (armAY's inference.yaml is the precedent; armAP's indexed export is a 1024 one, made
+# before neuf/train).
+# gpus: [0] is a COUNT of 1 on a slurm host: chain.py asks --gres=gpu:1 and slurm picks the
+# device.
+arm: armBP
+checkpoint: runs/armBP/train/onnx/armBP.onnx
+datasets: [gt_bench_sparse, faceback_45, faceight_b, faceight_c, facedub_a]
+split: eval
+det_size: 672
+pad: true
+host: fluence1
+gpus: [0]
