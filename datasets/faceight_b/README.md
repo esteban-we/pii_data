@@ -28,6 +28,11 @@ boxes/v3/               v1 plus the SECOND review of those same 9,402 frames (20
 boxes/rec1/             the recognizable subset of boxes/v2 (PII-1915): the 1,241 of 12,743 reviewed
                         boxes that at least 1 of the 3 facereview passes called recognizable, on
                         4,806 eval frames, plus votes.csv with every pass, reviewer and timestamp
+boxes/front1/           the frontal subset of boxes/v3 (PII-2688): the 11,765 of 49,692 judged
+                        boxes that at least 1 of the 3 facereview passes called frontal, 8,661 on
+                        train frames and 3,104 on eval frames, plus votes.csv with every pass,
+                        reviewer and timestamp. 373 of the train judgements were made on v2 and
+                        do not reach v3; see its README
 ```
 
 Image name: `<session>_c<chunk>_<left|right>_f<frame_idx:06d>.jpg`, the faceback_45

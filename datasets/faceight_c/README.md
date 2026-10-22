@@ -25,6 +25,10 @@ split.csv               session, role (train | eval); the split is per session
 boxes/v1/               the vendor human pass over every frame (2026-09-16)
 boxes/v2/               v1 plus the review of the 9,925 frames with an armAE34 addition (2026-09-17)
 boxes/v3/               v1 plus the SECOND review of those same 9,925 frames (2026-09-22); the GT in use
+boxes/front1/           the frontal subset of boxes/v3 (PII-2688): the 8,959 of 29,633 judged
+                        boxes that at least 1 of the 3 facereview passes called frontal, 7,231 on
+                        train frames and 1,728 on eval frames, plus votes.csv with every pass,
+                        reviewer and timestamp
 ```
 
 Image name: `<session>_c<chunk>_<left|right>_f<frame_idx:06d>.jpg`, the faceback_45
